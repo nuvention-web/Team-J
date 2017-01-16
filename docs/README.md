@@ -1,6 +1,6 @@
 # Team J website
-Hello World, we're Answerly.
-**Contains:**
+Hello World, we're **Answerly**.
+*Contains:*
 
 - Landing page;
 - Overview Page;
