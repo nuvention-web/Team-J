@@ -1,0 +1,21 @@
+<div class="panel panel-default" ng-init="getGames()">
+  <div class="panel-heading">
+    <h3 class="panel-title">Latest Books</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+    	<div ng-repeat="game in games">
+    		<div class="col-md-6">
+    			<div class="col-md-6">
+    				<h4>{{game.title}}</h4>
+    				<p>{{game.description}}</p>
+    				<a class="btn btn-primary" href="#/games/details/{{game._id}}">View Details</a>
+    			</div>
+    			<div class="col-md-6">
+    				<img class="thumbnail" src="{{game.image_url}}">
+    			</div>
+    		</div>
+    	</div>
+    </div>
+  </div>
+</div>
