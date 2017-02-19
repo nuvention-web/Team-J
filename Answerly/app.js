@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 Question = require('./models/question');
 
 // Connect to Mongoose
-mongoose.connect('mongodb://aagam:hellsniper1210@ds151909.mlab.com:51909/question');
+mongoose.connect('mongodb://aagam:hellsniper1210@ds157479.mlab.com:57479/question_feed');
 var db = mongoose.connection;
 
 app.get('/api/questions', function(req, res){
