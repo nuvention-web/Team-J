@@ -19,5 +19,3 @@ module.exports.getQuestions = function(callback, limit){
 module.exports.addQuestion = function(question, callback){
 	Question.create(question, callback);
 }
-
-
