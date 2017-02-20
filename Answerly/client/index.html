@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
       <div class="nav-container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -19,7 +19,7 @@
         </div>
           
         <div class="navbar-header">
-          <img class="start-icon" src="./resources/images/Answerly.png" alt="Answerly"></img>
+          <img class="start-icon" src="./resources/images/Answerly.png" alt="Answerly">
         </div>
         <div class="navbar-header">
           <a class="navbar-brand" href="#/"><div class="web-name">Answerly</div></a>
@@ -28,17 +28,18 @@
 
         <div class="navbar-header">
           <input type="text" ng-model="searchString" placeholder="Enter your search terms" />
-          <button type="button" class="searchButton"> <img class="search-icon" src="resources/images/search_button.png" alt="Answerly"></img> </button>
+          <button type="button" class="searchButton"> <img class="search-icon" src="resources/images/search_button.png" alt="Answerly"> </button>
         </div>
 
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#/questions/add" style="color: white;">Add Question</a></li>
-            <li><a href="#/" style="color: white;">Home</a></li>
-            <li><a href="#/" style="color: white;">Profile</a></li>
+          <ul class="nav navbar-nav">   
+            <li><a href="#/questions/add" class="header-nav-add-Q">Ask Question</a></li>         
+            <li><a href="#/" class="header-nav">Home</a></li>
+            <li><a href="#/" class="header-nav-profile">Profile</a>
+            </li>      
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
+	</div>
     </nav>
 
     <div class="container">
@@ -49,7 +50,7 @@
     	</div>
      </div>
 
-    </div><!-- /.container -->
+	<!-- /.container -->
 	<script src="/bower_components/jquery/dist/jquery.js"></script>
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="/bower_components/angular-route/angular-route.js"></script>
