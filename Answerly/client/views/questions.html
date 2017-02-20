@@ -5,6 +5,11 @@
     height: 40px;
     
 }
+
+.row {
+  padding-left:20px;
+  padding-right: 20px;
+}
 </style>
 
 
@@ -16,11 +21,9 @@
       </div>
       <div class="panel-body">
         <div class="row">
-      		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      			<h4>{{question.question}}</h4>      			            
-          </div>
+      		<h4>{{question.question}}</h4>      			            
       	</div>
-        <div class="row" style="padding-left:20px;">
+        <div class="row" >
           <div class="cube">
             <img src = "resources/images/Profile_avatar.png">                       
           </div>
@@ -31,14 +34,29 @@
           </div>
         </div>
 
-        <div class="row" style="padding-left:20px;padding-top:10px">
+        <div class="row" style="padding-top:10px">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
+      </div>
 
 
-          
-      	
-        
+      <div class="panel-footer">
+        <div class="row" >
+          <div class="cube">
+            <img src = "resources/images/Profile_avatar.png">                       
+          </div>
+          <div class="name" style="padding-left:50px;">
+            <p><b>Name </b>   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          </div>          
+        </div>
+        <div class="row">
+          <div class="cube">
+            <img src = "resources/images/Profile_avatar.png">                       
+          </div>
+          <div class="name" style="padding-left:50px;">
+            <input type="text" name="FirstName" placeholder="Write a comment..." style="width:100%;height:40px">
+          </div>          
+        </div>
       </div>
     </div>
   </div>
