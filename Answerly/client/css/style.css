@@ -1,7 +1,23 @@
 img{width:100%;}
 
-.icon {
-	display: inline-block;
+.nav-container{
+	background: #6599E0;
+}
+
+
+
+.start-icon {
+	/*display: inline-block;*/
+
+	height: 40px;
+	width: 40px;
+	margin-top: 0.4em;
+	margin-left: 8em;
+}
+
+.web-name{
+	margin-left: 0.5em;
+	color: white;
 }
 
 .navbar-header input{
@@ -12,6 +28,7 @@ img{width:100%;}
     line-height: 19px;
     padding: 11px 0;
     margin-top: 5px;
+    margin-left: 8em;
 
     border-radius: 2px;
     box-shadow: 0 2px 8px #c4c4c4  inset;
@@ -23,3 +40,27 @@ img{width:100%;}
     outline: none;
     text-indent: 40px;
 }
+
+.nav{
+	color: white;
+}
+
+.search-icon{
+	height: 23px;
+	width: 23px;
+}
+.searchButton{
+	background-color: #F17300;
+	color: white;
+	font-size: 16px;
+	padding: 8px 8px;
+	border-radius: 8px;
+	border: 2px solid  #F17300;
+}
+
+.searchButton:hover {
+    background-color: white; /* Green */
+    color:  #F17300;
+    background-image: url("../resources/images/hover_search.png") no-repeat;
+}
+
