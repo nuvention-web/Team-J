@@ -11,7 +11,7 @@ myApp.config(function($routeProvider){
 	})
 	
 	.when('/questions/add',{
-		controller:'QuestionsController',
+		controller:'CommentsController',
 		templateUrl: 'views/add_question.html'
 	})
 	
