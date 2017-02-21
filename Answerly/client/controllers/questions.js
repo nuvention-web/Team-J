@@ -15,7 +15,4 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 			window.location.href='#/questions';
 		});
 	}
-
-
-
 }]);

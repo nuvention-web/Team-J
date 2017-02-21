@@ -8,7 +8,7 @@ var commentsSchema = mongoose.Schema({
 
 });
 
-var Comments = module.exports = mongoose.model('Comments', questionSchema);
+var Comments = module.exports = mongoose.model('Comments', commentsSchema);
 
 // Get Comments
 module.exports.getComments = function(callback, limit){
