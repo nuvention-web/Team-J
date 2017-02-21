@@ -115,6 +115,25 @@ img{width:100%;}
     background-color: #8FB8ED;
     border: 2px solid  #8FB8ED;
     /*color:  #F17300;
-    background-image: url("../resources/images/hover_search.png") no-repeat;
+    background-image: url("../resources/images/hover_search.png") no-repeat;*/
+}
+
+.logout{
+    height: 3.6em;
+    padding-top: 5;
+    float: right;
+    margin-right: 2em;
+    color: #f2f2f2;
+    font-family: 'Lato', sans-serif;
+}
+
+.logout:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.logout > img{
+    width: 40px; 
+    height: 40px;
 }
 
