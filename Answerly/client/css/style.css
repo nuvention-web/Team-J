@@ -3,7 +3,7 @@ img{width:100%;}
 .navbar-default{
 	/*background: #6599E0;*/
     background: #0E78E8;
-    width: 1440px;
+    width: fixed;
 }
 
 
