@@ -1,7 +1,7 @@
 {
-  "name": "bookstore",
+  "name": "Answerly",
   "version": "1.0.0",
-  "description": "Simple bookstore app",
+  "description": "Q&A website",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
