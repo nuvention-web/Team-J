@@ -4,14 +4,15 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', '$routeParam
 	console.log('HomeController loaded...');
 
 	$scope.getAnswers = function(){
-		$http.get('/api/questions').success(function(response){
+		$http.get('/api/answers').success(function(response){
 			$scope.answers = response;
+			console.log(response);
 		});
 	}
 
 	$scope.addAnswers = function(){
 		
-		$http.post('/api/questions/', $scope.answers).success(function(response){
+		$http.post('/api/answers/', $scope.answers).success(function(response){
 			window.location.href='#/questions';
 		});
 	}

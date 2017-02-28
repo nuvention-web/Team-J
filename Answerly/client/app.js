@@ -2,11 +2,11 @@ var myApp = angular.module('myApp',['ngRoute']);
 
 myApp.config(function($routeProvider){
 	$routeProvider.when('/', {
-		controller:'QuestionsController',
+		controller:'HomeController',
 		templateUrl: 'views/questions.html'
 	})
 	.when('/questions', {
-		controller:'QuestionsController',
+		controller:'HomeController',
 		templateUrl: 'views/questions.html'
 	})
 	

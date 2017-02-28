@@ -25,25 +25,25 @@ app.get('/api/questions', function(req, res){
 });
 
 
-// app.post('/api/questions', function(req, res){
-// 	var question = req.body;
-// 	Question.addQuestion(question, function(err, question){
-// 		if(err){
-// 			throw err;
-// 		}
-// 		res.json(question);
-// 	});
-// });
+app.post('/api/answers', function(req, res){
+	var ans = req.body;
+	Answer.addQuestion(ans, function(err, ans){
+		if(err){
+			throw err;
+		}
+		res.json(ans);
+	});
+});
 
-// app.post('/api/questions', function(req, res){
-// 	var ans = req.body;
-// 	Answer.addAnswers(ans, function(err, ans){
-// 		if(err){
-// 			throw err;
-// 		}
-// 		res.json(ans);
-// 	});
-// });
+app.get('/api/answers', function(req, res){
+	var ans = req.body;
+	Answer.addAnswers(ans, function(err, ans){
+		if(err){
+			throw err;
+		}
+		res.json(ans);
+	});
+});
 
 app.post('/api/questions', function(req, res){
 	var com = req.body;

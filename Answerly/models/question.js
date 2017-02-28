@@ -2,10 +2,13 @@ var mongoose = require('mongoose');
 
 // Question Schema
 var questionSchema = mongoose.Schema({
-	question:{
-		type: String	
-	}
-
+	question: String,
+	answer: String,
+	name: String,
+	credential: String,
+	commentername: String,
+	comment: String,
+	hashtag: String,	
 });
 
 var Question = module.exports = mongoose.model('Question', questionSchema);
