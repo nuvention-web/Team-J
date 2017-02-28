@@ -1,20 +1,68 @@
-<div class="panel panel-default" ng-init="getQuestions()">
-  <div class="panel-heading">
-    <h3 class="panel-title">Questions</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-    	<div ng-repeat="question in questions">
-    		<div class="col-md-6">
-    			<div class="col-md-6">
-    				<h4>{{question.question}}</h4>
-    				
-    			</div>
-    			<div class="col-md-6">
-    			
-    			</div>
-    		</div>
-    	</div>
+<style type="text/css">
+.cube {
+    float: left;
+    width: 40px; 
+    height: 40px;
+    
+}
+
+.row {
+  padding-left:20px;
+  padding-right: 20px;
+}
+</style>
+
+
+<div ng-init="getQuestions()" ng-controller="QuestionsController">  
+  <div ng-repeat="question in questions">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">#{{question.hashtag}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+      		<h4>{{question.question}}</h4>      			            
+      	</div>
+        <div class="row" >
+          <div class="cube">
+            <img src = "resources/images/Profile_avatar.png">                       
+          </div>
+          <div class="name" style="padding-left:50px;">
+            <p>{{question.name}} <br />
+              {{question.credential}}</p>
+          </div>
+        </div>
+
+        <div ng-init="getQuestions()" ng-controller="QuestionsController">  
+          <!-- <div ng-repeat="answer in answers"> -->
+            
+            <div class="row" style="padding-top:10px">
+              {{question.answer}}
+
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+
+
+      <div class="panel-footer">
+        <div class="row" >
+          <div class="cube">
+            <img src = "resources/images/Profile_avatar.png">                       
+          </div>
+          <div class="name" style="padding-left:50px;">
+            <p><b>{{question.commentername}} </b> {{question.comment}}
+          </div>          
+        </div>
+        <div class="row">
+          <div class="cube">
+            <img src = "resources/images/Profile_avatar.png">                       
+          </div>
+          <div class="name" style="padding-left:50px;">
+            <input type="text" name="FirstName" placeholder="Write a comment..." style="width:100%;height:40px">
+          </div>          
+        </div>
+      </div>
     </div>
   </div>
 </div>

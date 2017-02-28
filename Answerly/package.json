@@ -11,6 +11,6 @@
   	"body-parser":"*",
   	"mongoose":"*"
   },
-  "author": "Brad Traversy",
+  "author": "Aagam Shah, Jayalakshmi Jain, Yibing Shi",
   "license": "ISC"
 }
