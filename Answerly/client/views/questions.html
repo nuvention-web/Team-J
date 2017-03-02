@@ -1,17 +1,4 @@
-<style type="text/css">
-.cube {
-    float: left;
-    width: 40px; 
-    height: 40px;
-    
-}
-
-.row {
-  padding-left:20px;
-  padding-right: 20px;
-}
-</style>
-
+<link rel="stylesheet" href="views/css/style.css">
 
 <div ng-init="getQuestions()" ng-controller="QuestionsController">  
   <div ng-repeat="question in questions">
@@ -27,7 +14,7 @@
           <div class="cube">
             <img src = "resources/images/Profile_avatar.png">                       
           </div>
-          <div class="name" style="padding-left:50px;">
+          <div class="name">
             <p>{{question.name}} <br />
               {{question.credential}}</p>
           </div>
@@ -50,7 +37,7 @@
           <div class="cube">
             <img src = "resources/images/Profile_avatar.png">                       
           </div>
-          <div class="name" style="padding-left:50px;">
+          <div class="name" style="padding-bottom:20px;">
             <p><b>{{question.commentername}} </b> {{question.comment}}
           </div>          
         </div>
@@ -58,7 +45,7 @@
           <div class="cube">
             <img src = "resources/images/Profile_avatar.png">                       
           </div>
-          <div class="name" style="padding-left:50px;">
+          <div class="name">
             <input type="text" name="FirstName" placeholder="Write a comment..." style="width:100%;height:40px">
           </div>          
         </div>

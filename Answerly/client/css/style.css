@@ -70,7 +70,7 @@ img{width:100%;}
 .navbar-nav > li > a.header-nav-profile{
     color: #f2f2f2;
     font-family: 'Lato', sans-serif;
-    margin-left: 8em;
+    margin-left: 6em;
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -83,7 +83,7 @@ img{width:100%;}
 .navbar-nav > li > a.header-nav{
     color: #f2f2f2;
     font-family: 'Lato', sans-serif;
-    margin-left: 3em;
+    margin-left: 2em;
 }
 
 .navbar-nav > li > a.header-nav:hover{
