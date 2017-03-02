@@ -10,15 +10,8 @@
         <div class="form-group">
           <label>Add a Question</label>
           <br><br>
-          <input type="userinput" list="pasta" onClick="this.select();" value="" placeholder="Search" id="away">
-
-                    <datalist id="pasta">
-                        <option>What is difference between Java and JS?</option>
-                        <option>How to deploy a node app to Linux server?</option>
-                        <option>Others</option>
-                    </datalist>
-
-
+          <input type="userinput" id="edit_search" onkeyup="find_my_div();" value="" placeholder="Your tag here">
+          <div class="result" id="select"><ul id="search_results"></ul></div>
           <br>
           <input type="text" class="form-control" ng-model="comments.comments" placeholder="Title">
         </div>
