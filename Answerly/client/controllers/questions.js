@@ -17,11 +17,11 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	}
 }]);
 
-var Dict_pro = [{key:"#Prof.F", value:"CHOCOLATE"},{key:"#Prof.T", value:"PSYCHOLOGY"},
-{key:"#Prof.Cobe", value:"STATISTIC"}, {key:"#Prof.A", value:"ENGINEER"},
-{key:"#Prof.Fu", value:"GRAPHIC"}, {key:"#Prof.X", value:"JAVA"},
-{key:"#Prof.L", value:"MBA"}, {key:"#Prof.Q", value:"JAVASCRIPT"},
-{key:"#Prof.S", value:"MANAGEMENT"}];
+var Dict_pro = [{key:"#Prof.Chase", value:"CHOCOLATE"},{key:"#Prof.Mike", value:"PSYCHOLOGY"},
+{key:"#Prof.Cobe", value:"STATISTIC"}, {key:"#Prof.Chris", value:"ENGINEER"},
+{key:"#Prof.Chen", value:"GRAPHIC"}, {key:"#Prof.Jack", value:"JAVA"},
+{key:"#Prof.Peter", value:"MBA"}, {key:"#Prof.Michael", value:"JAVASCRIPT"},
+{key:"#Prof.Roby", value:"MANAGEMENT"}];
 var result = new Array();
 
 function select_prof(input){
@@ -78,6 +78,11 @@ function find_my_div() {
     
     else{
         // console.log("str_needle",str_needle);
+	    
+	var temp = Dict_pro[i].key.toLowerCase();
+        if (temp.indexOf(str_needle.toLowerCase()) != -1){
+                result.push(Dict_pro[i].key);
+        }
 
         for (var i=0;i<Dict_pro.length;i++){
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
