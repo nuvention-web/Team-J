@@ -15,6 +15,14 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 			window.location.href='#/questions';
 		});
 	}
+
+    $scope.sendEmail =function(){
+        $http.post('api/questions/email',$scope.question).success(function(response){
+            // window.location.href='#/questions';
+            console.log('response received');
+        });
+    }
+
 }]);
 
 var Dict_pro = [{key:"#Prof.Chase", value:"CHOCOLATE"},{key:"#Prof.Mike", value:"PSYCHOLOGY"},
