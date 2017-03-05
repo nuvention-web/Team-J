@@ -55,5 +55,7 @@ app.post('/api/questions', function(req, res){
 	});
 });
 
-app.listen(80);
-console.log('Running on port 80...');
+var port = process.env.PORT || 8080;
+app.listen(port, function() {
+	console.log('Our app is running on http://localhost:' + port);
+});
