@@ -4,13 +4,20 @@
   "description": "Q&A website",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "*",
     "express": "*",
     "mongoose": "*",
     "nodemailer": "^3.1.4"
+  },
+  "engines":{
+    "node":"6.9.1"
+  },
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/nuvention-web/Team-J/Answerly"
   },
   "author": "Aagam Shah, Jayalakshmi Jain, Yibing Shi",
   "license": "ISC"

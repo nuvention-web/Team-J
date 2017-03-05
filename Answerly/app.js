@@ -83,5 +83,5 @@ app.post('api/questions/email', function(req, res, next){
 	// })
 });
 
-app.listen(3000);
+app.listen(80);
 console.log('Running on port 3000...');
