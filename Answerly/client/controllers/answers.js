@@ -17,3 +17,28 @@ myApp.controller('AnswersController', ['$scope', '$http', '$location', '$routePa
 	}
 
 }]);
+
+var str = "";
+
+function submitAnswer(){
+
+	str = document.getElementById("inputAnswer").value;
+
+	if (str == ""){
+	// 	// alert("NO Empty Answers!");
+		// $('#myModalHorizontal').modal('hide');
+		$('#EmptyInput').modal('show');
+		// $('#myModalHorizontal').modal('show');
+	// 	// $('#myModalHorizontal').modal('show');
+	// 	// var modal = document.getElementById("EmptyInput");
+	// 	// console.log("modal", modal);
+	// 	// modal.aria-hidden = 'false';
+	}
+
+	else
+		$('#myModalHorizontal').modal('hide');
+
+	
+
+	console.log("str", str);
+}
