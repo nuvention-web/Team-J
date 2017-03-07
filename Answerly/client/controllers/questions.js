@@ -5,6 +5,9 @@ var indexAnswer = 0;
 var indexQuestion = 0;
 var followup = "Hi";
 
+var indexFollowUp = 0;
+var FollowUPContent = "";
+
 myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	console.log('QuestionsController loaded...');
 
@@ -23,6 +26,16 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	}
 
     $scope.sendEmail =function(){
+	    
+	var GetTempName = "followAnswer" + indexFollowUp;
+
+        FollowUPContent = document.getElementById(GetTempName).value;
+
+        console.log("FollowUPContent", FollowUPContent);
+
+        var TempName = "#followModal" + indexFollowUp;
+        $(TempName).modal('hide');
+	    
         $http.post('api/questions/email?fques='+followup,$scope.question).success(function(response){
             // window.location.href='#/questions';
             console.log('response received');
@@ -55,6 +68,21 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
     $scope.ChangeAnswerID = function(){
 
         u_ChangeAnswerID();
+    }
+    
+    $scope.ChangefollowID = function(){
+
+        u_ChangefollowID();
+    }
+
+    $scope.ChangeFollowButtonID = function(){
+
+        u_ChangeFollowButtonID();
+    }
+
+    $scope.ChangefollowAnswerID = function(){
+
+        u_ChangefollowAnswerID();
     }
 
 }]);
@@ -265,4 +293,44 @@ function disableAnswerButton(){
     }
 
     indexAnswer++;
+}
+
+function u_ChangefollowID(){
+
+    var ids = document.getElementsByClassName("followID");
+
+    for (var i=0; i<ids.length; i++){
+        ids[i].id = "followModal" + i;
+    }
+}
+
+function OpenFollowModal(str){
+
+   console.log("str", str);
+
+   var TempName = "#followModal" + str[str.length-1];
+   $(TempName).modal('show');
+
+   console.log("TempName", TempName);
+
+   indexFollowUp = str[str.length-1];
+   localStorage.setItem("indexFollowUp", indexFollowUp);
+}
+
+function u_ChangeFollowButtonID(){
+
+    var ids = document.getElementsByClassName("followupButton");
+
+    for (var i=0; i<ids.length; i++){
+        ids[i].id = "followupButton" + i;
+    }
+}
+
+function u_ChangefollowAnswerID(){
+
+    var ids = document.getElementsByClassName("followAnswer");
+
+    for (var i=0; i<ids.length; i++){
+        ids[i].id = "followAnswer" + i;
+    }
 }
