@@ -12,7 +12,8 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	$scope.addQuestion = function(){
 		
 		$http.post('/api/questions/', $scope.question).success(function(response){
-			window.location.href='#/questions';
+			//window.location.href='#/questions';
+            console.log('response received');
 		});
 	}
 
@@ -27,7 +28,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 
         ChangeButtonID(); 
 
-        // disableAnswerButton(); 
+        disableAnswerButton(); 
     }
     
     $scope.checkAnswerButton = function(str){
@@ -54,6 +55,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 }]);
 
 var Dict_pro = [
+{key:}
 {key:"#Prof.LawrenceBirnbaum", value:"COMPUTER VISION"},
 {key:"#Prof.YingWu", value:"COMPUTER VISION"},
 
@@ -74,7 +76,7 @@ var Dict_pro = [
 
 {key:"#Prof.PeterDinda", value:"DISTRIBUTED SYSTEMS"},
 {key:"#Prof.FabianBustmante", value:"DISTRIBUTED SYSTEMS"},
-
+/*
 {key:"#Prof.AlokChoudhary", value:"COMPUTER SCIENCE"},
 {key:"#Prof.AnkitAgrawal", value:"COMPUTER SCIENCE"},
 {key:"#Prof.Wei-KengLiao", value:"COMPUTER SCIENCE"},
@@ -86,7 +88,7 @@ var Dict_pro = [
 {key:"#Prof.AleksandarKuzmanovic", value:"COMPUTER SCIENCE"},
 {key:"#Prof.PeterDinda", value:"COMPUTER SCIENCE"},
 {key:"#Prof.LawrenceBirnbaum", value:"COMPUTER SCIENCE"},
-{key:"#Prof.YingWu", value:"COMPUTER SCIENCE"},
+{key:"#Prof.YingWu", value:"COMPUTER SCIENCE"},*/
 
 {key:"#Prof.BarryNelson", value:"STATISTICS"},
 {key:"#Prof.BruceAnkerman", value:"STATISTICS"},
