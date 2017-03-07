@@ -8,7 +8,7 @@ var questionSchema = mongoose.Schema({
 	credential: String,
 	commentername: String,
 	comment: String,
-	hashtag: String,	
+	hashtag: {type: String,	default: "Prof.BarryNelson" }
 });
 
 var Question = module.exports = mongoose.model('Question', questionSchema);
@@ -19,6 +19,8 @@ module.exports.getQuestions = function(callback, limit){
 }
 
 // Add Question
-module.exports.addQuestion = function(question, callback){
+module.exports.addQuestion = function(question, profhash, callback){
+	question.hashtag = profhash;
+	console.log("in model"+question.hashtag);
 	Question.create(question, callback);
 }

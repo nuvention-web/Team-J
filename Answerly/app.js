@@ -54,10 +54,11 @@ app.get('/api/questions', function(req, res){
 // 	});
 // });
 
-app.post('/api/questions/', function(req, res){
+app.post('/api/questions', function(req, res){
 	var com = req.body;
+	var profhash = req.profhash;
 	console.log(com);
-	Question.addQuestion(com, function(err, com){
+	Question.addQuestion(com, profhash, function(err, com){
 		if(err){
 			throw err;
 		}

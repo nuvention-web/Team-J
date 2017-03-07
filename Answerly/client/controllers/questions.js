@@ -3,8 +3,7 @@ var QuestionArray = new Array ();
 var AnswerArray = new Array ();
 var indexAnswer = 0;
 var indexQuestion = 0;
-var followup = "";
-var hashvar = "";
+var followup = "Hi";
 
 var indexFollowUp = 0;
 var FollowUPContent = "";
@@ -19,8 +18,8 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	}
 
 	$scope.addQuestion = function(){
-		hashvar = choice;
-		$http.post('/api/questions/', $scope.question).success(function(response){
+		
+		$http.post('/api/questions/', $scope.question,$scope.followup).success(function(response){
 			window.location.href='#/questions';
             console.log($scope.question);
 		});
@@ -93,10 +92,9 @@ var Dict_pro = [
 {key:"#Prof.YingWu", value:"COMPUTER VISION"},
 
 {key:"#Prof.AlokChoudhary", value:"DATA MINING"},
-{key:"#Prof.AnkitAgrawal", value:"DATA SCIENCE"},
+{key:"#Prof.AnkitAgrawal", value:"DATA MINING"},
+{key:"#Prof.Wei-KengLiao", value:"DATA MINING"},
 {key:"#Prof.EdwardMalthouse", value:"DATA MINING"},
-{key:"#Prof.Jennie Duggan", value:"DATABASE MANAGEMENT"},
-{key:"#Prof.PeterSchermann", value:"DATA WAREHOUSING"},
 
 {key:"#Prof.GoceTrajevski", value:"SENSORS"},
 {key:"#Prof.PeterScheuermann", value:"SENSORS"},
