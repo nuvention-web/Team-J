@@ -168,7 +168,7 @@ function find_my_div() {
         }
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
 
-                result.push(Dict_pro[i].key);
+                result.push(Dict_pro[i].key+'\n'+Dict_pro[i].value);
                 // console.log("result",result);
             }
         }

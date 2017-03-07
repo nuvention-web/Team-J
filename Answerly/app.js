@@ -56,6 +56,7 @@ app.get('/api/answers', function(req, res){
 
 app.post('/api/questions', function(req, res){
 	var com = req.body;
+	console.log(req.body);
 	Comment.addComments(com, function(err, com){
 		if(err){
 			throw err;
@@ -82,10 +83,10 @@ app.post('/api/questions/email', function(req, res, next){
 	      {
 	        to: [
 	          {
-	            email: 'gavin.jin@kellogg.northwestern.edu',
+	            email: 'aagamshah2017@u.northwestern.edu',
 	          },
 	        ],
-	        subject: 'Hello World from the SendGrid Node.js Library!',
+	        subject: 'Follow up question requested',
 	      },
 	    ],
 	    from: {
@@ -93,8 +94,8 @@ app.post('/api/questions/email', function(req, res, next){
 	    },
 	    content: [
 	      {
-	        type: 'text/plain',
-	        value: 'Hello, Email!',
+	        type: 'text/html',
+	        value: '<b>Hello, Email!<b>'+req.body.question,
 	      },
 	    ],
 	  },

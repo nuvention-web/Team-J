@@ -8,12 +8,11 @@
       <div class="col-md-12">
       <form ng-submit="addComments()">
         <div class="form-group">
-          <label>Add a Question</label>
           <br><br>
-          <input type="userinput" id="edit_search" onkeyup="find_my_div();" value="" placeholder="Your tag here">
+          <input type="userinput" id="edit_search" onkeyup="find_my_div();" value="" placeholder="Enter your professor/topic">
           <div class="result" id="select"><ul id="search_results"></ul></div>
           <br>
-          <input type="text" class="form-control" ng-model="comments.comments" placeholder="Title">
+          <input type="text" class="form-control" ng-model="comments.comments" placeholder="Enter your question">
         </div>
         <br>
         <button type="submit" class="btn btn-default">Submit</button>
