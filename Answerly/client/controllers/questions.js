@@ -45,6 +45,11 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 
         u_ChangeWarningModalID();
     }
+    
+    $scope.ChangeAnswerID = function(){
+
+        u_ChangeAnswerID();
+    }
 
 }]);
 
@@ -209,6 +214,18 @@ function u_ChangeWarningModalID(){
      for (var i=0; i<ids.length; i++){
         // console.log("ids", ids[i].id);
         ids[i].id = "warningModal" + i;
+        // console.log("new_ids", ids[i].id);
+    }
+
+}
+
+function u_ChangeAnswerID(){
+
+    var ids = document.getElementsByClassName("answerPanel");
+
+     for (var i=0; i<ids.length; i++){
+        // console.log("ids", ids[i].id);
+        ids[i].id = "inputAnswer" + i;
         // console.log("new_ids", ids[i].id);
     }
 
