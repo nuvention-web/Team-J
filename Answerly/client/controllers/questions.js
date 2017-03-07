@@ -27,7 +27,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 
         ChangeButtonID(); 
 
-//         disableAnswerButton(); 
+        // disableAnswerButton(); 
     }
     
     $scope.checkAnswerButton = function(str){
@@ -38,6 +38,12 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
     $scope.ChangeModalID = function(){
 
         u_ChangeModalID();
+    }
+
+    
+    $scope.ChangeWarningID = function(){
+
+        u_ChangeWarningModalID();
     }
 
 }]);
@@ -190,6 +196,18 @@ function u_ChangeModalID(){
 
 }
 
+function u_ChangeWarningModalID(){
+
+    var ids = document.getElementsByClassName("warningModal");
+
+     for (var i=0; i<ids.length; i++){
+        // console.log("ids", ids[i].id);
+        ids[i].id = "warningModal" + i;
+        // console.log("new_ids", ids[i].id);
+    }
+
+}
+
 function ChangeButtonID(){
 
     var ids = document.getElementsByClassName("AnswerButton");
@@ -205,12 +223,15 @@ function ChangeButtonID(){
 function OpenModal(str){
 
     var TempName = "#ModalID" + str[str.length-1];
-    console.log("TempName", TempName);
+    // console.log("TempName", TempName);
 
     // var $target = $(TempName);
 
     // if (str[str.length-1] == 0)
     $(TempName).modal('show');
+
+    indexQuestion = str[str.length-1];
+    localStorage.setItem("indexQuestion", indexQuestion);
 
 }
 
