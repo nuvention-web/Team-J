@@ -282,9 +282,9 @@ function OpenModal(str){
 function disableAnswerButton(){
     // console.log("1");
     for (var i=indexAnswer; i<AnswerArray.length; i++){
-        console.log("i", i);
-        console.log("AnswerArray[i]", AnswerArray[i]);
-        if (AnswerArray[i] != ""){
+//         console.log("i", i);
+//         console.log("AnswerArray[i]", AnswerArray[i]);
+        if (AnswerArray[i] != " "){
             var temp_id = "AnswerButton" + i;
             console.log("temp_id", temp_id);
 
