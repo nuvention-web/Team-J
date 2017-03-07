@@ -107,14 +107,17 @@ function select_prof(input){
     
     var choice = result[input];
     // choice = choice.toUpperCase();
-    console.log("choice", choice);
+//     console.log("choice", choice);
+    choice = choice.substring(0, choice.indexOf("<"));
 
     var change_search = document.getElementById("edit_search").value;
+	
     
     if (change_search[0] != "#")
         document.getElementById("edit_search").value = "";
 
-    document.getElementById("edit_search").value += choice + "    ";
+    document.getElementById("edit_search").value += choice + " ";
+    document.getElementById("edit_search").style.color = "#0E78E8";
     result = [];
     document.getElementById("search_results").innerHTML = "";
 }
@@ -125,18 +128,18 @@ function notshowthis(){
     // document.getElementById("select").style.display = "none";
 }
 
-function getSpecial(input){
+// function getSpecial(input){
 
-    for (var i=0;i<Dict_pro.length;i++){
-            if (Dict_pro[i].key.indexOf(input) != -1){
+//     for (var i=0;i<Dict_pro.length;i++){
+//             if (Dict_pro[i].key.indexOf(input) != -1){
 
-                console.log("result",Dict_pro[i].value);
-                return Dict_pro[i].value.toLowerCase();
+//                 console.log("result",Dict_pro[i].value);
+//                 return Dict_pro[i].value.toLowerCase();
                 
-            }
-    }
+//             }
+//     }
 
-}
+// }
 
 function find_my_div() {
 
@@ -164,11 +167,11 @@ function find_my_div() {
 		
 	var temp = Dict_pro[i].key.toLowerCase();
         if (temp.indexOf(str_needle.toLowerCase()) != -1){
-                result.push(Dict_pro[i].key);
+                result.push(Dict_pro[i].key + "<br\>@ " + Dict_pro[i].value.toLowerCase());
         }
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
 
-                result.push(Dict_pro[i].key);
+                result.push(Dict_pro[i].key + "<br\>@ " + Dict_pro[i].value.toLowerCase());
                 // console.log("result",result);
             }
         }
@@ -177,7 +180,7 @@ function find_my_div() {
     var full_list = "";
 
     for (var i=0;i<result.length;i++){
-        full_list += '<li onclick="select_prof(' + i + ');\" title=\"'+ getSpecial(result[i]) +'\">' + result[i] + "</li>"; 
+        full_list += '<li onclick="select_prof(' + i + ');\"'+'>' + result[i] + "</li>"; 
         // console.log("result[i]",result[i]); 
     }
 
