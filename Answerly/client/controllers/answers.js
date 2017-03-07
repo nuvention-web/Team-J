@@ -22,12 +22,13 @@ var AnswertoQuestion = "";
 
 function submitAnswer(){
 
-	// localStorage.getItem("indexQuestion");
-	// var GetTempName = "ModalID" + indexQuestion;
+	localStorage.getItem("indexQuestion");
+	var GetTempName = "inputAnswer" + indexQuestion;
 
-	AnswertoQuestion = document.getElementById("inputAnswer").value;
-	console.log("AnswertoQuestion", AnswertoQuestion);
-
+	// console.log("GetTempName", GetTempName);
+	AnswertoQuestion = document.getElementById(GetTempName).value;
+	
+	// console.log("AnswertoQuestion", AnswertoQuestion);
 	if (AnswertoQuestion == ""){
 	// 	// alert("NO Empty Answers!");
 		// $('#myModalHorizontal').modal('hide');
