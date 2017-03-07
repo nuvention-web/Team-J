@@ -92,9 +92,10 @@ var Dict_pro = [
 {key:"#Prof.YingWu", value:"COMPUTER VISION"},
 
 {key:"#Prof.AlokChoudhary", value:"DATA MINING"},
-{key:"#Prof.AnkitAgrawal", value:"DATA MINING"},
-{key:"#Prof.Wei-KengLiao", value:"DATA MINING"},
+{key:"#Prof.AnkitAgrawal", value:"DATA SCIENCE"},
 {key:"#Prof.EdwardMalthouse", value:"DATA MINING"},
+{key:"#Prof.Jennie Duggan", value:"DATABASE MANAGEMENT"},
+{key:"#Prof.PeterSchermann", value:"DATA WAREHOUSING"},
 
 {key:"#Prof.GoceTrajevski", value:"SENSORS"},
 {key:"#Prof.PeterScheuermann", value:"SENSORS"},
