@@ -28,10 +28,10 @@
             </div>
             <div>
               <!-- Follow up popup code starts -->
-              <button class="btn btn-primary btn-lg AnswerButton" data-toggle="modal" onclick="OpenModal(this.id)"> Follow up </button>
+              <button class="btn btn-primary btn-lg followupButton" data-toggle="modal" data-ng-init="ChangeFollowButtonID()" onclick="OpenFollowModal(this.id)"> Follow up </button>
 
-              <div class="modal fade ModalID" id="myModalHorizontal" tabindex="-1" role="dialog" 
-              aria-labelledby="myModalLabel" data-ng-init="ChangeModalID()" data-backdrop="false" aria-hidden="true">
+              <div class="modal fade followID" tabindex="-1" role="dialog" 
+              aria-labelledby="myModalLabel" data-ng-init="ChangefollowID()" data-backdrop="false" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                   <!-- Modal Header -->
@@ -62,7 +62,7 @@
                       <label class="col-sm-2 control-label"
                           for="inputPassword3" >Your follow-up question</label>
                       <div class="col-sm-10">
-                      <textarea type="text" rows="4" class="form-control answerPanel" data-ng-init="ChangeAnswerID()"
+                      <textarea type="text" rows="4" class="form-control answerPanel followAnswer" data-ng-init="ChangefollowAnswerID()"
                             id="inputAnswer" placeholder="Enter your question..."></textarea>
                       </div>
                       </div>
@@ -75,7 +75,7 @@
                         data-dismiss="modal">
                             Cancel
                       </button>
-                      <button type="button" class="btn btn-primary" ng-click="sendEmail()" id="submitMyEmail" name="email">
+                      <button type="button" class="btn btn-primary" ng-click="sendEmail()" name="email">
                         Email Professor
                       </button>
                     </div>
@@ -83,29 +83,30 @@
                 </div>
               </div>
           <!-- </div> -->
-              <div class="modal fade warningModal" id="EmptyInput" tabindex="-1" role="dialog" 
+
+              <!-- <div class="modal fade FollowModal" id="EmptyInput" tabindex="-1" role="dialog" 
                 aria-labelledby="myModalLabel" aria-hidden="true" data-ng-init="ChangeWarningID()">
                 <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                  <div class="modal-content"> -->
+                    <!-- <div class="modal-header">
                       <button type="button" class="close" 
                         data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                       </button>
-                      <h4 class="modal-title" id="myModalLabel">
+                      <! <h4 class="modal-title" id="popupModal">
                         Invalid Inputs
-                      </h4>
-                    </div>
-                  <div class="modal-body">
+                      </h4
+                    </div> --> 
+                  <!-- <div class="modal-body">
                     <p>Please enter some question.</p>
-                  </div>
-                  <div class="modal-footer">
+                  </div> -->
+                  <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                  </div>
+                  </div> -->
+                  <!-- </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           <!-- </div> -->
           <!-- Follow up popup code ends -->
