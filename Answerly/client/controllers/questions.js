@@ -90,8 +90,7 @@ var Dict_pro = [
 
 {key:"#Prof.CLairCoyne", value:"CHILD PSYCHOLOGY"},
 {key:"#Prof.JohnLavigne", value:"CHILD PSYCHOLOGY"},
-{key:"#Prof.CarriHill", value:"CHILD PSYCHOLOGY"},
-
+{key:"#Prof.CarriHill", value:"CHILD PSYCHOLOGY"}
 ];
 
 
