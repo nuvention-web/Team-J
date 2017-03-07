@@ -56,8 +56,8 @@ app.get('/api/answers', function(req, res){
 
 app.post('/api/questions', function(req, res){
 	var com = req.body;
-	console.log(req.body);
-	Comment.addComments(com, function(err, com){
+	console.log(com);
+	Question.addQuestion(com, function(err, com){
 		if(err){
 			throw err;
 		}
