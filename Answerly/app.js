@@ -86,7 +86,7 @@ app.post('/api/questions/email', function(req, res, next){
 	      {
 	        to: [
 	          {
-	            email: 'aagamshah2017@u.northwestern.edu',
+	            email: 'gavin.jin@kellogg.northwestern.edu',
 	          },
 	        ],
 	        subject: 'Follow up requested for a question',
