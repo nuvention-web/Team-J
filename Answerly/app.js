@@ -56,7 +56,8 @@ app.get('/api/answers', function(req, res){
 
 app.post('/api/questions', function(req, res){
 	var com = req.body;
-	Comment.addComments(com, function(err, com){
+	console.log(com);
+	Question.addQuestion(com, function(err, com){
 		if(err){
 			throw err;
 		}
@@ -66,12 +67,15 @@ app.post('/api/questions', function(req, res){
 
 app.post('/api/questions/email', function(req, res, next){
 	console.log(req.body);
+	console.log(req.followup);
 
 	// from_email = new helper.Email("aagamshah2017@u.northwestern.edu");
 	// to_email = new helper.Email("aagam.shah1210@gmail.com");
 	// subject = "Sending with SendGrid is Fun";
 	// content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js");
 	// mail = new helper.Mail(from_email, subject, to_email, content);
+
+	var mail_body = "<h2>"+req.body.question+"</h2><h3><u> Your Answer : <u></h3><h3>"+req.body.answers+"</h3><h3><u> Follow up question : <u></h3><h3>"+req.param('fques')+"</h3>";
 
 	var sg = require('sendgrid')('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');
 	var request = sg.emptyRequest({
@@ -82,10 +86,10 @@ app.post('/api/questions/email', function(req, res, next){
 	      {
 	        to: [
 	          {
-	            email: 'gavin.jin@kellogg.northwestern.edu',
+	            email: 'aagamshah2017@u.northwestern.edu',
 	          },
 	        ],
-	        subject: 'Hello World from the SendGrid Node.js Library!',
+	        subject: 'Follow up requested for a question',
 	      },
 	    ],
 	    from: {
@@ -93,8 +97,8 @@ app.post('/api/questions/email', function(req, res, next){
 	    },
 	    content: [
 	      {
-	        type: 'text/plain',
-	        value: 'Hello, Email!',
+	        type: 'text/html',
+	        value: mail_body,
 	      },
 	    ],
 	  },
