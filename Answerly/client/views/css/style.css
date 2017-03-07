@@ -1,0 +1,15 @@
+.cube {
+    float: left;
+    width: 40px; 
+    height: 40px;
+    
+}
+
+.row {
+	padding-left:20px;
+	padding-right: 20px;
+}
+
+.name {
+	padding-left:50px;
+}

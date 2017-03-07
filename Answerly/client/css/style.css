@@ -70,7 +70,7 @@ img{width:100%;}
 .navbar-nav > li > a.header-nav-profile{
     color: #f2f2f2;
     font-family: 'Lato', sans-serif;
-    margin-left: 8em;
+    margin-left: 6em;
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -83,7 +83,7 @@ img{width:100%;}
 .navbar-nav > li > a.header-nav{
     color: #f2f2f2;
     font-family: 'Lato', sans-serif;
-    margin-left: 3em;
+    margin-left: 2em;
 }
 
 .navbar-nav > li > a.header-nav:hover{
@@ -141,7 +141,7 @@ img{width:100%;}
 
 input[type=userinput], select {
     display: block;
-    width: 100%;
+    width: 20%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -151,4 +151,55 @@ input[type=userinput], select {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.result ul {
+  list-style-type: none;
+  padding-left: 0;
+  width: 43%;
+  position: absolute;
+  z-index: 20px;
+  /*height: 10s0px;*/
+  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+}
+
+.result ul li {
+    border: 1px; 
+    background: #ddd;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 45%;
+    min-height: 20px;
+    font-size: 16px;
+    display:block;
+    padding: 8px 8px;
+    font-family: 'Ubuntu', sans-serif;
+    /*font-family: 'Amiko', sans-serif;*/
+    /*margin-top: 2em;*/
+}
+
+.result ul li:hover{
+    background: #0E78E8;
+    color:white;
+}
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+
+.btn-lg{
+    margin-top: 0.5em;
+    margin-left: 1.4em;
+    margin-bottom: 0.5em;
+    font-size: 16px;  
+}
+
+.col-sm-10 > input[type=text]{
+    height: 30px;
 }
