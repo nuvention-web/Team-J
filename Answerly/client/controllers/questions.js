@@ -1,4 +1,8 @@
 var myApp = angular.module('myApp');
+var QuestionArray = new Array ();
+var AnswerArray = new Array ();
+var indexAnswer = 0;
+var indexQuestion = 0;
 
 myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	console.log('QuestionsController loaded...');
