@@ -51,17 +51,22 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 var Dict_pro = [
 {key:"#Prof.LawrenceBirnbaum", value:"COMPUTER VISION"},
 {key:"#Prof.YingWu", value:"COMPUTER VISION"},
+
 {key:"#Prof.AlokChoudhary", value:"DATA MINING"},
 {key:"#Prof.AnkitAgrawal", value:"DATA MINING"},
 {key:"#Prof.Wei-KengLiao", value:"DATA MINING"},
 {key:"#Prof.EdwardMalthouse", value:"DATA MINING"},
+
 {key:"#Prof.GoceTrajevski", value:"SENSORS"},
 {key:"#Prof.PeterScheuermann", value:"SENSORS"},
 {key:"#Prof.SimoneCampononi", value:"SENSORS"},
+
 {key:"#Prof.FabianBustmante", value:"COMPUTER NETWORKS"},
 {key:"#Prof.YanChen", value:"COMPUTER NETWORKS"},
 {key:"#Prof.AleksandarKuzmanovic", value:"COMPUTER NETWORKS"},
+
 {key:"#Prof.YanChen", value:"MALWARE"},
+
 {key:"#Prof.PeterDinda", value:"DISTRIBUTED SYSTEMS"},
 {key:"#Prof.FabianBustmante", value:"DISTRIBUTED SYSTEMS"},
 
@@ -96,8 +101,7 @@ var Dict_pro = [
 
 {key:"#Prof.CLairCoyne", value:"CHILD PSYCHOLOGY"},
 {key:"#Prof.JohnLavigne", value:"CHILD PSYCHOLOGY"},
-{key:"#Prof.CarriHill", value:"CHILD PSYCHOLOGY"}
-];
+{key:"#Prof.CarriHill", value:"CHILD PSYCHOLOGY"}];
 
 
 var result = new Array();
