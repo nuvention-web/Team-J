@@ -36,7 +36,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
         var TempName = "#followModal" + indexFollowUp;
         $(TempName).modal('hide');
 	    
-        $http.post('api/questions/email?fques='+followup,$scope.question).success(function(response){
+        $http.post('api/questions/email?fques='+FollowUPContent,$scope.question).success(function(response){
             // window.location.href='#/questions';
             console.log('response received');
         });
