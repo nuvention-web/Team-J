@@ -161,12 +161,14 @@ function find_my_div() {
     else{
         // console.log("str_needle",str_needle);
 	    
+	
+
+        for (var i=0;i<Dict_pro.length;i++){
+		
 	var temp = Dict_pro[i].key.toLowerCase();
         if (temp.indexOf(str_needle.toLowerCase()) != -1){
                 result.push(Dict_pro[i].key);
         }
-
-        for (var i=0;i<Dict_pro.length;i++){
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
 
                 result.push(Dict_pro[i].key);
