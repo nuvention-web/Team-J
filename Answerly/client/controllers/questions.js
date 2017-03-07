@@ -42,11 +42,60 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 
 }]);
 
-var Dict_pro = [{key:"#Prof.Chase", value:"CHOCOLATE"},{key:"#Prof.Mike", value:"PSYCHOLOGY"},
-{key:"#Prof.Cobe", value:"STATISTIC"}, {key:"#Prof.Chris", value:"ENGINEER"},
-{key:"#Prof.Chen", value:"GRAPHIC"}, {key:"#Prof.Jack", value:"JAVA"},
-{key:"#Prof.Peter", value:"MBA"}, {key:"#Prof.Michael", value:"JAVASCRIPT"},
-{key:"#Prof.Roby", value:"MANAGEMENT"}];
+var Dict_pro = [
+{key:"#Prof.LawrenceBirnbaum", value:"COMPUTER VISION"}
+{key:"#Prof.YingWu", value:"COMPUTER VISION"}
+
+{key:"#Prof.AlokChoudhary", value:"DATA MINING"}
+{key:"#Prof.AnkitAgrawal", value:"DATA MINING"}
+{key:"#Prof.Wei-KengLiao", value:"DATA MINING"}
+{key:"#Prof.EdwardMalthouse", value:"DATA MINING"}
+{key:"#Prof.GoceTrajevski", value:"SENSORS"}
+{key:"#Prof.PeterScheuermann", value:"SENSORS"}
+{key:"#Prof.SimoneCampononi", value:"SENSORS"}
+{key:"#Prof.FabianBustmante", value:"COMPUTER NETWORKS"}
+{key:"#Prof.YanChen", value:"COMPUTER NETWORKS"}
+{key:"#Prof.AleksandarKuzmanovic", value:"COMPUTER NETWORKS"}
+{key:"#Prof.YanChen", value:"MALWARE"}
+{key:"#Prof.PeterDinda", value:"DISTRIBUTED SYSTEMS"}
+{key:"#Prof.FabianBustmante", value:"DISTRIBUTED SYSTEMS"}
+
+{key:"#Prof.AlokChoudhary", value:"COMPUTER SCIENCE"}
+{key:"#Prof.AnkitAgrawal", value:"COMPUTER SCIENCE"}
+{key:"#Prof.Wei-KengLiao", value:"COMPUTER SCIENCE"}
+{key:"#Prof.GoceTrajevski", value:"COMPUTER SCIENCE"}
+{key:"#Prof.PeterScheuermann", value:"COMPUTER SCIENCE"}
+{key:"#Prof.SimoneCampononi", value:"COMPUTER SCIENCE"}
+{key:"#Prof.FabianBustmante", value:"COMPUTER SCIENCE"}
+{key:"#Prof.YanChen", value:"COMPUTER SCIENCE"}
+{key:"#Prof.AleksandarKuzmanovic", value:"COMPUTER SCIENCE"}
+{key:"#Prof.PeterDinda", value:"COMPUTER SCIENCE"}
+{key:"#Prof.LawrenceBirnbaum", value:"COMPUTER SCIENCE"}
+{key:"#Prof.YingWu", value:"COMPUTER SCIENCE"}
+
+{key:"#Prof.BarryNelson", value:"STATISTICS"}
+{key:"#Prof.BruceAnkerman", value:"STATISTICS"}
+{key:"#Prof.DanielApley", value:"STATISTICS"}
+
+{key:"#Prof.EdwardMalthouse", value:"MARKETING"}
+{key:"#Prof.TimCalkins", value:"MARKETING"}
+{key:"#Prof.MichelleWienberger", value:"MARKETING"}
+
+{key:"#Prof.DouglasMedin", value:"COGNITIVE SCIENCE"}
+{key:"#Prof.JonManer", value:"COGNITIVE SCIENCE"}
+{key:"#Prof.WilliamHorton", value:"COGNITIVE SCIENCE"}
+
+{key:"#Prof.BonnieSpring", value:"CLINICAL PSYCHOLOGY"}
+{key:"#Prof.CherylRampage", value:"CLINICAL PSYCHOLOGY"}
+{key:"#Prof.DanielleBlack", value:"CLINICAL PSYCHOLOGY"}
+
+{key:"#Prof.CLairCoyne", value:"CHILD PSYCHOLOGY"}
+{key:"#Prof.JohnLavigne", value:"CHILD PSYCHOLOGY"}
+{key:"#Prof.CarriHill", value:"CHILD PSYCHOLOGY"}
+
+];
+
+
 var result = new Array();
 
 function select_prof(input){
