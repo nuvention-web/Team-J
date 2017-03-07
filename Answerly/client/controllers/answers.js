@@ -18,16 +18,25 @@ myApp.controller('AnswersController', ['$scope', '$http', '$location', '$routePa
 
 }]);
 
-var str = "";
+var AnswertoQuestion = "";
 
 function submitAnswer(){
 
-	str = document.getElementById("inputAnswer").value;
+	// localStorage.getItem("indexQuestion");
+	// var GetTempName = "ModalID" + indexQuestion;
 
-	if (str == ""){
+	AnswertoQuestion = document.getElementById("inputAnswer").value;
+	console.log("AnswertoQuestion", AnswertoQuestion);
+
+	if (AnswertoQuestion == ""){
 	// 	// alert("NO Empty Answers!");
 		// $('#myModalHorizontal').modal('hide');
-		$('#EmptyInput').modal('show');
+		localStorage.getItem("indexQuestion");
+		// console.log("indexQuestion", indexQuestion);
+		var TempName = "#warningModal" + indexQuestion;
+
+
+		$(TempName).modal('show');
 		// $('#myModalHorizontal').modal('show');
 	// 	// $('#myModalHorizontal').modal('show');
 	// 	// var modal = document.getElementById("EmptyInput");
@@ -35,10 +44,12 @@ function submitAnswer(){
 	// 	// modal.aria-hidden = 'false';
 	}
 
-	else
-		$('#myModalHorizontal').modal('hide');
+	else{
+		localStorage.getItem("indexQuestion");
+		// console.log("indexQuestion", indexQuestion);
+		var TempName = "#ModalID" + indexQuestion;
+		$(TempName).modal('hide');
+	}
 
 	
-
-	console.log("str", str);
 }
