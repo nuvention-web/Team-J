@@ -17,3 +17,40 @@ myApp.controller('AnswersController', ['$scope', '$http', '$location', '$routePa
 	}
 
 }]);
+
+var AnswertoQuestion = "";
+
+function submitAnswer(){
+
+	localStorage.getItem("indexQuestion");
+	var GetTempName = "inputAnswer" + indexQuestion;
+
+	// console.log("GetTempName", GetTempName);
+	AnswertoQuestion = document.getElementById(GetTempName).value;
+	
+	// console.log("AnswertoQuestion", AnswertoQuestion);
+	if (AnswertoQuestion == ""){
+	// 	// alert("NO Empty Answers!");
+		// $('#myModalHorizontal').modal('hide');
+		localStorage.getItem("indexQuestion");
+		// console.log("indexQuestion", indexQuestion);
+		var TempName = "#warningModal" + indexQuestion;
+
+
+		$(TempName).modal('show');
+		// $('#myModalHorizontal').modal('show');
+	// 	// $('#myModalHorizontal').modal('show');
+	// 	// var modal = document.getElementById("EmptyInput");
+	// 	// console.log("modal", modal);
+	// 	// modal.aria-hidden = 'false';
+	}
+
+	else{
+		localStorage.getItem("indexQuestion");
+		// console.log("indexQuestion", indexQuestion);
+		var TempName = "#ModalID" + indexQuestion;
+		$(TempName).modal('hide');
+	}
+
+	
+}

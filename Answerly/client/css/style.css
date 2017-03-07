@@ -181,3 +181,25 @@ input[type=userinput], select {
     background: #0E78E8;
     color:white;
 }
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+
+.btn-lg{
+    margin-top: 0.5em;
+    margin-left: 1.4em;
+    margin-bottom: 0.5em;
+    font-size: 16px;  
+}
+
+.col-sm-10 > input[type=text]{
+    height: 30px;
+}
