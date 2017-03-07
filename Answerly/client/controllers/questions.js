@@ -3,6 +3,7 @@ var QuestionArray = new Array ();
 var AnswerArray = new Array ();
 var indexAnswer = 0;
 var indexQuestion = 0;
+var followup = "Hi";
 
 myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
 	console.log('QuestionsController loaded...');
@@ -15,14 +16,14 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 
 	$scope.addQuestion = function(){
 		
-		$http.post('/api/questions/', $scope.question).success(function(response){
+		$http.post('/api/questions/', $scope.question,$scope.followup).success(function(response){
 			window.location.href='#/questions';
             console.log($scope.question);
 		});
 	}
 
     $scope.sendEmail =function(){
-        $http.post('api/questions/email',$scope.question).success(function(response){
+        $http.post('api/questions/email?fques='+followup,$scope.question).success(function(response){
             // window.location.href='#/questions';
             console.log('response received');
         });
