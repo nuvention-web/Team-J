@@ -22,6 +22,23 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
             console.log('response received');
         });
     }
+    
+    $scope.HaveAnswerButton = function(){
+
+        ChangeButtonID(); 
+
+//         disableAnswerButton(); 
+    }
+    
+    $scope.checkAnswerButton = function(str){
+
+        AnswerArray.push(str);
+    }
+
+    $scope.ChangeModalID = function(){
+
+        u_ChangeModalID();
+    }
 
 }]);
 
@@ -112,4 +129,56 @@ function find_my_div() {
     document.getElementById("search_results").innerHTML = full_list;
 
     //$("#search_results").text(full_list); 
+}
+
+function u_ChangeModalID(){
+
+    var ids = document.getElementsByClassName("ModalID");
+
+     for (var i=0; i<ids.length; i++){
+        // console.log("ids", ids[i].id);
+        ids[i].id = "ModalID" + i;
+        // console.log("new_ids", ids[i].id);
+    }
+
+}
+
+function ChangeButtonID(){
+
+    var ids = document.getElementsByClassName("AnswerButton");
+    // console.log("ids", ids);
+
+    for (var i=0; i<ids.length; i++){
+        // console.log("ids", ids[i].id);
+        ids[i].id = "AnswerButton" + i;
+        // console.log("new_ids", ids[i].id);
+    }
+}
+
+function OpenModal(str){
+
+    var TempName = "#ModalID" + str[str.length-1];
+    console.log("TempName", TempName);
+
+    // var $target = $(TempName);
+
+    // if (str[str.length-1] == 0)
+    $(TempName).modal('show');
+
+}
+
+function disableAnswerButton(){
+    // console.log("1");
+    for (var i=indexAnswer; i<AnswerArray.length; i++){
+        console.log("i", i);
+        console.log("AnswerArray[i]", AnswerArray[i]);
+        if (AnswerArray[i] != ""){
+            var temp_id = "AnswerButton" + i;
+            console.log("temp_id", temp_id);
+
+            document.getElementById(temp_id).style.visibility='hidden';
+        }
+    }
+
+    indexAnswer++;
 }
