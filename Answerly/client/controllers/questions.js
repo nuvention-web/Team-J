@@ -17,7 +17,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	}
 
     $scope.sendEmail =function(){
-        $http.post('api/questions/email',$scope.question).success(function(response){
+        $http.post('/api/questions/email',$scope.question).success(function(response){
             // window.location.href='#/questions';
             console.log('response received');
         });
@@ -86,17 +86,18 @@ function find_my_div() {
     
     else{
         // console.log("str_needle",str_needle);
-	    
-	var temp = Dict_pro[i].key.toLowerCase();
-        if (temp.indexOf(str_needle.toLowerCase()) != -1){
-                result.push(Dict_pro[i].key);
-        }
 
         for (var i=0;i<Dict_pro.length;i++){
+
+            var temp = Dict_pro[i].key.toLowerCase();
+            if (temp.indexOf(str_needle.toLowerCase()) != -1){
+                result.push(Dict_pro[i].key);
+                // console.log("result",result);
+        }
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
 
                 result.push(Dict_pro[i].key);
-                // console.log("result",result);
+                console.log("result",result);
             }
         }
     }
@@ -105,7 +106,7 @@ function find_my_div() {
 
     for (var i=0;i<result.length;i++){
         full_list += '<li onclick="select_prof(' + i + ');\" title=\"'+ getSpecial(result[i]) +'\">' + result[i] + "</li>"; 
-        // console.log("result[i]",result[i]); 
+        console.log("result[i]",result[i]); 
     }
 
     // console.log("result",result); 
