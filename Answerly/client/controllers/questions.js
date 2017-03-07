@@ -16,8 +16,8 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	$scope.addQuestion = function(){
 		
 		$http.post('/api/questions/', $scope.question).success(function(response){
-			//window.location.href='#/questions';
-            console.log('response received');
+			window.location.href='#/questions';
+            console.log($scope.question);
 		});
 	}
 
