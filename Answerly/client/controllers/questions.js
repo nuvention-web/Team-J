@@ -18,7 +18,7 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 	}
 
     $scope.sendEmail =function(){
-        $http.post('/api/questions/email',$scope.question).success(function(response){
+        $http.post('api/questions/email',$scope.question).success(function(response){
             // window.location.href='#/questions';
             console.log('response received');
         });
@@ -55,7 +55,6 @@ myApp.controller('QuestionsController', ['$scope', '$http', '$location', '$route
 }]);
 
 var Dict_pro = [
-{key:}
 {key:"#Prof.LawrenceBirnbaum", value:"COMPUTER VISION"},
 {key:"#Prof.YingWu", value:"COMPUTER VISION"},
 
@@ -76,19 +75,6 @@ var Dict_pro = [
 
 {key:"#Prof.PeterDinda", value:"DISTRIBUTED SYSTEMS"},
 {key:"#Prof.FabianBustmante", value:"DISTRIBUTED SYSTEMS"},
-/*
-{key:"#Prof.AlokChoudhary", value:"COMPUTER SCIENCE"},
-{key:"#Prof.AnkitAgrawal", value:"COMPUTER SCIENCE"},
-{key:"#Prof.Wei-KengLiao", value:"COMPUTER SCIENCE"},
-{key:"#Prof.GoceTrajevski", value:"COMPUTER SCIENCE"},
-{key:"#Prof.PeterScheuermann", value:"COMPUTER SCIENCE"},
-{key:"#Prof.SimoneCampononi", value:"COMPUTER SCIENCE"},
-{key:"#Prof.FabianBustmante", value:"COMPUTER SCIENCE"},
-{key:"#Prof.YanChen", value:"COMPUTER SCIENCE"},
-{key:"#Prof.AleksandarKuzmanovic", value:"COMPUTER SCIENCE"},
-{key:"#Prof.PeterDinda", value:"COMPUTER SCIENCE"},
-{key:"#Prof.LawrenceBirnbaum", value:"COMPUTER SCIENCE"},
-{key:"#Prof.YingWu", value:"COMPUTER SCIENCE"},*/
 
 {key:"#Prof.BarryNelson", value:"STATISTICS"},
 {key:"#Prof.BruceAnkerman", value:"STATISTICS"},
@@ -167,17 +153,19 @@ function find_my_div() {
     
     else{
         // console.log("str_needle",str_needle);
-        for (var i=0;i<Dict_pro.length;i++){
+	    
+	
 
-            var temp = Dict_pro[i].key.toLowerCase();
-            if (temp.indexOf(str_needle.toLowerCase()) != -1){
+        for (var i=0;i<Dict_pro.length;i++){
+		
+	var temp = Dict_pro[i].key.toLowerCase();
+        if (temp.indexOf(str_needle.toLowerCase()) != -1){
                 result.push(Dict_pro[i].key);
-                // console.log("result",result);
         }
             if (Dict_pro[i].value.indexOf(str_needle) != -1){
 
                 result.push(Dict_pro[i].key);
-                console.log("result",result);
+                // console.log("result",result);
             }
         }
     }
@@ -186,7 +174,7 @@ function find_my_div() {
 
     for (var i=0;i<result.length;i++){
         full_list += '<li onclick="select_prof(' + i + ');\" title=\"'+ getSpecial(result[i]) +'\">' + result[i] + "</li>"; 
-        console.log("result[i]",result[i]); 
+        // console.log("result[i]",result[i]); 
     }
 
     // console.log("result",result); 

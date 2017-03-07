@@ -1,5 +1,4 @@
 
-<div ng-app="myApp" ng-controller="QuestionsController">
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Add Question</h3>
@@ -7,14 +6,14 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-12">
-      <form ng-submit="addQuestion()">
+      <form ng-submit="addComments()">
         <div class="form-group">
           <label>Add a Question</label>
           <br><br>
-          <input type="userinput" id="edit_search" onkeyup="find_my_div();" ng-model="question.hashtag" value="" placeholder="Your tag here">
+          <input type="userinput" id="edit_search" onkeyup="find_my_div();" value="" placeholder="Your tag here">
           <div class="result" id="select"><ul id="search_results"></ul></div>
           <br>
-          <input type="text" class="form-control" ng-model="question.question" placeholder="Title">
+          <input type="text" class="form-control" ng-model="comments.comments" placeholder="Title">
         </div>
         <br>
         <button type="submit" class="btn btn-default">Submit</button>
@@ -22,5 +21,4 @@
     </div>
     </div>
   </div>
-</div>
 </div>
