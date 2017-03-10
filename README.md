@@ -8,9 +8,13 @@ Frame/Technologied used to develop the product :
 
 
 Front-end : AngularJS
+
 Back-end : NodeJS with Express script
+
 Database : MongoDB hosted on www.mlab.com
+
 Hosting : Heroku
+
 
 
 Steps to run the website locally :
@@ -31,7 +35,9 @@ Steps to run the website locally :
 7) Open a browser and type in the address bar "localhost:8080". Our website will start running.
 
 
+
 There are no credentials required. There is no login necessary to navigate and test our product.
+
 
 
 In case you are unable to run our product for any reason, please feel free to contact :
