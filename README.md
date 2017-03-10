@@ -7,13 +7,13 @@ Test our product on http://answerly.herokuapp.com
 Frame/Technologied used to develop the product :
 
 
-Front-end : AngularJS
+- Front-end : AngularJS
 
-Back-end : NodeJS with Express script
+- Back-end : NodeJS with Express script
 
-Database : MongoDB hosted on www.mlab.com
+- Database : MongoDB hosted on www.mlab.com
 
-Hosting : Heroku
+- Hosting : Heroku
 
 
 
