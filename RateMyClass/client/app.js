@@ -11,6 +11,11 @@ myApp.config(function($routeProvider){
 		templateUrl: 'views/login.html'
 	})
 
+	.when('/course_list', {
+		controller:'HomeController',
+		templateUrl: 'views/course_list.html'
+	})
+
 	.when('/questions', {
 		controller:'HomeController',
 		templateUrl: 'views/questions.html'
@@ -22,6 +27,6 @@ myApp.config(function($routeProvider){
 	})
 	
 	.otherwise({
-		redirectTo: '/'
+		redirectTo: 'views/main.html'
 	});
 });

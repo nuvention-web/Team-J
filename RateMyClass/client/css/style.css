@@ -287,3 +287,110 @@
     border-radius: 2px;
     text-transform: uppercase;
 }
+
+.centerTitle{
+    /*margin-top: 1em;*/
+    text-transform: uppercase; 
+}
+
+.filterBar{
+    background: #F0F0F0;
+}
+
+.filterText{
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.nav-sidebar { 
+    width: 100%;
+    padding: 8px 0; 
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px; 
+    -moz-border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+}
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: #5F9F9D; 
+    color: #fff; 
+    text-shadow: 1px 1px 1px #666; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #C1EDCC;   
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}
+
+.list-col-2{
+    padding: 0 !important;
+    margin-top: 1em;
+    font-size: 16px;
+}
+
+.list-search{
+    height: 40px;
+    font-size: 18px;
+    margin-left: 1.5em;
+    margin-top: 1em;
+    width: 400px !important;
+    border-radius: 2;
+}
+
+.list-search-button{
+    width: 150px;
+    margin-top: 1em;
+    margin-right: 13em;
+    margin-bottom: 1.7em;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 2;
+    border: 0;
+    background: #5F9F9D;
+    color: white;
+    outline: none !important;
+    font-family: 'Raleway', sans-serif;
+    overflow: hidden;
+}
+
+.list-search-button:hover{
+    background: #5F9F9D;
+    color: white;
+}
+
+.input-group{
+    overflow: hidden;
+}
+
+.table-condensed{
+    margin-top: 2em;
+}
+
+thead{
+    background: #5F9F9D;
+    color: white;
+}
+
+.table > thead > tr > th {
+    height: 50;
+    vertical-align: middle !important;
+}
+
+.table-condensed > tbody > tr > td {
+    height: 50px;
+    vertical-align: middle !important;
+}
+
+
