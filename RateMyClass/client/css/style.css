@@ -74,7 +74,7 @@
 }
 
 .product-background {
-    margin-top: 100px;
+    margin-top: 200px;
     padding-bottom: 40px;
     background: #2d2d2d;
     background: rgba(45,45,45,.7);
@@ -140,6 +140,7 @@
     width: 600px;
     margin-right: auto; 
     margin-left: auto;
+    margin-top: 100px !important;
     background: #F5F5F7 !important;
     background: -webkit-linear-gradient(left, #F5F5F7 , #eee); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #F5F5F7, #eee); /* For Opera 11.1 to 12.0 */
