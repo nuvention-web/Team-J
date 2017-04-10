@@ -18,13 +18,7 @@
     margin: 0 auto;
 }*/
 
-.showcase-pattern{
-    /*margin: 0 auto;*/
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../resources/images/Northwestern_.jpg);
-    /*background-size: contain;*/
-    height: 91.5%;
-    width: 100%;
-}
+
 
 .navbar-brand {
     height: 60px;
@@ -71,6 +65,7 @@
     font-size: 15;
     border: 2px solid #5F9F9D;
     margin-top: 7px;
+    outline: none !important;
 }
 
 .dropdown-menu{
@@ -78,204 +73,8 @@
     z-index: 100;
 }
 
-
-/*.start-icon {
-
-	height: 40px;
-	width: 40px;
-	margin-top: 0.4em;
-	margin-left: 8em;
-
-}
-
-.web-name{
-	margin-left: 0.5em;
-	color: white;
-    	font-family: 'Bree Serif', serif;
-    	font-size: 28px;
-}*/
-
-.navbar-header input{
-    background:#fff no-repeat 13px 13px;
-    background-image:url("../resources/images/search.png");
-    border: none;
-    width: 300px;
-    line-height: 19px;
-    padding: 11px 0;
-    margin-top: 5px;
-    margin-left: 6em;
-
-    border-radius: 2px;
-    box-shadow: 0 2px 8px #c4c4c4  inset;
-    text-align: left;
-    font-size: 14px;
-    font-family: inherit;
-    color: #738289 ;
-    font-weight: bold;
-    outline: none;
-    text-indent: 40px;
-}
-
-.navbar-nav > li > a.header-nav-add-Q{
-    font-family: 'Lato', sans-serif;
-    color: #f2f2f2;
-    margin-left: 1em;
-    background-color: #8FB8ED;
-    height: 43px;
-    width: 9em;
-    border-radius: 8px;
-    border: 2px solid  #8FB8ED;
-    text-align: center;
-    padding: 10px 2px;
-    margin-top: 0.3em;
-    vertical-align: middle;
-}
-
-.navbar-nav > li > a.header-nav-add-Q:hover{
-    /*color: white;*/
-    background-color: #8FB8ED;
-    color: #f2f2f2;
-}
-
-.navbar-nav > li > a.header-nav-profile{
-    color: #f2f2f2;
-    font-family: 'Lato', sans-serif;
-    margin-left: 6em;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-}
-
-.navbar-nav > li > a.header-nav-profile:hover{
-    color: white;
-}
-
-.navbar-nav > li > a.header-nav{
-    color: #f2f2f2;
-    font-family: 'Lato', sans-serif;
-    margin-left: 2em;
-}
-
-.navbar-nav > li > a.header-nav:hover{
-    color: white;
-}
-
-.navbar-nav > li > a.header-nav:target {
-    color: #8FB8ED;
-
-}
-
-
-.search-icon{
-	height: 23px;
-	width: 23px;
-}
-.searchButton{
-	background-color: #8FB8ED;
-	color: white;
-	font-size: 16px;
-
-	padding: 8px 8px;
-    height: 42px;
-    width: 42px;
-
-	border-radius: 8px;
-	border: 2px solid  #8FB8ED;
-}
-
-.searchButton:hover {
-    background-color: #8FB8ED;
-    border: 2px solid  #8FB8ED;
-    /*color:  #F17300;
-    background-image: url("../resources/images/hover_search.png") no-repeat;*/
-}
-
-.logout{
-    height: 3.6em;
-    padding-top: 5;
-    float: right;
-    margin-right: 2em;
-    color: #f2f2f2;
-    font-family: 'Lato', sans-serif;
-}
-
-.logout:hover{
-    color: white;
-    cursor: pointer;
-}
-
-.logout > img{
-    width: 40px; 
-    height: 40px;
-}
-
-input[type=userinput], select {
-    display: block;
-    width: 20%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.result ul {
-  list-style-type: none;
-  padding-left: 0;
-  width: 43%;
-  position: absolute;
-  z-index: 20px;
-  /*height: 10s0px;*/
-  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
-}
-
-.result ul li {
-    border: 1px; 
-    background: #ddd;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    width: 45%;
-    min-height: 20px;
-    font-size: 16px;
-    display:block;
-    padding: 8px 8px;
-    font-family: 'Ubuntu', sans-serif;
-    /*font-family: 'Amiko', sans-serif;*/
-    /*margin-top: 2em;*/
-}
-
-.result ul li:hover{
-    background: #0E78E8;
-    color:white;
-}
-.modal-body .form-horizontal .col-sm-2,
-.modal-body .form-horizontal .col-sm-10 {
-    width: 100%
-}
-
-.modal-body .form-horizontal .control-label {
-    text-align: left;
-}
-.modal-body .form-horizontal .col-sm-offset-2 {
-    margin-left: 15px;
-}
-
-.btn-lg{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    font-size: 16px;
-    display: inline-block;
-}
-
-.col-sm-10 > input[type=text]{
-    height: 30px;
-}
-
 .product-background {
-    margin-top: 150px;
+    margin-top: 100px;
     padding-bottom: 40px;
     background: #2d2d2d;
     background: rgba(45,45,45,.7);
@@ -290,7 +89,6 @@ input[type=userinput], select {
 .product-title{
     color:white;
     text-align: center;
-
 }
 
 .product-title > h1{
@@ -311,6 +109,7 @@ input[type=userinput], select {
     border: 0;
     background: #5F9F9D;
     color: white;
+    outline: none !important;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -323,6 +122,167 @@ input[type=userinput], select {
 
 }
 
+.showcase-pattern{
+    /*margin: 0 auto;*/
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../resources/images/Northwestern_.jpg);
+    /*background-size: contain;*/
+    height: 91.5%;
+    width: 100%;
+}
 
+.showcase-login{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../resources/images/Northwestern.jpg);
+    height: 100%;
+    width: 100%;
+}
 
+.login-background{
+    width: 600px;
+    margin-right: auto; 
+    margin-left: auto;
+    background: #F5F5F7 !important;
+    background: -webkit-linear-gradient(left, #F5F5F7 , #eee); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #F5F5F7, #eee); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #F5F5F7, #eee); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #F5F5F7 , #eee); /* Standard syntax */
+    background: rgba(45,45,45,.7);
+}
 
+.login-title{
+    color: black;
+    font-size: 24px !important;
+}
+
+.login-title > a{
+    color: black;
+}
+
+.login-title > a:hover{
+    text-decoration: none !important;
+    color: #555;
+}
+
+.login-box{
+    position:relative;
+    margin: 10px auto;
+    width: 500px;
+    height: 380px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+}
+
+.lb-header{
+    position:relative;
+    color: #00415d;
+    margin: 5px 5px 10px 5px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #eee;
+    text-align:center;
+    height:28px;
+}
+
+.lb-header a{
+    margin: 0 25px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.lb-header .active{
+    color: #81D2C7;
+    font-size: 18px;
+}
+
+.social-login{
+    position:relative;
+    float: left;
+    width: 100%;
+    height:auto;
+    padding: 10px 0 15px 0;
+    border-bottom: 1px solid #eee;
+    margin-left: 28px; 
+}
+
+.social-login a{
+    position:relative;
+    float: left;
+    width:calc(40% - 8px);
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 12px;
+    border-radius: 2px;
+    font-size: 14px;
+    margin: 0 3%;
+    text-align:center;
+}
+
+.social-login a i{
+    position: relative;
+    float: left;
+    width: 20px;
+    top: 2px;
+}
+
+.social-login a:first-child{
+    background-color: #49639F;
+
+}
+.social-login a:last-child{
+    background-color: #0177B5;
+}
+
+.email-login,.email-signup{
+    position:relative;
+    float: left;
+    width: 100%;
+    height:auto;
+    margin-top: 20px;
+    text-align:center;
+    
+}
+.u-form-group{
+    width:100%;
+    margin-bottom: 10px;
+}
+.u-form-group input[type="email"],
+.u-form-group input[type="password"]{
+    width: 50%;
+    height:45px;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 2px;
+    color: #333;
+    font-size:0.8rem;
+    -webkit-transition:all 0.1s linear;
+    -moz-transition:all 0.1s linear;
+    transition:all 0.1s linear;
+    font-size: 16px;
+}
+
+.u-form-group input:focus{
+    border-color: #358efb;
+}
+
+.u-form-group button{
+    width:50%;
+    background-color: #81D2C7;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 14px 0;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
