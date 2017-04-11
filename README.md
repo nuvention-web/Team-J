@@ -1,13 +1,13 @@
 # Answerly - Team J
 - *docs* folder contains our product's website. 
 - *Answerly* folder is our deliverable for Winter quarter.
-- *RateMyClass* folder is our deliverable for Spring quarter.
+- *RateMyClass* folder is folder for our deliverable for Spring quarter.
 
-Test our product Winter quarter product "Answerly" on http://answerly.herokuapp.com
+Test our Winter quarter product "Answerly" on http://answerly.herokuapp.com
 
 Spring quarter product under construction.
 
-Frame/Technologied used to develop the product :
+Frame/Technologies used to develop the product :
 
 
 - Front-end : AngularJS
