@@ -16,6 +16,11 @@ myApp.config(function($routeProvider){
 		templateUrl: 'views/course_list.html'
 	})
 
+	.when('/course_rate', {
+		controller:'HomeController',
+		templateUrl: 'views/course_rate.html'
+	})
+
 	.when('/questions', {
 		controller:'HomeController',
 		templateUrl: 'views/questions.html'
