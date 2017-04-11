@@ -1,7 +1,7 @@
 # Answerly - Team J
 - *docs* folder contains our product's website. 
 - *Answerly* folder is our deliverable for Winter quarter.
-- *RateMyClass* folder is folder for our deliverable for Spring quarter.
+- *RateMyClass* folder is folder for our deliverable for Spring quarter. Week 2 Slice desinged page: main page, login page, course listing page.
 
 Test our Winter quarter product "Answerly" on http://answerly.herokuapp.com
 
