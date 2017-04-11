@@ -1,8 +1,11 @@
 # Answerly - Team J
 - *docs* folder contains our product's website. 
-- *Answerly* folder is our deliverable product.
+- *Answerly* folder is our deliverable for Winter quarter.
+- *RateMyClass* folder is our deliverable for Spring quarter.
 
-Test our product on http://answerly.herokuapp.com
+Test our product Winter quarter product "Answerly" on http://answerly.herokuapp.com
+
+Spring quarter product under construction.
 
 Frame/Technologied used to develop the product :
 
@@ -11,13 +14,13 @@ Frame/Technologied used to develop the product :
 
 - Back-end : NodeJS with Express script
 
-- Database : MongoDB hosted on www.mlab.com
+- Database : MySQL (Spring), MongoDB hosted on www.mlab.com (Winter)
 
 - Hosting : Heroku
 
 
 
-Steps to run the website locally :
+Steps to run "Answerly" locally :
 
 
 1) Install NodeJS: https://nodejs.org/en/download/
