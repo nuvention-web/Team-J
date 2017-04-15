@@ -43,3 +43,11 @@ function ShowMenu(){
 		document.getElementById("nav-dropdown").style.visibility = "hidden";
 	
 }
+
+// var y = document.getElementsByName("star");
+
+// function rateValue(){
+
+// 	var x = document.getElementsByName("star");
+// 	console.log(x, y);
+// }
