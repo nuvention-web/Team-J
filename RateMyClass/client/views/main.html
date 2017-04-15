@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/course_list">Classes</a></li>
         <li class="dropdown">
-          <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="ShowMenu()">Useful Links<span class="caret"></span></a>
+          <a href="#/course_rate" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="ShowMenu()">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu" id="nav-dropdown">
             <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
             <li role="separator" class="divider"></li>
@@ -43,30 +43,50 @@
   <div class="showcase-pattern">
     <div class="container">
                     <div class="row">
-                        <div class="span12 product-background">
+                        <div class="col-xs-12 product-background">
                             <div class="row">
-                                <div class="span7 product-title">
+                                <div class="col-xs-2"></div>
+                                <div class="col-xs-8 product-title">
                                     <h1>SEARCH FOR COURSES</h1>
                                     <h2>Rate classes, see reviews, and find classmates</h2> 
                                     <br>
                                     <br>
+                                </div>
+                            </div>
 
-                                    <div class="input-group">
-                                      <input type="text" class="form-control search-bar" placeholder="Search for...">
-                                      <span class="input-group-btn">
+                            <div class="row">
+                              <div class="col-xs-1"></div>
+                              <div class="col-xs-10 input-group input-group-lg">
+                                <input type="text" class="form-control col-xs-4" placeholder="Search for...">
+
+                                <div class="input-group-btn">
+                                  <button class="btn btn-success search-button" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                  Search</button>
+                                </div>
+
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                          
+
+
+                                <!-- <div class="col-xs-12">
+                                    <div class="input-group col-xs-12">
+                                      <input type="text" class="form-control search-bar col-xs-4" placeholder="Search for...">
+                                      <span class="input-group-btn col-xs-4">
                                         <button class="btn btn-default search-button" type="button">Search</button>
                                       </span>
-                                    </div><!-- /input-group -->
+                                    </div> /input-group --> 
 
                                     
                                         <!-- <form action="assets/subscribe.php" method="post" class="subscribe">
                                             <input type="text" name="email" class="email" placeholder="Enter your email">
                                             <button type="submit">Get it now!</button>
                                         </form> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                
+    </div>
   </div>
 </div>

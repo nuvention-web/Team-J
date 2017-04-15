@@ -12,6 +12,16 @@
   <link href="https://fonts.googleapis.com/css?family=Palanquin" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+  <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+
+
+  
+
 </head>
 <body>
 
@@ -34,9 +44,38 @@
   <script src="/controllers/answers.js"></script>
   <script src="/controllers/comments.js"></script>
   <script src="/controllers/homepage.js"></script>
+
+  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+
+  <script>
+  $(function () {
+ 
+  // $("#rateYo").rateYo({
+  //   starWidth: "40px",
+  //   precision: 1,
+  //   halfStar: true
+  // });
+
+  var $rateYo = $("#rateYo").rateYo();
+ 
+  $("#getRating").click(function () {
+ 
+    /* get rating */
+    var rating = $rateYo.rateYo("rating");
+ 
+    window.alert("Its " + rating + " Yo!");
+  });
+
+  // console.log(x);
+ 
+});
+
+  </script>
   
 
 
