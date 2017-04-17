@@ -16,22 +16,22 @@ myApp.config(function($routeProvider){
 		templateUrl: 'views/course_list.html'
 	})
 
-	.when('/course_rate', {
+	.when('/profile', {
 		controller:'HomeController',
-		templateUrl: 'views/course_rate.html'
+		templateUrl: 'views/profile.html'
 	})
 
-	.when('/questions', {
-		controller:'HomeController',
-		templateUrl: 'views/questions.html'
-	})
+	// .when('/questions', {
+	// 	controller:'HomeController',
+	// 	templateUrl: 'views/questions.html'
+	// })
 	
-	.when('/questions/add',{
-		controller:'CommentsController',
-		templateUrl: 'views/add_question.html'
-	})
+	// .when('/questions/add',{
+	// 	controller:'CommentsController',
+	// 	templateUrl: 'views/add_question.html'
+	// })
 	
-	.otherwise({
-		redirectTo: 'views/main.html'
-	});
+	// .otherwise({
+	// 	redirectTo: '/'
+	// });
 });
