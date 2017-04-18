@@ -21,6 +21,11 @@ myApp.config(function($routeProvider){
 		templateUrl: 'views/profile.html'
 	})
 
+	.when('/chatbot', {
+		controller:'HomeController',
+		templateUrl: 'views/chat_login.html'
+	})
+
 	// .when('/questions', {
 	// 	controller:'HomeController',
 	// 	templateUrl: 'views/questions.html'

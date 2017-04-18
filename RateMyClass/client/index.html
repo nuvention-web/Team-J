@@ -17,7 +17,7 @@
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css"> -->
-  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
 
   
@@ -50,30 +50,35 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script> -->
 
   
-  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
 
   <!-- <script>
-  $(function () {
- 
-  // $("#rateYo").rateYo({
-  //   starWidth: "40px",
-  //   precision: 1,
-  //   halfStar: true
-  // });
+  function myCtrl($scope, $http) {
+  $scope.readCSV = function() {
+    // http get request to read CSV file content
+    $http.get('/resources/sample.csv').success($scope.processData);
+  };
 
-  var $rateYo = $("#rateYo").rateYo();
- 
-  $("#getRating").click(function () {
- 
-    /* get rating */
-    var rating = $rateYo.rateYo("rating");
- 
-    window.alert("Its " + rating + " Yo!");
-  });
+  $scope.processData = function(allText) {
+    // split content based on new line
+    var allTextLines = allText.split(/\r\n|\n/);
+    var headers = allTextLines[0].split(',');
+    var lines = [];
 
-  // console.log(x);
- 
-});
+    for ( var i = 0; i < allTextLines.length; i++) {
+      // split content based on comma
+      var data = allTextLines[i].split(',');
+      if (data.length == headers.length) {
+        var tarr = [];
+        for ( var j = 0; j < headers.length; j++) {
+          tarr.push(data[j]);
+        }
+        lines.push(tarr);
+      }
+    }
+    $scope.data = lines;
+  };
+}
 
   </script> -->
   
