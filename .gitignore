@@ -1,3 +1,2 @@
 *.DS_Store
-RateMyClass/node_modules/*
 RateMyClass/client/bower_components/*
