@@ -1,1 +1,1 @@
-Simple Game information app that can give you the info on latest game .. built using mean stack
+Platform for NU students to discuss with their peers about courses they are interested in taking.

@@ -1,0 +1,87 @@
+<html ng-app="myApp">
+<head>
+	<title>RateMYClass</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="views/css/style.css">
+
+  <link rel="SHORTCUT ICON" href="resources/images/star.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Palanquin" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+  <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+
+
+  
+
+</head>
+<body>
+    <p> Hi i am on homepage</p>
+
+    <!-- <div class="container"> -->
+    	<!-- <div class="row"> -->
+    		<!-- <div class="col-md-12"> -->
+    			<div ng-view></div>
+    		<!-- </div> -->
+    	<!-- </div> -->
+     <!-- </div> -->
+
+	<!-- /.container -->
+	<script src="/bower_components/jquery/dist/jquery.js"></script>
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-route/angular-route.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+ <!-- <script src="/app.js"></script>
+	// <script src="/controllers/questions.js"></script>
+ //  <script src="/controllers/answers.js"></script>
+ //  <script src="/controllers/comments.js"></script> -->
+  <script src="/controllers/homepage.js"></script>
+  <script src = "/js/angular.min.js"></script>
+<!--   // <script src = "/js/script.js"></script>
+  // <script src = "/js/jquery.min.js"></script>
+  // <script src = "/js/bootstrap.min.js"></script> -->
+
+  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+
+  <script>
+  $(function () {
+ 
+  // $("#rateYo").rateYo({
+  //   starWidth: "40px",
+  //   precision: 1,
+  //   halfStar: true
+  // });
+
+  var $rateYo = $("#rateYo").rateYo();
+ 
+  $("#getRating").click(function () {
+ 
+    /* get rating */
+    var rating = $rateYo.rateYo("rating");
+ 
+    window.alert("Its " + rating + " Yo!");
+  });
+
+  // console.log(x);
+ 
+});
+
+  </script>
+  
+
+
+</body>
+</html>
