@@ -1,0 +1,298 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/"><strong>CoEva - Course Evaluation</strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/course_list">Classes</a></li>
+        <li><a href="#/profile">"Temp Profile Page"</a></li>
+        <li class="dropdown">
+          <a href="#/course_rate" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="ShowMenu()">Useful Links<span class="caret"></span></a>
+          <ul class="dropdown-menu" id="nav-dropdown">
+            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#/">Something else here</a></li>
+          </ul>
+        </li>
+
+        <a href="#/login"
+        <li>
+        <button type="button" class="btn btn-default navbar-btn">LOG IN</button>
+        </li>
+        </a>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<br>
+<br>
+<div class="container">
+  <div class="col-xs-12">
+    <div class="row">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Account</h2>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-target="#tab1primary" data-toggle="tab">Profile</a></li>
+            <li><a data-target="#tab2primary" data-toggle="tab">Taken Classes</a></li>
+            <li><a data-target="#tab3primary" data-toggle="tab">Messages</a></li>
+            <li><a data-target="#tab4primary" data-toggle="tab">Points</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="tab1primary">
+              <div class="container">
+                <div class="row">
+
+                <br>
+                <br>
+                <div class="col-xs-12">
+                <div class="container">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-8">
+
+                <form>
+                  <fieldset disabled>
+                    <div class="form-group row">
+
+                      <div class="col-xs-1">
+                      <label for="NetIDInput" class="vcenter">NetID</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" placeholder="abc1122"> 
+                      </div>
+                    </div>
+
+                  </fieldset>
+
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                    Unable to change your NetID, sign out to switch account.
+                    </small>
+                  
+                </form>
+
+
+
+                <br>
+
+                <hr>
+                <!-- <div class="container"> -->
+
+                <form>
+                    <div class="form-group row">
+
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Email</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="ybsh@gmail.com"> 
+                      </div>
+
+                    </div>
+
+                  
+                </form>
+                <form>
+                    <div class="form-group row">
+
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Chat Function</label></div>
+                      
+                      <div class="col-xs-4">
+                        <div class="switch">
+                          <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                          <label for="cmn-toggle-4"></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                      Let other students chat with you for more information.
+                    </small>                  
+                </form>
+
+                <br><br>
+                <!-- <div class="btn-group"> -->
+                  <button class="btn btn-sm btn-success" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Save
+                  </button>
+
+
+                  <button class="btn btn-sm btn-danger" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="logout()">
+                      Sign out
+                  </button>
+                <!-- </div> -->
+
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+            <div class="tab-pane fade" id="tab2primary">
+            <br>
+            <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Your Courses - In progress</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Professor</th>
+                      <th>Time</th>
+                      <th>Rate</th>                                          
+                  </tr>
+                  </thead>   
+              <tbody>
+                <tr>
+                    <td>100</td>
+                    <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
+                    <td>Taflove</td>
+                    <td>4-4:50 MTuWF</td>
+                    <td><span class="label label-success">4.35</span>
+                    </td>                                       
+                </tr>
+                <tr>
+                    <td>110</td>
+                    <td>Intro To Computer Programming</td>
+                    <td>Kuzmanovic</td>
+                    <td>10-10:50 MTuWF </td>
+                    <td><span class="label label-danger">2.69</span></td>                                       
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>Fundamentals Of Computer Programming I</td>
+                    <td>Tov</td>
+                    <td>2-3:20 TuTh</td>
+                    <td><span class="label label-warning">3.03</span></td>                                        
+                </tr>
+                <tr>
+                    <td>202</td>
+                    <td>Intro To Electrical Engineering</td>
+                    <td>Grayson</td>
+                    <td>10-10:50 MTuWF</td>
+                    <td><span class="label label-success">3.98</span></td>                                 
+                </tr>
+                <tr>
+                    <td>203</td>
+                    <td>Intro To Computer Engineering</td>
+                    <td>Zhou</td>
+                    <td>11-11:50 MTuWF</td>
+                    <td><span class="label label-warning">3.15</span></td>                                        
+                </tr>  
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Your Courses - Already Taken</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover taken-course">
+                    <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Professor</th>
+                      <th>Time</th>
+                      <th>Rate</th>                                          
+                  </tr>
+                  </thead>   
+              <tbody>
+                <tr>
+                    <td>100</td>
+                    <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
+                    <td>Taflove</td>
+                    <td>4-4:50 MTuWF</td>
+                    <td><span class="label label-success">4.35</span>
+                    </td>                                       
+                </tr>
+                <tr>
+                    <td>110</td>
+                    <td>Intro To Computer Programming</td>
+                    <td>Kuzmanovic</td>
+                    <td>10-10:50 MTuWF </td>
+                    <td><span class="label label-danger">2.69</span></td>                                       
+                </tr>
+                <tr>
+                    <td>111</td>
+                    <td>Fundamentals Of Computer Programming I</td>
+                    <td>Tov</td>
+                    <td>2-3:20 TuTh</td>
+                    <td><span class="label label-warning">3.03</span></td>                                        
+                </tr>
+                <tr>
+                    <td>202</td>
+                    <td>Intro To Electrical Engineering</td>
+                    <td>Grayson</td>
+                    <td>10-10:50 MTuWF</td>
+                    <td><span class="label label-success">3.98</span></td>                                 
+                </tr>
+                <tr>
+                    <td>203</td>
+                    <td>Intro To Computer Engineering</td>
+                    <td>Zhou</td>
+                    <td>11-11:50 MTuWF</td>
+                    <td><span class="label label-warning">3.15</span></td>                                        
+                </tr>  
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div>
+          </div>
+            
+
+
+          
+            </div>
+
+
+            <div class="tab-pane fade" id="tab3primary">
+               <br>
+               <div class="row">
+                 <div class="col-xs-8">
+                  <div class="box">
+                    <a href="#/chatbot"> Signin to Chatbot</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <div class="tab-pane fade" id="tab4primary">Wait for design of Point System</div>
+
+          </div>
+          
+
+
+        <!-- </div> -->
+      </div>
+
+
+    </div>
+  </div>
+</div>
