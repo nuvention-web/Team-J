@@ -27,7 +27,7 @@ function routes(app,connection,sessionInfo){
 		if(sessionInfo.uid){
 			res.redirect('/home#?id='+sessionInfo.uid);
 		}else{
-			res.render('chat_login');		
+			res.render('main');		
 		}
 	});
 
