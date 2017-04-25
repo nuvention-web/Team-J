@@ -631,6 +631,30 @@ input.cmn-toggle-round-flat:checked + label:after {
     font-size: 20px;
 }
 
+tbody > tr > td > h4{
+    text-align: center;
+}
+
+tbody > tr > td.but{
+    text-align: center;
+}
+
+tbody > tr > td > button{
+    outline: none !important;
+}
+
+.image-list{
+    overflow:auto;
+}
+
+.image-list > .images > a > img{
+    margin-left: 1em;
+}
+
+.tooltip {
+    font-size: 20px !important;
+}
+
 
 
 
