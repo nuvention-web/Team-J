@@ -139,16 +139,17 @@
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-envelope"></i>
 			  	</span>
-			  	<input id="register-email" type="email" ng-model="email"  class="form-control inputbg" name="email" value="" placeholder="Email" ng-keyup="" ng-keydown="" ng-blur=""  ng-change="">
+			  	<input id="register-email" type="email" ng-model="email"  class="form-control inputbg" name="email" value="" placeholder="Email" ng-keyup="check_email_keyup()" ng-keydown="check_email_keydown()" ng-blur="check_email_blur()"  ng-change="check_email_change()">
 			  	
 			</div>
 
 			<!-- ALert Box When email is not valid -->
 			<div class="alert-group" ng-hide="emailAlert">
-			  	<div class="alert alert-danger">
-					This username is already taken. 
+			  	<div class="alert alert-danger" id="emailAlert">
+					This email is already taken. 
 			  	</div>
 			</div>
+
 
 
 
@@ -173,12 +174,12 @@
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-home"></i>
 			  	</span>
-			  	<input id="register-lastname" type="text" ng-model="lastname"  class="form-control inputbg inputbg" name="lastname" value="" placeholder="Last Name" ng-keyup="" ng-keydown="" ng-blur=""  ng-change="">
+			  	<input id="register-lastname" type="text" ng-model="lastname"  class="form-control inputbg inputbg" name="lastname" value="" placeholder="Last Name" ng-keyup="check_name_keyup()" ng-keydown="check_name_keydown()" ng-blur="check_name_blur()"  ng-change="check_name_change()">
 			</div>
 
 			<div class="alert-group" ng-hide="legalName">
 			  	<div class="alert alert-danger">
-					This username is already taken. 
+					This name is already existed in our database. 
 			  	</div>
 			</div>
 
