@@ -8,10 +8,10 @@ function db() {
 		creating MySql database connection 
 	*/
 	var con = mysql.createPool({
-		host : 'localhost',
+		host : '104.154.238.3',
 		user : 'root',
-	  	password : 'admin123',
-	  	database : 'chat'
+	  	password : 'root',
+	  	database : 'coeva'
 	 //  	host : '104.198.29.13',
 	 //     port: '3306',
 	 //  	user : 'root',

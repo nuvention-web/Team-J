@@ -20,28 +20,16 @@ function routes(app,connection,sessionInfo){
 	app.use(bodyParser.json());
 
 	
-	app.get('/', function(req, res){
-		console.log('called / get ');
+	app.get('/login', function(req, res){
+		
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/home#?id='+sessionInfo.uid);
+			res.redirect('/main#?id='+sessionInfo.uid);
 		}else{
-			res.render('main');		
+			res.render('chat_login');		
 		}
 	});
-
-	// app.get('/', function(req, res){
-
-	// 	// sessionInfo=req.session;
-	// 	// /*Render Login page If session is not set*/
-	// 	// if(sessionInfo.uid){
-	// 	// 	res.redirect('/home#?id='+sessionInfo.uid);
-	// 	// }else{
-	// 	// 	res.render('chat_login');		
-	// 	// }
-	// 	res.sendFile(path.join(__dirname+'/views/main.html'));
-	// });
 
 	/*
 		post to handle Login request

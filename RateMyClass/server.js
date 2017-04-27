@@ -51,6 +51,8 @@ require('./middleware/auth-routes.js')(app,connection,Session,cookieParser,sessi
 */
 require('./middleware/routes.js')(app,connection,io,Session,cookieParser,sessionInfo);
 
+require('./middleware/web-routes.js')(app,connection,Session,cookieParser,sessionInfo);
+
 /*
 	Running our application  
 */
