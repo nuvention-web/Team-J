@@ -31,6 +31,9 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     $scope.LoginBox=false; 
     $scope.LoginAlert=true;
     $scope.RegisterAlert=true;
+    $scope.emailAlert=true;
+    // $scope.confirmPasswordAlert=true;
+    $scope.legalName=true;
     $scope.RegisterBox=true;
     /* variables for  Hide show ends*/
 
@@ -95,7 +98,55 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         etc_function.check_username(data);
         $timeout.cancel(TypeTimer); 
     };
-    /* usernamme check operation ends*/
+    /* username check operation ends*/
+
+    /* Email check operation starts*/
+    // $scope.check_email_keyup = function() {
+    //     $timeout.cancel(TypeTimer);
+    //     TypeTimer=$timeout( function(){
+    //         var data={
+    //             email:$scope.email
+    //         }
+    //         console.log(data);
+    //         // etc_function.check_email(data);            
+    //     }, TypingInterval);
+    // };
+    // $scope.check_email_keydown = function(){
+    //     $timeout.cancel(TypeTimer);
+    // };
+   
+    // $scope.check_email_blur = function(){
+    //     var data={
+    //         email:$scope.email
+    //     }
+    //     console.log(data);
+    //     // etc_function.check_email(data);
+    //     $timeout.cancel(TypeTimer); 
+    // };
+    /* Email check operation ends*/
+
+    /* Name check operation starts*/
+    // $scope.keyup_uncheck = function() {
+    //     $timeout.cancel(TypeTimer);
+    //     TypeTimer=$timeout( function(){
+    //         var data={
+    //             username:$scope.username
+    //         }
+    //         etc_function.check_name(data);            
+    //     }, TypingInterval);
+    // };
+    // $scope.keydown_uncheck = function(){
+    //     $timeout.cancel(TypeTimer);
+    // };
+   
+    // $scope.blur_uncheck = function(){
+    //     var data={
+    //         username:$scope.username
+    //     }
+    //     etc_function.check_name(data);
+    //     $timeout.cancel(TypeTimer); 
+    // };
+    /* Name check operation ends*/
 
 
     /* Regsiter operation starts*/
@@ -147,6 +198,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
             $http.post('/check_name',data).success(function(data, status, headers, config) {
                 if( !data.msg ){
                     $scope.RegisterAlert = true;
+
                 }else{
                     $scope.RegisterAlert = false;
                 }
@@ -154,5 +206,18 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 alert("Connection Error");
             });
         }
+
+        // check_email:function(data){
+        //     $http.post('/check_name',data).success(function(data, status, headers, config) {
+        //         if( !data.msg ){
+        //             $scope.RegisterAlert = true;
+
+        //         }else{
+        //             $scope.RegisterAlert = false;
+        //         }
+        //     }).error(function(data, status) {
+        //         alert("Connection Error");
+        //     });
+        // }
     }
 });

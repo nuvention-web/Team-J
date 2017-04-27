@@ -148,7 +148,9 @@
 
 .login-title{
     color: black;
-    font-size: 24px !important;
+    font-size: 20px !important;
+    text-transform: capitalize !important;
+
 }
 
 .login-title > a{
@@ -158,6 +160,7 @@
 .login-title > a:hover{
     text-decoration: none !important;
     color: #555;
+
 }
 
 .login-box{
@@ -396,7 +399,6 @@ thead{
 
 .glyphicon{
     vertical-align: baseline;
-    margin-right: 0.5em;
 }
 
 .vcenter{
@@ -653,6 +655,55 @@ tbody > tr > td > button{
 
 .tooltip {
     font-size: 20px !important;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email']{
+    height: 45px;
+    font-size: 16px;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+.btn-login{
+    color: white;
+    background-color:#5F9F9D; 
+    font-size: 18px;
+}
+
+.btn-login:hover{
+    color: white;
+    background-color:#9cc4c3;
+    font-size: 19px;
+    border: #9cc4c3;
+}
+
+.login > .input-group, .register > .input-group{
+    width: 100%;
+}
+
+.signup-on-login, .login-on-signup{
+    color: #5F9F9D;
+    font-size: 20px;
+    text-decoration: underline;
+    cursor: pointer !important;
+}
+
+.register > .input-group{
+    margin-bottom: 0px !important;
+    margin-top: 12px;
+}
+
+.register > .alert-group > .alert{
+    font-size: 12px;
+    height: 18px;
+    padding: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 0;
 }
 
 
