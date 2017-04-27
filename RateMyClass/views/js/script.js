@@ -31,6 +31,9 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     $scope.LoginBox=false; 
     $scope.LoginAlert=true;
     $scope.RegisterAlert=true;
+    $scope.emailAlert=true;
+    $scope.confirmPasswordAlert=true;
+    $scope.legalName=true;
     $scope.RegisterBox=true;
     /* variables for  Hide show ends*/
 
