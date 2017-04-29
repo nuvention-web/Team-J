@@ -32,7 +32,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     $scope.LoginAlert=true;
     $scope.RegisterAlert=true;
     $scope.emailAlert=true;
-    // $scope.confirmPasswordAlert=true;
+    $scope.confirmPasswordAlert=true;
     $scope.legalName=true;
     $scope.RegisterBox=true;
     /* variables for  Hide show ends*/
@@ -65,7 +65,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         $http.post('/login',data).success(function(data, status, headers, config) {
             if(data.is_logged){
                 $scope.LoginAlert = true;
-                $window.location.href = "/home#?id="+data.id;
+                $window.location.href = "/main#?id="+data.id;
             }else{
                 $scope.LoginAlert = false;
             }
@@ -115,14 +115,15 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     //     $timeout.cancel(TypeTimer);
     // };
    
-    // $scope.check_email_blur = function(){
-    //     var data={
-    //         email:$scope.email
-    //     }
-    //     console.log(data);
-    //     // etc_function.check_email(data);
-    //     $timeout.cancel(TypeTimer); 
-    // };
+    $scope.check_email_blur = function(){
+        var inputEmail=$scope.email;
+        
+
+        var emailResult = emailValidation(inputEmail);
+        console.log(emailResult);
+        // etc_function.check_email(data);
+        $timeout.cancel(TypeTimer); 
+    };
     /* Email check operation ends*/
 
     /* Name check operation starts*/
@@ -221,3 +222,9 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         // }
     }
 });
+
+
+function emailValidation(input){
+    
+    console.log(input);
+}

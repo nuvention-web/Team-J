@@ -124,7 +124,7 @@
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-user"></i>
 			  	</span>
-			  	<input id="register-username" type="text" ng-model="username"  class="form-control inputbg" name="username" value="" placeholder="Username" ng-keyup="keyup_uncheck()" ng-keydown="keydown_uncheck()" ng-blur="blur_uncheck()"  ng-change="change_uncheck()">
+			  	<input id="register-username" type="text" ng-model="username"  class="form-control inputbg" name="username" value="" placeholder="NetID" ng-keyup="keyup_uncheck()" ng-keydown="keydown_uncheck()" ng-blur="blur_uncheck()"  ng-change="change_uncheck()">
 			</div>
 
 			<!-- ALert Box When username is already taken -->
@@ -139,7 +139,7 @@
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-envelope"></i>
 			  	</span>
-			  	<input id="register-email" type="email" ng-model="email"  class="form-control inputbg" name="email" value="" placeholder="Email" ng-keyup="check_email_keyup()" ng-keydown="check_email_keydown()" ng-blur="check_email_blur()"  ng-change="check_email_change()">
+			  	<input id="register-email" type="email" ng-model="email"  class="form-control inputbg" name="email" value="" placeholder="Email" ng-blur="check_email_blur()">
 			  	
 			</div>
 
@@ -161,9 +161,23 @@
 			  	<input id="register-password" type="password" ng-model="password"  class="form-control inputbg" name="password" placeholder="Password">
 			</div>
 
+			<!-- Confirm Password Text Field -->			
+			<div class="input-group password-group">
+			  	<span class="input-group-addon iconbg">
+					<i class="glyphicon glyphicon-lock"></i>
+			  	</span>
+			  	<input id="register-confirm-password" type="password" ng-model="confirm-password"  class="form-control inputbg" name="password" value="" placeholder="Confirm Password" ng-keyup="" ng-keydown="" ng-blur=""  ng-change="">
+			</div>
+			<!-- ALert Box When username is already taken -->
+			<div class="alert-group" ng-hide="confirmPasswordAlert">
+			  	<div class="alert alert-danger">
+					This username is already taken. 
+			  	</div>
+			</div>
+
 			<!-- Name Text Field -->		
 
-			<div class="input-group email-group">
+			<!-- <div class="input-group email-group">
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-pencil"></i>
 			  	</span>
@@ -181,7 +195,7 @@
 			  	<div class="alert alert-danger">
 					This name is already existed in our database. 
 			  	</div>
-			</div>
+			</div> -->
 
 			<!-- Confirm Password Text Field -->			
 			<!-- <div class="input-group password-group">
