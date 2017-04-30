@@ -61,7 +61,7 @@ function routes(app,connection,sessionInfo){
 				if(result.length>0) {
 					var courses="";
 					console.log(result);
-					res.render('/course_list#?id='+sessionInfo.uid,{data:JSON.stringify});
+					res.render('/course_list#?id='+sessionInfo.uid,{data:JSON.stringify(result)});
 		    	} else {
 		    		console.log("None");
 		    	}			
@@ -69,13 +69,13 @@ function routes(app,connection,sessionInfo){
 
 		console.log(data);
 		/*Render Login page If session is not set*/
-		if(sessionInfo.uid){
+		// if(sessionInfo.uid){
 			
-			res.redirect('/course_list#?id='+sessionInfo.uid);
+		// 	res.redirect('/course_list#?id='+sessionInfo.uid);
 
-		}else{
-			res.render('chat_login');		
-		}
+		// }else{
+		// 	res.render('chat_login');		
+		// }
 	});	
 
 	/*

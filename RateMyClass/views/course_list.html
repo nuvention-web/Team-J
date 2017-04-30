@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+<html ng-app="course-list">
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -97,6 +97,8 @@
                   <tr>
                       <th>ID</th>
                       <th>Course Name</th>
+                      <th>Professor</th>
+                      <th>Time</th>
                       <!-- <th>Professor</th>
                       <th>Time</th> -->
                       <th style="text-align: center">Rate</th>
@@ -104,13 +106,18 @@
                   </tr>
                   </thead>   
               <tbody>
-                <tr ng-repeat="course in courses">
-                    <td>{{ course.course_id }}</td>
-                    <td>{{ course.title }}</td>
-                    <td>{{ course.instructor }}</td>
-                    <td>{{ course.meeting_day_time }}</td>
-                    <td><h4><span class="label label-success">{{ course.rating }}</span></h4>
+                <tr ng-repeat="class in courses track by $index">
+                    <td>{{ class.course_id }}</td>
+                    <td>{{ class.title }}</td>
+                    <td>{{ class.instructor }}</td>
+                    <td>{{ class.meeting_day_time }}</td>
+                    <td><h4><span class="label label-success">{{ class.rating }}</span></h4>
                     </td>                                      
+                </tr>
+
+
+                <tr>
+                  <td> Hi </td>
                 </tr>
                 <!-- <tr>
                     <td>110</td>
@@ -211,10 +218,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
-  <script src="js/angular.min.js"></script>
-  <script src="js/jquery.min.js"></script>
+<!--   <script src="js/angular.min.js"></script>
+  <script src="js/jquery.min.js"></script> -->
   <script src="js/course_list.js"></script>
   <script>
 
