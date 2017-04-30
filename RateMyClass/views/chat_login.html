@@ -3,16 +3,11 @@
   	<title>CoEva</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
  	<link rel="stylesheet" href="css/chat-style.css"> 
-  	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  	<link rel="stylesheet" href="css/style.css">
+  	<link rel="stylesheet" href="css/login-style.css">
 
-  	<link rel="SHORTCUT ICON" href="resources/images/star.png">
+  	<link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  	<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
-  	<link href="https://fonts.googleapis.com/css?family=Palanquin" rel="stylesheet">
-  	<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
-  	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
   	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
@@ -22,34 +17,16 @@
 
 
   <body ng-controller="login-register">
-
-	<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner" role="listbox">
-    		<div class="item active">
-      			<img src="/img/slide1.png" alt="Chania">
-    		</div>
-
-		    <div class="item">
-		    	<img src="/img/slide2.png" alt="Chania">
-		    </div>
-
-		    <div class="item">
-		    	<img src="/img/slide3.png" alt="Flower">
-		    </div>
-		</div>
-  	</div> -->
-<div class="showcase">
-  <div class="showcase-login">
     <div class="container">
        <div class="row">
   	<!-- Main Div Wrapper starts-->
-  	<div class="container index col-sm-12">
+  	<div class="container index">
 		
 		
   		<!-- 
   			Login Box starts 
   		-->
-		<div ng-hide="LoginBox" class="login box-container col-6">
+		<div ng-hide="LoginBox" class="login box-container">
 
 			<h2 class="login-title">
 			  <a href="main.html">
@@ -175,28 +152,6 @@
 			  	</div>
 			</div>
 
-			<!-- Name Text Field -->		
-
-			<!-- <div class="input-group email-group">
-				<span class="input-group-addon iconbg">
-					<i class="glyphicon glyphicon-pencil"></i>
-			  	</span>
-			  	<input id="register-firstname" type="text" ng-model="firstname"  class="form-control inputbg" name="firstname" value="" placeholder="Fisrt Name">	
-			</div>
-
-			<div class="input-group email-group">
-				<span class="input-group-addon iconbg">
-					<i class="glyphicon glyphicon-home"></i>
-			  	</span>
-			  	<input id="register-lastname" type="text" ng-model="lastname"  class="form-control inputbg inputbg" name="lastname" value="" placeholder="Last Name" ng-keyup="check_name_keyup()" ng-keydown="check_name_keydown()" ng-blur="check_name_blur()"  ng-change="check_name_change()">
-			</div>
-
-			<div class="alert-group" ng-hide="legalName">
-			  	<div class="alert alert-danger">
-					This name is already existed in our database. 
-			  	</div>
-			</div> -->
-
 			<!-- Confirm Password Text Field -->			
 			<!-- <div class="input-group password-group">
 			  	<span class="input-group-addon iconbg">
@@ -230,8 +185,6 @@
 				<div ng-click="toggle_login()" class="login-on-signup">SignIn</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	</div>
 	</div>

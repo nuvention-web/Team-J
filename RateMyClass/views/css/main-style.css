@@ -1,0 +1,53 @@
+body{
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../resources/images/Northwestern_.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.product-background {
+    margin-top: 10em;
+    margin-bottom: auto;
+    vertical-align: middle;
+    padding-bottom: 40px;
+    background: #2d2d2d;
+    background: rgba(45,45,45,.7);
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px
+}
+
+.product-title{
+    color:white;
+    text-align: center;
+}
+
+.product-title > h1{
+    font-size: 50px;
+    font-family: 'Palanquin Dark', sans-serif;
+}
+
+.product-title > h2{
+    font-family: 'Palanquin', sans-serif;
+}
+
+.search-button{
+    
+    border-radius: 8px;
+    border: 0;
+    background: #5F9F9D;
+    outline: none !important;
+    font-family: 'Raleway', sans-serif;
+}
+
+.search-button:hover{
+    background-color: #5AA8A5 !important;
+}
+
+.btn-success:active, .btn-success:focus{
+    background: #5F9F9D !important;
+}

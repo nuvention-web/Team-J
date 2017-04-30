@@ -1,10 +1,10 @@
 <html ng-app="myApp">
 <head>
   <title>CoEva</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav-style.css">
+  <link rel="stylesheet" href="css/profile-style.css">
 
-  <link rel="SHORTCUT ICON" href="resources/images/star.png">
+  <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
@@ -27,51 +28,47 @@
 </head>
 <body>
 
-
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <a class="navbar-brand" href="main.html">
+        <img alt="Brand" src="./resources/images/CoEva.png" height="25px">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="main.html"> 
-        <span><img alt="Brand" src="./resources/images/CoEva.png" height="30px"></span>
-        <strong>CoEva - Course Evaluation</strong>
-      </a>
+      <a class="navbar-brand" href="main.html"><strong>CoEva</strong></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="course_list.html">Classes</a></li>
-        <!-- <li><a href="#/profile">"Temp Profile Page"</a></li> -->
+        <li><a href="course_list.html" class="">Classes</a></li>
+        <li><a href="chat_home.html">Message</a></li>
+        <li><a href="profile.html">Profile</a></li>
         <li class="dropdown">
-         <a href="main.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target=".dropdown-menu">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" id="nav-dropdown" aria-labelledby="dropdownMenuLink">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
+          <ul class="dropdown-menu">
             <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
+           <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#/">Something else here</a></li>
+            <li><a href="https://serif.nu/">Serif.NU</a></li>
           </ul>
         </li>
-
-        <a href="chat_login.html"
-        <li>
-        <button type="button" class="btn btn-default navbar-btn">LOG IN</button>
-        </li>
-        </a>
+        <form class="navbar-form navbar-left" action="chat_login.html">
+          <button type="submit" class="btn btn-default nav-login">
+          Log in</button>
+        </form>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<br>
 <br>
 <div class="container">
   <div class="col-xs-12">
@@ -80,14 +77,13 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2 class="panel-title">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Account</h2>
+            <span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-right: 0.5em"></span>Account Details</h2>
         </div>
         <div class="panel-body">
           <ul class="nav nav-tabs">
             <li class="active"><a data-target="#tab1primary" data-toggle="tab">Profile</a></li>
             <li><a data-target="#tab2primary" data-toggle="tab">Taken Classes</a></li>
-            <li><a data-target="#tab3primary" data-toggle="tab">Messages</a></li>
-            <li><a data-target="#tab4primary" data-toggle="tab">Points</a></li>
+            <li><a data-target="#tab4primary" data-toggle="tab">Current Points</a></li>
           </ul>
 
           <div class="tab-content">
@@ -131,19 +127,14 @@
 
                 <form>
                     <div class="form-group row">
-
                       <div class="col-xs-2">
                       <label for="NetIDInput" class="vcenter">Email</label></div>
 
                       <div class="col-xs-4">
                       <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="ybsh@gmail.com"> 
                       </div>
-
                     </div>
 
-                  
-                </form>
-                <form>
                     <div class="form-group row">
 
                       <div class="col-xs-2">
@@ -153,38 +144,12 @@
                       <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="********"> 
                       </div>
 
-                    </div>
-
-                  
+                    </div>                
                 </form>
-                <form>
-                    <div class="form-group row">
-
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Chat Function</label></div>
-                      
-                      <div class="col-xs-4">
-                        <div class="switch">
-                          <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                          <label for="cmn-toggle-4"></label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <small id="passwordHelpBlock" class="form-text text-muted">
-                      Let other students chat with you for more information.
-                    </small>                  
-                </form>
-
-                <br><br>
+                <br>
                 <!-- <div class="btn-group"> -->
                   <button class="btn btn-sm btn-success" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Save
-                  </button>
-
-
-                  <button class="btn btn-sm btn-danger" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="logout()">
-                      Sign out
                   </button>
                 <!-- </div> -->
 
@@ -314,27 +279,16 @@
 
             </div>
           </div>
-            
-
-
+        </div>
           
-            </div>
-
-
-            <div class="tab-pane fade" id="tab3primary">
-               <br>
-               <div class="row">
-                 <div class="col-xs-8">
-                  <div class="box">
-                    <a href="#/chatbot"> Signin to Chatbot</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-          <div class="tab-pane fade" id="tab4primary">Wait for design of Point System</div>
-
+        <div class="tab-pane fade" id="tab4primary">
+          <div class="jumbotron">
+            <h1>85</h1>
+            <p>Rate more courses to earn more points</p>
           </div>
+        </div>
+          
+      </div>
           
 
 
@@ -345,15 +299,6 @@
     </div>
   </div>
 </div>
-
-
-<!-- /.container -->
-  <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script src="/bower_components/angular/angular.js"></script>
-  <script src="/bower_components/angular-route/angular-route.js"></script>
-  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="/app.js"></script>
-  <script src="/controllers/homepage.js"></script>
 
   <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
   

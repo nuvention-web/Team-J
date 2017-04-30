@@ -2,9 +2,9 @@
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav-style.css">
 
-  <link rel="SHORTCUT ICON" href="resources/images/star.png">
+  <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
@@ -34,47 +34,42 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <a class="navbar-brand" href="main.html">
+        <img alt="Brand" src="./resources/images/CoEva.png" height="25px">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="main.html"> 
-        <span><img alt="Brand" src="./resources/images/CoEva.png" height="30px"></span>
-        <strong>CoEva - Course Evaluation</strong>
-      </a>
+      <a class="navbar-brand" href="main.html"><strong>CoEva</strong></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="course_list.html">Classes</a></li>
+        <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="chat_home.html">Message</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <!-- <li class="dropdown">
-         <a href="main.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target=".dropdown-menu">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" id="nav-dropdown" aria-labelledby="dropdownMenuLink">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
+          <ul class="dropdown-menu">
             <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
+           <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#/">Something else here</a></li>
+            <li><a href="https://serif.nu/">Serif.NU</a></li>
           </ul>
-        </li> -->
-
-        <a href="chat_login.html">
-        <li>
-        <button type="button" class="btn btn-default navbar-btn">LOG IN</button>
         </li>
-        </a>
+        <form class="navbar-form navbar-left" action="chat_login.html">
+          <button type="submit" class="btn btn-default nav-login">
+          Log in</button>
+        </form>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-<br>
-<br>
 
 <div class="container">
   <div class="row">
@@ -105,8 +100,7 @@
                       <!-- <th>Professor</th>
                       <th>Time</th> -->
                       <th style="text-align: center">Rate</th>
-                      <!-- <th style="text-align: center">Status</th> -->
-                      <th style="text-align: center">Your Rate</th>                                          
+                      <!-- <th style="text-align: center">Status</th> -->                            
                   </tr>
                   </thead>   
               <tbody>
@@ -116,50 +110,35 @@
                     <!-- <td>Taflove</td>
                     <td>4-4:50 MTuWF</td> -->
                     <td><h4><span class="label label-success">4.35</span></h4>
-                    </td>                           
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="100">Rate Now</button>
-                    </td>            
+                    </td>                                      
                 </tr>
                 <tr>
                     <td>110</td>
                     <td>Intro To Computer Programming</td>
                     <!-- <td>Kuzmanovic</td>
                     <td>10-10:50 MTuWF </td> -->
-                    <td><h4><span class="label label-danger">2.69</span></h4></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="110">Rate Now</button>
-                    </td>                                       
+                    <td><h4><span class="label label-danger">2.69</span></h4></td>                                      
                 </tr>
                 <tr>
                     <td>111</td>
                     <td>Fundamentals Of Computer Programming I</td>
                     <!-- <td>Tov</td>
                     <td>2-3:20 TuTh</td> -->
-                    <td><h4><span class="label label-warning">3.03</span></h4></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                        
+                    <td><h4><span class="label label-warning">3.03</span></h4></td>                                       
                 </tr>
                 <tr>
                     <td>202</td>
                     <td>Intro To Electrical Engineering</td>
                     <!-- <td>Grayson</td>
                     <td>10-10:50 MTuWF</td> -->
-                    <td><h4><span class="label label-success">3.98</span></h4></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="202">Rate Now</button>
-                    </td>                                 
+                    <td><h4><span class="label label-success">3.98</span></h4></td>                               
                 </tr>
                 <tr>
                     <td>203</td>
                     <td>Intro To Computer Engineering</td>
                     <!-- <td>Zhou</td>
                     <td>11-11:50 MTuWF</td> -->
-                    <td><h4><span class="label label-warning">3.15</span></h4></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="203">Rate Now</button>
-                    </td>                                        
+                    <td><h4><span class="label label-warning">3.15</span></h4></td>                                      
                 </tr>                                   
               </tbody>
             </table>
@@ -226,14 +205,6 @@
     </div>
   </div>
 </div>
-
-<!-- /.container -->
-  <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script src="/bower_components/angular/angular.js"></script>
-  <script src="/bower_components/angular-route/angular-route.js"></script>
-  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="/app.js"></script>
-  <script src="/controllers/homepage.js"></script>
 
   <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
   

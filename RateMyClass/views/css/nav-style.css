@@ -1,0 +1,10 @@
+.navbar-default {
+   border-top: 2px solid #5F9F9D !important;
+   font-size: 15px;
+}
+
+.nav > form > button{
+   border-radius: 20px;
+   border: 2px solid #5F9F9D;
+   outline: none !important;
+}
