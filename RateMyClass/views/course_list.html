@@ -28,7 +28,7 @@
   
 
 </head>
-<body>
+<body ng-controller="course-list" data-ng-init="load_course()">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -104,42 +104,42 @@
                   </tr>
                   </thead>   
               <tbody>
-                <tr>
-                    <td>100</td>
-                    <td>Electrons, Photons, And Bits: Adventures In Electrical And Computer Engineering</td>
-                    <!-- <td>Taflove</td>
-                    <td>4-4:50 MTuWF</td> -->
-                    <td><h4><span class="label label-success">4.35</span></h4>
+                <tr ng-repeat="course in courses">
+                    <td>{{ course.course_id }}</td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.instructor }}</td>
+                    <td>{{ course.meeting_day_time }}</td>
+                    <td><h4><span class="label label-success">{{ course.rating }}</span></h4>
                     </td>                                      
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>110</td>
-                    <td>Intro To Computer Programming</td>
+                    <td>Intro To Computer Programming</td> -->
                     <!-- <td>Kuzmanovic</td>
                     <td>10-10:50 MTuWF </td> -->
-                    <td><h4><span class="label label-danger">2.69</span></h4></td>                                      
-                </tr>
+                    <!-- <td><h4><span class="label label-danger">2.69</span></h4></td>                                       -->
+                <!-- </tr>
                 <tr>
                     <td>111</td>
-                    <td>Fundamentals Of Computer Programming I</td>
+                    <td>Fundamentals Of Computer Programming I</td> -->
                     <!-- <td>Tov</td>
                     <td>2-3:20 TuTh</td> -->
-                    <td><h4><span class="label label-warning">3.03</span></h4></td>                                       
+                    <!-- <td><h4><span class="label label-warning">3.03</span></h4></td>                                       
                 </tr>
                 <tr>
                     <td>202</td>
-                    <td>Intro To Electrical Engineering</td>
+                    <td>Intro To Electrical Engineering</td> -->
                     <!-- <td>Grayson</td>
                     <td>10-10:50 MTuWF</td> -->
-                    <td><h4><span class="label label-success">3.98</span></h4></td>                               
-                </tr>
+                    <!-- <td><h4><span class="label label-success">3.98</span></h4></td>                                -->
+               <!--  </tr>
                 <tr>
                     <td>203</td>
-                    <td>Intro To Computer Engineering</td>
+                    <td>Intro To Computer Engineering</td> -->
                     <!-- <td>Zhou</td>
                     <td>11-11:50 MTuWF</td> -->
-                    <td><h4><span class="label label-warning">3.15</span></h4></td>                                      
-                </tr>                                   
+                    <!-- <td><h4><span class="label label-warning">3.15</span></h4></td>                                      
+                </tr>  -->                                  
               </tbody>
             </table>
             <!-- </div> -->
@@ -213,73 +213,73 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
-
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/course_list.js"></script>
   <script>
 
-var courses = [
-    {"Num":100, "Name":"Electrons, Photons, And Bits: Adventures In Electrical And Computer Engineering",
-        "Rate":4.35 },
-    {"Num":110, "Name":"Intro To Computer Programming",
-        "Rate":2.69 },
-    {"Num":111, "Name":"Fundamentals Of Computer Programming I",
-        "Rate":3.03 },
-    {"Num":202, "Name":"Intro To Electrical Engineering",
-        "Rate":3.98 },
-    {"Num":203, "Name":"Intro To Computer Engineering",
-        "Rate":3.15 }
-    ];
+// var courses = [
+//     {"Num":100, "Name":"Electrons, Photons, And Bits: Adventures In Electrical And Computer Engineering",
+//         "Rate":4.35 },
+//     {"Num":110, "Name":"Intro To Computer Programming",
+//         "Rate":2.69 },
+//     {"Num":111, "Name":"Fundamentals Of Computer Programming I",
+//         "Rate":3.03 },
+//     {"Num":202, "Name":"Intro To Electrical Engineering",
+//         "Rate":3.98 },
+//     {"Num":203, "Name":"Intro To Computer Engineering",
+//         "Rate":3.15 }
+//     ];
 
-var rate = 0.0;
+// var rate = 0.0;
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
+// $('#exampleModal').on('show.bs.modal', function (event) {
+//   var button = $(event.relatedTarget) // Button that triggered the modal
+  // var recipient = button.data('whatever') // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var name = "";
+  // var name = "";
 
 
-  courses.forEach(function(course){
-        if (recipient == course.Num){
-            name = course.Name;
-            rate = course.Rate;
-        }
+//   courses.forEach(function(course){
+//         if (recipient == course.Num){
+//             name = course.Name;
+//             rate = course.Rate;
+//         }
 
         
-    }
-)
+//     }
+// )
   
-  var modal = $(this)
-  modal.find('.modal-title').text('Rate the Course ' + recipient)
-  modal.find('.modal-body h4').text(name)
-  modal.find('#rateNumber').text(rate)
-});
+//   var modal = $(this)
+//   modal.find('.modal-title').text('Rate the Course ' + recipient)
+//   modal.find('.modal-body h4').text(name)
+//   modal.find('#rateNumber').text(rate)
+// });
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
+// $(document).ready(function(){
+//     $('[data-toggle="tooltip"]').tooltip(); 
+// });
 
-$(function () {
+// $(function () {
 
-  $("#rateYo1").rateYo({
+//   $("#rateYo1").rateYo({
 
-    starWidth: "40px",
-    rating    : 4.35,
-    readOnly: true
-  });
+//     starWidth: "40px",
+//     rating    : 4.35,
+//     readOnly: true
+//   });
 
-});
+// });
 
-$(function () {
+// $(function () {
 
-  $("#rateYo2").rateYo({
+  // $("#rateYo2").rateYo({
 
-    starWidth: "40px",
-    normalFill: "#A0A0A0",
-    halfStar: true
-  });
-
-});
+  //   starWidth: "40px",
+  //   normalFill: "#A0A0A0",
+  //   halfStar: true
+  // });
 </script>
 
 </body>
