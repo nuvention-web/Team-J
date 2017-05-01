@@ -18,3 +18,9 @@
 .carousel-caption > button:focus{
     outline: none !important;
 }
+
+.item > img{
+	filter: brightness(30%);
+	/*object-fit: cover;*/
+}
+

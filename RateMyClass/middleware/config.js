@@ -16,7 +16,6 @@ function config(app){
 
 	//Files 
 	app.use(express.static(path.join(__dirname,'../views')));
-	console.log(path.join(__dirname,'../views'));
 }
 
 method.get_config=function(){
