@@ -51,8 +51,11 @@ function routes(app,connection,sessionInfo){
 	app.get('/courselist', function(req, res){
 		
 		sessionInfo=req.session;
+		
+		// var term = req.query.term;
+		// console.log(term);
+		var term = "2016 Fall"
 
-		// console.log(data);
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
 			
@@ -60,14 +63,12 @@ function routes(app,connection,sessionInfo){
 
 		}else{
 			var data={
-				query:"select * from course where term='2016 Fall'",
+				query:"select * from course where term='"+term+"' order by course_id,title",
 				connection:connection
 			}
 
 			query_runner(data,function(result){
 				if(result.length>0) {
-					//var courses=JSON.stringify(result);
-					// console.log(courses);
 					res.json(result);
 		    	} else {
 		    		console.log("None");

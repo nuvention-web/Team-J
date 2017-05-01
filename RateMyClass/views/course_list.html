@@ -106,47 +106,14 @@
                   </tr>
                   </thead>   
               <tbody>
-                <tr ng-repeat="class in courses">
-                    <td ng-repeat="(key, val) in class">{{val}}</td>
-                    <!-- <td>{{ class.title }}</td>
-                    <td>{{ class.instructor }}</td>
-                    <td>{{ class.meeting_day_time }}</td>
-                    <td><h4><span class="label label-success">{{ class.rating }}</span></h4>
-                    </td>                                       -->
-                </tr>
-
-
-                <tr>
-                  <td> Hi </td>
-                </tr>
-                <!-- <tr>
-                    <td>110</td>
-                    <td>Intro To Computer Programming</td> -->
-                    <!-- <td>Kuzmanovic</td>
-                    <td>10-10:50 MTuWF </td> -->
-                    <!-- <td><h4><span class="label label-danger">2.69</span></h4></td>                                       -->
-                <!-- </tr>
-                <tr>
-                    <td>111</td>
-                    <td>Fundamentals Of Computer Programming I</td> -->
-                    <!-- <td>Tov</td>
-                    <td>2-3:20 TuTh</td> -->
-                    <!-- <td><h4><span class="label label-warning">3.03</span></h4></td>                                       
-                </tr>
-                <tr>
-                    <td>202</td>
-                    <td>Intro To Electrical Engineering</td> -->
-                    <!-- <td>Grayson</td>
-                    <td>10-10:50 MTuWF</td> -->
-                    <!-- <td><h4><span class="label label-success">3.98</span></h4></td>                                -->
-               <!--  </tr>
-                <tr>
-                    <td>203</td>
-                    <td>Intro To Computer Engineering</td> -->
-                    <!-- <td>Zhou</td>
-                    <td>11-11:50 MTuWF</td> -->
-                    <!-- <td><h4><span class="label label-warning">3.15</span></h4></td>                                      
-                </tr>  -->                                  
+                <tr ng-repeat="courseI in courses">
+                    <td>{{ courseI.course_id }}</td>
+                    <td>{{ courseI.title }}</td>
+                    <td>{{ courseI.instructor }}</td>
+                    <td>{{ courseIl.meeting_day_time }}</td>
+                    <td><h4><span class="label label-success">{{ courseI.rating }}</span></h4>
+                    </td>                                      
+                </tr>                                  
               </tbody>
             </table>
             <!-- </div> -->
