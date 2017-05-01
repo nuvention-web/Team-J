@@ -28,7 +28,7 @@
   
 
 </head>
-<body ng-controller="course-list" data-ng-init="load_course()">
+<body ng-controller="course-list">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -92,7 +92,7 @@
             </div>
 
             <!-- <div class="span5"> -->
-            <table class="table table-striped table-condensed table-hover">
+            <table class="table table-striped table-condensed table-hover" data-ng-init="load_course()">
                   <thead>
                   <tr>
                       <th>ID</th>
@@ -106,13 +106,13 @@
                   </tr>
                   </thead>   
               <tbody>
-                <tr ng-repeat="class in courses track by $index">
-                    <td>{{ class.course_id }}</td>
-                    <td>{{ class.title }}</td>
+                <tr ng-repeat="class in courses">
+                    <td ng-repeat="(key, val) in class">{{val}}</td>
+                    <!-- <td>{{ class.title }}</td>
                     <td>{{ class.instructor }}</td>
                     <td>{{ class.meeting_day_time }}</td>
                     <td><h4><span class="label label-success">{{ class.rating }}</span></h4>
-                    </td>                                      
+                    </td>                                       -->
                 </tr>
 
 

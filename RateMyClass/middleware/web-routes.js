@@ -52,30 +52,29 @@ function routes(app,connection,sessionInfo){
 		
 		sessionInfo=req.session;
 
-		var data={
+		// console.log(data);
+		/*Render Login page If session is not set*/
+		if(sessionInfo.uid){
+			
+			res.redirect('/course_list#?id='+sessionInfo.uid);
+
+		}else{
+			var data={
 				query:"select * from course where term='2016 Fall'",
 				connection:connection
 			}
 
 			query_runner(data,function(result){
 				if(result.length>0) {
-					var courses="";
-					console.log(result);
-					res.render('/course_list#?id='+sessionInfo.uid,{data:JSON.stringify(result)});
+					//var courses=JSON.stringify(result);
+					// console.log(courses);
+					res.json(result);
 		    	} else {
 		    		console.log("None");
 		    	}			
 			});
-
-		console.log(data);
-		/*Render Login page If session is not set*/
-		// if(sessionInfo.uid){
-			
-		// 	res.redirect('/course_list#?id='+sessionInfo.uid);
-
-		// }else{
-		// 	res.render('chat_login');		
-		// }
+			// res.render('course_list');		
+		}
 	});	
 
 	/*

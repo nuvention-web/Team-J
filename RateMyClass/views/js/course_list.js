@@ -6,10 +6,14 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 
         var data = "2016 Fall";
         $http.get('/courselist').then(function successCallback(response) {
-               $scope.courses = response.data;
-               // console.log($scope.courses);
+               //$scope.courses = JSON.stringify(response.data);
+               for (var i = 0; i < 2; i++){
+               	alert(response.data);
+               }
+               console.log(response.data);
+               // $scope.$apply();
         }, function errorCallback(response){
-                console.log("error");
+               console.log("error");
         });
     }
     
