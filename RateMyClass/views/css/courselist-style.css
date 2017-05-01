@@ -1,0 +1,57 @@
+.col-sm-10 > .jumbotron{
+	padding-top: 20px !important;
+	padding-bottom: 80px !important;
+}
+
+.jumbotron > .col-xs-6{
+	padding-left: 0;
+}
+
+input[type="text"]{
+	height: 3em;
+}
+
+.input-group > span > .btn-secondary{
+	height: 3em;
+	color: white;
+	background-color: #5F9F9D;
+}
+
+.nav-sidebar { 
+    width: 100%;
+    padding: 10px 0; 
+    border-right: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px; 
+    -moz-border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+}
+
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: #5F9F9D; 
+    color: #fff; 
+    text-shadow: 1px 1px 1px #666; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #7DCFB6;   
+}
+
+.nav-sidebar .active a:focus {
+    background-color: #5F9F9D; 
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}

@@ -61,7 +61,7 @@ function routes(app,connection,sessionInfo){
 				if(result.length>0) {
 					var courses="";
 					console.log(result);
-					res.render('/course_list#?id='+sessionInfo.uid,{data:JSON.stringify(result)});
+					res.render('course_list', {data:JSON.stringify(result)});
 		    	} else {
 		    		console.log("None");
 		    	}			
