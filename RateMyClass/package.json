@@ -1,26 +1,17 @@
 {
-  "name": "Answerly",
-  "version": "1.0.0",
-  "description": "Q&A website",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
+  "name": "CoEva",
+  "version": "0.0.1",
+  "description": "NU course dicussion platform",
+  "author": "Aagam Shah, Yibing Shi, Jayalakshmi Jain",
+  "license": "NU",
   "dependencies": {
-    "body-parser": "*",
-    "express": "*",
-    "mongoose": "*",
-    "nodemailer": "^3.1.4",
-    "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
-    "sendgrid": "^4.7.1"
-  },
-  "engines": {
-    "node": "6.9.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nuvention-web/Team-J/Answerly"
-  },
-  "author": "Aagam Shah, Jayalakshmi Jain, Yibing Shi",
-  "license": "ISC"
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "multer": "^1.1.0",
+    "mysql": "^2.10.2",
+    "socket.io": "^1.7.3"
+  }
 }

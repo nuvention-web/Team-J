@@ -1,2 +1,7 @@
 *.DS_Store
-Answerly
+Answerly/*
+docs/*
+RateMyClass/node_modules/*
+RateMyClass/views/angularjs-toaster/*
+RateMyClass/views/bower_components/*
+RateMyClass/views/fonts/*
