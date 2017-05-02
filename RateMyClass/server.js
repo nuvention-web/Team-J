@@ -5,6 +5,7 @@ var http = require('http').Server(app);
 var io = require("socket.io")(http);
 var Session = require('express-session');
 var cookieParser = require('cookie-parser'); 
+var port = process.env.PORT || 8080;
 /*requiring node modules ends */
 
 
@@ -56,6 +57,12 @@ require('./middleware/web-routes.js')(app,connection,Session,cookieParser,sessio
 /*
 	Running our application  
 */
-http.listen(81,function(){
-    console.log("Listening on http://127.0.0.1:81");
+
+//Listen to any port assigned by Heroku
+app.listen(port, function() {
+	console.log('CoEva is running on http://localhost:' + port);
 });
+
+// http.listen(81,function(){
+//     console.log("Listening on http://127.0.0.1:81");
+// });
