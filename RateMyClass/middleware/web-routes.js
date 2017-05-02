@@ -70,9 +70,9 @@ function routes(app,connection,sessionInfo){
 			query_runner(data,function(result){
 				if(result.length>0) {
 // <<<<<<< HEAD
-					var courses="";
-					console.log(result);
-					res.render('course_list', {data:JSON.stringify(result)});
+					// var courses="";
+					// console.log(result);
+					// res.render('course_list', {data:JSON.stringify(result)});
 // =======
 					res.json(result);
 // >>>>>>> 1d537cd996f0e34f3fbc6313d14d5915feb04b9a

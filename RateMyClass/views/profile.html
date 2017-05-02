@@ -1,8 +1,9 @@
-<html ng-app="myApp">
+<html>
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="css/nav-style.css">
   <link rel="stylesheet" href="css/profile-style.css">
+  <link rel="stylesheet" href="css/table-style.css">
 
   <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
@@ -19,7 +20,7 @@
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
   <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
 
@@ -48,7 +49,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
-        <li><a href="chat_home.html">Message</a></li>
+        <li><a href="home.html">Message</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
@@ -144,7 +145,18 @@
                       <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="********"> 
                       </div>
 
-                    </div>                
+                    </div> 
+
+                    <div class="form-group row">
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Name</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="John Doe"> 
+                      </div>
+                    </div>
+
+
                 </form>
                 <br>
                 <!-- <div class="btn-group"> -->
@@ -176,8 +188,8 @@
                       <th>ID</th>
                       <th>Course Name</th>
                       <th>Professor</th>
-                      <th>Time</th>
-                      <th>Rate</th>                                          
+                      <th>Rate</th>  
+                      <th>Your Rate</th>                                        
                   </tr>
                   </thead>   
               <tbody>
@@ -185,37 +197,47 @@
                     <td>100</td>
                     <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
                     <td>Taflove</td>
-                    <td>4-4:50 MTuWF</td>
                     <td><span class="label label-success">4.35</span>
-                    </td>                                       
+                    </td>    
+                    <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                   
                 </tr>
                 <tr>
                     <td>110</td>
                     <td>Intro To Computer Programming</td>
                     <td>Kuzmanovic</td>
-                    <td>10-10:50 MTuWF </td>
-                    <td><span class="label label-danger">2.69</span></td>                                       
+                    <td><span class="label label-danger">2.69</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                       
                 </tr>
                 <tr>
                     <td>111</td>
                     <td>Fundamentals Of Computer Programming I</td>
                     <td>Tov</td>
-                    <td>2-3:20 TuTh</td>
-                    <td><span class="label label-warning">3.03</span></td>                                        
+                    <td><span class="label label-warning">3.03</span></td>
+                    <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                        
                 </tr>
                 <tr>
                     <td>202</td>
                     <td>Intro To Electrical Engineering</td>
                     <td>Grayson</td>
-                    <td>10-10:50 MTuWF</td>
-                    <td><span class="label label-success">3.98</span></td>                                 
+                    <td><span class="label label-success">3.98</span></td>
+                    <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                 
                 </tr>
                 <tr>
                     <td>203</td>
                     <td>Intro To Computer Engineering</td>
                     <td>Zhou</td>
-                    <td>11-11:50 MTuWF</td>
-                    <td><span class="label label-warning">3.15</span></td>                                        
+                    <td><span class="label label-warning">3.15</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                        
                 </tr>  
                   </table>
                 </div><!-- /.box-body -->
@@ -223,7 +245,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Your Courses - Already Taken</h3>
+                  <h3 class="box-title">Your Courses - Completed</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover taken-course">
@@ -232,8 +254,8 @@
                       <th>ID</th>
                       <th>Course Name</th>
                       <th>Professor</th>
-                      <th>Time</th>
-                      <th>Rate</th>                                          
+                      <th>Rate</th>  
+                      <th>Your Rate</th>                                         
                   </tr>
                   </thead>   
               <tbody>
@@ -241,37 +263,47 @@
                     <td>100</td>
                     <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
                     <td>Taflove</td>
-                    <td>4-4:50 MTuWF</td>
                     <td><span class="label label-success">4.35</span>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>
                     </td>                                       
                 </tr>
                 <tr>
                     <td>110</td>
                     <td>Intro To Computer Programming</td>
                     <td>Kuzmanovic</td>
-                    <td>10-10:50 MTuWF </td>
-                    <td><span class="label label-danger">2.69</span></td>                                       
+                    <td><span class="label label-danger">2.69</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                       
                 </tr>
                 <tr>
                     <td>111</td>
                     <td>Fundamentals Of Computer Programming I</td>
                     <td>Tov</td>
-                    <td>2-3:20 TuTh</td>
-                    <td><span class="label label-warning">3.03</span></td>                                        
+                    <td><span class="label label-warning">3.03</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                        
                 </tr>
                 <tr>
                     <td>202</td>
                     <td>Intro To Electrical Engineering</td>
                     <td>Grayson</td>
-                    <td>10-10:50 MTuWF</td>
-                    <td><span class="label label-success">3.98</span></td>                                 
+                    <td><span class="label label-success">3.98</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                 
                 </tr>
                 <tr>
                     <td>203</td>
                     <td>Intro To Computer Engineering</td>
                     <td>Zhou</td>
-                    <td>11-11:50 MTuWF</td>
-                    <td><span class="label label-warning">3.15</span></td>                                        
+                    <td><span class="label label-warning">3.15</span></td>
+                     <td class="but">
+                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    </td>                                        
                 </tr>  
                   </table>
                 </div><!-- /.box-body -->
@@ -300,13 +332,141 @@
   </div>
 </div>
 
-  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
-  
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Rate the Course</h3>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+            <label for="recipient-name" class="form-control-label">Course Name:</label>
+            <h4 id="recipient-name"></h4>
+
+          <hr>
+
+            <label class="form-control-label" >Current Rate:</label>
+            <a href="#" data-toggle="tooltip" data-placement="left" title="4.35">
+                <div id="rateYo1"></div>
+            </a>
+
+          <hr>
+
+            <label class="form-control-label" >Your Rate:</label>
+            <div id="rateYo2"></div>
+            <!-- <label for="message-text" class="form-control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea> -->
+
+          <hr>
+
+            <label class="form-control-label" >Other Students Rates:</label>
+            <div class="image-list" style="">
+                <div class="images">
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="5.0">
+                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
+                </a>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.5">
+                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
+                </a>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.0">
+                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
+                </a>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.5" style="font-size: 20px;">
+                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
+                </a>
+                </div>
+            </div>
+            <!-- <label for="message-text" class="form-control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+
+
+
+<script>
+
+var courses = [
+    {"Num":100, "Name":"Electrons, Photons, And Bits: Adventures In Electrical And Computer Engineering",
+        "Rate":4.35 },
+    {"Num":110, "Name":"Intro To Computer Programming",
+        "Rate":2.69 },
+    {"Num":111, "Name":"Fundamentals Of Computer Programming I",
+        "Rate":3.03 },
+    {"Num":202, "Name":"Intro To Electrical Engineering",
+        "Rate":3.98 },
+    {"Num":203, "Name":"Intro To Computer Engineering",
+        "Rate":3.15 }
+    ];
+
+var rate = 0.0;
+
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var recipient = button.data('whatever') 
+  var name = "";
+
+  courses.forEach(function(course){
+        if (recipient == course.Num){
+            name = course.Name;
+            rate = course.Rate;
+        }        
+  })
+
+  var modal = $(this)
+  modal.find('.modal-title').text('Rate the Course ' + recipient)
+  modal.find('.modal-body h4').text(name)
+  modal.find('#rateNumber').text(rate)
+})
+
+
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+
+$(function () {
+
+  $("#rateYo1").rateYo({
+
+    starWidth: "40px",
+    rating    : 4.35,
+    readOnly: true
+  });
+
+});
+
+$(function () {
+
+  $("#rateYo2").rateYo({
+
+    starWidth: "40px",
+    normalFill: "#A0A0A0",
+    halfStar: true
+  });
+});
+</script>
+
+
+  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
+  
+  
 
 </body>
 </html>

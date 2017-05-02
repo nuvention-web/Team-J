@@ -7,7 +7,7 @@
 
   	<link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
-  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
@@ -29,7 +29,7 @@
 		<div ng-hide="LoginBox" class="login box-container">
 
 			<h2 class="login-title">
-			  <a href="main.html">
+			  <a href="description.html">
 				<span><img alt="Brand" src="./resources/images/CoEva.png" height="24px"></span>
         		<strong>CoEva</strong>
         	  </a>
@@ -44,7 +44,7 @@
 		  		<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-user"></i>
 		  		</span>
-		  		<input id="login-username" type="text" ng-model="username" class="form-control inputbg" name="username" value="" placeholder="Username or Email">
+		  		<input id="login-username" type="text" ng-model="username" class="form-control inputbg" name="username" value="" placeholder="NetID">
 			</div>
 
 			<!-- Password Text Field -->
@@ -139,12 +139,12 @@
 			</div>
 
 			<!-- Confirm Password Text Field -->			
-			<div class="input-group password-group">
+			<!-- <div class="input-group password-group">
 			  	<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-lock"></i>
 			  	</span>
 			  	<input id="register-confirm-password" type="password" ng-model="confirm-password"  class="form-control inputbg" name="password" value="" placeholder="Confirm Password" ng-keyup="" ng-keydown="" ng-blur=""  ng-change="">
-			</div>
+			</div> -->
 			<!-- ALert Box When username is already taken -->
 			<div class="alert-group" ng-hide="confirmPasswordAlert">
 			  	<div class="alert alert-danger">
@@ -175,7 +175,7 @@
 			<!-- Button to Register -->
 			<div class="input-group">
 				<button id="btn-login" class="btn btn-login btnbg" ng-click="register()">
-					Register
+					Register - Not finished
 			  	</button>
 			</div>
 

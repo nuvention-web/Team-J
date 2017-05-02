@@ -1,38 +1,4 @@
 
-
-
-
-.list-col-2{
-    padding: 0 !important;
-    margin-top: 1em;
-    font-size: 16px;
-}
-
-
-
-.input-group{
-    overflow: hidden;
-}
-
-.table-condensed{
-    margin-top: 2em;
-}
-
-thead{
-    background: #5F9F9D;
-    color: white;
-}
-
-.table > thead > tr > th {
-    height: 50;
-    vertical-align: middle !important;
-}
-
-.table-condensed > tbody > tr > td {
-    height: 50px;
-    vertical-align: middle !important;
-}
-
 .panel-title{
     font-size: 20px;
 }

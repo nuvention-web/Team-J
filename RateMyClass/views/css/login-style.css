@@ -17,7 +17,7 @@ input[type='password'],
 input[type='email']{
     height: 45px;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 input:focus{

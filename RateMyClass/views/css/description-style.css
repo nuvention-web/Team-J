@@ -2,20 +2,20 @@
     margin-bottom: 0 !important;
 }
 
-.carousel-caption > button{
+.carousel-caption > a > button{
     background-color: transparent;
     color: white;
     border: 2px solid #4CAF50;
     outline: none;
 }
 
-.carousel-caption > button:hover{
+.carousel-caption > a > button:hover{
     background-color: #4CAF50;
     color: white;
     border: 2px solid #4CAF50;
 }
 
-.carousel-caption > button:focus{
+.carousel-caption > a > button:focus{
     outline: none !important;
 }
 

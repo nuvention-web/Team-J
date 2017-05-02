@@ -1,0 +1,10 @@
+thead{
+    background: #5F9F9D;
+    color: white;
+}
+
+.table > thead > tr > th {
+    height: 50;
+    vertical-align: middle !important;
+    padding-left: 8px; 
+}

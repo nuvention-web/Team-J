@@ -1,7 +1,9 @@
 body {
-	text-transform: uppercase;
 	background-color: #F9F7F7;
+}
 
+.navbar-default {
+   margin-bottom: 0 !important;
 }
 
 /*--------------------------------------------------------------------------------
