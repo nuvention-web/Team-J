@@ -45,11 +45,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
+            <li><a href="https://www.caesar.northwestern.edu/" target="_blank">CAESAR</a></li>
             <li role="separator" class="divider"></li>
-           <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
+            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html" target="_blank">Tech Room Finder</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="https://serif.nu/">Serif.NU</a></li>
+           <li><a href="http://www.mccormick.northwestern.edu/eecs/" target="_blank">EECS Department</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
         <form class="navbar-form navbar-left" action="chat_login.html">
@@ -68,38 +70,44 @@
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img class="d-block img-fluid" src="./resources/images/classroom.jpg" alt="First slide">
+    <div class="item active 1st_img">
+      <!-- <div class="outside1"></div> -->
+      <img class="d-block img-fluid" src="./resources/images/classroom_edit.jpg" alt="First slide">
        <div class="carousel-caption d-none d-md-block">
-        <h1>WELCOME to <span style="color: #5F9F9D;">CoEva</span></h1>
-        <hr>
-        <h3>the <span style="color: #5F9F9D;">best</span> class selection experience you will ever have.</h3>
-        <h3>Our unique rating system lets you find the class that’s right for you.</h3>
+        <div class="full-width">
+        <h1><span style="color: #5F9F9D; font-size: 100px"><strong>CoEva</strong></span></h1>
+        <!-- <hr> -->
+        <h3><span style="color: #8AE2D5;">Best</span> class selection experience you will ever have.</h3>
+        <h3>Our <span style="color: #8AE2D5;">unique</span> rating system lets you find the class you want.</h3>
         <br>
        </div>
-    </div>
-    <div class="item">
-      <img class="d-block img-fluid" src="./resources/images/classmates.jpg" alt="Second slide">
-       <div class="carousel-caption d-none d-md-block">
-          <h1>With <span style="color: #5F9F9D;">CoEva</span>, you can:</h1>
-          <hr>
-          <h3>Rate classes</h3>
-          <h3>View ratings of the classes you want</h3>
-          <h3>And ask students about these classes, in real time</h3>
-          <br>
        </div>
     </div>
-    <div class="item">
-      <img class="d-block img-fluid" src="./resources/images/classroom.jpg" alt="Third slide">
+    <div class="item 2nd_img">
+      <img class="d-block img-fluid" src="./resources/images/rate_edit.jpg" alt="Second slide">
        <div class="carousel-caption d-none d-md-block">
+        <div class="full-width">
+          <h1>With <span style="color: #5F9F9D; font-size:60px;">CoEva</span>, you can:</h1>
+          <hr width="60%">
+          <h3><span style="color: #8AE2D5;">Rate</span> your classes</h3>
+          <h3><span style="color: #8AE2D5;">View</span> ratings of the courses you want</h3>
+          <h3><span style="color: #8AE2D5;">Ask</span> peers about course details, in real time</h3>
+          <br>
+        </div>
+       </div>
+    </div>
+    <div class="item 3rd_img">
+      <img class="d-block img-fluid" src="./resources/images/classmate_edit.jpg" alt="Third slide">
+       <div class="carousel-caption d-none d-md-block">
+       <div class="full-width">
           <h2>No more surprises, no more disappointments.</h2>
-          <h2>Honest ratings, honest answers.</h2>
-          <h3>Sounds like you’re about to have the best fall quarter of your life.</h3>
-          <hr>
+          <h2><span style="color: #8AE2D5;">Honest</span> ratings, <span style="color: #8AE2D5;">honest</span> answers.</h2>
+          <hr width="74%">
           <a href="chat_login.html"><button type="button" class="btn btn-lg" >Start</button></a>
           <br>
           <br>
           <br>
+       </div>
        </div>
     </div>
   </div>
@@ -119,6 +127,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/description.js"></script>
 
 </body>
 </html>
