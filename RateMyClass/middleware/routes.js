@@ -167,8 +167,8 @@ function routes(app,connection,io,sessionInfo){
 			res.redirect("/");	
 			res.end();	
 		}else{
-			/*res.redirect('/home#?id='+sessionInfo.uid);*/
-			res.render('home');
+			res.redirect('/home#?id='+sessionInfo.uid);
+			// res.render('home');
 			res.end();
 		}
 	});

@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+<html ng-app="main">
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="css/nav-style.css">
@@ -24,7 +24,7 @@
   
 
 </head>
-<body>
+<body ng-controller="main-control">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -46,7 +46,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
-        <li><a href="home.html">Message</a></li>
+        <li><a ng-click="go_to_chat()">Message</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
@@ -108,7 +108,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-
+  <!-- // <script src="js/angular.min.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+  <script src="js/main_script.js"></script>
+  
 
 </body>
 </html>
