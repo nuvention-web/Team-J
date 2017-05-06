@@ -15,7 +15,7 @@ function config(app){
 	// app.set('views', (__dirname + '/../client'));
 
 	//Files 
-	app.use(express.static(path.join(__dirname,'../views')));
+	app.use(express.static(path.join(__dirname,'../views'),{ redirect : false }));
 }
 
 method.get_config=function(){

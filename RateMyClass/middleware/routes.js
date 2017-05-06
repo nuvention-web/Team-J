@@ -167,9 +167,10 @@ function routes(app,connection,io,sessionInfo){
 			res.redirect("/");	
 			res.end();	
 		}else{
-			/*res.redirect('/home#?id='+sessionInfo.uid);*/
-			res.render('home');
-			res.end();
+			// console.log("redirect sent");
+			// res.redirect('/home#?id='+sessionInfo.uid);
+			res.redirect('home');
+			// res.end();
 		}
 	});
 
