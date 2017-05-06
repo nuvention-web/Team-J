@@ -97,18 +97,17 @@ Login page starts
 	top: 0%;
 }
 .box-container{
-	margin-top: 5%;
 	width: 35%;
 	height: auto;
-    display: block;
     padding: 20px 50px 20px 50px;
-    /*margin-left: 60%;*/
-    /*border: solid 3px rgb(102, 224, 210);*/
     box-shadow: 0px 2px 100px 6px rgba(0,0,0,0.35);
 	background-color:rgba(245, 245, 247, 1.0);
-	margin-left: auto;
-	margin-right: auto;
 	border-radius: 6px;
+	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  /* bring your own prefixes */
+  	transform: translate(-50%, -50%);
 }
 
 .heading{

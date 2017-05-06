@@ -95,13 +95,11 @@
               <h2 class="display-3">SEARCH BY</h2>
 
                 <p class="lead">
-                  <div class="col-xs-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for courses">
-                    <span class="input-group-btn">
+                  <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="Course ID, Course Name, or Instructors" ng-model="searchCourse" data-ng-init="load_search()">
+                    <!-- <span class="input-group-btn">
                       <button class="btn btn-secondary" type="button">Search</button>
-                    </span>
-                 </div>
+                    </span> -->
                  </div>
                 </p>
               </div>
@@ -114,16 +112,18 @@
                       <th class="col-xs-2" style="text-align: center">ID</th>
                       <th class="col-xs-6">Course Name</th>
                       <th class="col-xs-3">Professor</th>
-                      <!-- <th>Professor</th>
-                      <th>Time</th> -->
-                      <th class="col-xs-2" style="text-align: center">Rate</th>
-
-                      <!-- <th style="text-align: center">Status</th> -->                            
+                      <th class="col-xs-2" style="text-align: center">
+                      <a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                      Rate
+                      <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>       
+                      </th>                    
                   </tr>
                   </thead>   
               <tbody>
 
-                <tr ng-repeat="courseI in courses">
+                <tr ng-repeat="courseI in courses | orderBy:sortType:sortReverse | filter:searchCourse">
                     <td style="text-align: center">{{ courseI.course_id }}</td>
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
@@ -149,16 +149,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
-<!--   <script src="js/angular.min.js"></script>
-  <script src="js/jquery.min.js"></script> -->
+
   <script src="js/course_list.js"></script>
 
-<!--   <script>
-  $scope.getLabelClass = function(rate){
-    console.log("rate", rate);
-    return ;
-  }
-  </script> -->
+
+
 
 </body>
 </html>

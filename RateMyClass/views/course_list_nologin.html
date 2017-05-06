@@ -95,13 +95,8 @@
               <h2 class="display-3">SEARCH BY</h2>
 
                 <p class="lead">
-                  <div class="col-xs-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for courses">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Search</button>
-                    </span>
-                 </div>
+                  <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="Course ID, Course Name, or Instructors" ng-model="searchCourse">
                  </div>
                 </p>
               </div>
@@ -116,14 +111,18 @@
                       <th class="col-xs-3">Professor</th>
                       <!-- <th>Professor</th>
                       <th>Time</th> -->
-                      <th class="col-xs-2" style="text-align: center">Rate</th>
+                      <th class="col-xs-2" style="text-align: center"><a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                      Rate
+                      <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                      </a></th>
 
                       <!-- <th style="text-align: center">Status</th> -->                            
                   </tr>
                   </thead>   
               <tbody>
 
-                <tr ng-repeat="courseI in courses">
+                <tr ng-repeat="courseI in courses | orderBy:sortType:sortReverse | filter:searchCourse">
                     <td style="text-align: center">{{ courseI.course_id }}</td>
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>

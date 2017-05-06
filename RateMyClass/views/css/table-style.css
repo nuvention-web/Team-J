@@ -8,3 +8,17 @@ thead{
     vertical-align: middle !important;
     padding-left: 8px; 
 }
+
+th > a{
+	color: white;
+}
+
+th > a:hover{
+	color: #ddd;
+	text-decoration: none;
+}
+
+th > a:focus{
+	color: white;
+	text-decoration: none;
+}

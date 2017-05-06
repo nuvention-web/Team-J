@@ -3,18 +3,12 @@
 	padding-bottom: 80px !important;
 }
 
-.jumbotron > .col-xs-6{
+.jumbotron > .col-xs-12{
 	padding-left: 0;
 }
 
 input[type="text"]{
 	height: 3em;
-}
-
-.input-group > span > .btn-secondary{
-	height: 3em;
-	color: white;
-	background-color: #5F9F9D;
 }
 
 .nav-sidebar { 

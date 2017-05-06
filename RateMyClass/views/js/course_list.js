@@ -11,5 +11,15 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
                console.log("Error");
         });
     }
+
+    $scope.load_search = function(){
+
+        var searched = localStorage.getItem("searchedCourse");
+        console.log(searched);
+        $scope.searchCourse = searched;
+        localStorage.setItem('searchedCourse', "");
+    }
+
+
     
 });
