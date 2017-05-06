@@ -40,10 +40,15 @@ $(document).ready(function(){
 $(function () {
 
   $("#rateYo1").rateYo({
-
     starWidth: "40px",
-    rating    : 4.35,
-    readOnly: true
+    readOnly: true,
+    multiColor: {
+      "startColor": "#FF5A5F", //RED
+      "endColor"  : "#A2D729"  //GREEN
+    },
+    onInit: function (rate) {}
+ 
+      
   });
 
 });
@@ -54,6 +59,10 @@ $(function () {
 
     starWidth: "40px",
     normalFill: "#A0A0A0",
-    halfStar: true
+    halfStar: true,
+    multiColor: {
+      "startColor": "#FF5A5F", //RED
+      "endColor"  : "#A2D729"  //GREEN
+    }
   });
 });

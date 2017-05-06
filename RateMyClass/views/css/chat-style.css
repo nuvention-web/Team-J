@@ -40,7 +40,7 @@ a:active {
 .modal-content{
 	background-color:#F6F6F6;
 	color: #000 !important;	
-	height: 90%;
+	/*height: 90%;*/
 	overflow-y: scroll;
 }
 .modal-body{
@@ -48,9 +48,6 @@ a:active {
 }
 .modal{
 	background-color: rgba(20, 36, 44, 0.45);
-}
-.modal-dialog{
-	width: 60%;
 }
 .modal-title{
 	font-size: 20px;

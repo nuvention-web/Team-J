@@ -119,22 +119,20 @@ function routes(app,connection,sessionInfo){
 		/*
 			Multer file upload starts
 		*/
-		var file_path = './views/uploads/' + Date.now()+req.file.originalname;
-		var file_name = '/uploads/' + Date.now()+req.file.originalname;
-		var temp_path = req.file.path;
+		// var file_path = './views/uploads/' + Date.now()+req.file.originalname;
+		// var file_name = '/uploads/' + Date.now()+req.file.originalname;
+		// var temp_path = req.file.path;
 		var id = 2;
+		var file_name = "xyz";
 
-		var src = fs.createReadStream(temp_path);
-		var dest = fs.createWriteStream(file_path);		
-		src.pipe(dest);
+		// var src = fs.createReadStream(temp_path);
+		// var dest = fs.createWriteStream(file_path);		
+		// src.pipe(dest);
 		/*
 			Multer file upload ends
 		*/
-		src.on('end', function() {
-			/*
-				When uploading of file completes, Insert the user.
-			*/
-			var insert_data = {
+	
+		var insert_data = {
 				id:(id+1),
 				name:req.body.username,
 				password:req.body.password,
@@ -167,14 +165,6 @@ function routes(app,connection,sessionInfo){
 				}
 				res.write(JSON.stringify(result_send));
 				res.end();		
-			});
-		});
-		src.on('error', function(err) { 
-			/*
-				Sending Error 
-			*/
-			res.write(JSON.stringify("Error"));
-			res.end(); 
 		});
 	});
 
