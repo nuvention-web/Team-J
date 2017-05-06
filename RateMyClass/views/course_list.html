@@ -52,16 +52,18 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
-        <li><a href="home.html">Message</a></li>
         <li><a href="profile.html">Profile</a></li>
+        <li><a href="home.html">Message</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html">Tech Room Finder</a></li>
+            <li><a href="https://www.caesar.northwestern.edu/" target="_blank">CAESAR</a></li>
             <li role="separator" class="divider"></li>
-           <li><a href="http://www.mccormick.northwestern.edu/eecs/">EECS Department</a></li>
+            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html" target="_blank">Tech Room Finder</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="https://serif.nu/">Serif.NU</a></li>
+           <li><a href="http://www.mccormick.northwestern.edu/eecs/" target="_blank">EECS Department</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
         <form class="navbar-form navbar-left" action="chat_login.html">
@@ -126,7 +128,7 @@
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
 <!--                     <td>{{ courseIl.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label label-danger">{{ courseI.rating }}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating < 5}">{{ courseI.rating }}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>
@@ -150,6 +152,13 @@
 <!--   <script src="js/angular.min.js"></script>
   <script src="js/jquery.min.js"></script> -->
   <script src="js/course_list.js"></script>
+
+<!--   <script>
+  $scope.getLabelClass = function(rate){
+    console.log("rate", rate);
+    return ;
+  }
+  </script> -->
 
 </body>
 </html>

@@ -2,25 +2,49 @@
     margin-bottom: 0 !important;
 }
 
-.carousel-caption > a > button{
+.full-width > a > button{
     background-color: transparent;
     color: white;
     border: 2px solid #4CAF50;
     outline: none;
 }
 
-.carousel-caption > a > button:hover{
+.full-width > a > button:hover{
     background-color: #4CAF50;
     color: white;
     border: 2px solid #4CAF50;
 }
 
-.carousel-caption > a > button:focus{
+.full-width > a > button:focus{
     outline: none !important;
 }
 
-.item > img{
-	filter: brightness(30%);
-	/*object-fit: cover;*/
+.full-screen {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.full-width {
+    background: #2d2d2d;
+    background: rgba(45,45,45,.7);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
 }
 
