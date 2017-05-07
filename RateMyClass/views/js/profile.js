@@ -11,52 +11,39 @@ var courses = [
         "Rate":3.15 }
     ];
 
-var rate = 0.0;
-
 $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) 
-  var recipient = button.data('whatever') 
+  var button = $(event.relatedTarget);
+  var recipient = button.data('whatever');
   var name = "";
+  var rate = 0;
 
   courses.forEach(function(course){
         if (recipient == course.Num){
             name = course.Name;
             rate = course.Rate;
         }        
-  })
+  });
 
-  var modal = $(this)
-  modal.find('.modal-title').text('Rate the Course ' + recipient)
-  modal.find('.modal-body h4').text(name)
-  modal.find('#rateNumber').text(rate)
-})
-
-
-
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
+  var modal = $(this);
+  modal.find('.modal-title').text('Rate the Course ' + recipient);
+  modal.find('.modal-body h4').text(name);
 });
 
-$(function () {
+$(".btn-success").click(function() {
+  $row = $(this).closest("tr");
+  $rate = $row.find("td:nth-child(4)").text();
 
   $("#rateYo1").rateYo({
     starWidth: "40px",
     readOnly: true,
+    rating: $rate,
     multiColor: {
       "startColor": "#FF5A5F", //RED
       "endColor"  : "#A2D729"  //GREEN
-    },
-    onInit: function (rate) {}
- 
-      
+    },  
   });
 
-});
-
-$(function () {
-
   $("#rateYo2").rateYo({
-
     starWidth: "40px",
     normalFill: "#A0A0A0",
     halfStar: true,
@@ -65,4 +52,10 @@ $(function () {
       "endColor"  : "#A2D729"  //GREEN
     }
   });
+});
+
+$("#getRating").click(function () {
+  var rating = $("#rateYo2").rateYo("rating");
+ 
+  window.alert("Its " + rating + " Yo!");
 });
