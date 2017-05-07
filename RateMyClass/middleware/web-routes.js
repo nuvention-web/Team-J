@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var method=routes.prototype;
 
+var url = require('url');
+
 /*Telling Multer where to upload files*/
 
 function routes(app,connection,sessionInfo){
@@ -52,9 +54,12 @@ function routes(app,connection,sessionInfo){
 		
 		sessionInfo=req.session;
 		
-		// var term = req.query.term;
-		// console.log(term);
-		var term = "2016 Fall"
+		var parts = url.parse(req.url, true);
+		var query = parts.query;
+		// var term = req;
+		console.log(query.term);
+
+		var term = query.term;
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
