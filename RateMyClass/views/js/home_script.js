@@ -65,7 +65,7 @@ app.directive('sendTypingNotification', function () {
   }      
 });
 
-app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,socket,runajax) {
+app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,socket,runajax,$rootScope,$http) {
   
 	$scope.show_userinfo=""; //To contain user information.
   	$scope.userlist=""; //To contain list of users.
@@ -78,14 +78,24 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.send_text;
   	$scope.msgs=[];
 
-
-
+  	$scope.get_user_name=function(){
+  		temp="";
+  		$http.get('/get_user_id').success(function successCallback(){
+  			temp=response.data;
+  			console.log(temp);
+  			return temp;
+  		}, function errorCallback(){
+  			console.log("user fetch error");
+  			return temp;
+  		})
+  	}
   
 
 	/* Making Usefull function*/
 	$scope.self={
 		getUserInfo: function(callback){
-			var uid=$location.search()['id'];
+			// var uid=$location.search()['id'];
+			var uid=$scope.get_user_name();
 			$scope.uid=uid;
 			var data={
 				url:'/get_userinfo',
@@ -99,7 +109,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			});
 		},
 		getRecentChats: function(callback){
-			var uid=$location.search()['id'];
+			// var uid=$location.search()['id'];
+			var uid=$scope.get_user_name();
 			$scope.uid=uid;
 			var data={
 				url:'/get_recent_chats',
@@ -112,7 +123,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			});
 		},
 		getUsersToChats:function(callback){
-		  var uid=$location.search()['id'];
+		  // var uid=$location.search()['id'];
+		  var uid=$scope.get_user_name();
 		  $scope.uid=uid;
 		  var data={
 			url:'/get_users_to_chats',

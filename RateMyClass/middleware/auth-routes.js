@@ -3,7 +3,11 @@
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var fs = require('fs');
+var https = require('https');
+var request = require('request');
+var xml2js = require('xml2js');
 /*requiring node modules starts */
+
 
 /*Telling Multer where to upload files*/
 var upload = multer({ dest: 'uploads' });
@@ -116,55 +120,96 @@ function routes(app,connection,sessionInfo){
 	app.post('/register', upload.single('file'), function(req, res, next){
 
 		sessionInfo=req.session;
-		/*
-			Multer file upload starts
-		*/
-		// var file_path = './views/uploads/' + Date.now()+req.file.originalname;
-		// var file_name = '/uploads/' + Date.now()+req.file.originalname;
-		// var temp_path = req.file.path;
-		var id = 2;
-		var file_name = "xyz";
 
-		// var src = fs.createReadStream(temp_path);
-		// var dest = fs.createWriteStream(file_path);		
-		// src.pipe(dest);
 		/*
-			Multer file upload ends
+			using NU directory service to access student contact data
 		*/
+		var	username = "eecs473-coeva-soa";
+		var password = "dQWSGYeyHGNWxErnBOaRxgo2tcWeHG";
+		var terms = [4640,4650,4660];
+		var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/ads9122';
+		
+		request.get(url_directory, {
+			auth: {
+				'user': username,
+				'pass': password
+			}
+		}, function(error, response,body){
+			if (error == null){
+				var result = JSON.parse(body).results[0];
+				var email = result['mail'];
+				var fname = result['givenName'][0];
+				var sname = result['sn'][0];
+				var fullname = result['displayName'][0];
+				if(email.includes("@u.")){
+					console.log("Student");
+				}
+				else{
+					res.send("Not a student");
+					console.log("Not a student");
+				}
+			}
+			else if(error.code == '404'){
+				res.send("No record found");
+				console.log("No record found");
+			}
+			else{
+				res.send(error);
+				console.log(error);
+			}
+		});
+
+
+		/*
+			using NU enrollment service to access student course data
+		*/
+		console.log("before class");
+		var class_numbers = [];
+
+		get_courses(class_numbers,function(output){
+			if(output == null){
+				console.log(class_numbers);
+			}
+			else{
+				console.log("sorry");
+			}
+		});
 	
 		var insert_data = {
-				id:(id+1),
-				name:req.body.username,
+				netid:req.body.username,
+				first_name:fname,
+				last_name:sname,
 				password:req.body.password,
-				p_photo:file_name,
+				points:0,
+				p_photo:null,
 				timestamp:Math.floor(new Date() / 1000),
 				online:'Y'
 			};
-			var data={
-				query:"INSERT INTO user SET ?",
-				connection:connection,
-				insert_data:insert_data
-			};		
-			query_runner(data,function(result){
-				
-				//storing session ID
-				sessionInfo.uid = result.insertId;
+		var data={
+			query:"INSERT INTO student SET ?",
+			connection:connection,
+			insert_data:insert_data
+		};		
+		query_runner(data,function(result){
+			
+			//storing session ID
+			sessionInfo.uid = result.insertId;
 
-				if(result) {
-					result_send={
-			    		is_logged:true,
-			    		id:result.insertId,
-			    		msg:"OK"
-			    	};
-				}else{
-					result_send={
-			    		is_logged:false,
-			    		id:null,
-			    		msg:"BAD"
-			    	};
-				}
-				res.write(JSON.stringify(result_send));
-				res.end();		
+			if(result) {
+				result_send={
+		    		is_logged:true,
+		    		id:result.insertId,
+		    		msg:"OK"
+		    	};
+			}else{
+				result_send={
+		    		is_logged:false,
+		    		id:null,
+		    		msg:"BAD"
+		    	};
+			}
+			res.write(JSON.stringify(result_send));
+			res.end();		
 		});
 	});
 
@@ -203,4 +248,40 @@ var query_runner=function(data,callback){
 		  });
 		}
 	});
+}
+
+
+var get_courses=function(courses, callback){
+	var count = 0;
+	var terms = [4640,4650,4660];
+	for (var t=0;t<terms.length;t++){
+		var url_course = 'https://nusoaqa.northwestern.edu/NW_SR_CLASS_LIST_R/Request/STUDENT/ads9122/'+terms[t];
+			// console.log(courses[t]);
+			request.get(url_course, {
+				auth: {
+					'user': 'eecs473-coeva-soa',
+					'pass': 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG'
+				}
+			}, function(error, response,body){
+				if (error == null){
+					var parser = new xml2js.Parser();
+					parser.parseString(body, function(err, result){
+						var classes = result['NW_SR_CLASS_LIST_GET_RESP']['CLASS'];
+						for(i=0;i<classes.length;i++){
+							courses.push(classes[i]['CLASS_NBR'][0]);
+							// console.log("class");
+							// console.log(courses[i]);
+						}
+					});
+					if(++count == terms.length){
+						callback();
+					}
+				}
+				else{
+					console.log(error);
+					callback(error);
+					return
+				}
+			});
+	}
 }

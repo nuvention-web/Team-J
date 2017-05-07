@@ -91,7 +91,26 @@ function routes(app,connection,sessionInfo){
 		    	}			
 			});		
 		}
-	});	
+	});
+
+	/*
+		handle session request
+	*/	
+	app.get('/get_user_id', function(req, res){
+		
+		sessionInfo=req.session;
+
+		/*Render Login page If session is not set*/
+		if(sessionInfo.uid){
+			
+			res.send(sessionInfo.uid);
+
+		}else{
+			
+			res.send("None");
+		}
+	});
+
 
 	/*
 		get to handle add class page
