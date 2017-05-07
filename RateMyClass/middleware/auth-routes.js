@@ -3,6 +3,7 @@
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var fs = require('fs');
+var http = require('http');
 /*requiring node modules starts */
 
 /*Telling Multer where to upload files*/
@@ -117,55 +118,74 @@ function routes(app,connection,sessionInfo){
 
 		sessionInfo=req.session;
 		/*
+			using NU directory service to access student data
+		*/
+		var client = http.createClient(80, 'nusoaqa.northwestern.edu/DirectorySearch/res/netid')
+		var username = 'eecs473-coeva-soa';
+		var password = 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG';
+		var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+		var options = {	host:'nusoaqa.northwestern.edu', path:'DirectorySearch/res/netid/pub/ads9122', auth:auth};
+
+		// var header = {'Host':'nusoaqa.northwestern.edu','Authorization':auth};
+		// var request = client.request('GET','/DirectorySearch/res/netid/ads9122', header);
+
+		http.request(options, function (http_response){
+			console.log("request");
+			console.log(request.body);
+		})
+
+		// console.log(request.body);
+
+		/*
 			Multer file upload starts
 		*/
 		// var file_path = './views/uploads/' + Date.now()+req.file.originalname;
 		// var file_name = '/uploads/' + Date.now()+req.file.originalname;
 		// var temp_path = req.file.path;
-		var id = 2;
-		var file_name = "xyz";
+		// var id = 4;
+		// var file_name = "xyz";
 
-		// var src = fs.createReadStream(temp_path);
-		// var dest = fs.createWriteStream(file_path);		
-		// src.pipe(dest);
-		/*
-			Multer file upload ends
-		*/
+		// // var src = fs.createReadStream(temp_path);
+		// // var dest = fs.createWriteStream(file_path);		
+		// // src.pipe(dest);
+		// /*
+		// 	Multer file upload ends
+		// */
 	
-		var insert_data = {
-				id:(id+1),
-				name:req.body.username,
-				password:req.body.password,
-				p_photo:file_name,
-				timestamp:Math.floor(new Date() / 1000),
-				online:'Y'
-			};
-			var data={
-				query:"INSERT INTO user SET ?",
-				connection:connection,
-				insert_data:insert_data
-			};		
-			query_runner(data,function(result){
+		// var insert_data = {
+		// 		id:(id+1),
+		// 		name:req.body.username,
+		// 		password:req.body.password,
+		// 		p_photo:file_name,
+		// 		timestamp:Math.floor(new Date() / 1000),
+		// 		online:'Y'
+		// 	};
+		// 	var data={
+		// 		query:"INSERT INTO user SET ?",
+		// 		connection:connection,
+		// 		insert_data:insert_data
+		// 	};		
+		// 	query_runner(data,function(result){
 				
-				//storing session ID
-				sessionInfo.uid = result.insertId;
+		// 		//storing session ID
+		// 		sessionInfo.uid = result.insertId;
 
-				if(result) {
-					result_send={
-			    		is_logged:true,
-			    		id:result.insertId,
-			    		msg:"OK"
-			    	};
-				}else{
-					result_send={
-			    		is_logged:false,
-			    		id:null,
-			    		msg:"BAD"
-			    	};
-				}
-				res.write(JSON.stringify(result_send));
-				res.end();		
-		});
+		// 		if(result) {
+		// 			result_send={
+		// 	    		is_logged:true,
+		// 	    		id:result.insertId,
+		// 	    		msg:"OK"
+		// 	    	};
+		// 		}else{
+		// 			result_send={
+		// 	    		is_logged:false,
+		// 	    		id:null,
+		// 	    		msg:"BAD"
+		// 	    	};
+		// 		}
+		// 		res.write(JSON.stringify(result_send));
+		// 		res.end();		
+		// });
 	});
 
 	/*
