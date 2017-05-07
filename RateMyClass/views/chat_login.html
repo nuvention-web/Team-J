@@ -116,7 +116,7 @@
 			  	<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-lock"></i>
 			  	</span>
-			  	<input id="register-password" type="password" ng-model="registerPassword"  class="form-control inputbg" name="password" placeholder="Create New Password" ng-blur="blur_passwordLength()">
+			  	<input id="register-password" type="password" ng-model="registerPassword"  class="form-control inputbg" name="password" placeholder="Create New Password, longer than 8" ng-blur="blur_passwordLength()">
 			</div>
 			<!-- ALert Box When username is already taken -->
 			<div class="alert-group" ng-hide="PasswordLengthAlert">
@@ -147,7 +147,7 @@
 
 			<!-- Button to Register -->
 			<div class="input-group">
-				<button id="btn-login" class="btn btn-login btnbg" data-toggle="modal" data-target="#myModal">
+				<button id="btn-login" class="btn btn-login btnbg" ng-click="submitRegister()">
 					Register
 			  	</button>
 			</div>

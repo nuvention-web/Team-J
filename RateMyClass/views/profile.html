@@ -80,7 +80,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a data-target="#tab1primary" data-toggle="tab">Profile</a></li>
             <li><a data-target="#tab2primary" data-toggle="tab">Taken Classes</a></li>
-            <li><a data-target="#tab4primary" data-toggle="tab">Current Points</a></li>
+            <li><a data-target="#tab4primary" data-toggle="tab">Your Points</a></li>
           </ul>
 
           <div class="tab-content">
@@ -99,7 +99,7 @@
                   <fieldset disabled>
                     <div class="form-group row">
 
-                      <div class="col-xs-1">
+                      <div class="col-xs-2">
                       <label for="NetIDInput" class="vcenter">NetID</label></div>
 
                       <div class="col-xs-4">
@@ -107,10 +107,19 @@
                       </div>
                     </div>
 
+                    <div class="form-group row">
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Email</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="ybsh@gmail.com"> 
+                      </div>
+                    </div>
+
                   </fieldset>
 
                     <small id="passwordHelpBlock" class="form-text text-muted">
-                    Unable to change your NetID, sign out to switch account.
+                    Unable to change your NetID or email, sign out to switch account.
                     </small>
                   
                 </form>
@@ -123,15 +132,6 @@
                 <!-- <div class="container"> -->
 
                 <form>
-                    <div class="form-group row">
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Email</label></div>
-
-                      <div class="col-xs-4">
-                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="ybsh@gmail.com"> 
-                      </div>
-                    </div>
-
                     <div class="form-group row">
 
                       <div class="col-xs-2">
@@ -333,21 +333,24 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Rate the Course</h3>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
+        <h3 class="modal-title" id="courseID"></h3>
       </div>
       <div class="modal-body">
-            <label for="recipient-name" class="form-control-label">Course Name:</label>
-            <h4 id="recipient-name"></h4>
+            <label class="form-control-label">Course Name:</label>
+            <h4 id="courseName"></h4>
+
+          <hr>
+            <label class="form-control-label">Instructor:</label>
+            <h4 id="courseProf"></h4>
 
           <hr>
 
-            <label class="form-control-label" >Current Rate:</label>
-            <a href="#" data-toggle="tooltip" data-placement="left" title="4.35">
-                <div id="rateYo1"></div>
-            </a>
+            <label class="form-control-label" >Current Average Rate:</label>
+            <h4 id="courseRate"></h4>
+            <!-- <h3> 
+              <div id="courseDetailRate" ng-class="rateClass"></div>
+            </h3> -->
+            <!-- </a> -->
 
           <hr>
 

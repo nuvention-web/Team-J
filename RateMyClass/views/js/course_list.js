@@ -40,6 +40,35 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
         localStorage.setItem('searchedCourse', "");
     }
 
+    $scope.getDetails = function(detail){
+    	// console.log(detail);
+
+    	$("#courseDetail").modal('show');
+    	$("#courseDetailNum").text(detail.course_id);
+    	$("#courseDetailName").text(detail.title);
+    	$("#courseDetailProfessor").text(detail.instructor);
+    	$("#courseDetailTime").text(detail.meeting_day_time);
+
+    	$("#courseDetailRate").text(detail.rating);
+
+    	$scope.changeClass(detail.rating);
+    }
+
+    $scope.changeClass = function(rates){
+    	// console.log(rates);
+
+    	if (rates <= 2.0)
+    		$scope.rateClass = "label label-danger";
+    	else if (rates < 3.5 && rates > 2.0)
+    		$scope.rateClass = "label label-warning";
+    	else if (rates < 5.0 && rates > 3.5)
+    		$scope.rateClass = "label label-success";
+    	else
+    		$scope.rateClass = "label label-default";
+
+    }
+    
+
 
     
 });

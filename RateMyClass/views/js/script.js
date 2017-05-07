@@ -138,9 +138,6 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     /* Regsiter operation starts*/
     $scope.register = function(){
 
-        if ($scope.confirmPasswordAlert == false || $scope.RegisterAlert == false)
-            alert("Wrong Inputs");
-        else{
             var fd = new FormData();
             // fd.append('file', file);
             fd.append('username',$scope.registerUsername);
@@ -160,9 +157,17 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
             .error(function(){
                 alert("Connection Error");
             });
-        }
     };
     /* Regsiter operation ends*/
+
+    $scope.submitRegister = function(){
+        if ($scope.registerUsername == null || $scope.registerPassword == null || $scope.confirmPassword == null)
+            alert("Empty Inputs");
+        else if ($scope.confirmPasswordAlert == false || $scope.RegisterAlert == false || $scope.PasswordLengthAlert == false)
+            alert("Wrong Inputs");
+        else
+            $("#myModal").modal('show');
+    }
 
    
     /* Making Extra function*/
