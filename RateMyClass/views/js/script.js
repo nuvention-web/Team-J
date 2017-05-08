@@ -30,11 +30,12 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
     /* variables for  Hide show starts*/
     $scope.LoginBox=false; 
     $scope.LoginAlert=true;
-    $scope.RegisterAlert=true;
-    $scope.emailAlert=true;
-    $scope.confirmPasswordAlert=true;
-    $scope.legalName=true;
     $scope.RegisterBox=true;
+
+    $scope.RegisterAlert=true;
+    $scope.confirmPasswordAlert=true;
+    $scope.PasswordLengthAlert=true;
+
     /* variables for  Hide show ends*/
 
     /* usernamme check variables starts*/
@@ -65,7 +66,11 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         $http.post('/login',data).success(function(data, status, headers, config) {
             if(data.is_logged){
                 $scope.LoginAlert = true;
-                $window.location.href = "/main#?id="+data.id;
+// <<<<<<< HEAD
+//                 $window.location.href = "/main.html#?id="+data.uid;
+// =======
+                $window.location.href = "/main.html";
+// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
             }else{
                 $scope.LoginAlert = false;
             }
@@ -82,7 +87,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         $timeout.cancel(TypeTimer);
         TypeTimer=$timeout( function(){
             var data={
-                username:$scope.username
+                username:$scope.registerUsername
             }
             etc_function.check_username(data);            
         }, TypingInterval);
@@ -93,104 +98,95 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
    
     $scope.blur_uncheck = function(){
         var data={
-            username:$scope.username
+            username:$scope.registerUsername
         }
         etc_function.check_username(data);
         $timeout.cancel(TypeTimer); 
     };
     /* username check operation ends*/
 
-    /* Email check operation starts*/
-    // $scope.check_email_keyup = function() {
-    //     $timeout.cancel(TypeTimer);
-    //     TypeTimer=$timeout( function(){
-    //         var data={
-    //             email:$scope.email
-    //         }
-    //         console.log(data);
-    //         // etc_function.check_email(data);            
-    //     }, TypingInterval);
-    // };
-    // $scope.check_email_keydown = function(){
-    //     $timeout.cancel(TypeTimer);
-    // };
-   
-    $scope.check_email_blur = function(){
-        var inputEmail=$scope.email;
-        
+    /* password length check operation starts*/ 
+    $scope.blur_passwordLength = function(){
+        var password = $scope.registerPassword;
 
-        var emailResult = emailValidation(inputEmail);
-        console.log(emailResult);
-        // etc_function.check_email(data);
-        $timeout.cancel(TypeTimer); 
+        if (password.length < 8)
+            $scope.PasswordLengthAlert=false;
+        else
+            $scope.PasswordLengthAlert=true;
     };
-    /* Email check operation ends*/
+    /* password length check operation ends*/
 
-    /* Name check operation starts*/
-    // $scope.keyup_uncheck = function() {
-    //     $timeout.cancel(TypeTimer);
-    //     TypeTimer=$timeout( function(){
-    //         var data={
-    //             username:$scope.username
-    //         }
-    //         etc_function.check_name(data);            
-    //     }, TypingInterval);
-    // };
-    // $scope.keydown_uncheck = function(){
-    //     $timeout.cancel(TypeTimer);
-    // };
-   
-    // $scope.blur_uncheck = function(){
-    //     var data={
-    //         username:$scope.username
-    //     }
-    //     etc_function.check_name(data);
-    //     $timeout.cancel(TypeTimer); 
-    // };
-    /* Name check operation ends*/
+    /* confirm password check operation starts*/ 
+    $scope.blur_checkpassword = function(){
+        var password = $scope.registerPassword;
+        var confirm = $scope.confirmPassword;
+
+        if (password != confirm)
+            $scope.confirmPasswordAlert=false;
+        else
+            $scope.confirmPasswordAlert=true;
+    };
+
+    $scope.change_checkpassword = function(){
+        var password = $scope.registerPassword;
+        var confirm = $scope.confirmPassword;
+
+        if (password != confirm)
+            $scope.confirmPasswordAlert=false;
+        else
+            $scope.confirmPasswordAlert=true;
+    };
+    /* confirm password check operation ends*/
 
 
     /* Regsiter operation starts*/
     $scope.register = function(){
-        var file_ext=["image/png","image/jpg","image/jpeg","image/gif"];
-        var file_type_ok=true;
-        var file = $scope.myFile;
-        var file_size=Math.round(file.size/1024);
 
-        file_ext.forEach(function(element, index){
-            if(element===(file.type).toLowerCase()){
-                file_type_ok=false;
-            }
-        });
-        
-        if(file_size>500){
-            alert("Upload file below 500 KB.");
-        }else if(file_type_ok){
-            alert("Upload image file.");
-        }
-        else{
             var fd = new FormData();
-            fd.append('file', file);
-            fd.append('username',$scope.username);
-            fd.append('password',$scope.password);
+            // fd.append('file', file);
+            fd.append('username',$scope.registerUsername);
+            fd.append('password',$scope.registerPassword);
             $http.post("/register", fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config) {
-                if(data.is_logged){
-                    $scope.LoginAlert = true;
-                    $window.location.href = "/main#?id="+data.id;
-                }else{
-                    $scope.LoginAlert = false;
+                // console.log("data", data);
+                if (data == "No record found"){
+                    alert("Invalid NetID!");
+                    location.reload();
+                }
+                else if (data == "Not a student")
+                    alert("Sorry, currently this platform only for students!");
+                else{
+                    if(data == "User entered"){
+                        $scope.LoginAlert = true;
+// <<<<<<< HEAD
+//                         $window.location.href = "/main.html#?id="+data.id;
+// =======
+                        $window.location.href = "/main.html";
+// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
+                    }else{
+                        //alert(JSON.stringify(data.is_logged));
+                        $scope.LoginAlert = false;
+                        $window.location.href = "/profile.html";
+                    }
                 }
             })
             .error(function(){
                 alert("Connection Error");
             });
-        }
     };
     /* Regsiter operation ends*/
+
+    $scope.submitRegister = function(){
+        if ($scope.registerUsername == null || $scope.registerPassword == null || $scope.confirmPassword == null)
+            alert("Empty Inputs");
+        else if ($scope.confirmPasswordAlert == false || $scope.RegisterAlert == false || $scope.PasswordLengthAlert == false)
+            alert("Wrong Inputs");
+        else
+            $("#myModal").modal('show');
+    }
 
    
     /* Making Extra function*/
@@ -207,24 +203,5 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 alert("Connection Error");
             });
         }
-
-        // check_email:function(data){
-        //     $http.post('/check_name',data).success(function(data, status, headers, config) {
-        //         if( !data.msg ){
-        //             $scope.RegisterAlert = true;
-
-        //         }else{
-        //             $scope.RegisterAlert = false;
-        //         }
-        //     }).error(function(data, status) {
-        //         alert("Connection Error");
-        //     });
-        // }
     }
 });
-
-
-function emailValidation(input){
-    
-    console.log(input);
-}
