@@ -83,9 +83,11 @@
         <div class="col-sm-2">
           <nav class="nav-sidebar">
           <ul class="nav tabs">
-              <li class="active"><a data-target="#tab1" data-toggle="tab">Fall 2016</a></li>
-              <li class=""><a data-target="#tab2" data-toggle="tab">Not Finished</a></li>
-              <li class=""><a data-target="#tab3" data-toggle="tab">Not Finished</a></li>                               
+              <li class="active" ng-click="getQuarter('2017 Winter')"><a data-target="#tab3" data-toggle="tab">Winter 2017</a></li> 
+              <li class="" ng-click="getQuarter('2016 Fall')"><a data-target="#tab1" data-toggle="tab">Fall 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Spring')"><a data-target="#tab2" data-toggle="tab">Spring 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Winter')"><a data-target="#tab2" data-toggle="tab">Winter 2016</a></li>
+              <li class="" ng-click="getQuarter('2015 Fall')"><a data-target="#tab2" data-toggle="tab">Fall 2015</a></li>                                         
           </ul>
           </nav>
         </div>
@@ -95,13 +97,9 @@
               <h2 class="display-3">SEARCH BY</h2>
 
                 <p class="lead">
-                  <div class="col-xs-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for courses">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Search</button>
-                    </span>
-                 </div>
+                  <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="Course ID, Course Name, or Instructors" ng-model="searchCourse">
+                    <h5 class="display-3">LOGIN to see more course details</h5>
                  </div>
                 </p>
               </div>
@@ -111,24 +109,26 @@
             <table class="table table-striped table-condensed table-hover" data-ng-init="load_course()">
                   <thead>
                   <tr>
-                      <th class="col-xs-2" style="text-align: center">ID</th>
-                      <th class="col-xs-6">Course Name</th>
-                      <th class="col-xs-3">Professor</th>
-                      <!-- <th>Professor</th>
-                      <th>Time</th> -->
-                      <th class="col-xs-2" style="text-align: center">Rate</th>
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Professor</th>
+                      <th><a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                      Rate/Num
+                      <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                      </a></th>
 
                       <!-- <th style="text-align: center">Status</th> -->                            
                   </tr>
                   </thead>   
               <tbody>
 
-                <tr ng-repeat="courseI in courses">
+                <tr ng-repeat="courseI in courses | orderBy:sortType:sortReverse | filter:searchCourse">
                     <td style="text-align: center">{{ courseI.course_id }}</td>
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
 <!--                     <td>{{ courseIl.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating < 5}">{{ courseI.rating }}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating < 5}">{{ courseI.rating }} / {{courseI.no_of_students}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>

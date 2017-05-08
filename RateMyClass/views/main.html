@@ -24,7 +24,7 @@
   
 
 </head>
-<body ng-controller="main-control">
+<body ng-controller="main" >
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -89,9 +89,9 @@
                             <div class="row">
                               <div class="col-xs-1"></div>
                               <div class="col-xs-10 input-group input-group-lg">
-                                <input type="text" class="form-control col-xs-4" placeholder="Search for...">
+                                <input type="text" class="form-control col-xs-4" placeholder="Search for Course ID, Course Name, Instructors..." id="searchCourse">
 
-                                <div class="input-group-btn">
+                                <div class="input-group-btn" id="searchButton">
                                   <button class="btn btn-success search-button" type="submit">
                                     <span class="glyphicon glyphicon-search"></span>
                                   Search</button>
@@ -111,10 +111,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-  <!-- // <script src="js/angular.min.js"></script> -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
-  <script src="js/main_script.js"></script>
-  
+  <script src="js/main.js"></script>
 
 </body>
 </html>

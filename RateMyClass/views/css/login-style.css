@@ -67,3 +67,13 @@ h2{
     text-transform: capitalize;
     margin-bottom: 0;
 }
+
+.modal-footer > .btn-primary{
+    background: #5F9F9D;
+    color: white;
+}
+
+.modal-footer > .btn-primary:hover{
+    background: #5F9F9D;
+    color: white;
+}

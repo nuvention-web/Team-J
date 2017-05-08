@@ -3,7 +3,11 @@
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var fs = require('fs');
+var https = require('https');
+var request = require('request');
+var xml2js = require('xml2js');
 /*requiring node modules starts */
+
 
 /*Telling Multer where to upload files*/
 var upload = multer({ dest: 'uploads' });
@@ -25,7 +29,11 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/main#?id='+sessionInfo.uid);
+// <<<<<<< HEAD
+// 			res.redirect('/main.html#?id='+sessionInfo.uid);
+// =======
+			res.redirect('main');
+// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
 		}else{
 			res.render('chat_login');		
 		}
@@ -43,7 +51,7 @@ function routes(app,connection,sessionInfo){
 		password=req.body.password;
 
 		var data={
-			query:"select * from user where password='"+password+"' and name='"+username+"' ",
+			query:"select * from student where password='"+password+"' and netid='"+username+"' ",
 			connection:connection
 		}
 		/*
@@ -61,7 +69,7 @@ function routes(app,connection,sessionInfo){
 				sessionInfo.uid = uid;
 
 				var set_online={
-					query:"update user set online='Y' where id='"+uid+"'",
+					query:"update student set online='Y' where netid='"+username+"'",
 					connection:connection
 				}
 				query_runner(set_online,function(result_online){});	
@@ -85,13 +93,15 @@ function routes(app,connection,sessionInfo){
 		});
 	});
 
+	
+
 	/*
 		post to handle username availability request
 	*/
 	app.post('/check_name', function(req, res){
 		username=req.body.username;		
 		var data={
-			query:"select * from user where name='"+username+"'",
+			query:"select * from student where netid='"+username+"'",
 			connection:connection
 		}
 		query_runner(data,function(result){
@@ -116,66 +126,23 @@ function routes(app,connection,sessionInfo){
 	app.post('/register', upload.single('file'), function(req, res, next){
 
 		sessionInfo=req.session;
-		/*
-			Multer file upload starts
-		*/
-		var file_path = './views/uploads/' + Date.now()+req.file.originalname;
-		var file_name = '/uploads/' + Date.now()+req.file.originalname;
-		var temp_path = req.file.path;
-		var id = 2;
 
-		var src = fs.createReadStream(temp_path);
-		var dest = fs.createWriteStream(file_path);		
-		src.pipe(dest);
 		/*
-			Multer file upload ends
+			using NU directory service to access student contact data
 		*/
-		src.on('end', function() {
-			/*
-				When uploading of file completes, Insert the user.
-			*/
-			var insert_data = {
-				id:(id+1),
-				name:req.body.username,
-				password:req.body.password,
-				p_photo:file_name,
-				timestamp:Math.floor(new Date() / 1000),
-				online:'Y'
-			};
-			var data={
-				query:"INSERT INTO user SET ?",
-				connection:connection,
-				insert_data:insert_data
-			};		
-			query_runner(data,function(result){
-				
-				//storing session ID
-				sessionInfo.uid = result.insertId;
+		var terms = [4640,4650,4660];
+		var result_send = {};
+		var firstname = "";
+		var lastname = "";
 
-				if(result) {
-					result_send={
-			    		is_logged:true,
-			    		id:result.insertId,
-			    		msg:"OK"
-			    	};
-				}else{
-					result_send={
-			    		is_logged:false,
-			    		id:null,
-			    		msg:"BAD"
-			    	};
-				}
-				res.write(JSON.stringify(result_send));
-				res.end();		
-			});
+		check_NetID(req, res, connection, function(){
+			sessionInfo.uid = req.body.username;
+			// res.write(JSON.stringify(result_send));
+			res.send("User entered");
+			res.end();
 		});
-		src.on('error', function(err) { 
-			/*
-				Sending Error 
-			*/
-			res.write(JSON.stringify("Error"));
-			res.end(); 
-		});
+		
+		
 	});
 
 	/*
@@ -195,14 +162,14 @@ module.exports = routes;
 	Making query_runner function to Run mysl queries
 */
 var query_runner=function(data,callback){
-	var db_conncetion=data.connection;
+	var db_connection=data.connection;
 	var query=data.query;
 	var insert_data=data.insert_data;
-	db_conncetion.getConnection(function(err,con){
+	db_connection.getConnection(function(err,con){
 		if(err){
 		  con.release();
 		}else{
-			db_conncetion.query(String(query),insert_data,function(err,rows){
+			db_connection.query(String(query),insert_data,function(err,rows){
 		    con.release();
 		    if(!err) {
 		    	callback(rows);
@@ -213,4 +180,152 @@ var query_runner=function(data,callback){
 		  });
 		}
 	});
+}
+
+
+var get_courses=function(netid, connection, callback){
+	var count = 0;
+	var terms = [4640,4650,4660];
+	var term_names = ['2016 Fall','2017 Winter','2017 Spring'];
+	var courses = [];
+	for (var t=0;t<terms.length;t++){
+		(function(term_id){
+			var url_course = 'https://nusoaqa.northwestern.edu/NW_SR_CLASS_LIST_R/Request/STUDENT/'+netid+'/'+terms[term_id];
+			request.get(url_course, {
+				auth: {
+					'user': 'eecs473-coeva-soa',
+					'pass': 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG'
+				}
+			}, function(error, response, body, t){
+				if (error == null){
+					var parser = new xml2js.Parser();
+					parser.parseString(body, function(err, result){
+						var classes = result['NW_SR_CLASS_LIST_GET_RESP']['CLASS'];
+						for(i=0;i<classes.length;i++){
+							if(classes[i]['SSR_COMPONENT']=='LEC' && classes[i]['SUBJECT']=='EECS'){
+								courses.push(term_names[term_id]);
+								courses.push(classes[i]['CLASS_NBR'][0]);
+							}
+						}
+					});
+					if(++count == terms.length){
+						insert_courses(netid, courses, connection, callback);
+					}
+				}
+				else{
+					console.log(error);
+					//callback(error);
+					return
+				}
+			});
+		})(t);
+	}
+}
+
+
+var check_NetID=function(req, res, connection, callback){
+
+	var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/' + req.body.username;
+	request.get(url_directory, {
+			auth: {
+					'user': 'eecs473-coeva-soa',
+					'pass': 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG'
+			}
+		}, function(error, response,body){
+			if (!JSON.parse(body).hasOwnProperty("errorCode")){
+				var result = JSON.parse(body).results[0];
+				var email = result['mail'];
+				var firstname = result['givenName'][0];
+				var lastname = result['sn'][0];
+
+				var fullname = result['displayName'][0];
+
+				console.log(result);
+				if(email.includes("@u.")){
+					console.log("Student");
+					insert_user(req, firstname, lastname, email, connection,callback);
+				}
+				else{
+					res.send("Not a student");
+					console.log("Not a student");
+				}
+			}
+			else{
+				res.send("No record found");
+				console.log("No record found")
+				console.log(error);
+			}
+	});
+}
+
+
+var insert_user=function(req, firstname, lastname, email, connection,callback){
+	var insert_data = {
+			netid:req.body.username,
+			first_name:firstname,
+			last_name:lastname,
+			password:req.body.password,
+			email_id:email,
+			points:30,
+			p_photo:null,
+			timestamp:Math.floor(new Date() / 1000),
+			online:'Y'
+		};
+
+	var data={
+		query:"INSERT INTO student SET ?",
+		connection:connection,
+		insert_data:insert_data
+	};	
+	query_runner(data,function(result){
+		//storing session ID
+		// sessionInfo.uid = req.body.username;
+
+		if(result) {
+			result_send={
+	    		is_logged:true,
+	    		id:result.insertId,
+	    		msg:"OK"
+	    	};
+	    	get_courses(req.body.username, connection, callback);
+		}else{
+			result_send={
+	    		is_logged:false,
+	    		id:null,
+	    		msg:"BAD"
+	    	};
+		}	
+	});
+}
+
+var insert_courses=function(netid, courses, connection, callback){
+	var course_list = [];
+	for(var n = 0; n < courses.length; n = n+2){
+		course_list.push([netid,parseInt(courses[n+1]),courses[n],0]);
+	}
+	var data={
+		query:"INSERT INTO course_taken (`netid`,`class_num`,`term`,`rating`) VALUES ?",
+		connection:connection,
+		insert_data:[course_list]
+	};		
+	query_runner(data,function(result){
+		//storing session ID
+		// sessionInfo.uid = result.insertId;
+
+		if(result) {
+			result_send={
+	    		is_logged:true,
+	    		id:result.insertId,
+	    		msg:"OK"
+	    	};
+	    	callback();
+		}else{
+			result_send={
+	    		is_logged:false,
+	    		id:null,
+	    		msg:"BAD"
+	    	};
+	    	console.log("Error in adding course");
+		}		
+	});		
 }
