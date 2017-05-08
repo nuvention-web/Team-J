@@ -130,14 +130,38 @@ function routes(app,connection,sessionInfo){
 	app.get('/profile', function(req, res){
 		
 		sessionInfo=req.session;
-		console.log(sessionInfo);
-		
+		// console.log(sessionInfo);
+
 		/*Render Login page If session is not set*/
-		// if(sessionInfo.uid){
-		// 	res.render('profile');
-		// }else{
-		// 	res.render('chat_login');		
-		// }
+		if(!sessionInfo.uid){
+			var data={
+				query:"select * from student where netid='ads9122'",
+				connection:connection
+			}
+
+			query_runner(data,function(result){
+				if(result.length>0) {
+					res.json(result);
+		    	} else {
+		    		console.log("None");
+		    	}			
+			});
+		}else{
+			res.render('chat_login');		
+		}
+	});
+
+	app.get('/profile.data', function(req, res){
+		
+		sessionInfo=req.session;
+		// console.log(sessionInfo);
+
+		/*Render Login page If session is not set*/
+		if(!sessionInfo.uid){
+			res.render('profile');
+		}else{
+			res.render('chat_login');		
+		}
 	});	
 
 }
