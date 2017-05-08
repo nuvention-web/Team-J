@@ -127,90 +127,73 @@ function routes(app,connection,sessionInfo){
 		var	username = "eecs473-coeva-soa";
 		var password = "dQWSGYeyHGNWxErnBOaRxgo2tcWeHG";
 		var terms = [4640,4650,4660];
-		var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/ads9122';
 		
-		request.get(url_directory, {
-			auth: {
-				'user': username,
-				'pass': password
-			}
-		}, function(error, response,body){
-			if (error == null){
-				var result = JSON.parse(body).results[0];
-				var email = result['mail'];
-				var fname = result['givenName'][0];
-				var sname = result['sn'][0];
-				var fullname = result['displayName'][0];
-				if(email.includes("@u.")){
-					console.log("Student");
+		// var firstname = "";
+		// var lastname = "";
+		
+
+		check_NetID(function(firstname, lastname){
+
+
+			console.log("insert", firstname, lastname);
+
+			var insert_data = {
+
+					netid:req.body.username,
+					first_name:firstname,
+					last_name:lastname,
+					password:req.body.password,
+					points:0,
+					p_photo:null,
+					timestamp:Math.floor(new Date() / 1000),
+					online:'Y'
+				};
+
+			var data={
+				query:"INSERT INTO student SET ?",
+				connection:connection,
+				insert_data:insert_data
+			};		
+			query_runner(data,function(result){
+				
+				//storing session ID
+				sessionInfo.uid = result.insertId;
+
+				if(result) {
+					result_send={
+			    		is_logged:true,
+			    		id:result.insertId,
+			    		msg:"OK"
+			    	};
+				}else{
+					result_send={
+			    		is_logged:false,
+			    		id:null,
+			    		msg:"BAD"
+			    	};
 				}
-				else{
-					res.send("Not a student");
-					console.log("Not a student");
-				}
-			}
-			else if(error.code == '404'){
-				res.send("No record found");
-				console.log("No record found");
-			}
-			else{
-				res.send(error);
-				console.log(error);
-			}
+				res.write(JSON.stringify(result_send));
+				res.end();		
+			});	
+			
 		});
 
 
 		/*
 			using NU enrollment service to access student course data
 		*/
-		console.log("before class");
-		var class_numbers = [];
+		// console.log("before class");
+		// var class_numbers = [];
 
-		get_courses(class_numbers,function(output){
-			if(output == null){
-				console.log(class_numbers);
-			}
-			else{
-				console.log("sorry");
-			}
-		});
-	
-		var insert_data = {
-				netid:req.body.username,
-				first_name:fname,
-				last_name:sname,
-				password:req.body.password,
-				points:0,
-				p_photo:null,
-				timestamp:Math.floor(new Date() / 1000),
-				online:'Y'
-			};
-		var data={
-			query:"INSERT INTO student SET ?",
-			connection:connection,
-			insert_data:insert_data
-		};		
-		query_runner(data,function(result){
-			
-			//storing session ID
-			sessionInfo.uid = result.insertId;
-
-			if(result) {
-				result_send={
-		    		is_logged:true,
-		    		id:result.insertId,
-		    		msg:"OK"
-		    	};
-			}else{
-				result_send={
-		    		is_logged:false,
-		    		id:null,
-		    		msg:"BAD"
-		    	};
-			}
-			res.write(JSON.stringify(result_send));
-			res.end();		
-		});
+		// get_courses(class_numbers,function(output){
+		// 	if(output == null){
+		// 		console.log(class_numbers);
+		// 	}
+		// 	else{
+		// 		console.log("sorry");
+		// 	}
+		// });
+		
 	});
 
 	/*
@@ -285,3 +268,48 @@ var get_courses=function(courses, callback){
 			});
 	}
 }
+
+
+var check_NetID=function(callback){
+
+	var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/ads9122';
+	request.get(url_directory, {
+			auth: {
+					'user': 'eecs473-coeva-soa',
+					'pass': 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG'
+			}
+		}, function(error, response,body){
+			console.log(error);
+			if (error == null){
+				var result = JSON.parse(body).results[0];
+				console.log(result);
+				var email = result['mail'];
+				var firstname = result['givenName'][0];
+				var lastname = result['sn'][0];
+
+				console.log(firstname, lastname, result['givenName'][0], result['sn'][0]);
+				var fullname = result['displayName'][0];
+				if(email.includes("@u.")){
+					console.log("Student");
+					callback(firstname, lastname);
+				}
+				else{
+					res.send("Not a student");
+					console.log("Not a student");
+				}
+			}
+			else if(error.code == '404'){
+				res.send("No record found");
+				console.log("No record found");
+			}
+			else{
+				// res.send(error);
+				console.log(error);
+			}
+	});
+}
+
+
+
+
+
