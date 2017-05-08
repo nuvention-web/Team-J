@@ -41,18 +41,34 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     }
 
     $scope.getDetails = function(detail){
-    	// console.log(detail);
+    	$scope.selectedCourse = detail;
 
     	$("#courseDetail").modal('show');
-    	$("#courseDetailNum").text(detail.course_id);
-    	$("#courseDetailName").text(detail.title);
-    	$("#courseDetailProfessor").text(detail.instructor);
-    	$("#courseDetailTime").text(detail.meeting_day_time);
-
-    	$("#courseDetailRate").text(detail.rating);
-
     	$scope.changeClass(detail.rating);
+    	$scope.load_rater($scope.selectedCourse);
     }
+
+
+    $scope.load_rater = function(sC){
+
+        var config = {
+    		params: {
+       		 	courseNum: sC.class_num,
+       		 	courseQuarter: sC.term,
+    		}
+		}
+
+		console.log(config);
+
+        console.log(selectedQuarter);
+        $http.get('/raterlist', config).then(function successCallback(response) {
+               $scope.raters = response.data;
+               console.log(raters);
+        }, function errorCallback(response){
+               console.log("Error");
+        });
+    }
+
 
     $scope.changeClass = function(rates){
     	// console.log(rates);
@@ -67,6 +83,8 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		$scope.rateClass = "label label-default";
 
     }
+
+
     
 
 

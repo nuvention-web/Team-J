@@ -125,6 +125,49 @@ function routes(app,connection,sessionInfo){
 		}
 	});
 
+
+	app.get('/raterlist', function(req, res){
+		
+		sessionInfo=req.session;
+		
+		var parts = url.parse(req.url, true);
+		var query = parts.query;
+
+		var courseNum = query.courseNum;
+		var courseTerm = query.courseQuarter;
+
+		/*Render Login page If session is not set*/
+		if(sessionInfo.uid){
+			
+			var data={
+				query:"select * from student as s, course_taken as ct where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and ct.netid = s.netid order by rating",
+				connection:connection
+			}
+
+			query_runner(data,function(result){
+				if(result.length>0) {
+					res.json(result);
+		    	} else {
+		    		console.log("None");
+		    	}			
+			});
+		}else{
+			console.log("None");
+			// var data={
+			// 	query:"select * from course where term='"+term+"' order by course_id,title",
+			// 	connection:connection
+			// }
+
+			// query_runner(data,function(result){
+			// 	if(result.length>0) {
+			// 		res.json(result);
+		 //    	} else {
+		 //    		console.log("None");
+		 //    	}			
+			// });		
+		}
+	});
+
 	/*
 		handle session request
 	*/	
@@ -167,7 +210,31 @@ function routes(app,connection,sessionInfo){
 		/*Render Login page If session is not set*/
 		if(!sessionInfo.uid){
 			var data={
-				query:"select * from student where netid='ads9122'",
+				query:"select * from student where netid='ysa6698'",
+				connection:connection
+			}
+
+			query_runner(data,function(result){
+				if(result.length>0) {
+					res.json(result);
+		    	} else {
+		    		console.log("None");
+		    	}			
+			});
+		}else{
+			res.render('chat_login');		
+		}
+	});
+
+	app.get('/taken_Course', function(req, res){
+		
+		sessionInfo=req.session;
+		// console.log(sessionInfo);
+
+		/*Render Login page If session is not set*/
+		if(!sessionInfo.uid){
+			var data={
+				query:"select ct.netid, ct.rating as myRate, c.* from course_taken as ct, course as c where ct.netid=\"ysa6698\" and ct.class_num = c.class_num and ct.term = c.term",
 				connection:connection
 			}
 
