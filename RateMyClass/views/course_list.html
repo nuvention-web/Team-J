@@ -166,9 +166,8 @@
                       <table class="table table-striped table-condensed table-hover">
                         <thead>
                           <tr>
-                            <th>Image</th>
                             <th>Name</th>
-                            <th>
+                            <th style="text-align: center">
                               <a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
                               Rate
                                 <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
@@ -178,10 +177,9 @@
                           </tr>
                         </thead>   
               <tbody>
-                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse">
+                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
                     <td style="text-align: center">{{ rater.first_name }}</td>
-                    <td>{{ rater.last_name }}</td>
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating < 5}">{{ rater.rating }}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'rater-success': rater.rating >=3.5 && rater.rating < 5}">{{ rater.rating }}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>

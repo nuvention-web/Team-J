@@ -58,12 +58,12 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		}
 		}
 
-		console.log(config);
+		// console.log(config);
 
         console.log(selectedQuarter);
         $http.get('/raterlist', config).then(function successCallback(response) {
                $scope.raters = response.data;
-               console.log(raters);
+               console.log($scope.raters);
         }, function errorCallback(response){
                console.log("Error");
         });

@@ -7,7 +7,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                $scope.profileDetail = response.data;
                // $scope.profilePoints = $scope.profileDetail[0].points;
                $scope.legalname = $scope.profileDetail[0].first_name + " " + $scope.profileDetail[0].last_name;
-               // console.log($scope.profileDetail);
+               console.log($scope.profileDetail);
         }, function errorCallback(response){
                console.log("Error");
         });
@@ -74,20 +74,24 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         }
 
         console.log(data);
-
-        // $http.post('/rateCourse',data).success(function(data, status, headers, config) {
-            
-        //     if(data.is_logged){
-        //         $scope.LoginAlert = true;
-        //         $window.location.href = "/main#?id="+data.id;
-        //     }else{
-        //         $scope.LoginAlert = false;
-        //     }
-        // }).error(function(data, status) {
-        //     alert("Connection Error");
-        // });
-
         $("#rateYo").rateYo("destroy");
+
+        $http.post('/rateCourse',data).success(function(data, status, headers, config) {
+
+            // if(data.is_logged){
+            //     $scope.LoginAlert = true;
+            //     $window.location.href = "/main#?id="+data.id;
+            // }else{
+            //     $scope.LoginAlert = false;
+            // }
+            console.log(data);
+            // $window.location.reload();
+
+        }).error(function(data, status) {
+            alert("Connection Error");
+        });
+
+        
 
     }
 

@@ -22,3 +22,12 @@ th > a:focus{
 	color: white;
 	text-decoration: none;
 }
+
+.modal-body > table > thead > tr > th{
+	height: 30 !important;
+	padding-left: 8px; 
+}
+
+.modal-body > table{
+	width: 50%;
+}

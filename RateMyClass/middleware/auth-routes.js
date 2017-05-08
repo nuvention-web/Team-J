@@ -29,7 +29,7 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/main#?id='+sessionInfo.uid);
+			res.redirect('/main.html#?id='+sessionInfo.uid);
 		}else{
 			res.render('chat_login');		
 		}
@@ -89,58 +89,7 @@ function routes(app,connection,sessionInfo){
 		});
 	});
 
-	app.post('/rateCourse', function(req, res){
-
-
-		sessionInfo=req.session;
-
-		rateNetID=req.body.myNetID;
-		rateCourseNum=req.body.myCourseNum;
-		rateCourseTerm=req.body.myCourseTerm;
-		rateRate=req.body.myRate;
-
-		// var data={
-		// 	query:"select * from student where password='"+password+"' and netid='"+username+"' ",
-		// 	connection:connection
-		// }
-		/*
-			Calling query_runner to run  SQL Query
-		*/
-		// query_runner(data,function(result){
-		// 	var uid="";			
-		// 	result.forEach(function(element, index, array){
-		// 		uid=element.id;
-		// 	});
-
-		// 	if(result.length>0) {
-
-		// 		//setting session
-		// 		sessionInfo.uid = uid;
-
-		// 		var set_online={
-		// 			query:"update student set online='Y' where netid='"+username+"'",
-		// 			connection:connection
-		// 		}
-		// 		query_runner(set_online,function(result_online){});	
-		// 		result_send={
-		// 	    		is_logged:true,
-		// 	    		id:uid,
-		// 	    		msg:"OK"
-		// 	    };	    	
-		//     } else {
-		//     	result_send={
-		//     		is_logged:false,
-		//     		id:null,
-		//     		msg:"BAD"
-		//     	};
-		//     }
-		//     /*
-		// 		Sending response to client
-		// 	*/
-		//     res.write(JSON.stringify(result_send));
-		// 	res.end();
-		// });
-	});
+	
 
 	/*
 		post to handle username availability request
@@ -284,6 +233,8 @@ var check_NetID=function(req, res, connection, callback){
 				var lastname = result['sn'][0];
 
 				var fullname = result['displayName'][0];
+
+				console.log(result);
 				if(email.includes("@u.")){
 					console.log("Student");
 					insert_user(req, firstname, lastname, email, connection,callback);

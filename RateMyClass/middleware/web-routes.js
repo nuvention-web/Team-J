@@ -79,6 +79,49 @@ function routes(app,connection,sessionInfo){
 		});
 	});
 
+	app.post('/rateCourse', function(req, res){
+
+
+		sessionInfo=req.session;
+
+		rateNetID=req.body.myNetID;
+		rateCourseNum=req.body.myCourseNum;
+		rateCourseTerm=req.body.myCourseTerm;
+		rateRate=req.body.myRate;
+
+		var data={
+			query:"update course_taken set rating=\"" + rateRate + "\" where netid=\"" + rateNetID + "\" and class_num=\"" + rateCourseNum + "\" and term=\"" + rateCourseTerm + "\"",
+			connection:connection
+		}
+
+		query_runner(data,function(result){
+			if(result.length>0) {
+
+				var update_rating={
+					query:"update course set online='Y' where netid='"+rateNetID+"'",
+					connection:connection
+				}
+				query_runner(update_rating,function(result_online){});	
+				result_send={
+			    		is_logged:true,
+			    		id:uid,
+			    		msg:"OK"
+			    };	    	
+		    } else {
+		    	result_send={
+		    		is_logged:false,
+		    		id:null,
+		    		msg:"BAD"
+		    	};
+		    }
+		    /*
+				Sending response to client
+			*/
+		    res.write(JSON.stringify(result_send));
+			res.end();
+		});
+	});
+
 	/*
 		get to handle add class page
 	*/	
@@ -136,11 +179,13 @@ function routes(app,connection,sessionInfo){
 		var courseNum = query.courseNum;
 		var courseTerm = query.courseQuarter;
 
+		console.log(courseNum, courseTerm);
+
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
 			
 			var data={
-				query:"select * from student as s, course_taken as ct where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and ct.netid = s.netid order by rating",
+				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid order by rating",
 				connection:connection
 			}
 
@@ -152,19 +197,18 @@ function routes(app,connection,sessionInfo){
 		    	}			
 			});
 		}else{
-			console.log("None");
-			// var data={
-			// 	query:"select * from course where term='"+term+"' order by course_id,title",
-			// 	connection:connection
-			// }
+			var data={
+				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid order by rating",
+				connection:connection
+			}
 
-			// query_runner(data,function(result){
-			// 	if(result.length>0) {
-			// 		res.json(result);
-		 //    	} else {
-		 //    		console.log("None");
-		 //    	}			
-			// });		
+			query_runner(data,function(result){
+				if(result.length>0) {
+					res.json(result);
+		    	} else {
+		    		console.log("None");
+		    	}			
+			});		
 		}
 	});
 

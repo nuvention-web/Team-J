@@ -66,7 +66,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         $http.post('/login',data).success(function(data, status, headers, config) {
             if(data.is_logged){
                 $scope.LoginAlert = true;
-                $window.location.href = "/main#?id="+data.id;
+                $window.location.href = "/main.html#?id="+data.uid;
             }else{
                 $scope.LoginAlert = false;
             }
@@ -157,7 +157,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 else{
                     if(data.is_logged){
                         $scope.LoginAlert = true;
-                        $window.location.href = "/main#?id="+data.id;
+                        $window.location.href = "/main.html#?id="+data.id;
                     }else{
                         $scope.LoginAlert = false;
                     }
