@@ -52,6 +52,8 @@ function routes(app,connection,sessionInfo){
 			Calling query_runner to run  SQL Query
 		*/
 		query_runner(data,function(result){
+
+			console.log();
 			if(result.length>0) {
 
 				var update_rating={
@@ -84,10 +86,11 @@ function routes(app,connection,sessionInfo){
 
 		sessionInfo=req.session;
 
-		rateNetID=req.body.myNetID;
-		rateCourseNum=req.body.myCourseNum;
-		rateCourseTerm=req.body.myCourseTerm;
-		rateRate=req.body.myRate;
+		var rateNetID=req.body.myNetID;
+		var rateCourseNum=req.body.myCourseNum;
+		var rateCourseTerm=req.body.myCourseTerm;
+		var rateRate=req.body.myRate;
+		console.log(rateNetID, rateCourseNum, rateCourseTerm, rateRate);
 
 		var data={
 			query:"update course_taken set rating=\"" + rateRate + "\" where netid=\"" + rateNetID + "\" and class_num=\"" + rateCourseNum + "\" and term=\"" + rateCourseTerm + "\"",
@@ -95,6 +98,7 @@ function routes(app,connection,sessionInfo){
 		}
 
 		query_runner(data,function(result){
+
 			if(result.length>0) {
 
 				var update_rating={

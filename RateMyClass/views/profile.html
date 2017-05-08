@@ -184,7 +184,7 @@
                       <th>Course Name</th>
                       <th>Professor</th>
                       <th>Quarter</th>
-                      <th>Average Rate</th>  
+                      <th>Average Rate / Num</th>  
                       <th>Your Rate</th>                                        
                   </tr>
                   </thead>   
@@ -194,7 +194,7 @@
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
                     <td>{{ courseI.term }}</td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating < 5}">{{ courseI.rating }}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating < 5}">{{ courseI.rating }} / {{courseI.no_of_students}}</span></h3>
                     </td>
                     <td>
                       <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate" ng-class="{'btn-danger': courseI.myRate <= 2.0 && courseI.myRate != 0, 'btn-warning': courseI.myRate < 3.5 && courseI.myRate > 2.0, 'btn-success': courseI.myRate >=3.5 && courseI.myRate < 5 || courseI.myRate == 0}" ng-click="rateCourse(courseI)"></button>
@@ -249,9 +249,9 @@
 
           <hr>
 
-            <label class="form-control-label" >Current Average Rate:</label>
+            <label class="form-control-label" >Current Average Rate / Num:</label>
             <h3> 
-                <div ng-bind="selectedCourse.rating" ng-class="rateClass"></div>
+                <div ng-class="rateClass">{{selectedCourse.rating}} out of {{selectedCourse.no_of_students}}</div>
             </h3>
 
           <hr>

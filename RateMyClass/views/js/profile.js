@@ -66,32 +66,31 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
     $scope.Rate = function(selectedCourse){
         var rating = $("#rateYo").rateYo("rating");
 
+
         var data={
             myNetID:selectedCourse.netid,
             myCourseNum:selectedCourse.course_id,
             myCourseTerm:selectedCourse.term,
-            myRate:rating
+            myRate:rating,
+            myNumofRates:selectedCourse.no_of_students,
+            myAverageRate:selectedCourse.rating
         }
 
-        console.log(data);
+        // console.log(data);
+
+        data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
+        data.myNumofRates = data.myNumofRates + 1;
+
+        // console.log(data);
         $("#rateYo").rateYo("destroy");
 
         $http.post('/rateCourse',data).success(function(data, status, headers, config) {
-
-            // if(data.is_logged){
-            //     $scope.LoginAlert = true;
-            //     $window.location.href = "/main#?id="+data.id;
-            // }else{
-            //     $scope.LoginAlert = false;
-            // }
             console.log(data);
             // $window.location.reload();
 
         }).error(function(data, status) {
             alert("Connection Error");
-        });
-
-        
+        });       
 
     }
 

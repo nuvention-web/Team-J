@@ -29,11 +29,11 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-<<<<<<< HEAD
-			res.redirect('/main.html#?id='+sessionInfo.uid);
-=======
+// <<<<<<< HEAD
+// 			res.redirect('/main.html#?id='+sessionInfo.uid);
+// =======
 			res.redirect('main');
->>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
+// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
 		}else{
 			res.render('chat_login');		
 		}
