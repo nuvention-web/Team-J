@@ -10,7 +10,7 @@ body {
 Normalize  starts
 --------------------------------------------------------------------------------*/
 
-h1,h2,h3,h4{
+h1,h2,h3{
 	color:#50d0c1;
 }
 
@@ -44,7 +44,8 @@ a:active {
 	overflow-y: scroll;
 }
 .modal-body{
-	padding: 20px 100px;
+	/*padding: 10px 100px;*/
+	text-align: center;
 }
 .modal{
 	background-color: rgba(20, 36, 44, 0.45);

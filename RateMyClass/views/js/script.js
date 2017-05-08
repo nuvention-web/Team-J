@@ -147,11 +147,20 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config) {
-                if(data.is_logged){
-                    $scope.LoginAlert = true;
-                    $window.location.href = "/main#?id="+data.id;
-                }else{
-                    $scope.LoginAlert = false;
+                // console.log("data", data);
+                if (data == "No record found"){
+                    alert("Invalid NetID!");
+                    location.reload();
+                }
+                else if (data == "Not a student")
+                    alert("Sorry, currently this platform only for students!");
+                else{
+                    if(data.is_logged){
+                        $scope.LoginAlert = true;
+                        $window.location.href = "/main#?id="+data.id;
+                    }else{
+                        $scope.LoginAlert = false;
+                    }
                 }
             })
             .error(function(){

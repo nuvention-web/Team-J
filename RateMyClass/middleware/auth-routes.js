@@ -124,15 +124,10 @@ function routes(app,connection,sessionInfo){
 		/*
 			using NU directory service to access student contact data
 		*/
-		var	username = "eecs473-coeva-soa";
-		var password = "dQWSGYeyHGNWxErnBOaRxgo2tcWeHG";
 		var terms = [4640,4650,4660];
-		
-		// var firstname = "";
-		// var lastname = "";
-		
 
-		check_NetID(function(firstname, lastname){
+
+		check_NetID(req.body.username, res, function(firstname, lastname){
 
 
 			console.log("insert", firstname, lastname);
@@ -270,17 +265,17 @@ var get_courses=function(courses, callback){
 }
 
 
-var check_NetID=function(callback){
+var check_NetID=function(netid, res, callback){
 
-	var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/ads9122';
+	var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/' + netid;
 	request.get(url_directory, {
 			auth: {
 					'user': 'eecs473-coeva-soa',
 					'pass': 'dQWSGYeyHGNWxErnBOaRxgo2tcWeHG'
 			}
 		}, function(error, response,body){
-			console.log(error);
-			if (error == null){
+			console.log(JSON.parse(body).hasOwnProperty("errorCode"));
+			if (!JSON.parse(body).hasOwnProperty("errorCode")){
 				var result = JSON.parse(body).results[0];
 				console.log(result);
 				var email = result['mail'];
@@ -298,13 +293,9 @@ var check_NetID=function(callback){
 					console.log("Not a student");
 				}
 			}
-			else if(error.code == '404'){
+			else{
 				res.send("No record found");
 				console.log("No record found");
-			}
-			else{
-				// res.send(error);
-				console.log(error);
 			}
 	});
 }
