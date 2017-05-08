@@ -36,16 +36,48 @@ function routes(app,connection,sessionInfo){
 	/*
 		get to handle add class page
 	*/	
-	// app.get('/addclass', function(req, res){
-		
-	// 	sessionInfo=req.session;
-	// 	/*Render Login page If session is not set*/
-	// 	if(sessionInfo.uid){
-	// 		res.redirect('/adding_class#?id='+sessionInfo.uid);
-	// 	}else{
-	// 		res.render('chat_login');		
-	// 	}
-	// });
+	app.post('/update_rate', function(req, res){
+
+
+		sessionInfo=req.session;
+
+		username=req.body.username;
+		password=req.body.password;
+
+		var data={
+			query:"update course_taken set rating='5' where netid='ads9122' and classnum='32185' and term='2017 Spring'",
+			connection:connection
+		}
+		/*
+			Calling query_runner to run  SQL Query
+		*/
+		query_runner(data,function(result){
+			if(result.length>0) {
+
+				var update_rating={
+					query:"update course set online='Y' where netid='"+username+"'",
+					connection:connection
+				}
+				query_runner(update_rating,function(result_online){});	
+				result_send={
+			    		is_logged:true,
+			    		id:uid,
+			    		msg:"OK"
+			    };	    	
+		    } else {
+		    	result_send={
+		    		is_logged:false,
+		    		id:null,
+		    		msg:"BAD"
+		    	};
+		    }
+		    /*
+				Sending response to client
+			*/
+		    res.write(JSON.stringify(result_send));
+			res.end();
+		});
+	});
 
 	/*
 		get to handle add class page
