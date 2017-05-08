@@ -124,7 +124,22 @@ function routes(app,connection,sessionInfo){
 		}else{
 			res.render('chat_login');		
 		}
-	});
+	});	
+
+
+	app.get('/profile', function(req, res){
+		
+		sessionInfo=req.session;
+		console.log(sessionInfo);
+		
+		/*Render Login page If session is not set*/
+		// if(sessionInfo.uid){
+		// 	res.render('profile');
+		// }else{
+		// 	res.render('chat_login');		
+		// }
+	});	
+
 }
 
 method.getroutes=function(){
