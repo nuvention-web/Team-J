@@ -47,7 +47,7 @@ function routes(app,connection,sessionInfo){
 		password=req.body.password;
 
 		var data={
-			query:"select * from user where password='"+password+"' and name='"+username+"' ",
+			query:"select * from student where password='"+password+"' and netid='"+username+"' ",
 			connection:connection
 		}
 		/*
@@ -65,7 +65,7 @@ function routes(app,connection,sessionInfo){
 				sessionInfo.uid = uid;
 
 				var set_online={
-					query:"update user set online='Y' where id='"+uid+"'",
+					query:"update student set online='Y' where netid='"+username+"'",
 					connection:connection
 				}
 				query_runner(set_online,function(result_online){});	
@@ -95,7 +95,7 @@ function routes(app,connection,sessionInfo){
 	app.post('/check_name', function(req, res){
 		username=req.body.username;		
 		var data={
-			query:"select * from user where name='"+username+"'",
+			query:"select * from student where netid='"+username+"'",
 			connection:connection
 		}
 		query_runner(data,function(result){

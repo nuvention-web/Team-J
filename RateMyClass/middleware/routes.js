@@ -51,7 +51,7 @@ function routes(app,connection,io,sessionInfo){
 	    	}
 
 	    	var data={
-				query:"update user set online='Y' where id='"+userinfo.id+"'",
+				query:"update student set online='Y' where netid='"+userinfo.id+"'",
 				connection:connection
 			}
 			helper.queryRunner(data,function(result){
@@ -138,7 +138,7 @@ function routes(app,connection,io,sessionInfo){
 				if(users[i].id==uIdSocket){
 					if(users[i].socketId==socket.id){					
 					  	var data={
-							query:"update user set online='N' where id='"+users[i].id+"'",
+							query:"update student set online='N' where netid='"+users[i].id+"'",
 							connection:connection
 						}
 						spliceId=i;
@@ -179,7 +179,7 @@ function routes(app,connection,io,sessionInfo){
 	*/
 	app.post('/get_userinfo', function(req, res){
 		var data={
-			query:"select id,name,p_photo,online from user where id='"+req.body.uid+"'",
+			query:"select netid,first_name,p_photo,online from student where netid='"+req.body.uid+"'",
 			connection:connection
 		}
 		helper.queryRunner(data,function(result){
@@ -254,7 +254,7 @@ function routes(app,connection,io,sessionInfo){
 		var uid=sessionInfo.uid;
 		
 		var data={
-			query:"update user set online='N' where id='"+uid+"'",
+			query:"update student set online='N' where netid='"+uid+"'",
 			connection:connection
 		}
 		helper.queryRunner(data,function(result){
