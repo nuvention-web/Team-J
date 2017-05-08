@@ -164,7 +164,7 @@ function routes(app,connection,io,sessionInfo){
 	app.get('/home',function(req, res){
 		sessionInfo=req.session;
 		if(!sessionInfo.uid){
-			res.redirect("/");	
+			res.redirect('home');	
 			res.end();	
 		}else{
 			// console.log("redirect sent");

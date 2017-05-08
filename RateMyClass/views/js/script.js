@@ -66,7 +66,7 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         $http.post('/login',data).success(function(data, status, headers, config) {
             if(data.is_logged){
                 $scope.LoginAlert = true;
-                $window.location.href = "/main#?id="+data.id;
+                $window.location.href = "/main.html";
             }else{
                 $scope.LoginAlert = false;
             }
@@ -155,11 +155,13 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 else if (data == "Not a student")
                     alert("Sorry, currently this platform only for students!");
                 else{
-                    if(data.is_logged){
+                    if(data == "User entered"){
                         $scope.LoginAlert = true;
-                        $window.location.href = "/main#?id="+data.id;
+                        $window.location.href = "/main.html";
                     }else{
+                        //alert(JSON.stringify(data.is_logged));
                         $scope.LoginAlert = false;
+                        $window.location.href = "/profile.html";
                     }
                 }
             })

@@ -29,7 +29,7 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/main#?id='+sessionInfo.uid);
+			res.redirect('main');
 		}else{
 			res.render('chat_login');		
 		}
@@ -183,7 +183,9 @@ function routes(app,connection,sessionInfo){
 		var lastname = "";
 
 		check_NetID(req, res, connection, function(){
-			res.write(JSON.stringify(result_send));
+			sessionInfo.uid = req.body.username;
+			// res.write(JSON.stringify(result_send));
+			res.send("User entered");
 			res.end();
 		});
 		
@@ -247,7 +249,7 @@ var get_courses=function(netid, connection, callback){
 					parser.parseString(body, function(err, result){
 						var classes = result['NW_SR_CLASS_LIST_GET_RESP']['CLASS'];
 						for(i=0;i<classes.length;i++){
-							if(classes[i]['SSR_COMPONENT']!='DIS'){
+							if(classes[i]['SSR_COMPONENT']=='LEC' && classes[i]['SUBJECT']=='EECS'){
 								courses.push(term_names[term_id]);
 								courses.push(classes[i]['CLASS_NBR'][0]);
 							}
@@ -295,7 +297,8 @@ var check_NetID=function(req, res, connection, callback){
 			}
 			else{
 				res.send("No record found");
-				console.log("No record found");
+				console.log("No record found")
+				console.log(error);
 			}
 	});
 }
@@ -321,7 +324,7 @@ var insert_user=function(req, firstname, lastname, email, connection,callback){
 	};	
 	query_runner(data,function(result){
 		//storing session ID
-		// sessionInfo.uid = result.insertId;
+		// sessionInfo.uid = req.body.username;
 
 		if(result) {
 			result_send={
