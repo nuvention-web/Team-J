@@ -14,8 +14,14 @@ th > a{
 }
 
 th > a:hover{
-	color: #ddd;
+	color: #333;
 	text-decoration: none;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #aed1cc;
+    cursor: pointer;
+    color: white;
 }
 
 th > a:focus{
@@ -30,4 +36,16 @@ th > a:focus{
 
 .modal-body > table{
 	width: 50%;
+}
+
+tr:nth-child(even){
+	background-color: #eff6f5; !important;
+}
+
+tbody > tr:nth-child(odd){
+	background-color: #fff !important;
+}
+
+table{
+	font-family: 'Lato', sans-serif;
 }

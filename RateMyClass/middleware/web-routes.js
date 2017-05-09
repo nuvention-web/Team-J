@@ -36,50 +36,6 @@ function routes(app,connection,sessionInfo){
 	/*
 		get to handle add class page
 	*/	
-	app.post('/update_rate', function(req, res){
-
-
-		sessionInfo=req.session;
-
-		username=req.body.username;
-		password=req.body.password;
-
-		var data={
-			query:"update course_taken set rating='5' where netid='ads9122' and classnum='32185' and term='2017 Spring'",
-			connection:connection
-		}
-		/*
-			Calling query_runner to run  SQL Query
-		*/
-		query_runner(data,function(result){
-
-			console.log();
-			if(result.length>0) {
-
-				var update_rating={
-					query:"update course set online='Y' where netid='"+username+"'",
-					connection:connection
-				}
-				query_runner(update_rating,function(result_online){});	
-				result_send={
-			    		is_logged:true,
-			    		id:uid,
-			    		msg:"OK"
-			    };	    	
-		    } else {
-		    	result_send={
-		    		is_logged:false,
-		    		id:null,
-		    		msg:"BAD"
-		    	};
-		    }
-		    /*
-				Sending response to client
-			*/
-		    res.write(JSON.stringify(result_send));
-			res.end();
-		});
-	});
 
 	app.post('/rateCourse', function(req, res){
 
@@ -90,22 +46,73 @@ function routes(app,connection,sessionInfo){
 		var rateCourseNum=req.body.myCourseNum;
 		var rateCourseTerm=req.body.myCourseTerm;
 		var rateRate=req.body.myRate;
-		console.log(rateNetID, rateCourseNum, rateCourseTerm, rateRate);
+		var rateNumofRates =req.body.myNumofRates;
+		var rateAverageRate = req.body.myAverageRate;
+
+		console.log(rateNumofRates, rateAverageRate);
 
 		var data={
-			query:"update course_taken set rating=\"" + rateRate + "\" where netid=\"" + rateNetID + "\" and class_num=\"" + rateCourseNum + "\" and term=\"" + rateCourseTerm + "\"",
+			query:"update course_taken set rating = '"+ rateRate + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
 			connection:connection
 		}
 
 		query_runner(data,function(result){
 
-			if(result.length>0) {
+			console.log(result);
+			if(result.changedRows>0) {
+
+				var uid = "";
+				sessionInfo.uid = uid;
 
 				var update_rating={
-					query:"update course set online='Y' where netid='"+rateNetID+"'",
+					query:"update course set rating = '"+ rateAverageRate + "', no_of_students = '"+ rateNumofRates +"' where class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "'",
 					connection:connection
 				}
-				query_runner(update_rating,function(result_online){});	
+				query_runner(update_rating,function(result_online){
+
+					console.log(result_online);
+					if(result_online.changedRows>0) {
+
+						var update_student={
+							query:"update student set points = points + 10 where netid=\"" + rateNetID + "\"",
+							connection:connection
+						}
+
+						query_runner(update_student,function(result_student){
+
+							if (result_student.changedRows > 0){
+								result_send={
+						    		is_logged:true,
+						    		id:uid,
+						    		msg:"OK"
+			    				};	
+							}
+							else{
+								result_send={
+					    			is_logged:false,
+					    			id:null,
+					    			msg:"BAD"
+		    					};
+							}
+						});
+
+
+
+						result_send={
+				    		is_logged:true,
+				    		id:uid,
+				    		msg:"OK"
+			    		};	
+					}
+					else{
+						result_send={
+			    			is_logged:false,
+			    			id:null,
+			    			msg:"BAD"
+		    			};
+					}
+				});	
+
 				result_send={
 			    		is_logged:true,
 			    		id:uid,
@@ -275,11 +282,13 @@ function routes(app,connection,sessionInfo){
 	});
 
 	app.get('/taken_Course', function(req, res){
-		
+		// console.log("111");
 		sessionInfo=req.session;
 		// console.log(sessionInfo);
 
 		/*Render Login page If session is not set*/
+
+		// console.log(sessionInfo.uid);
 		if(!sessionInfo.uid){
 			var data={
 				query:"select ct.netid, ct.rating as myRate, c.* from course_taken as ct, course as c where ct.netid=\"ysa6698\" and ct.class_num = c.class_num and ct.term = c.term",
@@ -287,6 +296,7 @@ function routes(app,connection,sessionInfo){
 			}
 
 			query_runner(data,function(result){
+				console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {

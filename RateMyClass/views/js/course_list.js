@@ -77,7 +77,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		$scope.rateClass = "label label-danger";
     	else if (rates < 3.5 && rates > 2.0)
     		$scope.rateClass = "label label-warning";
-    	else if (rates < 5.0 && rates > 3.5)
+    	else if (rates <= 5.0 && rates >= 3.5)
     		$scope.rateClass = "label label-success";
     	else
     		$scope.rateClass = "label label-default";
