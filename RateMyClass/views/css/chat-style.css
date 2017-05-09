@@ -10,7 +10,7 @@ body {
 Normalize  starts
 --------------------------------------------------------------------------------*/
 
-h1,h2,h3,h4{
+h1,h2,h3{
 	color:#50d0c1;
 }
 
@@ -40,17 +40,15 @@ a:active {
 .modal-content{
 	background-color:#F6F6F6;
 	color: #000 !important;	
-	height: 90%;
+	/*height: 90%;*/
 	overflow-y: scroll;
 }
 .modal-body{
-	padding: 20px 100px;
+	/*padding: 10px 100px;*/
+	text-align: center;
 }
 .modal{
 	background-color: rgba(20, 36, 44, 0.45);
-}
-.modal-dialog{
-	width: 60%;
 }
 .modal-title{
 	font-size: 20px;
@@ -97,18 +95,17 @@ Login page starts
 	top: 0%;
 }
 .box-container{
-	margin-top: 5%;
 	width: 35%;
 	height: auto;
-    display: block;
     padding: 20px 50px 20px 50px;
-    /*margin-left: 60%;*/
-    /*border: solid 3px rgb(102, 224, 210);*/
     box-shadow: 0px 2px 100px 6px rgba(0,0,0,0.35);
 	background-color:rgba(245, 245, 247, 1.0);
-	margin-left: auto;
-	margin-right: auto;
 	border-radius: 6px;
+	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  /* bring your own prefixes */
+  	transform: translate(-50%, -50%);
 }
 
 .heading{

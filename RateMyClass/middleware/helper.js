@@ -231,7 +231,7 @@ var self={
 			Function to get user information.
 		*/
 		var data={
-			query:"select id,name,p_photo,online from user where id='"+uid+"'",
+			query:"select netid,first_name,p_photo,online from student where netid='"+uid+"'",
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
@@ -306,9 +306,9 @@ var self={
 					filter.push(element['from_id']);
 				});
 				filter=filter.join();
-				data.query="SELECT * FROM user WHERE id NOT IN ("+filter+")";
+				data.query="SELECT * FROM student WHERE id NOT IN ("+filter+")";
 			}else{
-				data.query="SELECT * FROM user WHERE id NOT IN ("+uid+")";
+				data.query="SELECT * FROM student WHERE id NOT IN ("+uid+")";
 			}
 			self.queryRunner(data,function(usersData){
 				callback(usersData);

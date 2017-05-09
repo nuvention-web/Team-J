@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+<html ng-app="main">
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="css/nav-style.css">
@@ -24,7 +24,7 @@
   
 
 </head>
-<body>
+<body ng-controller="main" >
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <li><a href="home.html">Message</a></li>
+        <!-- <li><a href="home.html">Message</a></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
             <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
-        <form class="navbar-form navbar-left" action="chat_login.html">
+        <form class="navbar-form navbar-left" ng-click="logOut()">
           <button type="submit" class="btn btn-default nav-login">
           Sign Out</button>
         </form>
@@ -88,9 +88,9 @@
                             <div class="row">
                               <div class="col-xs-1"></div>
                               <div class="col-xs-10 input-group input-group-lg">
-                                <input type="text" class="form-control col-xs-4" placeholder="Search for...">
+                                <input type="text" class="form-control col-xs-4" placeholder="Search for Course ID, Course Name, Instructors..." id="searchCourse">
 
-                                <div class="input-group-btn">
+                                <div class="input-group-btn" id="searchButton">
                                   <button class="btn btn-success search-button" type="submit">
                                     <span class="glyphicon glyphicon-search"></span>
                                   Search</button>
@@ -110,6 +110,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+
+
+  <script src="js/main.js"></script>
 
 
 </body>
