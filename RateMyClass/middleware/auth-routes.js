@@ -58,10 +58,10 @@ function routes(app,connection,sessionInfo){
 			Calling query_runner to run  SQL Query
 		*/
 		query_runner(data,function(result){
-			var uid="";			
-			result.forEach(function(element, index, array){
-				uid=element.id;
-			});
+			var uid=username;			
+			// result.forEach(function(element, index, array){
+			// 	uid=element.id;
+			// });
 
 			if(result.length>0) {
 

@@ -4,6 +4,15 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 
 	var selectedQuarter = "2017 Winter";
 	
+	$scope.logOut = function(){
+      $http.get('/logout').then(function successCallback(response) {
+               console.log("Log Out");
+               $window.location.href = "chat_login.html";
+        }, function errorCallback(response){
+               console.log("Log Out Error");
+        });
+    }
+    
 
 	$scope.getQuarter = function(quarter){
     	selectedQuarter = quarter;

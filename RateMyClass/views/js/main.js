@@ -16,18 +16,18 @@ function call_home(){
 	go_home();
 }
 
-// var app = angular.module('main',[]).run(function($rootScope) {
-//     $rootScope.uid = "abc";
-// })
+var app = angular.module('main',[]).run(function($rootScope) {
+    $rootScope.uid = "abc";
+})
 
-// app.controller('main', function ($scope,$http,$timeout,$window,$rootScope) {
+app.controller('main', function ($scope,$http,$timeout,$window,$rootScope) {
 
-// 	go_home=function(){
-// 		$http.get('/home').then(function successCallback(response) {
-// 	               console.log("got from home");
-// 	               console.log($rootScope.uid);
-// 	        }, function errorCallback(response){
-// 	               console.log("Error");
-// 	        });
-// 	}
-// });
+	$scope.logOut = function(){
+      $http.get('/logout').then(function successCallback(response) {
+               console.log("Log Out");
+               $window.location.href = "chat_login.html";
+        }, function errorCallback(response){
+               console.log("Log Out Error");
+        });
+    }
+});

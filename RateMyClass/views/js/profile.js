@@ -2,7 +2,18 @@ var app = angular.module('profile',[]);
 
 app.controller('profile', function ($scope,$http,$timeout,$window) {  
 
+    $scope.logOut = function(){
+      $http.get('/logout').then(function successCallback(response) {
+               console.log("Log Out");
+               $window.location.href = "chat_login.html";
+        }, function errorCallback(response){
+               console.log("Log Out Error");
+        });
+    }
+
     $scope.load_profile = function(){
+
+
         $http.get('/profile').then(function successCallback(response) {
                $scope.profileDetail = response.data;
                // $scope.profilePoints = $scope.profileDetail[0].points;

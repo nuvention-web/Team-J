@@ -62,7 +62,7 @@ function routes(app,connection,sessionInfo){
 			if(result.changedRows>0) {
 
 				var uid = "";
-				sessionInfo.uid = uid;
+				sessionInfo.uid = rateNetID;
 
 				var update_rating={
 					query:"update course set rating = '"+ rateAverageRate + "', no_of_students = '"+ rateNumofRates +"' where class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "'",
@@ -260,16 +260,17 @@ function routes(app,connection,sessionInfo){
 	app.get('/profile', function(req, res){
 		
 		sessionInfo=req.session;
-		// console.log(sessionInfo);
+		console.log(sessionInfo, sessionInfo.uid);
 
 		/*Render Login page If session is not set*/
-		if(!sessionInfo.uid){
+		if(sessionInfo.uid){
 			var data={
-				query:"select * from student where netid='ysa6698'",
+				query:"select * from student where netid='" + sessionInfo.uid + "'",
 				connection:connection
 			}
 
 			query_runner(data,function(result){
+				console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
@@ -289,9 +290,9 @@ function routes(app,connection,sessionInfo){
 		/*Render Login page If session is not set*/
 
 		// console.log(sessionInfo.uid);
-		if(!sessionInfo.uid){
+		if(sessionInfo.uid){
 			var data={
-				query:"select ct.netid, ct.rating as myRate, c.* from course_taken as ct, course as c where ct.netid=\"ysa6698\" and ct.class_num = c.class_num and ct.term = c.term",
+				query:"select ct.netid, ct.rating as myRate, c.* from course_taken as ct, course as c where ct.netid='" + sessionInfo.uid + "' and ct.class_num = c.class_num and ct.term = c.term",
 				connection:connection
 			}
 
@@ -308,18 +309,18 @@ function routes(app,connection,sessionInfo){
 		}
 	});
 
-	app.get('/profile.data', function(req, res){
+	// app.get('/profile.data', function(req, res){
 		
-		sessionInfo=req.session;
-		// console.log(sessionInfo);
+	// 	sessionInfo=req.session;
+	// 	// console.log(sessionInfo);
 
-		/*Render Login page If session is not set*/
-		if(!sessionInfo.uid){
-			res.render('profile');
-		}else{
-			res.render('chat_login');		
-		}
-	});	
+	// 	Render Login page If session is not set
+	// 	if(!sessionInfo.uid){
+	// 		res.render('profile');
+	// 	}else{
+	// 		res.render('chat_login');		
+	// 	}
+	// });	
 
 }
 
