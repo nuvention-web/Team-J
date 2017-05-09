@@ -164,15 +164,12 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 else{
                     if(data == "User entered"){
                         $scope.LoginAlert = true;
-// <<<<<<< HEAD
-//                         $window.location.href = "/main.html#?id="+data.id;
-// =======
-                        $window.location.href = "/main.html";
-// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
+                        $window.location.href = "/profile.html#?id="+$scope.registerUsername;
+
                     }else{
-                        //alert(JSON.stringify(data.is_logged));
-                        $scope.LoginAlert = false;
-                        $window.location.href = "/profile.html";
+
+                        alert("Seems like you don't have any EECS courses, currently we only support EECS department. You can still check around, we will integrate soon.");
+                        $window.location.href = "/main.html#?id="+$scope.registerUsername;
                     }
                 }
             })
