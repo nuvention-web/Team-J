@@ -8,11 +8,8 @@
 
   <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Palanquin" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
@@ -23,7 +20,7 @@
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
   <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
 
 
@@ -53,7 +50,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <li><a href="home.html">Message</a></li>
+        <!-- <li><a href="home.html">Message</a></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -66,7 +63,7 @@
             <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
-        <form class="navbar-form navbar-left" action="chat_login.html">
+        <form class="navbar-form navbar-left" ng-click="logOut()">
           <button type="submit" class="btn btn-default nav-login">
           Sign Out</button>
         </form>
@@ -83,9 +80,11 @@
         <div class="col-sm-2">
           <nav class="nav-sidebar">
           <ul class="nav tabs">
-              <li class="active"><a data-target="#tab1" data-toggle="tab">Fall 2016</a></li>
-              <li class=""><a data-target="#tab2" data-toggle="tab">Not Finished</a></li>
-              <li class=""><a data-target="#tab3" data-toggle="tab">Not Finished</a></li>                               
+              <li class="active" ng-click="getQuarter('2017 Winter')"><a data-target="#tab3" data-toggle="tab">Winter 2017</a></li> 
+              <li class="" ng-click="getQuarter('2016 Fall')"><a data-target="#tab1" data-toggle="tab">Fall 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Spring')"><a data-target="#tab2" data-toggle="tab">Spring 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Winter')"><a data-target="#tab2" data-toggle="tab">Winter 2016</a></li>
+              <li class="" ng-click="getQuarter('2015 Fall')"><a data-target="#tab2" data-toggle="tab">Fall 2015</a></li>    
           </ul>
           </nav>
         </div>
@@ -95,13 +94,11 @@
               <h2 class="display-3">SEARCH BY</h2>
 
                 <p class="lead">
-                  <div class="col-xs-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for courses">
-                    <span class="input-group-btn">
+                  <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="Course ID, Course Name, or Instructors" ng-model="searchCourse" data-ng-init="load_search()">
+                    <!-- <span class="input-group-btn">
                       <button class="btn btn-secondary" type="button">Search</button>
-                    </span>
-                 </div>
+                    </span> -->
                  </div>
                 </p>
               </div>
@@ -111,30 +108,96 @@
             <table class="table table-striped table-condensed table-hover" data-ng-init="load_course()">
                   <thead>
                   <tr>
-                      <th class="col-xs-2" style="text-align: center">ID</th>
-                      <th class="col-xs-6">Course Name</th>
-                      <th class="col-xs-3">Professor</th>
-                      <!-- <th>Professor</th>
-                      <th>Time</th> -->
-                      <th class="col-xs-2" style="text-align: center">Rate</th>
-
-                      <!-- <th style="text-align: center">Status</th> -->                            
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Professor</th>
+                      <th>
+                      <a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                      Rate/Num
+                      <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>       
+                      </th>                    
                   </tr>
                   </thead>   
               <tbody>
 
-                <tr ng-repeat="courseI in courses">
-                    <td style="text-align: center">{{ courseI.course_id }}</td>
-                    <td>{{ courseI.title }}</td>
-                    <td>{{ courseI.instructor }}</td>
-<!--                     <td>{{ courseIl.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating < 5}">{{ courseI.rating }}</span></h4>
+                <tr ng-repeat="courseI in courses | orderBy:sortType:sortReverse | filter:searchCourse" ng-click="getDetails(courseI)">
+                    <td style="text-align: center" ng-bind="courseI.course_id"></td>
+                    <td ng-bind="courseI.title"></td>
+                    <td ng-bind="courseI.instructor"></td>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>
             </table>
                 </div>
                 </div>
+
+      <div class="modal fade" id="courseDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" ng-bind="selectedCourse.course_id"></h4>
+                </div>
+                <div class="modal-body">
+                      <label class="form-control-label">Course Name:</label>
+                      <h4 ng-bind="selectedCourse.title"></h4>
+
+                      <hr>
+
+                      <label class="form-control-label" >Instructor:</label>
+                      <h4 ng-bind="selectedCourse.instructor"></h4>
+
+                      <hr>
+
+                      <label class="form-control-label" >Meeting Time:</label>
+                      <h4 ng-bind="selectedCourse.meeting_day_time"></h4>
+
+                      <hr>
+
+                      <label class="form-control-label" >Current Average Rate:</label>
+                      <h3> 
+                      <div ng-bind="selectedCourse.rating | number : 2" ng-class="rateClass"></div>
+                      </h3>
+
+                      <hr>
+                      <label class="form-control-label" >Other Students Rate:</label>
+                      <table class="table table-striped table-condensed table-hover">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th style="text-align: center">
+                              <a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                              Rate
+                                <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>       
+                            </th>                    
+                          </tr>
+                        </thead>   
+              <tbody>
+                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
+                    <td style="text-align: center">{{ rater.first_name }}</td>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5}">{{ rater.rating | number : 2}}</span></h4>
+                    </td>                                      
+                </tr>                                  
+              </tbody>
+            </table>
+                      
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="intialRate()">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+
+
+
+
         </div>
     </div>
 </div>
@@ -149,16 +212,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
-<!--   <script src="js/angular.min.js"></script>
-  <script src="js/jquery.min.js"></script> -->
+
   <script src="js/course_list.js"></script>
 
-<!--   <script>
-  $scope.getLabelClass = function(rate){
-    console.log("rate", rate);
-    return ;
-  }
-  </script> -->
+
+
 
 </body>
 </html>

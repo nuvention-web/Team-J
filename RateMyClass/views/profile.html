@@ -1,4 +1,4 @@
-<html>
+<html ng-app="profile">
 <head>
   <title>CoEva</title>
   <link rel="stylesheet" href="css/nav-style.css">
@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/table-style.css">
 
   <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
@@ -21,7 +23,7 @@
   
 
 </head>
-<body>
+<body ng-controller="profile">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -44,7 +46,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <li><a href="home.html">Message</a></li>
+        <!-- <li><a href="home.html">Message</a></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -57,7 +59,7 @@
             <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
-        <form class="navbar-form navbar-left" action="chat_login.html">
+        <form class="navbar-form navbar-left" ng-click="logOut()">
           <button type="submit" class="btn btn-default nav-login">
           Sign Out</button>
         </form>
@@ -67,7 +69,7 @@
 </nav>
 
 <br>
-<div class="container">
+<div class="container" data-ng-init="load_profile()">
   <div class="col-xs-12">
     <div class="row">
 
@@ -78,13 +80,13 @@
         </div>
         <div class="panel-body">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-target="#tab1primary" data-toggle="tab">Profile</a></li>
-            <li><a data-target="#tab2primary" data-toggle="tab">Taken Classes</a></li>
-            <li><a data-target="#tab4primary" data-toggle="tab">Current Points</a></li>
+            <li class="active"><a data-target="#tab1primary" data-toggle="tab">Taken Classes</a></li>
+            <li><a data-target="#tab2primary" data-toggle="tab">Profile</a></li>          
+            <li><a data-target="#tab4primary" data-toggle="tab">Your Points</a></li>
           </ul>
 
           <div class="tab-content">
-            <div class="tab-pane fade in active" id="tab1primary">
+            <div class="tab-pane fade in" id="tab2primary">
               <div class="container">
                 <div class="row">
 
@@ -99,18 +101,36 @@
                   <fieldset disabled>
                     <div class="form-group row">
 
-                      <div class="col-xs-1">
+                      <div class="col-xs-2">
                       <label for="NetIDInput" class="vcenter">NetID</label></div>
 
                       <div class="col-xs-4">
-                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" placeholder="abc1122"> 
+                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].netid}}"> 
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Email</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].email_id}}"> 
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-xs-2">
+                      <label for="NetIDInput" class="vcenter">Name</label></div>
+
+                      <div class="col-xs-4">
+                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{legalname}}"> 
                       </div>
                     </div>
 
                   </fieldset>
 
                     <small id="passwordHelpBlock" class="form-text text-muted">
-                    Unable to change your NetID, sign out to switch account.
+                    Unable to change, sign out to switch account.
                     </small>
                   
                 </form>
@@ -122,44 +142,25 @@
                 <hr>
                 <!-- <div class="container"> -->
 
-                <form>
-                    <div class="form-group row">
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Email</label></div>
-
-                      <div class="col-xs-4">
-                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="ybsh@gmail.com"> 
-                      </div>
-                    </div>
-
+                <!-- <form>
                     <div class="form-group row">
 
                       <div class="col-xs-2">
                       <label for="NetIDInput" class="vcenter">Password</label></div>
 
                       <div class="col-xs-4">
-                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="********"> 
+                      <input type="Password" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].password}}">
                       </div>
 
                     </div> 
 
-                    <div class="form-group row">
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Name</label></div>
-
-                      <div class="col-xs-4">
-                      <input type="email" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="John Doe"> 
-                      </div>
-                    </div>
-
-
-                </form>
-                <br>
-                <!-- <div class="btn-group"> -->
+                </form> -->
+                <!-- <br>
+               
                   <button class="btn btn-sm btn-success" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Save
-                  </button>
-                <!-- </div> -->
+                  </button> -->
+
 
                 </div>
                 </div>
@@ -169,149 +170,49 @@
           </div>
 
 
-            <div class="tab-pane fade" id="tab2primary">
+          <div class="tab-pane fade in active" id="tab1primary">
             <br>
             <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Your Courses - In progress</h3>
+                  <h3 class="box-title">Taken Courses - Within three quarters</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <thead>
+              <table class="table table-hover" ng-init="load_takenCourse()">
+                  <thead>
                   <tr>
                       <th>ID</th>
                       <th>Course Name</th>
                       <th>Professor</th>
-                      <th>Rate</th>  
+                      <th>Quarter</th>
+                      <th>Rate / Num</th>  
                       <th>Your Rate</th>                                        
                   </tr>
                   </thead>   
               <tbody>
-                <tr>
-                    <td>100</td>
-                    <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
-                    <td>Taflove</td>
-                    <td><span class="label label-success">4.35</span>
-                    </td>    
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                   
-                </tr>
-                <tr>
-                    <td>110</td>
-                    <td>Intro To Computer Programming</td>
-                    <td>Kuzmanovic</td>
-                    <td><span class="label label-danger">2.69</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                       
-                </tr>
-                <tr>
-                    <td>111</td>
-                    <td>Fundamentals Of Computer Programming I</td>
-                    <td>Tov</td>
-                    <td><span class="label label-warning">3.03</span></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                        
-                </tr>
-                <tr>
-                    <td>202</td>
-                    <td>Intro To Electrical Engineering</td>
-                    <td>Grayson</td>
-                    <td><span class="label label-success">3.98</span></td>
-                    <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                 
-                </tr>
-                <tr>
-                    <td>203</td>
-                    <td>Intro To Computer Engineering</td>
-                    <td>Zhou</td>
-                    <td><span class="label label-warning">3.15</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                        
-                </tr>  
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Your Courses - Completed</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover taken-course">
-                    <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Course Name</th>
-                      <th>Professor</th>
-                      <th>Rate</th>  
-                      <th>Your Rate</th>                                         
-                  </tr>
-                  </thead>   
-              <tbody>
-                <tr>
-                    <td>100</td>
-                    <td>Electrons, Photons, Bits: Adventures In Computer Engineering</td>
-                    <td>Taflove</td>
-                    <td><span class="label label-success">4.35</span>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                <tr ng-repeat="courseI in takenCourses">
+                    <td style="text-align: center" ng-bind="courseI.course_id"></td>
+                    <td ng-bind="courseI.title"></td>
+                    <td ng-bind="courseI.instructor"></td>
+                    <td ng-bind="courseI.term"></td>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h3>
                     </td>
-                    </td>                                       
-                </tr>
-                <tr>
-                    <td>110</td>
-                    <td>Intro To Computer Programming</td>
-                    <td>Kuzmanovic</td>
-                    <td><span class="label label-danger">2.69</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                       
-                </tr>
-                <tr>
-                    <td>111</td>
-                    <td>Fundamentals Of Computer Programming I</td>
-                    <td>Tov</td>
-                    <td><span class="label label-warning">3.03</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                        
-                </tr>
-                <tr>
-                    <td>202</td>
-                    <td>Intro To Electrical Engineering</td>
-                    <td>Grayson</td>
-                    <td><span class="label label-success">3.98</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
+                    <td>
+                      <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate | number : 2" ng-class="{'btn-danger': courseI.myRate <= 2.0 && courseI.myRate != 0, 'btn-warning': courseI.myRate < 3.5 && courseI.myRate > 2.0, 'btn-success': courseI.myRate >=3.5 && courseI.myRate <= 5 || courseI.myRate == 0}" ng-click="rateCourse(courseI)"></button>
                     </td>                                 
-                </tr>
-                <tr>
-                    <td>203</td>
-                    <td>Intro To Computer Engineering</td>
-                    <td>Zhou</td>
-                    <td><span class="label label-warning">3.15</span></td>
-                     <td class="but">
-                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="111">Rate Now</button>
-                    </td>                                        
-                </tr>  
-                  </table>
+                </tr> 
+              </tbody> 
+              </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-
             </div>
           </div>
         </div>
           
         <div class="tab-pane fade" id="tab4primary">
           <div class="jumbotron">
-            <h1>85</h1>
+            <h1>{{profileDetail[0].points}}</h1>
             <p>Rate more courses to earn more points</p>
           </div>
         </div>
@@ -329,59 +230,41 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Rate the Course</h3>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
+        <h3 class="modal-title" ng-bind="selectedCourse.course_id"></h3>
       </div>
       <div class="modal-body">
-            <label for="recipient-name" class="form-control-label">Course Name:</label>
-            <h4 id="recipient-name"></h4>
+            <label class="form-control-label">Course Name:</label>
+            <h4 ng-bind="selectedCourse.title"></h4>
+
+          <hr>
+            <label class="form-control-label">Instructor:</label>
+            <h4 ng-bind="selectedCourse.instructor"></h4>
 
           <hr>
 
-            <label class="form-control-label" >Current Rate:</label>
-            <a href="#" data-toggle="tooltip" data-placement="left" title="4.35">
-                <div id="rateYo1"></div>
-            </a>
+            <label class="form-control-label" >Quarter:</label>
+            <h4 ng-bind="selectedCourse.term"></h4>
 
           <hr>
 
-            <label class="form-control-label" >Your Rate:</label>
-            <div id="rateYo2"></div>
-            <!-- <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea> -->
+            <label class="form-control-label" >Current Average Rate / Num:</label>
+            <h3> 
+                <div ng-class="rateClass">{{selectedCourse.rating | number : 2}} out of {{selectedCourse.no_of_students}}</div>
+            </h3>
 
           <hr>
 
-            <label class="form-control-label" >Other Students Rates:</label>
-            <div class="image-list" style="">
-                <div class="images">
-                <a href="#" data-toggle="tooltip" data-placement="bottom" title="5.0">
-                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
-                </a>
-                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.5">
-                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
-                </a>
-                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.0">
-                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
-                </a>
-                <a href="#" data-toggle="tooltip" data-placement="bottom" title="4.5" style="font-size: 20px;">
-                    <img src="./resources/images/user.png" width="60" height="60" alt="icon" />
-                </a>
-                </div>
-            </div>
-            <!-- <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea> -->
+            <label class="form-control-label">Your Rate:</label>
+            <div id="rateYo"></div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="Rate(selectedCourse)">Submit</button>
       </div>
     </div>
   </div>
@@ -393,8 +276,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
-  <script type="text/javascript" src="js/profile.js"></script>>
-
+  <script type="text/javascript" src="js/profile.js"></script>
 
   <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
   

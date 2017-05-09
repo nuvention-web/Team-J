@@ -8,3 +8,44 @@ thead{
     vertical-align: middle !important;
     padding-left: 8px; 
 }
+
+th > a{
+	color: white;
+}
+
+th > a:hover{
+	color: #333;
+	text-decoration: none;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #aed1cc;
+    cursor: pointer;
+    color: white;
+}
+
+th > a:focus{
+	color: white;
+	text-decoration: none;
+}
+
+.modal-body > table > thead > tr > th{
+	height: 30 !important;
+	padding-left: 8px; 
+}
+
+.modal-body > table{
+	width: 50%;
+}
+
+tr:nth-child(even){
+	background-color: #eff6f5; !important;
+}
+
+tbody > tr:nth-child(odd){
+	background-color: #fff !important;
+}
+
+table{
+	font-family: 'Lato', sans-serif;
+}
