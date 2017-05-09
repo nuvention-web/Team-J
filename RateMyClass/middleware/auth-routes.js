@@ -6,6 +6,7 @@ var fs = require('fs');
 var https = require('https');
 var request = require('request');
 var xml2js = require('xml2js');
+var crypto = require('crypto');
 /*requiring node modules starts */
 
 
@@ -13,7 +14,8 @@ var xml2js = require('xml2js');
 var upload = multer({ dest: 'uploads' });
 
 
-var method=routes.prototype;
+var method = routes.prototype;
+var Salt = "fle053ddcbd8fc7e1870216dlfld253f";
 
 function routes(app,connection,sessionInfo){
 	
@@ -29,11 +31,7 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-// <<<<<<< HEAD
-// 			res.redirect('/main.html#?id='+sessionInfo.uid);
-// =======
 			res.redirect('main');
-// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
 		}else{
 			res.render('chat_login');		
 		}
@@ -48,10 +46,10 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 
 		username=req.body.username;
-		password=req.body.password;
+		password=saltHashPassword(req.body.password);
 
 		var data={
-			query:"select * from student where password='"+password+"' and netid='"+username+"' ",
+			query:"select password from student where password='"+password+"' and netid='"+username+"' ",
 			connection:connection
 		}
 		/*
@@ -134,11 +132,14 @@ function routes(app,connection,sessionInfo){
 		var result_send = {};
 		var firstname = "";
 		var lastname = "";
+		var flag = true;
+		check_NetID(req, res, connection, function(flag){
 
-		check_NetID(req, res, connection, function(){
 			sessionInfo.uid = req.body.username;
-			// res.write(JSON.stringify(result_send));
-			res.send("User entered");
+			if (flag == false)
+				res.send("No EECS Course Found");
+			else
+				res.send("User entered");
 			res.end();
 		});
 		
@@ -183,7 +184,7 @@ var query_runner=function(data,callback){
 }
 
 
-var get_courses=function(netid, connection, callback){
+var get_courses=function(res, netid, connection, callback){
 	var count = 0;
 	var terms = [4640,4650,4660];
 	var term_names = ['2016 Fall','2017 Winter','2017 Spring'];
@@ -209,7 +210,12 @@ var get_courses=function(netid, connection, callback){
 						}
 					});
 					if(++count == terms.length){
-						insert_courses(netid, courses, connection, callback);
+						if (courses.length != 0){
+							insert_courses(netid, courses, connection, callback);
+						}
+						else{
+							callback(false);
+						}
 					}
 				}
 				else{
@@ -243,7 +249,7 @@ var check_NetID=function(req, res, connection, callback){
 				console.log(result);
 				if(email.includes("@u.")){
 					console.log("Student");
-					insert_user(req, firstname, lastname, email, connection,callback);
+					insert_user(req, res, firstname, lastname, email, connection,callback);
 				}
 				else{
 					res.send("Not a student");
@@ -259,12 +265,12 @@ var check_NetID=function(req, res, connection, callback){
 }
 
 
-var insert_user=function(req, firstname, lastname, email, connection,callback){
+var insert_user=function(req, res, firstname, lastname, email, connection,callback){
 	var insert_data = {
 			netid:req.body.username,
 			first_name:firstname,
 			last_name:lastname,
-			password:req.body.password,
+			password:saltHashPassword(req.body.password),
 			email_id:email,
 			points:30,
 			p_photo:null,
@@ -287,7 +293,7 @@ var insert_user=function(req, firstname, lastname, email, connection,callback){
 	    		id:result.insertId,
 	    		msg:"OK"
 	    	};
-	    	get_courses(req.body.username, connection, callback);
+	    	get_courses(res, req.body.username, connection, callback);
 		}else{
 			result_send={
 	    		is_logged:false,
@@ -329,3 +335,21 @@ var insert_courses=function(netid, courses, connection, callback){
 		}		
 	});		
 }
+
+var sha512 = function(password, salt){
+    var hash = crypto.createHmac('sha512', Salt); /** Hashing algorithm sha512 */
+    hash.update(password);
+    var value = hash.digest('hex');
+    return {
+        salt:Salt,
+        passwordHash:value
+    };
+};
+
+function saltHashPassword(userpassword) {
+    var passwordData = sha512(userpassword, Salt);
+    return passwordData.passwordHash;
+}
+
+
+

@@ -126,7 +126,7 @@
                     <td style="text-align: center" ng-bind="courseI.course_id"></td>
                     <td ng-bind="courseI.title"></td>
                     <td ng-bind="courseI.instructor"></td>
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>
@@ -156,6 +156,11 @@
 
                       <hr>
 
+                      <label class="form-control-label" >Course Description:</label>
+                      <a ng-href="{{selectedCourse.url}}" ng-bind="selectedCourse.url" target="_blank"></a>
+
+                      <hr>
+
                       <label class="form-control-label" >Current Average Rate:</label>
                       <h3> 
                       <div ng-bind="selectedCourse.rating | number : 2" ng-class="rateClass"></div>
@@ -179,7 +184,7 @@
               <tbody>
                 <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
                     <td style="text-align: center">{{ rater.first_name }}</td>
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5}">{{ rater.rating | number : 2}}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ rater.rating | number : 2}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>
