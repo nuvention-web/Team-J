@@ -2,12 +2,23 @@ var app = angular.module('profile',[]);
 
 app.controller('profile', function ($scope,$http,$timeout,$window) {  
 
+    $scope.logOut = function(){
+      $http.get('/logout').then(function successCallback(response) {
+               console.log("Log Out");
+               $window.location.href = "chat_login.html";
+        }, function errorCallback(response){
+               console.log("Log Out Error");
+        });
+    }
+
     $scope.load_profile = function(){
+
+
         $http.get('/profile').then(function successCallback(response) {
                $scope.profileDetail = response.data;
                // $scope.profilePoints = $scope.profileDetail[0].points;
                $scope.legalname = $scope.profileDetail[0].first_name + " " + $scope.profileDetail[0].last_name;
-               console.log($scope.profileDetail);
+               // console.log($scope.profileDetail);
         }, function errorCallback(response){
                console.log("Error");
         });
@@ -17,7 +28,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         $http.get('/taken_Course').then(function successCallback(response) {
                $scope.takenCourses = response.data;
 
-               console.log($scope.takenCourses);
+               // console.log($scope.takenCourses);
         }, function errorCallback(response){
                console.log("Error");
         });
@@ -56,7 +67,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         $scope.rateClass = "label label-danger";
       else if (rates < 3.5 && rates > 2.0)
         $scope.rateClass = "label label-warning";
-      else if (rates < 5.0 && rates > 3.5)
+      else if (rates <= 5.0 && rates >= 3.5)
         $scope.rateClass = "label label-success";
       else
         $scope.rateClass = "label label-default";
@@ -64,33 +75,46 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
     }
 
     $scope.Rate = function(selectedCourse){
-        var rating = $("#rateYo").rateYo("rating");
 
+       if (selectedCourse.myRate != 0){
 
-        var data={
-            myNetID:selectedCourse.netid,
-            myCourseNum:selectedCourse.course_id,
-            myCourseTerm:selectedCourse.term,
-            myRate:rating,
-            myNumofRates:selectedCourse.no_of_students,
-            myAverageRate:selectedCourse.rating
-        }
+          alert("You already rated this course");
+          $window.location.reload();
+       }
+       else{
+          var rating = $("#rateYo").rateYo("rating");
 
-        // console.log(data);
+          if (rating == 0)
+            alert("You can't rate 0!");
 
-        data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
-        data.myNumofRates = data.myNumofRates + 1;
+          else{
+            var data={
+                myNetID:selectedCourse.netid,
+                myCourseNum:selectedCourse.class_num,
+                myCourseTerm:selectedCourse.term,
+                myRate:rating,
+                myNumofRates:selectedCourse.no_of_students,
+                myAverageRate:selectedCourse.rating
+            }
 
-        // console.log(data);
-        $("#rateYo").rateYo("destroy");
+            // console.log(data);
 
-        $http.post('/rateCourse',data).success(function(data, status, headers, config) {
-            console.log(data);
-            // $window.location.reload();
+            data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
+            data.myNumofRates = data.myNumofRates + 1;
 
-        }).error(function(data, status) {
-            alert("Connection Error");
-        });       
+            // console.log(data);
+            $("#rateYo").rateYo("destroy");
+
+            $http.post('/rateCourse',data).success(function(data, status, headers, config) {
+
+                // $scope.load_profile();
+                // $scope.load_takenCourse();
+                $window.location.reload();
+            }).error(function(data, status) {
+                alert("Connection Error");
+            }); 
+          }
+       }       
 
     }
 

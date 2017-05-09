@@ -9,6 +9,7 @@
   <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
@@ -49,7 +50,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <li><a href="home.html">Message</a></li>
+        <!-- <li><a href="home.html">Message</a></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -62,7 +63,7 @@
             <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
           </ul>
         </li>
-        <form class="navbar-form navbar-left" action="chat_login.html">
+        <form class="navbar-form navbar-left" ng-click="logOut()">
           <button type="submit" class="btn btn-default nav-login">
           Sign Out</button>
         </form>
@@ -122,11 +123,10 @@
               <tbody>
 
                 <tr ng-repeat="courseI in courses | orderBy:sortType:sortReverse | filter:searchCourse" ng-click="getDetails(courseI)">
-                    <td style="text-align: center">{{ courseI.course_id }}</td>
-                    <td>{{ courseI.title }}</td>
-                    <td>{{ courseI.instructor }}</td>
-<!--                     <td>{{ courseI.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating < 5}">{{ courseI.rating }} / {{courseI.no_of_students}}</span></h4>
+                    <td style="text-align: center" ng-bind="courseI.course_id"></td>
+                    <td ng-bind="courseI.title"></td>
+                    <td ng-bind="courseI.instructor"></td>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>
@@ -158,7 +158,7 @@
 
                       <label class="form-control-label" >Current Average Rate:</label>
                       <h3> 
-                      <div ng-bind="selectedCourse.rating" ng-class="rateClass"></div>
+                      <div ng-bind="selectedCourse.rating | number : 2" ng-class="rateClass"></div>
                       </h3>
 
                       <hr>
@@ -179,7 +179,7 @@
               <tbody>
                 <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
                     <td style="text-align: center">{{ rater.first_name }}</td>
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'rater-success': rater.rating >=3.5 && rater.rating < 5}">{{ rater.rating }}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5}">{{ rater.rating | number : 2}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>

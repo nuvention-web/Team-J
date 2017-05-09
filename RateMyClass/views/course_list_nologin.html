@@ -128,7 +128,7 @@
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
 <!--                     <td>{{ courseIl.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating < 5}">{{ courseI.rating }} / {{courseI.no_of_students}}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>

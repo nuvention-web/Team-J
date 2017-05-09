@@ -58,10 +58,10 @@ function routes(app,connection,sessionInfo){
 			Calling query_runner to run  SQL Query
 		*/
 		query_runner(data,function(result){
-			var uid="";			
-			result.forEach(function(element, index, array){
-				uid=element.id;
-			});
+			var uid=username;			
+			// result.forEach(function(element, index, array){
+			// 	uid=element.id;
+			// });
 
 			if(result.length>0) {
 
@@ -202,7 +202,7 @@ var get_courses=function(netid, connection, callback){
 					parser.parseString(body, function(err, result){
 						var classes = result['NW_SR_CLASS_LIST_GET_RESP']['CLASS'];
 						for(i=0;i<classes.length;i++){
-							if(classes[i]['SSR_COMPONENT']=='LEC' && classes[i]['SUBJECT']=='EECS'){
+							if((classes[i]['SSR_COMPONENT']=='LEC' || classes[i]['SSR_COMPONENT']=='SEM') && classes[i]['SUBJECT']=='EECS'){
 								courses.push(term_names[term_id]);
 								courses.push(classes[i]['CLASS_NBR'][0]);
 							}

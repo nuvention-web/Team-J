@@ -4,6 +4,15 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 
 	var selectedQuarter = "2017 Winter";
 	
+	$scope.logOut = function(){
+      $http.get('/logout').then(function successCallback(response) {
+               console.log("Log Out");
+               $window.location.href = "chat_login.html";
+        }, function errorCallback(response){
+               console.log("Log Out Error");
+        });
+    }
+    
 
 	$scope.getQuarter = function(quarter){
     	selectedQuarter = quarter;
@@ -77,7 +86,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		$scope.rateClass = "label label-danger";
     	else if (rates < 3.5 && rates > 2.0)
     		$scope.rateClass = "label label-warning";
-    	else if (rates < 5.0 && rates > 3.5)
+    	else if (rates <= 5.0 && rates >= 3.5)
     		$scope.rateClass = "label label-success";
     	else
     		$scope.rateClass = "label label-default";
