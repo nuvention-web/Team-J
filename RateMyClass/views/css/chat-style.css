@@ -1,9 +1,24 @@
 body {
 	background-color: #F9F7F7;
+	display:table;
 }
 
 .navbar-default {
    margin-bottom: 0 !important;
+}
+
+html,body{
+    height:100%;
+    width:100%;
+}
+
+nav-default{
+	display:table-row !important;
+	width: 100%;
+}
+
+.body{
+	height:100%;
 }
 
 /*--------------------------------------------------------------------------------
@@ -187,8 +202,8 @@ Header starts
 ---------------------------------------------------*/
 .list-wrapper-header{
 	height: 75px;
-	color: #fff;
-	background: #50d0c1;
+	color: white;
+	background: #5F9F9D;
 	margin-bottom:10px; 
 	padding: 10px;
 	-webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.35);
@@ -235,7 +250,7 @@ Header Ends
 List of users starts
 ------------------------------*/
 .list-wrapper{
-	height: 100%;
+	/*height: 100%;*/
 	padding: 0px ;
 	background: #F9F7F7;
 	color: #fff;
@@ -312,7 +327,7 @@ Message Area starts
 ------------------------------------*/
 
 .msg-wrapper{
-	height: 100%;		
+	/*height: 100%;		*/
 	padding: 0px;
 	border-left: solid 1px rgba(0, 0, 0, 0.3);
 }
@@ -320,9 +335,9 @@ Message Area starts
 	height: 35px;
 	padding: 10px;
 	position:absolute;
-	width: 97.56%;
-	color: rgba(0, 0, 0, 0.69);
-	background-color: rgb(80, 208, 193);	
+	width: 100%;
+	color: white;
+	background-color: #5F9F9D;
 	-webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.35);
 	-moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.35);
 	box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.35);
