@@ -16,7 +16,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 
 	$scope.getQuarter = function(quarter){
     	selectedQuarter = quarter;
-    	console.log(selectedQuarter);
+    	// console.log(selectedQuarter);
     	$scope.load_course(selectedQuarter);
 	}
 
@@ -80,7 +80,6 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 
 
     $scope.changeClass = function(rates){
-    	// console.log(rates);
 
     	if (rates <= 2.0)
     		$scope.rateClass = "label label-danger";

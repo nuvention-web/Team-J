@@ -49,7 +49,7 @@ function routes(app,connection,sessionInfo){
 		var rateNumofRates =req.body.myNumofRates;
 		var rateAverageRate = req.body.myAverageRate;
 
-		console.log(rateNumofRates, rateAverageRate);
+		// console.log(rateNumofRates, rateAverageRate);
 
 		var data={
 			query:"update course_taken set rating = '"+ rateRate + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
@@ -58,7 +58,7 @@ function routes(app,connection,sessionInfo){
 
 		query_runner(data,function(result){
 
-			console.log(result);
+			// console.log(result);
 			if(result.changedRows>0) {
 
 				var uid = "";
@@ -70,7 +70,7 @@ function routes(app,connection,sessionInfo){
 				}
 				query_runner(update_rating,function(result_online){
 
-					console.log(result_online);
+					// console.log(result_online);
 					if(result_online.changedRows>0) {
 
 						var update_student={
@@ -143,7 +143,7 @@ function routes(app,connection,sessionInfo){
 		var parts = url.parse(req.url, true);
 		var query = parts.query;
 		// var term = req;
-		console.log(query.term);
+		// console.log(query.term);
 
 		var term = query.term;
 
@@ -190,7 +190,7 @@ function routes(app,connection,sessionInfo){
 		var courseNum = query.courseNum;
 		var courseTerm = query.courseQuarter;
 
-		console.log(courseNum, courseTerm);
+		// console.log(courseNum, courseTerm);
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
@@ -260,7 +260,7 @@ function routes(app,connection,sessionInfo){
 	app.get('/profile', function(req, res){
 		
 		sessionInfo=req.session;
-		console.log(sessionInfo, sessionInfo.uid);
+		// console.log(sessionInfo, sessionInfo.uid);
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
@@ -270,7 +270,7 @@ function routes(app,connection,sessionInfo){
 			}
 
 			query_runner(data,function(result){
-				console.log(result);
+				// console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
@@ -297,7 +297,7 @@ function routes(app,connection,sessionInfo){
 			}
 
 			query_runner(data,function(result){
-				console.log(result);
+				// console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
@@ -308,19 +308,6 @@ function routes(app,connection,sessionInfo){
 			res.render('chat_login');		
 		}
 	});
-
-	// app.get('/profile.data', function(req, res){
-		
-	// 	sessionInfo=req.session;
-	// 	// console.log(sessionInfo);
-
-	// 	Render Login page If session is not set
-	// 	if(!sessionInfo.uid){
-	// 		res.render('profile');
-	// 	}else{
-	// 		res.render('chat_login');		
-	// 	}
-	// });	
 
 }
 

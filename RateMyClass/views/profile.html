@@ -105,7 +105,7 @@
                       <label for="NetIDInput" class="vcenter">NetID</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].netid}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{profileDetail[0].netid}}"> 
                       </div>
                     </div>
 
@@ -114,7 +114,7 @@
                       <label for="NetIDInput" class="vcenter">Email</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].email_id}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{profileDetail[0].email_id}}"> 
                       </div>
                     </div>
 
@@ -123,7 +123,7 @@
                       <label for="NetIDInput" class="vcenter">Name</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{legalname}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{legalname}}"> 
                       </div>
                     </div>
 
@@ -138,28 +138,12 @@
 
 
                 <br>
-
                 <hr>
-                <!-- <div class="container"> -->
-
-                <!-- <form>
-                    <div class="form-group row">
-
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Password</label></div>
-
-                      <div class="col-xs-4">
-                      <input type="Password" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].password}}">
-                      </div>
-
-                    </div> 
-
-                </form> -->
-                <!-- <br>
+                <br>
                
-                  <button class="btn btn-sm btn-success" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Save
-                  </button> -->
+                  <button class="btn btn-sm btn-success" type="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false" ng-click="passwordChangeModal()">
+                      Change Password
+                  </button>
 
 
                 </div>
@@ -221,9 +205,8 @@
             <hr>
             <ul>
               <li>First 50 students to rate 7 or more classes win $5 Amazon gift cards.</li>
-              <li>3 lucky students will get Amazon Echo Dot or Kindler Fire.</li>
-              <li>Available x/50</li>
-              <li></li>
+              <li>3 lucky students will get Amazon Echo Dot or Kindle Fire.</li>
+              <li id="getting-started"></li>
               <li>If you have any questions, please reach out to <a href="teamcoeva@gmail.com">teamcoeva@gmail.com.</a></li>
             </ul>
           </div>
@@ -282,6 +265,55 @@
   </div>
 </div>
 
+
+<div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Password Change</h3>
+      </div>
+      <div class="modal-body">
+
+          <label class="form-control-label" >Old Password:</label>
+          <input type="password" class="form-control" placeholder="Old Password" ng-model="oldPassword" ng-blur="checkOldPassword()">
+          <div class="alert-group" ng-hide="oldPasswordAlert">
+            <div class="alert alert-danger">
+              Your old password is wrong! 
+            </div>
+          </div>
+
+          <hr>
+
+            <label class="form-control-label" >New Password (longer than 8 characters):</label>
+            <input type="password" class="form-control" placeholder="New Password" ng-model="newPassword" ng-blur="checkNewPassword()">
+
+            <div class="alert-group" ng-hide="newPasswordAlert">
+              <div class="alert alert-danger">
+                Your new password is too short! 
+              </div>
+            </div>
+
+          <hr>
+
+            <label class="form-control-label">Confirm your new Password:</label>
+            <input type="password" class="form-control" placeholder="Confirm your new Password" ng-model="newPasswordConfirm" ng-change="checkNewPasswordConfirm()">
+
+            <div class="alert-group" ng-hide="newPasswordConfirmAlert">
+              <div class="alert alert-danger">
+                Your new password does not match! 
+              </div>
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="passwordChange()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
@@ -289,6 +321,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
   <script type="text/javascript" src="js/profile.js"></script>
+  <script src="../node_modules/jquery-countdown/dist/jquery.countdown.js"></script>
 
   <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
   

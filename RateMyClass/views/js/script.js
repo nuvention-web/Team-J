@@ -64,16 +64,9 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
         }
 
         $http.post('/login',data).success(function(data, status, headers, config) {
-
-
-            console.log(data.id);
             if(data.is_logged){
                 $scope.LoginAlert = true;
-// <<<<<<< HEAD
-//                 $window.location.href = "/main.html#?id="+data.uid;
-// =======
-                $window.location.href = "/profile.html#?id="+data.id;
-// >>>>>>> 8d69d9467e737a2e38544e9391c957e7fdba0e0a
+                $window.location.href = "/course_list.html";
             }else{
                 $scope.LoginAlert = false;
             }
@@ -154,7 +147,6 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config) {
-                // console.log("data", data);
                 if (data == "No record found"){
                     alert("Invalid NetID!");
                     location.reload();
