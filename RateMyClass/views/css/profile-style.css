@@ -91,4 +91,13 @@ td > h3{
     margin-bottom: 15px;
 }
 
+.modal-body > .alert-group > .alert{
+    font-size: 12px;
+    height: 18px;
+    padding: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
 
