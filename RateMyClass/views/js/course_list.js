@@ -9,20 +9,26 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
                console.log("Log Out");
                $window.location.href = "chat_login.html";
         }, function errorCallback(response){
-               console.log("Log Out Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Log out Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
     
 
 	$scope.getQuarter = function(quarter){
     	selectedQuarter = quarter;
-    	// console.log(selectedQuarter);
     	$scope.load_course(selectedQuarter);
 	}
 
     $scope.load_course = function(selectedQuarter){
 
-        // var term = "2016 Fall";
         if (selectedQuarter == null)
         	selectedQuarter = "2017 Winter";
         var config = {
@@ -31,20 +37,24 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		}
 		}
 
-		// console.log(config);
-
-        // console.log(selectedQuarter);
         $http.get('/courselist', config).then(function successCallback(response) {
                $scope.courses = response.data;
         }, function errorCallback(response){
-               console.log("Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
 
     $scope.load_search = function(){
 
         var searched = localStorage.getItem("searchedCourse");
-        // console.log(searched);
         $scope.searchCourse = searched;
         localStorage.setItem('searchedCourse', "");
     }
@@ -67,14 +77,19 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		}
 		}
 
-		// console.log(config);
-
         console.log(selectedQuarter);
         $http.get('/raterlist', config).then(function successCallback(response) {
                $scope.raters = response.data;
-               console.log($scope.raters);
         }, function errorCallback(response){
-               console.log("Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
 
@@ -89,7 +104,6 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		$scope.rateClass = "label label-success";
     	else
     		$scope.rateClass = "label label-default";
-
     }
 
 

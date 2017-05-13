@@ -58,21 +58,44 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
 
     /* Login operation starts*/
     $scope.login = function(){
-        var data={
-            username:$scope.username,
-            password:$scope.password
+
+        if ($scope.username == undefined || $scope.password == undefined){
+            swal({
+                    title: 'Error!',
+                    text: 'Empty Inputs!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+            })
         }
 
-        $http.post('/login',data).success(function(data, status, headers, config) {
-            if(data.is_logged){
-                $scope.LoginAlert = true;
-                $window.location.href = "/course_list.html";
-            }else{
-                $scope.LoginAlert = false;
+        else{
+
+            var data={
+                username:$scope.username,
+                password:$scope.password
             }
-        }).error(function(data, status) {
-            alert("Connection Error");
-        });
+
+            $http.post('/login',data).success(function(data, status, headers, config) {
+                if(data.is_logged){
+                    $scope.LoginAlert = true;
+                    $window.location.href = "/course_list.html";
+                }else{
+                    $scope.LoginAlert = false;
+                }
+            }).error(function(data, status) {
+                swal({
+                        title: 'Error!',
+                        text: 'Connection Error!',
+                        type: 'error',
+                        allowOutsideClick : false,
+                        animation: false,
+                        customClass: 'animated shake'
+                })
+            });
+        }
     };
     /* Login operation ends*/
 
@@ -148,34 +171,83 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
             })
             .success(function(data, status, headers, config) {
                 if (data == "No record found"){
-                    alert("Invalid NetID!");
-                    location.reload();
+                    swal({
+                        title: 'Error!',
+                        text: 'Invalid NetID!',
+                        type: 'error',
+                        allowOutsideClick : false,
+                        animation: false,
+                        customClass: 'animated shake'
+                    }).then(function(){
+                        location.reload();
+                    })
                 }
-                else if (data == "Not a student")
-                    alert("Sorry, currently this platform only for students!");
+                else if (data == "Not a student"){
+                    swal({
+                        title: 'Sorry!',
+                        text: 'Currently this platform for students only !',
+                        type: 'warning',
+                        allowOutsideClick : false,
+                        animation: false,
+                        customClass: 'animated shake'
+                    }).then(function(){
+                        location.reload();
+                    })
+                }
                 else{
                     if(data == "User entered"){
                         $scope.LoginAlert = true;
                         $window.location.href = "/profile.html#?id="+$scope.registerUsername;
 
                     }else{
-
-                        alert("Seems like you don't have any EECS courses, currently we only support EECS department. You can still check around, we will integrate soon.");
-                        $window.location.href = "/main.html#?id="+$scope.registerUsername;
+                        swal({
+                            title: 'Sorry!',
+                            text: 'Seems like you don\'t have any EECS courses, currently we only support EECS department. You can still check around, we will integrate soon.',
+                            type: 'warning',
+                            allowOutsideClick : false,
+                            animation: false,
+                            customClass: 'animated shake',
+                            timer: 5000
+                        }).then(function(){
+                            $window.location.href = "/main.html#?id="+$scope.registerUsername;
+                        })
                     }
                 }
             })
             .error(function(){
-                alert("Connection Error");
+                swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+                })
             });
     };
     /* Regsiter operation ends*/
 
     $scope.submitRegister = function(){
-        if ($scope.registerUsername == null || $scope.registerPassword == null || $scope.confirmPassword == null)
-            alert("Empty Inputs");
-        else if ($scope.confirmPasswordAlert == false || $scope.RegisterAlert == false || $scope.PasswordLengthAlert == false)
-            alert("Wrong Inputs");
+        if ($scope.registerUsername == null || $scope.registerPassword == null || $scope.confirmPassword == null){
+            swal({
+                    title: 'Error!',
+                    text: 'Empty Inputs!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+            })
+        }
+        else if ($scope.confirmPasswordAlert == false || $scope.RegisterAlert == false || $scope.PasswordLengthAlert == false){
+            swal({
+                    title: 'Error!',
+                    text: 'Invalid Inputs!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+            })
+        }
         else
             $("#myModal").modal('show');
     }
@@ -192,7 +264,14 @@ app.controller('login-register', function ($scope,$http,$timeout,$window) {
                     $scope.RegisterAlert = false;
                 }
             }).error(function(data, status) {
-                alert("Connection Error");
+                swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+                })
             });
         }
     }

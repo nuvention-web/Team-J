@@ -7,7 +7,15 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                console.log("Log Out");
                $window.location.href = "chat_login.html";
         }, function errorCallback(response){
-               console.log("Log Out Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Log out error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
 
@@ -18,7 +26,15 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                $scope.profileDetail = response.data;
                $scope.legalname = $scope.profileDetail[0].first_name + " " + $scope.profileDetail[0].last_name;
         }, function errorCallback(response){
-               console.log("Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
 
@@ -26,7 +42,15 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         $http.get('/taken_Course').then(function successCallback(response) {
                $scope.takenCourses = response.data;
         }, function errorCallback(response){
-               console.log("Error");
+               swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
         });
     }
 
@@ -73,14 +97,31 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
        if (selectedCourse.myRate != 0){
 
-          alert("You already rated this course");
+          swal({
+                    title: 'Error!',
+                    text: 'You already rated this course!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+          })
+
           $window.location.reload();
        }
        else{
           var rating = $("#rateYo").rateYo("rating");
 
-          if (rating == 0)
-            alert("You can't rate 0!");
+          if (rating == 0){
+            swal({
+                    title: 'Warning!',
+                    text: 'You can\'t rate 0!',
+                    type: 'warning',
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 3000
+            })
+          }
 
           else{
             var data={
@@ -100,7 +141,15 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
                 $window.location.reload();
             }).error(function(data, status) {
-                alert("Connection Error");
+                swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+                })
             }); 
           }
        }       
@@ -117,20 +166,32 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
     $scope.checkOldPassword = function(){
 
-        var data={
-            username:$scope.profileDetail[0].netid,
-            password:$scope.oldPassword
-        }
-        
-        $http.post('/oldPassword',data).success(function(data, status, headers, config) {
+        if ($scope.oldPassword == undefined)
+          $scope.oldPasswordAlert = false;
 
-            if (data.msg == false)
-              $scope.oldPasswordAlert = false;
-            else
-              $scope.oldPasswordAlert = true;
-        }).error(function(data, status) {
-            alert("Connection Error");
-        });
+        else{
+          var data={
+              username:$scope.profileDetail[0].netid,
+              password:$scope.oldPassword
+          }
+          
+          $http.post('/oldPassword',data).success(function(data, status, headers, config) {
+
+              if (data.msg == false)
+                $scope.oldPasswordAlert = false;
+              else
+                $scope.oldPasswordAlert = true;
+          }).error(function(data, status) {
+              swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+              })
+          });
+        }
     }
 
 
@@ -157,8 +218,16 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
     $scope.passwordChange = function(){
 
-        if ($scope.newPasswordAlert == false || $scope.newPasswordConfirmAlert == false || $scope.oldPasswordAlert == false)
-            alert("Invalid Inputs");
+        if ($scope.newPasswordAlert == false || $scope.newPasswordConfirmAlert == false || $scope.oldPasswordAlert == false){
+                swal({
+                    title: 'Error!',
+                    text: 'Invalid Inputs!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+                })
+        }
         else{
 
             var data={
@@ -168,14 +237,34 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
             $http.post('/changePassword',data).success(function(data, status, headers, config) {
 
-                if (data.msg == false)
-                  alert("Something went wrong");
+                if (data.msg == false){
+                    swal({
+                      title: 'Error!',
+                      text: 'Unable to change, please try again!',
+                      type: 'error',
+                      allowOutsideClick : false,
+                      animation: false,
+                      customClass: 'animated shake'
+                    })
+                }
+                  
                 else{
-                  alert("Success");
+                  swal({
+                      title: 'Great!',
+                      text:  'Your password changed!',
+                      type: 'success'
+                  })
                   $("#passwordChangeModal").modal('hide');
                 }
             }).error(function(data, status) {
-                alert("Connection Error");
+                swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+                })
             });
         }
 
@@ -184,9 +273,4 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
 
 });
-
-// $('#getting-started').countdown('2018/01/01', function(event) {
-//     $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
-// });
-
 

@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
@@ -206,7 +209,7 @@
             <ul>
               <li>First 50 students to rate 7 or more classes win $5 Amazon gift cards.</li>
               <li>3 lucky students will get Amazon Echo Dot or Kindle Fire.</li>
-              <li id="getting-started"></li>
+              <li><strong>Our next raffle time: </strong><span id="getting-started" style="color: #5F9F9D;"></span></li>
               <li>If you have any questions, please reach out to <a href="teamcoeva@gmail.com">teamcoeva@gmail.com.</a></li>
             </ul>
           </div>
@@ -259,7 +262,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="Rate(selectedCourse)">Submit</button>
+        <button type="button" class="btn btn-primary" ng-click="Rate(selectedCourse)">Submit</button>
       </div>
     </div>
   </div>
@@ -321,9 +324,15 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
   <script type="text/javascript" src="js/profile.js"></script>
-  <script src="../node_modules/jquery-countdown/dist/jquery.countdown.js"></script>
+  <script src="bower_components/jquery-countdown/dist/jquery.countdown.js"></script>
+  <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
-  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
+  <script type="text/javascript">
+  $('#getting-started').countdown('2017/05/21', function(event) {
+    $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+  });
+  </script>
   
 </div>
 
