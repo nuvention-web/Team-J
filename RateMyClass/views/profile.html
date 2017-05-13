@@ -257,11 +257,14 @@
           <hr>
 
             <label class="form-control-label">Your Rate:</label>
+            <br>
             <div id="rateYo"></div>
+            <div id="rateNumber"></div>
+            
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" ng-click="closeRate()">Close</button>
         <button type="button" class="btn btn-primary" ng-click="Rate(selectedCourse)">Submit</button>
       </div>
     </div>

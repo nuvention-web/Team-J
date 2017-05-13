@@ -2,7 +2,7 @@ var app = angular.module('course-list',[]);
 
 app.controller('course-list', function ($scope,$http,$timeout,$window) {	
 
-	var selectedQuarter = "2017 Winter";
+	var selectedQuarter = "2017 Fall";
 	
 	$scope.logOut = function(){
       $http.get('/logout').then(function successCallback(response) {
@@ -30,7 +30,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     $scope.load_course = function(selectedQuarter){
 
         if (selectedQuarter == null)
-        	selectedQuarter = "2017 Winter";
+        	selectedQuarter = "2017 Fall";
         var config = {
     		params: {
        		 	term: selectedQuarter

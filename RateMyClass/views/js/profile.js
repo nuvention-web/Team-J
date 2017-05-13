@@ -66,15 +66,20 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         $scope.selectedCourse = detail;
 
         $("#detailModal").modal('show');
+        $("#rateNumber").text('0');
         $scope.changeClass(detail.rating);
 
         $("#rateYo").rateYo({
             normalFill: "#A0A0A0",
             halfStar: true,
             starWidth: "40px",
+            rating: 0,
             multiColor: {
               "startColor": "#FF5A5F", //RED
               "endColor"  : "#A2D729"  //GREEN
+            },
+            onChange: function (rating) {
+                $(this).next().text(rating);
             }
         });
 
@@ -91,6 +96,12 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
       else
         $scope.rateClass = "label label-default";
 
+    }
+
+    $scope.closeRate = function(){
+      $("#detailModal").modal('hide');
+      $("#rateYo").rateYo("destroy");
+      $("#rateNumber").text('0');
     }
 
     $scope.Rate = function(selectedCourse){
@@ -136,9 +147,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
             data.myNumofRates = data.myNumofRates + 1;
 
-            $("#rateYo").rateYo("destroy");
+            
 
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
+                $("#detailModal").modal('hide');
+                $("#rateYo").rateYo("destroy");
                 $window.location.reload();
             }).error(function(data, status) {
                 swal({
@@ -150,6 +163,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                     customClass: 'animated shake',
                     timer: 4000
                 })
+
+                $("#detailModal").modal('hide');
+                $("#rateYo").rateYo("destroy");
             }); 
           }
        }       
