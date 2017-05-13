@@ -1,5 +1,6 @@
 *.DS_Store
 Answerly/*
 docs/*
+RateMyClass/views/bower_components/*
 RateMyClass/views/angularjs-toaster/*
 RateMyClass/views/fonts/*
