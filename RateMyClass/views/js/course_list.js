@@ -76,8 +76,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
        		 	courseQuarter: sC.term,
     		}
 		}
-
-        console.log(selectedQuarter);
+        
         $http.get('/raterlist', config).then(function successCallback(response) {
                $scope.raters = response.data;
         }, function errorCallback(response){

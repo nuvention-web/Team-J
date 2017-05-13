@@ -199,7 +199,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
         var newPassword = $scope.newPassword;
 
-        if (newPassword.length < 8 || newPassword == undefined)
+        if (newPassword == undefined)
+          $scope.newPasswordAlert = false;
+        else if (newPassword.length < 8)
           $scope.newPasswordAlert = false;
         else
           $scope.newPasswordAlert = true;
@@ -218,7 +220,21 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
     $scope.passwordChange = function(){
 
-        if ($scope.newPasswordAlert == false || $scope.newPasswordConfirmAlert == false || $scope.oldPasswordAlert == false){
+        $scope.checkOldPassword();
+        $scope.checkNewPassword();
+        $scope.checkNewPasswordConfirm();
+        if ($scope.newPassword == undefined || $scope.newPasswordConfirm == undefined || $scope.oldPassword == undefined){
+            swal({
+                    title: 'Error!',
+                    text: 'Empty Inputs!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake'
+            })
+        }
+
+        else if ($scope.newPasswordAlert == false || $scope.newPasswordConfirmAlert == false || $scope.oldPasswordAlert == false){
                 swal({
                     title: 'Error!',
                     text: 'Invalid Inputs!',

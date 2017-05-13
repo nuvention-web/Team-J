@@ -18,7 +18,7 @@ $('.carousel img').each(function() {
 $(window).on('resize', function (){
     $wHeight = $(window).outerHeight();
     $navHeight = $('.navbar').height();
-    console.log("height", $wHeight);
+    // console.log("height", $wHeight);
     $item.height($wHeight- $navHeight);
 });
 
