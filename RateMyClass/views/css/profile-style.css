@@ -148,6 +148,7 @@ td > h3{
     position: absolute;
     margin-top: 8px;
     border-radius: 3px;
+    padding: 0 4px;
 }
 
 #rateNumber2{
@@ -163,6 +164,7 @@ td > h3{
     position: absolute;
     margin-top: 8px;
     border-radius: 3px;
+    padding: 0 4px;
 }
 
 .modal-body > table > thead{

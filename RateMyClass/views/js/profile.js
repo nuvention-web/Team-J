@@ -91,11 +91,18 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             starWidth: "40px",
             rating: 0,
             multiColor: {
-              "startColor": "#FF5A5F", //RED
-              "endColor"  : "#A2D729"  //GREEN
+              "startColor": "#A2D729", 
+              "endColor"  : "#FF5A5F"
             },
             onChange: function (rating) {
-                $(this).next().text(rating);
+                var show;
+                if (rating >=0 && rating < 1.5)
+                  show = "Easy";
+                else if (rating >=1.5 && rating < 3)
+                  show = "Medium";
+                else
+                  show = "diffcult";
+                $(this).next().text(show);
             }
         });
 
@@ -109,7 +116,14 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
               "endColor"  : "#A2D729"  //GREEN
             },
             onChange: function (rating) {
-                $(this).next().text(rating);
+                var show;
+                if (rating >=0 && rating < 1.5)
+                  show = "Pointless";
+                else if (rating >=1.5 && rating < 3)
+                  show = "Medium";
+                else
+                  show = "Practical";
+                $(this).next().text(show);
             }
         });
 
@@ -159,9 +173,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
           var rating1 = $("#rateYo1").rateYo("rating");
           var rating2 = $("#rateYo2").rateYo("rating");
 
-          console.log(rating, rating1, rating2);
+          // console.log(rating, rating1, rating2);
 
-          if (rating == 0){
+          if (rating == 0 || rating1 == 0 || rating2 == 0){
             swal({
                     title: 'Warning!',
                     text: 'You can\'t rate 0!',
