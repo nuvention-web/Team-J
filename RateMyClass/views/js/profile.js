@@ -67,9 +67,39 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
         $("#detailModal").modal('show');
         $("#rateNumber").text('0');
+        $("#rateNumber1").text('0');
+        $("#rateNumber2").text('0');
         $scope.changeClass(detail.rating);
 
         $("#rateYo").rateYo({
+            normalFill: "#A0A0A0",
+            halfStar: true,
+            starWidth: "40px",
+            rating: 0,
+            multiColor: {
+              "startColor": "#FF5A5F", //RED
+              "endColor"  : "#A2D729"  //GREEN
+            },
+            onChange: function (rating) {
+                $(this).next().text(rating);
+            }
+        });
+
+        $("#rateYo1").rateYo({
+            normalFill: "#A0A0A0",
+            halfStar: true,
+            starWidth: "40px",
+            rating: 0,
+            multiColor: {
+              "startColor": "#FF5A5F", //RED
+              "endColor"  : "#A2D729"  //GREEN
+            },
+            onChange: function (rating) {
+                $(this).next().text(rating);
+            }
+        });
+
+        $("#rateYo2").rateYo({
             normalFill: "#A0A0A0",
             halfStar: true,
             starWidth: "40px",
@@ -101,7 +131,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
     $scope.closeRate = function(){
       $("#detailModal").modal('hide');
       $("#rateYo").rateYo("destroy");
+      $("#rateYo1").rateYo("destroy");
+      $("#rateYo2").rateYo("destroy");
       $("#rateNumber").text('0');
+      $("#rateNumber1").text('0');
+      $("#rateNumber2").text('0');
     }
 
     $scope.Rate = function(selectedCourse){
@@ -122,6 +156,10 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
        }
        else{
           var rating = $("#rateYo").rateYo("rating");
+          var rating1 = $("#rateYo1").rateYo("rating");
+          var rating2 = $("#rateYo2").rateYo("rating");
+
+          console.log(rating, rating1, rating2);
 
           if (rating == 0){
             swal({
@@ -152,6 +190,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
                 $("#detailModal").modal('hide');
                 $("#rateYo").rateYo("destroy");
+                $("#rateYo1").rateYo("destroy");
+                $("#rateYo2").rateYo("destroy");
+                $("#rateNumber").text('0');
+                $("#rateNumber1").text('0');
+                $("#rateNumber2").text('0');
                 $window.location.reload();
             }).error(function(data, status) {
                 swal({
@@ -166,6 +209,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
                 $("#detailModal").modal('hide');
                 $("#rateYo").rateYo("destroy");
+                $("#rateYo1").rateYo("destroy");
+                $("#rateYo2").rateYo("destroy");
+                $("#rateNumber").text('0');
+                $("#rateNumber1").text('0');
+                $("#rateNumber2").text('0');
             }); 
           }
        }       

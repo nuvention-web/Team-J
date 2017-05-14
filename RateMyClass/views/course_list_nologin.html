@@ -86,11 +86,13 @@
         <div class="col-sm-2">
           <nav class="nav-sidebar">
           <ul class="nav tabs">
-              <li class="active" ng-click="getQuarter('2017 Winter')"><a data-target="#tab3" data-toggle="tab">Winter 2017</a></li> 
-              <li class="" ng-click="getQuarter('2016 Fall')"><a data-target="#tab1" data-toggle="tab">Fall 2016</a></li>
-              <li class="" ng-click="getQuarter('2016 Spring')"><a data-target="#tab2" data-toggle="tab">Spring 2016</a></li>
-              <li class="" ng-click="getQuarter('2016 Winter')"><a data-target="#tab2" data-toggle="tab">Winter 2016</a></li>
-              <li class="" ng-click="getQuarter('2015 Fall')"><a data-target="#tab2" data-toggle="tab">Fall 2015</a></li>                                         
+              <li class="active" ng-click="getQuarter('2017 Fall')"><a data-toggle="tab">Fall 2017</a></li> 
+              <li class="" ng-click="getQuarter('2017 Spring')"><a data-toggle="tab">Spring 2017</a></li> 
+              <li class="" ng-click="getQuarter('2017 Winter')"><a data-toggle="tab">Winter 2017</a></li> 
+              <li class="" ng-click="getQuarter('2016 Fall')"><a data-toggle="tab">Fall 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Spring')"><a data-toggle="tab">Spring 2016</a></li>
+              <li class="" ng-click="getQuarter('2016 Winter')"><a data-toggle="tab">Winter 2016</a></li>
+              <li class="" ng-click="getQuarter('2015 Fall')"><a data-toggle="tab">Fall 2015</a></li>    
           </ul>
           </nav>
         </div>
@@ -115,13 +117,17 @@
                       <th>ID</th>
                       <th>Course Name</th>
                       <th>Professor</th>
-                      <th><a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
-                      Rate/Num
+                      <th>
+                      <a href="#" ng-click="sortType = 'rating'; sortReverse = !sortReverse">
+                      Overall
                       <span ng-show="sortType == 'rating' && !sortReverse" class="fa fa-caret-down"></span>
                       <span ng-show="sortType == 'rating' && sortReverse" class="fa fa-caret-up"></span>
-                      </a></th>
+                      </a>       
+                      </th> 
 
-                      <!-- <th style="text-align: center">Status</th> -->                            
+                      <th>Difficulty</th>
+                      <th>Effectiveness</th>
+
                   </tr>
                   </thead>   
               <tbody>
@@ -131,7 +137,11 @@
                     <td>{{ courseI.title }}</td>
                     <td>{{ courseI.instructor }}</td>
 <!--                     <td>{{ courseIl.meeting_day_time }}</td> -->
-                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.5, 'label-warning': courseI.rating < 4.0 && courseI.rating > 2.5, 'label-success': courseI.rating >=4.0 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h4>
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ courseI.rating | number : 2}}</span></h4>
+                    </td> 
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ courseI.rating | number : 2}}</span></h4>
+                    </td> 
+                    <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ courseI.rating | number : 2}}</span></h4>
                     </td>                                      
                 </tr>                                  
               </tbody>

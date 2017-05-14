@@ -29,14 +29,6 @@ th > a:focus{
 	text-decoration: none;
 }
 
-.modal-body > table > thead > tr > th{
-	height: 30 !important;
-	padding-left: 8px; 
-}
-
-.modal-body > table{
-	width: 50%;
-}
 
 tr:nth-child(even){
 	background-color: #eff6f5; !important;
