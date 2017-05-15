@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
@@ -105,7 +108,7 @@
                       <label for="NetIDInput" class="vcenter">NetID</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].netid}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{profileDetail[0].netid}}"> 
                       </div>
                     </div>
 
@@ -114,7 +117,7 @@
                       <label for="NetIDInput" class="vcenter">Email</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].email_id}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{profileDetail[0].email_id}}"> 
                       </div>
                     </div>
 
@@ -123,7 +126,7 @@
                       <label for="NetIDInput" class="vcenter">Name</label></div>
 
                       <div class="col-xs-4">
-                      <input type="text" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{legalname}}"> 
+                      <input type="text" class="form-control form-control-lg" aria-describedby="emailHelp" value="{{legalname}}"> 
                       </div>
                     </div>
 
@@ -138,28 +141,12 @@
 
 
                 <br>
-
                 <hr>
-                <!-- <div class="container"> -->
-
-                <!-- <form>
-                    <div class="form-group row">
-
-                      <div class="col-xs-2">
-                      <label for="NetIDInput" class="vcenter">Password</label></div>
-
-                      <div class="col-xs-4">
-                      <input type="Password" class="form-control form-control-lg" id="NetIDInput" aria-describedby="emailHelp" value="{{profileDetail[0].password}}">
-                      </div>
-
-                    </div> 
-
-                </form> -->
-                <!-- <br>
+                <br>
                
-                  <button class="btn btn-sm btn-success" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Save
-                  </button> -->
+                  <button class="btn btn-sm btn-success" type="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false" ng-click="passwordChangeModal()">
+                      Change Password
+                  </button>
 
 
                 </div>
@@ -186,8 +173,10 @@
                       <th>Course Name</th>
                       <th>Professor</th>
                       <th>Quarter</th>
-                      <th>Rate / Num</th>  
-                      <th>Your Rate</th>                                        
+                      <th>Overall</th>
+                      <th>Difficulty</th>
+                      <th>Effectiveness</th>      
+                      <th>Rate</th>                                        
                   </tr>
                   </thead>   
               <tbody>
@@ -196,10 +185,14 @@
                     <td ng-bind="courseI.title"></td>
                     <td ng-bind="courseI.instructor"></td>
                     <td ng-bind="courseI.term"></td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}} / {{courseI.no_of_students}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}}</span></h3>
                     </td>
-                    <td>
-                      <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate | number : 2" ng-class="{'btn-danger': courseI.myRate <= 2.0 && courseI.myRate != 0, 'btn-warning': courseI.myRate < 3.5 && courseI.myRate > 2.0, 'btn-success': courseI.myRate >=3.5 && courseI.myRate <= 5 || courseI.myRate == 0}" ng-click="rateCourse(courseI)"></button>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-success': courseI.difficulty <= 2.0, 'label-warning': courseI.difficulty < 3.5 && courseI.difficulty > 2.0, 'label-danger': courseI.difficulty >=3.5 && courseI.difficulty <= 5}">{{ courseI.difficulty | number : 2}}</span></h3>
+                    </td>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.effectiveness <= 2.0, 'label-warning': courseI.effectiveness < 3.5 && courseI.effectiveness > 2.0, 'label-success': courseI.effectiveness >=3.5 && courseI.effectiveness <= 5}">{{ courseI.effectiveness | number : 2}}</span></h3>
+                    </td>
+                    <td style="text-align: center">
+                      <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
                     </td>                                 
                 </tr> 
               </tbody> 
@@ -222,8 +215,8 @@
             <ul>
               <li>First 50 students to rate 7 or more classes win $5 Amazon gift cards.</li>
               <li>3 lucky students will get Amazon Echo Dot or Kindle Fire.</li>
-
-<!--               <li>If you have any questions, please reach out to <a href="teamcoeva@gmail.com">teamcoeva@gmail.com.</a></li> -->
+              <li><strong>Our next raffle time: </strong><span id="getting-started" style="color: #5F9F9D;"></span></li>
+              <li>If you have any questions, please reach out to <a href="teamcoeva@gmail.com">teamcoeva@gmail.com.</a></li>
             </ul>
           </div>
         </div>
@@ -245,42 +238,124 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" ng-bind="selectedCourse.course_id"></h3>
+        <h4 class="modal-title" ng-bind="(selectedCourse.course_id)"></h4>
       </div>
       <div class="modal-body">
             <label class="form-control-label">Course Name:</label>
             <h4 ng-bind="selectedCourse.title"></h4>
 
-          <hr>
             <label class="form-control-label">Instructor:</label>
             <h4 ng-bind="selectedCourse.instructor"></h4>
-
-          <hr>
 
             <label class="form-control-label" >Quarter:</label>
             <h4 ng-bind="selectedCourse.term"></h4>
 
           <hr>
 
-            <label class="form-control-label" >Current Average Rate / Num:</label>
-            <h3> 
-                <div ng-class="rateClass">{{selectedCourse.rating | number : 2}} / {{selectedCourse.no_of_students}}</div>
-            </h3>
+          <table class="table">
+          <thead>
+            <tr>
+              <th>Overall</th>
+              <th>Number</th>
+              <th>Difficulty</th>
+              <th>Number</th>
+              <th>Effectiveness</th>
+              <th>Number</th>                                           
+            </tr>
+          </thead>
+          <tbody>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.rating <= 2.0, 'label-warning': selectedCourse.rating < 3.5 && selectedCourse.rating > 2.0, 'label-success': selectedCourse.rating >=3.5 && selectedCourse.rating <= 5}" ng-bind="selectedCourse.rating | number : 2"></span></h4>
+              </td>
+              <td style="text-align: center"><h4 ng-bind="selectedCourse.no_of_students"></h4>
+              </td>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-success': selectedCourse.difficulty <= 2.0, 'label-warning': selectedCourse.difficulty < 3.5 && selectedCourse.difficulty > 2.0, 'label-danger': selectedCourse.difficulty >=3.5 && selectedCourse.difficulty <= 5}" ng-bind="selectedCourse.difficulty | number : 2"></span></h4>
+              </td>
+              <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+              </td>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.effectiveness <= 2.0, 'label-warning': selectedCourse.effectiveness < 3.5 && selectedCourse.effectiveness > 2.0, 'label-success': selectedCourse.effectiveness >=3.5 && selectedCourse.effectiveness <= 5}" ng-bind="selectedCourse.effectiveness | number : 2"></span></h4>
+              </td>
+              <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+              </td>
+          </tbody>
+          </table>
 
-          <hr>
+          <hr>  
 
-            <label class="form-control-label">Your Rate:</label>
+            <label class="form-control-label">Overall Rate:</label>
+            <br>
             <div id="rateYo"></div>
+            <div id="rateNumber"></div>
+            <br>
+            <label class="form-control-label">Difficulty Rate:</label>
+            <br>
+            <div id="rateYo1"></div>
+            <div id="rateNumber1"></div>
+            <br>
+            <label class="form-control-label">Effectiveness Rate:</label>
+            <br>
+            <div id="rateYo2"></div>
+            <div id="rateNumber2"></div>
+
+            
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="Rate(selectedCourse)">Submit</button>
+        <button type="button" class="btn btn-secondary" ng-click="closeRate()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="Rate(selectedCourse)">Submit</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Password Change</h3>
+      </div>
+      <div class="modal-body">
+
+          <label class="form-control-label" >Old Password:</label>
+          <input type="password" class="form-control" placeholder="Old Password" ng-model="oldPassword" ng-blur="checkOldPassword()">
+          <div class="alert-group" ng-hide="oldPasswordAlert">
+            <div class="alert alert-danger">
+              Your old password is wrong! 
+            </div>
+          </div>
+
+          <hr>
+
+            <label class="form-control-label" >New Password (longer than 8 characters):</label>
+            <input type="password" class="form-control" placeholder="New Password" ng-model="newPassword" ng-blur="checkNewPassword()">
+
+            <div class="alert-group" ng-hide="newPasswordAlert">
+              <div class="alert alert-danger">
+                Your new password is too short! 
+              </div>
+            </div>
+
+          <hr>
+
+            <label class="form-control-label">Confirm your new Password:</label>
+            <input type="password" class="form-control" placeholder="Confirm your new Password" ng-model="newPasswordConfirm" ng-change="checkNewPasswordConfirm()">
+
+            <div class="alert-group" ng-hide="newPasswordConfirmAlert">
+              <div class="alert alert-danger">
+                Your new password does not match! 
+              </div>
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="passwordChange()">Submit</button>
+      </div>
+    </div>
   </div>
+</div>
+</div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
@@ -289,7 +364,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
   <script type="text/javascript" src="js/profile.js"></script>
 
-  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
+  <script src="bower_components/jquery-countdown/dist/jquery.countdown.js"></script>
+  <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+  <script type="text/javascript">
+  $('#getting-started').countdown('2017/05/21', function(event) {
+    $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+  });
+  </script>
+
 
 </body>
 </html>

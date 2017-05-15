@@ -146,9 +146,66 @@ function routes(app,connection,sessionInfo){
 		
 	});
 
-	/*
-		post to handle Logout request
-	*/
+
+	app.post('/oldPassword', function(req, res){
+
+		var userNetid=req.body.username;
+		var userPassword=saltHashPassword(req.body.password);
+
+
+		var data={
+			query:"select ( exists ( select * from student where netid = '"+ userNetid + "' and password = '"+ userPassword +"' ) ) as findPassword;",
+			connection:connection
+		}
+
+		query_runner(data,function(result){
+
+			if (result[0].findPassword == 1){
+		    	result_send={
+		    		msg:true
+		    	};
+		    } 
+		    else {
+		    	result_send={
+		    		msg:false
+		    	};
+		    } 
+		    res.write(JSON.stringify(result_send));
+			res.end();
+		});
+	});	
+
+	app.post('/changePassword', function(req, res){
+
+		var userNetid=req.body.username;
+		var userPassword=saltHashPassword(req.body.password);
+
+
+		var data={
+			query:"update student set password = '"+ userPassword +"' where netid='"+ userNetid +"';",
+			connection:connection
+		}
+
+		console.log(data.query);
+
+		query_runner(data,function(result){
+
+			console.log(result);
+			if(result.changedRows > 0) {
+		    	result_send={
+		    		msg:true
+		    	};
+		    } 
+		    else {
+		    	result_send={
+		    		msg:false
+		    	};
+		    } 
+		    res.write(JSON.stringify(result_send));
+			res.end();
+		});
+	});	
+
 	
 
 }

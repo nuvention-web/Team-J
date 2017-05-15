@@ -55,21 +55,29 @@ table{
 }
 table > thead > tr > th:nth-child(1){
     text-align: center;
-    width: 5%;
+    width: 6%;
 }
 table > thead > tr > th:nth-child(2){
-    width: 25%;
-    padding-left: 3em;
+    width: 15%;
+    padding-left: 1em;
 }
 table > thead > tr > th:nth-child(3){
-    width: 10%;
+    width: 6%;
 }
 table > thead > tr > th:nth-child(4){
-    width: 3%;
+    width: 2%;
+    text-align: center;
+}
+table > thead > tr > th:nth-child(5){
+    width: 2%;
+    text-align: center;
+}
+table > thead > tr > th:nth-child(6){
+    width: 2%;
     text-align: center;
 }
 table > tbody > tr > td:nth-child(2){
-    padding-left: 3em;
+    padding-left: 1em;
 }
 
 .modal-header{
@@ -98,4 +106,73 @@ table > tbody > tr > td:nth-child(2){
 .image-list > .images > a > img{
     margin-left: 1em;
 }
+
+.col-sm-12 > .col-sm-2{
+    width: 14%;
+    padding-left: 0;
+}
+
+.col-sm-12 > .col-sm-10{
+    width: 86%;
+    padding-left: 10px;
+}
+
+.modal-body > table > thead > tr > th{
+    height: 30 !important;
+    padding-left: 8px; 
+}
+
+#ratetable > thead{
+    background: #5F9F9D;
+    color: white;
+    font-size: 14px !important;
+}
+
+#ratetable > thead > tr > th {
+    text-align: center;
+    padding: 1px;
+}
+
+#ratetable > thead > tr > th:nth-child(1){
+    width: 5%;
+}
+
+#ratetable > thead > tr > th:nth-child(2){
+    width: 5%;
+}
+
+#ratetable > thead > tr > th:nth-child(3){
+    width: 5%;
+}
+
+#ratetable > thead > tr > th:nth-child(4){
+    width: 5%;
+}
+
+#ratetable > thead > tr > th:nth-child(5){
+    width: 5%;
+}
+
+#ratetable > thead > tr > th:nth-child(6){
+    width: 5%;
+}
+
+#otherRateTable > thead > tr > th:nth-child(1){
+    width: 5%;
+}
+
+#otherRateTable > thead > tr > th:nth-child(2){
+    width: 5%;
+}
+
+#otherRateTable > thead > tr > th:nth-child(3){
+    width: 5%;
+}
+
+#otherRateTable > thead > tr > th:nth-child(4){
+    width: 5%;
+}
+
+
+
 
