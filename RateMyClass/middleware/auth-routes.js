@@ -191,7 +191,7 @@ var get_courses=function(res, netid, connection, callback){
 	var courses = [];
 	for (var t=0;t<terms.length;t++){
 		(function(term_id){
-			var url_course = 'https://nusoaqa.northwestern.edu/NW_SR_CLASS_LIST_R/Request/STUDENT/'+netid+'/'+terms[term_id];
+			var url_course = 'https://nusoa.northwestern.edu/NW_SR_CLASS_LIST_R/Request/STUDENT/'+netid+'/'+terms[term_id];
 			request.get(url_course, {
 				auth: {
 					'user': 'eecs473-coeva-soa',
@@ -231,7 +231,7 @@ var get_courses=function(res, netid, connection, callback){
 
 var check_NetID=function(req, res, connection, callback){
 
-	var url_directory = 'https://nusoaqa.northwestern.edu/DirectorySearch/res/netid/pub/' + req.body.username;
+	var url_directory = 'https://nusoa.northwestern.edu/DirectorySearch/res/netid/pub/' + req.body.username;
 	request.get(url_directory, {
 			auth: {
 					'user': 'eecs473-coeva-soa',
