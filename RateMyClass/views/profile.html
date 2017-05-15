@@ -187,9 +187,9 @@
                     <td ng-bind="courseI.term"></td>
                     <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}}</span></h3>
                     </td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-success': courseI.difficulty <= 2.0, 'label-warning': courseI.difficulty < 3.5 && courseI.difficulty > 2.0, 'label-danger': courseI.difficulty >=3.5 && courseI.difficulty <= 5}">{{ courseI.difficulty | number : 2}}</span></h3>
                     </td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.effectiveness <= 2.0, 'label-warning': courseI.effectiveness < 3.5 && courseI.effectiveness > 2.0, 'label-success': courseI.effectiveness >=3.5 && courseI.effectiveness <= 5}">{{ courseI.effectiveness | number : 2}}</span></h3>
                     </td>
                     <td style="text-align: center">
                       <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
@@ -256,39 +256,28 @@
           <thead>
             <tr>
               <th>Overall</th>
+              <th>Number</th>
               <th>Difficulty</th>
+              <th>Number</th>
               <th>Effectiveness</th>
-              <th>Number of students</th>                                       
+              <th>Number</th>                                           
             </tr>
           </thead>
           <tbody>
-              <td style="text-align: center"><h4><span class="label" ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></span></h4>
-              </td>
-              <td style="text-align: center"><h4><span class="label" ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></span></h4>
-              </td>
-              <td style="text-align: center"><h4><span class="label" ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></span></h4>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.rating <= 2.0, 'label-warning': selectedCourse.rating < 3.5 && selectedCourse.rating > 2.0, 'label-success': selectedCourse.rating >=3.5 && selectedCourse.rating <= 5}" ng-bind="selectedCourse.rating | number : 2"></span></h4>
               </td>
               <td style="text-align: center"><h4 ng-bind="selectedCourse.no_of_students"></h4>
               </td>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-success': selectedCourse.difficulty <= 2.0, 'label-warning': selectedCourse.difficulty < 3.5 && selectedCourse.difficulty > 2.0, 'label-danger': selectedCourse.difficulty >=3.5 && selectedCourse.difficulty <= 5}" ng-bind="selectedCourse.difficulty | number : 2"></span></h4>
+              </td>
+              <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+              </td>
+              <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.effectiveness <= 2.0, 'label-warning': selectedCourse.effectiveness < 3.5 && selectedCourse.effectiveness > 2.0, 'label-success': selectedCourse.effectiveness >=3.5 && selectedCourse.effectiveness <= 5}" ng-bind="selectedCourse.effectiveness | number : 2"></span></h4>
+              </td>
+              <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+              </td>
           </tbody>
-
-<!--             <label class="form-control-label" >Current Overall Rate:</label>
-            <h4> 
-                <div ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></div>
-            </h4>
-            <label class="form-control-label" >Current Difficulty Rate:</label>
-            <h4> 
-                <div ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></div>
-            </h4>
-            <label class="form-control-label" >Current Effectiveness Rate:</label>
-            <h4> 
-                <div ng-class="rateClass" ng-bind="selectedCourse.rating | number : 2"></div>
-            </h4>
-            <label class="form-control-label" >Current rated number of students:</label>
-            <h4> 
-                <div ng-bind="selectedCourse.no_of_students"></div>
-            </h4> -->
-            </table>
+          </table>
 
           <hr>  
 

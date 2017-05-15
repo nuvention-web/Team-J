@@ -45,14 +45,21 @@ function routes(app,connection,sessionInfo){
 		var rateNetID=req.body.myNetID;
 		var rateCourseNum=req.body.myCourseNum;
 		var rateCourseTerm=req.body.myCourseTerm;
+
 		var rateRate=req.body.myRate;
-		var rateNumofRates =req.body.myNumofRates;
+		var raterDifficulty=req.body.myrDifficulty;
+		var raterEffectiveness=req.body.myrEffectiveness;
+
+		var rateNumofRates = req.body.myNumofRates;
 		var rateAverageRate = req.body.myAverageRate;
+		var rateAverageDifficulty = req.body.myAverageDifficulty;
+		var rateAverageEffectiveness = req.body.myAverageEffectiveness;
+		var rateOurNum = req.body.myOurNum;
 
 		// console.log(rateNumofRates, rateAverageRate);
 
 		var data={
-			query:"update course_taken set rating = '"+ rateRate + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
+			query:"update course_taken set rating = '"+ rateRate + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
 			connection:connection
 		}
 
@@ -65,7 +72,7 @@ function routes(app,connection,sessionInfo){
 				sessionInfo.uid = rateNetID;
 
 				var update_rating={
-					query:"update course set rating = '"+ rateAverageRate + "', no_of_students = '"+ rateNumofRates +"' where class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "'",
+					query:"update course set rating = '"+ rateAverageRate + "', difficulty = '"+ rateAverageDifficulty + "', effectiveness = '"+ rateAverageEffectiveness + "', no_of_students = '"+ rateNumofRates +"', our_num = '"+ rateOurNum +"' where class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "'",
 					connection:connection
 				}
 				query_runner(update_rating,function(result_online){
@@ -201,6 +208,7 @@ function routes(app,connection,sessionInfo){
 			}
 
 			query_runner(data,function(result){
+				// console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
@@ -214,6 +222,7 @@ function routes(app,connection,sessionInfo){
 			}
 
 			query_runner(data,function(result){
+				// console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
@@ -292,7 +301,7 @@ function routes(app,connection,sessionInfo){
 		// console.log(sessionInfo.uid);
 		if(sessionInfo.uid){
 			var data={
-				query:"select ct.netid, ct.rating as myRate, c.* from course_taken as ct, course as c where ct.netid='" + sessionInfo.uid + "' and ct.class_num = c.class_num and ct.term = c.term",
+				query:"select ct.netid, ct.rating as myRate, ct.rDifficulty as rDifficulty, ct.rEffectiveness as rEffectiveness, c.* from course_taken as ct, course as c where ct.netid='" + sessionInfo.uid + "' and ct.class_num = c.class_num and ct.term = c.term",
 				connection:connection
 			}
 

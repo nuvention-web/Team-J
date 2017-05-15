@@ -63,7 +63,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     	$scope.selectedCourse = detail;
 
     	$("#courseDetail").modal('show');
-    	$scope.changeClass(detail.rating);
+    	// $scope.changeClass(detail.rating);
     	$scope.load_rater($scope.selectedCourse);
     }
 
@@ -76,9 +76,11 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
        		 	courseQuarter: sC.term,
     		}
 		}
-        
+        // console.log(config);
         $http.get('/raterlist', config).then(function successCallback(response) {
+
                $scope.raters = response.data;
+               // console.log($scope.raters);
         }, function errorCallback(response){
                swal({
                     title: 'Error!',
@@ -93,7 +95,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     }
 
 
-    $scope.changeClass = function(rates){
+    $scope.rateClass = function(rates){
 
     	if (rates <= 2.0)
     		$scope.rateClass = "label label-danger";
@@ -103,6 +105,10 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     		$scope.rateClass = "label label-success";
     	else
     		$scope.rateClass = "label label-default";
+    }
+
+    $scope.intialRate = function(){
+        $scope.raters = "";
     }
 
 

@@ -191,6 +191,14 @@ td > h3{
 }
 
 .modal-body > table > thead > tr > th:nth-child(4){
-    width: 10%;
+    width: 5%;
+}
+
+.modal-body > table > thead > tr > th:nth-child(5){
+    width: 5%;
+}
+
+.modal-body > table > thead > tr > th:nth-child(6){
+    width: 5%;
 }
 

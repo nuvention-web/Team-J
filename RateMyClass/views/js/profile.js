@@ -70,6 +70,8 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
         $("#rateNumber1").text('0');
         $("#rateNumber2").text('0');
         $scope.changeClass(detail.rating);
+        $scope.changeClass(detail.difficulty);
+        $scope.changeClass(detail.effectiveness);
 
         $("#rateYo").rateYo({
             normalFill: "#A0A0A0",
@@ -98,7 +100,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 var show;
                 if (rating >=0 && rating < 1.5)
                   show = "Easy";
-                else if (rating >=1.5 && rating < 3)
+                else if (rating >=1.5 && rating <= 3.5)
                   show = "Medium";
                 else
                   show = "diffcult";
@@ -119,7 +121,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 var show;
                 if (rating >=0 && rating < 1.5)
                   show = "Pointless";
-                else if (rating >=1.5 && rating < 3)
+                else if (rating >=1.5 && rating <= 3.5)
                   show = "Medium";
                 else
                   show = "Practical";
@@ -191,17 +193,34 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 myNetID:selectedCourse.netid,
                 myCourseNum:selectedCourse.class_num,
                 myCourseTerm:selectedCourse.term,
+
                 myRate:rating,
+                myrDifficulty:rating1,
+                myrEffectiveness:rating2,
+
                 myNumofRates:selectedCourse.no_of_students,
-                myAverageRate:selectedCourse.rating
+                myOurNum:selectedCourse.our_num,
+                myAverageRate:selectedCourse.rating,
+                myAverageDifficulty:selectedCourse.difficulty,
+                myAverageEffectiveness:selectedCourse.effectiveness
             }
 
             data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
+            data.myAverageDifficulty = (data.myOurNum * data.myAverageDifficulty + data.myrDifficulty) / (data.myOurNum + 1);
+            data.myAverageEffectiveness = (data.myOurNum * data.myAverageEffectiveness + data.myrEffectiveness) / (data.myOurNum + 1);
             data.myNumofRates = data.myNumofRates + 1;
+            data.myOurNum = data.myOurNum + 1;
 
             
 
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
+                swal({
+                      title: 'Success!',
+                      text:  'You rated this course',
+                      allowOutsideClick : false,
+                      type: 'success'
+                })
+
                 $("#detailModal").modal('hide');
                 $("#rateYo").rateYo("destroy");
                 $("#rateYo1").rateYo("destroy");
