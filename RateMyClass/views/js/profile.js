@@ -103,7 +103,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 else if (rating >=1.5 && rating <= 3.5)
                   show = "Medium";
                 else
-                  show = "diffcult";
+                  show = "Diffcult";
                 $(this).next().text(show);
             }
         });
@@ -120,11 +120,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             onChange: function (rating) {
                 var show;
                 if (rating >=0 && rating < 1.5)
-                  show = "Pointless";
+                  show = "Ineffective";
                 else if (rating >=1.5 && rating <= 3.5)
-                  show = "Medium";
+                  show = "Somewhat Useful";
                 else
-                  show = "Practical";
+                  show = "Highly Useful ";
                 $(this).next().text(show);
             }
         });
