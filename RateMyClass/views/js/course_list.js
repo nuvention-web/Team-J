@@ -1,8 +1,9 @@
 var app = angular.module('course-list',[]);
 
-app.controller('course-list', function ($scope,$http,$timeout,$window) {	
+app.controller('course-list', function ($scope,$http,$timeout,$window,$location) {	
 
 	var selectedQuarter = "2017 Fall";
+    var userid = $location.search()['id']
 	
 	$scope.logOut = function(){
       $http.get('/logout').then(function successCallback(response) {
@@ -28,6 +29,8 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
 	}
 
     $scope.load_course = function(selectedQuarter){
+
+        console.log("user id is ", $window.location.hash.substring(2,));
 
         if (selectedQuarter == null)
         	selectedQuarter = "2017 Fall";

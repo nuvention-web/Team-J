@@ -82,7 +82,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   		temp="";
   		$http.get('/get_user_id').success(function successCallback(){
   			temp=response.data;
-  			console.log(temp);
+  			console.log("get user name");
   			return temp;
   		}, function errorCallback(){
   			console.log("user fetch error");

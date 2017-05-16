@@ -36,6 +36,7 @@ function routes(app,connection,io,sessionInfo){
 
 			var should_add=true;
 	    	if(users.length == 0){
+	    		console.log(userinfo);
 	    		userinfo.socketId=socket.id;
 	    		users.push(userinfo);
 	    	}else{
