@@ -4,3 +4,4 @@ docs/*
 RateMyClass/views/bower_components/*
 RateMyClass/views/angularjs-toaster/*
 RateMyClass/views/fonts/*
+RateMyClass/node_modules/*
