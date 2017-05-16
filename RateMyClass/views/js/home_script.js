@@ -77,6 +77,9 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.send_to_user_name="";
   	$scope.send_text;
   	$scope.msgs=[];
+  	$scope.targetUser = JSON.parse(sessionStorage.target);
+
+  	console.log($scope.targetUser);
 
   	$scope.get_user_name=function(){
   		temp="";

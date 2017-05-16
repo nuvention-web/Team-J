@@ -209,7 +209,7 @@
                           </tr>
                         </thead>   
               <tbody>
-                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
+                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0" ng-click="getTargetNetID(rater)">
                     <td style="text-align: center">{{ rater.first_name }}</td>
                     <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ rater.rating | number : 2}}</span></h4>
                     </td> 

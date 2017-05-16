@@ -111,6 +111,12 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
         $scope.raters = "";
     }
 
+    $scope.getTargetNetID = function(target){
+        // console.log(target);
+
+        sessionStorage.target = JSON.stringify(target.netid);
+    }
+
 
     
 
