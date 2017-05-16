@@ -197,13 +197,13 @@ function routes(app,connection,sessionInfo){
 		var courseNum = query.courseNum;
 		var courseTerm = query.courseQuarter;
 
-		// console.log(courseNum, courseTerm);
+		// console.log(sessionInfo.uid);
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
 			
 			var data={
-				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid order by rating",
+				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.netid != '" + sessionInfo.uid + "' order by rating",
 				connection:connection
 			}
 
