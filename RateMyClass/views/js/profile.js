@@ -2,9 +2,6 @@ var app = angular.module('profile',[]);
 
 app.controller('profile', function ($scope,$http,$timeout,$window) {  
 
-    $scope.targetUser = JSON.parse(sessionStorage.target);
-    console.log($scope.targetUser);
-
     $scope.logOut = function(){
       $http.get('/logout').then(function successCallback(response) {
                console.log("Log Out");

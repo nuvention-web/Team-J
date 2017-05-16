@@ -115,6 +115,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
         // console.log(target);
 
         sessionStorage.target = JSON.stringify(target.netid);
+        $window.location.href = "home.html";
     }
 
 
