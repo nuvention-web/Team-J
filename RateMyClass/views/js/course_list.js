@@ -112,9 +112,10 @@ app.controller('course-list', function ($scope,$http,$timeout,$window) {
     }
 
     $scope.getTargetNetID = function(target){
-        // console.log(target);
+        
 
         sessionStorage.target = JSON.stringify(target.netid);
+        // alert(sessionStorage.target);
         $window.location.href = "home.html";
     }
 
