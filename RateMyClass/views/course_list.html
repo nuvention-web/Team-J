@@ -121,8 +121,22 @@
                       </a>       
                       </th> 
 
-                      <th>Difficulty</th>
-                      <th>Effectiveness</th>                   
+                      <th>
+                      <a href="#" ng-click="sortType = 'difficulty'; sortReverse = !sortReverse">
+                      Difficulty
+                      <span ng-show="sortType == 'difficulty' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'difficulty' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>
+                      </th>
+
+                      <th>
+                      <a href="#" ng-click="sortType = 'effectiveness'; sortReverse = !sortReverse">
+                      Effectiveness
+                      <span ng-show="sortType == 'effectiveness' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'effectiveness' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>
+                      </th>  
+
                   </tr>
                   </thead>   
               <tbody>
