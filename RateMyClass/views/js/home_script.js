@@ -77,28 +77,30 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.send_to_user_name="";
   	$scope.send_text;
   	$scope.msgs=[];
-  	$scope.targetUser = JSON.parse(sessionStorage.target);
+  	// $scope.targetUser = JSON.parse(sessionStorage.target);
 
-  	console.log($scope.targetUser);
+  	// console.log($scope.targetUser);
 
-  	$scope.get_user_name=function(){
-  		temp="";
-  		$http.get('/get_user_id').success(function successCallback(){
-  			temp=response.data;
-  			console.log("get user name");
-  			return temp;
-  		}, function errorCallback(){
-  			console.log("user fetch error");
-  			return temp;
-  		})
-  	}
+  	// $scope.get_user_name=function(){
+  	// 	temp="";
+  	// 	$http.get('/get_user_id').success(function successCallback(){
+  	// 		temp=response.data;
+  	// 		console.log("get user name");
+  	// 		return temp;
+  	// 	}, function errorCallback(){
+  	// 		console.log("user fetch error");
+  	// 		return temp;
+  	// 	})
+  	// }
   
 
 	/* Making Usefull function*/
 	$scope.self={
 		getUserInfo: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
+			// var uid=$scope.targetUser;
+			var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_userinfo',
@@ -106,14 +108,17 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 					uid:uid
 				}
 			};
-			runajax.runajax_function(data,function(userdata){        
+			runajax.runajax_function(data,function(userdata){
+				console.log("user data get",userdata);       
 				$scope.show_userinfo=userdata;        
 				callback(userdata);
 			});
 		},
 		getRecentChats: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
+			// var uid=$scope.targetUser;
+			var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_recent_chats',
@@ -127,7 +132,9 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		},
 		getUsersToChats:function(callback){
 		  // var uid=$location.search()['id'];
-		  var uid=$scope.get_user_name();
+		  // var uid=$scope.get_user_name();
+		  // var uid=$scope.targetUser;
+		  var uid="ads9122";
 		  $scope.uid=uid;
 		  var data={
 			url:'/get_users_to_chats',
@@ -144,7 +151,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			url:'/get_msgs',
 			data_server:{
 			  uid:$scope.uid,
-			  from_id:msgs_userinfo.id
+			  from_id:msgs_userinfo.netid
 			}
 		  }
 		  runajax.runajax_function(data,function(userdata){        
@@ -190,8 +197,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	$scope.hightlight_user=function(send_to_userinfo){
 
 		$scope.send_to_userinfo=send_to_userinfo;
-		$scope.hightlight_id=send_to_userinfo.id;
-		$scope.send_to_user_name=send_to_userinfo.name; 
+		$scope.hightlight_id=send_to_userinfo.netid;
+		$scope.send_to_user_name=send_to_userinfo.first_name; 
 		$scope.hightlight_socket_id=send_to_userinfo.socketId; 
 		
 		$scope.self.getMsg(send_to_userinfo,function(result){
@@ -231,18 +238,18 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 				} else{
 					var data={
 						socket_id:$scope.send_to_userinfo.socketId,
-						to_id:$scope.send_to_userinfo.id,
+						to_id:$scope.send_to_userinfo.netid,
 						from_id:$scope.uid,
 						msg:$scope.send_text
 					};
-
+					console.log(data);
 					// sending user info to the server starts
 					socket.emit('sendMsg',data);
 
 					$scope.msgs.push({
 						msg:$scope.send_text,
 						from_id:$scope.uid,
-						to_id:$scope.send_to_userinfo.id,
+						to_id:$scope.send_to_userinfo.netid,
 						timestamp:Math.floor(new Date() / 1000)
 					});
 					$scope.send_text="";

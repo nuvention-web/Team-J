@@ -138,7 +138,7 @@
 						Showing online status
 					-->	
 					<div class="user-meta">
-						<span class="user-name">{{show_userinfo.data.name}}</span>
+						<span class="user-name">{{show_userinfo.data.first_name}}</span>
 						<span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span>
 					</div>
 				</div>
@@ -153,9 +153,9 @@
 					-->	
 					<div class="userlist-single" ng-repeat="singleuser in userlist"
 						ng-click="hightlight_user(singleuser)"
-					  	ng-class="(hightlight_id==singleuser.id ? 'hightlight_user_class' :'')"
+					  	ng-class="(hightlight_id==singleuser.netid ? 'hightlight_user_class' :'')"
 					  	ng-style="{
-							'display': uid==singleuser.id ? 'none' :''
+							'display': uid==singleuser.netid ? 'none' :''
 						}">
 						<!-- 
 							Showing users name, profile Image and online status  
@@ -165,11 +165,11 @@
 								<span class="online-user-status"
 						  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
 								></span>
-							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.name}}</span>
+							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}}</span>
 							<!-- 
 								Span to show 'Typing indicator'  
 							-->	
-							<span id="isTyping_{{singleuser.id}}" class="is-typing">is typing...</span>
+							<span id="isTyping_{{singleuser.netid}}" class="is-typing">is typing...</span>
 						</div>				  
 					</div>
 					<!-- 
@@ -179,7 +179,7 @@
 					<!-- 
 						Showing alert when no user avalibale for chat
 					-->	
-					<div ng-show="userlist.length == 1 && userlist[0].name==show_userinfo.data.name"  >
+					<div ng-show="userlist.length == 1 && userlist[0].first_name==show_userinfo.data.first_name"  >
 						<div class="alert alert-danger" >
 						  <p class="text-center" >
 							Everyone is offline.
@@ -229,8 +229,8 @@
 					Displaying start new chat list starts
 				-->	
 				<div class="newChat" ng-repeat="singleOfflineUser in RecentUserList" 
-					ng-class="(hightlight_id==singleOfflineUser.id ? 'hightlight_user_class' :'')"
-					id='modal_user_{{singleOfflineUser.id}}'
+					ng-class="(hightlight_id==singleOfflineUser.netid ? 'hightlight_user_class' :'')"
+					id='modal_user_{{singleOfflineUser.netid}}'
 					>
 
 					<div class="userlist-user-meta">
@@ -239,10 +239,10 @@
 						-->						
 						<div class="newChat-user-meta">
 							<img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                    
-							<span class="userlist-userName">{{singleOfflineUser.name}}</span>
-							<span class="send-msg-offline sendButton{{singleOfflineUser.id}}">
-								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.id}}" ng-click="hideShowMsgBox(singleOfflineUser.id,'show',$event)"></span>
-								<span class="glyphicon glyphicon-minus hideMsgBox_{{singleOfflineUser.id}} send-msg-hidden" ng-click="hideShowMsgBox(singleOfflineUser.id,'hide',$event)"></span>
+							<span class="userlist-userName">{{singleOfflineUser.first_name}}</span>
+							<span class="send-msg-offline sendButton{{singleOfflineUser.netid}}">
+								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.netid}}" ng-click="hideShowMsgBox(singleOfflineUser.netid,'show',$event)"></span>
+								<span class="glyphicon glyphicon-minus hideMsgBox_{{singleOfflineUser.netid}} send-msg-hidden" ng-click="hideShowMsgBox(singleOfflineUser.netid,'hide',$event)"></span>
 							</span>
 						</div>
 						<!-- 
@@ -252,9 +252,9 @@
 						<!-- 
 							text box to send messages starts 
 						-->	
-						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.id}}">
-							<textarea id="msg_modal_{{singleOfflineUser.id}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
-							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.id)">
+						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.netid}}">
+							<textarea id="msg_modal_{{singleOfflineUser.netid}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
+							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid)">
 								send message
 							</button>                        
 						</div>
