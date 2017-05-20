@@ -56,7 +56,9 @@ function routes(app,connection,sessionInfo){
 		var rateAverageEffectiveness = req.body.myAverageEffectiveness;
 		var rateOurNum = req.body.myOurNum;
 
-		// console.log(rateNumofRates, rateAverageRate);
+		var rateFlag = req.body.myFlag;
+
+		// console.log(rateFlag);
 
 		var data={
 			query:"update course_taken set rating = '"+ rateRate + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
@@ -78,7 +80,7 @@ function routes(app,connection,sessionInfo){
 				query_runner(update_rating,function(result_online){
 
 					// console.log(result_online);
-					if(result_online.changedRows>0) {
+					if(result_online.changedRows>0 && rateFlag == false) {
 
 						var update_student={
 							query:"update student set points = points + 10 where netid=\"" + rateNetID + "\"",

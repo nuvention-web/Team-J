@@ -192,7 +192,7 @@
                     <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.effectiveness <= 2.0, 'label-warning': courseI.effectiveness < 3.5 && courseI.effectiveness > 2.0, 'label-success': courseI.effectiveness >=3.5 && courseI.effectiveness <= 5}">{{ courseI.effectiveness | number : 2}}</span></h3>
                     </td>
                     <td style="text-align: center">
-                      <button type="button" class="btn btn-success" ng-disabled="courseI.myRate != 0" ng-bind="courseI.myRate == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
+                      <button type="button" class="btn btn-success" ng-disabled="courseI.effectiveness != 0" ng-bind="courseI.effectiveness == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
                     </td>                                 
                 </tr> 
               </tbody> 
@@ -369,7 +369,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
   <script type="text/javascript">
-  $('#getting-started').countdown('2017/05/21', function(event) {
+  $('#getting-started').countdown('2017/05/28', function(event) {
     $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
   });
   </script>

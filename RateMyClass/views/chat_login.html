@@ -51,16 +51,18 @@
 		  		<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-user"></i>
 		  		</span>
-		  		<input id="login-username" type="text" ng-model="username" class="form-control inputbg" name="username" value="" placeholder="NetID">
+		  		<input id="login-username" type="text" ng-model="username" class="form-control inputbg" name="username" value="" placeholder="NetID" autofocus="autofocus">
 			</div>
 
 			<!-- Password Text Field -->
+			<form ng-submit="login()">
 			<div class="input-group password-group">
 		  		<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-lock"></i>
 		  		</span>
 		  		<input id="login-password" type="password" ng-model="password" class="form-control inputbg" name="password" placeholder="Password">
 			</div>
+			</form>
 
 			<!-- ALert Box For Wrong Usernme and password combination -->
 			<div class="alert-group" ng-hide="LoginAlert">
@@ -108,7 +110,7 @@
 				<span class="input-group-addon iconbg">
 					<i class="glyphicon glyphicon-user"></i>
 			  	</span>
-			  	<input id="register-username" type="text" ng-model="registerUsername"  class="form-control inputbg" name="username" value="" placeholder="NetID" ng-keyup="keyup_uncheck()" ng-keydown="keydown_uncheck()" ng-blur="blur_uncheck()"  ng-change="change_uncheck()">
+			  	<input id="register-username" type="text" ng-model="registerUsername"  class="form-control inputbg" name="username" value="" placeholder="NetID" ng-keyup="keyup_uncheck()" ng-keydown="keydown_uncheck()" ng-blur="blur_uncheck()"  ng-change="change_uncheck()" autofocus="autofocus">
 			</div>
 
 			<!-- ALert Box When username is already taken -->
@@ -132,6 +134,7 @@
 			  	</div>
 			</div>
 
+			<form ng-submit="submitRegister()">
 			<!-- Confirm Password Text Field -->			
 			<div class="input-group password-group">
 			  	<span class="input-group-addon iconbg">
@@ -139,6 +142,7 @@
 			  	</span>
 			  	<input id="confirm-password" type="password" ng-model="confirmPassword"  class="form-control inputbg" name="confirm-password" placeholder="Confirm Password" ng-blur="blur_checkpassword()" ng-change="change_checkpassword()">
 			</div>
+			</form>
 			<!-- ALert Box When username is already taken -->
 			<div class="alert-group" ng-hide="confirmPasswordAlert">
 			  	<div class="alert alert-danger">

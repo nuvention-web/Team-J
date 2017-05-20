@@ -103,7 +103,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 else if (rating >=1.5 && rating <= 3.5)
                   show = "Medium";
                 else
-                  show = "diffcult";
+                  show = "Diffcult";
                 $(this).next().text(show);
             }
         });
@@ -120,11 +120,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             onChange: function (rating) {
                 var show;
                 if (rating >=0 && rating < 1.5)
-                  show = "Pointless";
+                  show = "Ineffective";
                 else if (rating >=1.5 && rating <= 3.5)
-                  show = "Medium";
+                  show = "Somewhat Useful";
                 else
-                  show = "Practical";
+                  show = "Highly Useful ";
                 $(this).next().text(show);
             }
         });
@@ -156,7 +156,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
     $scope.Rate = function(selectedCourse){
 
-       if (selectedCourse.myRate != 0){
+       var ratedFlag = false;
+       if (selectedCourse.myRate != 0)
+            ratedFlag = true;
+
+       if (selectedCourse.effectiveness != 0){
 
           swal({
                     title: 'Error!',
@@ -175,7 +179,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
           var rating1 = $("#rateYo1").rateYo("rating");
           var rating2 = $("#rateYo2").rateYo("rating");
 
-          // console.log(rating, rating1, rating2);
+          // console.log(ratedFlag);
 
           if (rating == 0 || rating1 == 0 || rating2 == 0){
             swal({
@@ -202,7 +206,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 myOurNum:selectedCourse.our_num,
                 myAverageRate:selectedCourse.rating,
                 myAverageDifficulty:selectedCourse.difficulty,
-                myAverageEffectiveness:selectedCourse.effectiveness
+                myAverageEffectiveness:selectedCourse.effectiveness,
+
+                myFlag:ratedFlag
             }
 
             data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
@@ -211,7 +217,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             data.myNumofRates = data.myNumofRates + 1;
             data.myOurNum = data.myOurNum + 1;
 
-            
+            // console.log(data.myFlag);
 
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
                 swal({
