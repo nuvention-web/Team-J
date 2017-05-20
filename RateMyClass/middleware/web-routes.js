@@ -243,7 +243,7 @@ function routes(app,connection,sessionInfo){
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			
+			console.log("in get user",sessionInfo.uid);
 			res.send(sessionInfo.uid);
 
 		}else{
