@@ -1,0 +1,10 @@
+.navbar{
+  margin-bottom: 0;
+}
+
+ .banner {
+  margin-top: 2em;
+  background-image: url("../resources/images/janko-ferlic.jpg");
+  background-size: cover;
+  color: white;
+}
