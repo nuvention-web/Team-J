@@ -73,32 +73,35 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+<div class="container" ng-init="courseDetail()">
   <div class="row">
     <div class="col-xs-12">
 
     <div class="jumbotron banner">
       <div class="container">
       
-      <div class="col-xs-6">
-        <h4 ng-bind="selectedCourse.course_id"></h4>
+      
+        <h3 ng-bind="(course.course_id) + ' : '+ (course.title)"></h3>
+        <h4>
+        <label class="form-control-label" >Course Instructor:</label>
+        <span ng-bind="course.instructor"></span>
+        <br>
+        </h4>
 
-        <label class="form-control-label">Course Name:</label>
-        <h4 ng-bind="selectedCourse.title"></h4>
+        <h5>
+        <label class="form-control-label" >Course Time:</label>
+        <span ng-bind="(course.term)+ ', ' + (course.meeting_day_time)"></span>
+        <br>
+        </h5>
 
-        <label class="form-control-label" >Instructor:</label>
-        <h4 ng-bind="selectedCourse.instructor"></h4>
-
-        <label class="form-control-label" >Meeting Time:</label>
-        <h4 ng-bind="selectedCourse.meeting_day_time"></h4>
-
+        <h5>
         <label class="form-control-label" >Course Description:</label>
-        <a ng-href="{{selectedCourse.url}}" ng-bind="selectedCourse.url" target="_blank"></a>
-      </div>
-
-      <div class="col-xs-6">
+        <a ng-href="{{course.url}}" ng-bind="course.url" target="_blank"></a>
+        <br>
+        </h5>
+        <h5>
                       <label class="form-control-label" >Average Rate:</label>
-                      <table class="table" id="ratetable">
+                      <table class="table" id="averageTable">
                       <thead>
                         <tr>
                           <th>Overall</th>
@@ -111,23 +114,69 @@
                         </tr>
                       </thead>
                       <tbody>
-                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.rating <= 2.0, 'label-warning': selectedCourse.rating < 3.5 && selectedCourse.rating > 2.0, 'label-success': selectedCourse.rating >=3.5 && selectedCourse.rating <= 5, 'label-default' : selectedCourse.rating > 5.0}">{{ selectedCourse.rating | number : 2}}</span></h4>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': course.rating <= 2.0, 'label-warning': course.rating < 3.5 && course.rating > 2.0, 'label-success': course.rating >=3.5 && course.rating <= 5, 'label-default' : course.rating > 5.0}" ng-bind="course.rating | number : 2"></span></h4>
                           </td>
-                          <td style="text-align: center"><h4 ng-bind="selectedCourse.no_of_students"></h4>
+                          <td style="text-align: center"><h4 ng-bind="course.no_of_students"></h4>
                           </td>
-                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-success': selectedCourse.difficulty <= 2.0, 'label-warning': selectedCourse.difficulty < 3.5 && selectedCourse.difficulty > 2.0, 'label-danger': selectedCourse.difficulty >=3.5 && selectedCourse.difficulty <= 5, 'label-default' : selectedCourse.difficulty > 5.0}">{{ selectedCourse.difficulty | number : 2}}</span></h4>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-success': course.difficulty <= 2.0, 'label-warning': course.difficulty < 3.5 && course.difficulty > 2.0, 'label-danger': course.difficulty >=3.5 && course.difficulty <= 5, 'label-default' : course.difficulty > 5.0}" ng-bind="course.difficulty | number : 2"></span></h4>
                           </td>
-                          <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+                          <td style="text-align: center"><h4 ng-bind="course.our_num"></h4>
                           </td>
-                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': selectedCourse.effectiveness <= 2.0, 'label-warning': selectedCourse.effectiveness < 3.5 && selectedCourse.effectiveness > 2.0, 'label-success': selectedCourse.effectiveness >=3.5 && selectedCourse.effectiveness <= 5, 'label-default' : selectedCourse.effectiveness > 5.0}">{{selectedCourse.effectiveness | number : 2}}</span></h4>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': course.effectiveness <= 2.0, 'label-warning': course.effectiveness < 3.5 && course.effectiveness > 2.0, 'label-success': course.effectiveness >=3.5 && course.effectiveness <= 5, 'label-default' : course.effectiveness > 5.0}" ng-bind="course.effectiveness | number : 2"></span></h4>
                           </td>
-                          <td style="text-align: center"><h4 ng-bind="selectedCourse.our_num"></h4>
+                          <td style="text-align: center"><h4 ng-bind="course.our_num"></h4>
                           </td>
                       </tbody>
                       </table>
-          </div>
+        </h5>
         </div>
       </div>
+
+    <div class="jumbotron" ng-init="raterList()">
+      <div class="container">
+          <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Rate &amp; Reviews</h3>
+                <span class="label label-info" ng-bind="raters ? (raters.length + ' Rated') : ('no one has rated yet')"></span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="rater in raters" ng-if="rater.rating > 0">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                    <div class="mic-info" ng-bind="rater.first_name"></div>
+                            </div>
+                            
+                        </div>
+
+                        <h4>
+                          <label>Overall: </label>
+                          <span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ rater.rating | number : 2}}</span>
+                          <label>Difficulty: </label>
+                          <span class="label" ng-class="{'label-success': rater.rDifficulty <= 2.0, 'label-warning': rater.rDifficulty < 3.5 && rater.rDifficulty > 2.0, 'label-danger': rater.rDifficulty >=3.5 && rater.rDifficulty <= 5, 'label-default' : rater.rDifficulty > 5.0}" ng-bind="rater.rDifficulty | number : 2"></span>
+                          <label>Effectiveness: </label>
+                          <span class="label" ng-class="{'label-danger': rater.rEffectiveness <= 2.0, 'label-warning': rater.rEffectiveness < 3.5 && rater.rEffectiveness > 2.0, 'label-success': rater.rEffectiveness >=3.5 && rater.rEffectiveness <= 5, 'label-default' : rater.rEffectiveness > 5.0}" ng-bind="rater.rEffectiveness | number : 2"></span>
+                        </h4>
+                        <div class="comment-text" ng-bind="rater.review? rater.review:'No reviews written'">
+                        </div>
+
+                        <a class="btn btn-success" ng-click="getTargetNetID(rater.netid)" role="button"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
     </div>
   </div>
 </div>

@@ -1,10 +1,77 @@
-.navbar{
-  margin-bottom: 0;
+.jumbotron{
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
- .banner {
-  margin-top: 2em;
-  background-image: url("../resources/images/janko-ferlic.jpg");
-  background-size: cover;
-  color: white;
+.jumbotron > .container> h3{
+	color: #5F9F9D;
+}
+
+.container > a:hover{
+	cursor: pointer;
+}
+
+.widget .list-group { 
+	margin-bottom: 0; 
+}
+
+.widget .panel-title { 
+	display:inline 
+}
+
+.widget .label-info { 
+	float: right; 
+}
+
+.widget li.list-group-item {
+	border-radius: 0;
+	border: 0;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+.widget li.list-group-item:hover { 
+	background-color: rgba(86,61,124,.1); 
+}
+
+.widget .mic-info { 
+	color: #666666;
+	font-size: 20px; 
+}
+
+.widget .comment-text { 
+	margin-top: 0.5em;
+	font-size: 18px; 
+}
+
+.widget .btn { 
+	margin-top: 1em;
+}
+
+.container > h5 > table{
+	width: 60%;
+}
+
+#averageTable > thead > tr{
+	font-size: 15px;
+}
+
+table{
+	background: #b5d3d2;
+	color: white;
+	border-radius: 6px;
+	border-collapse: collapse;
+    border-style: hidden;
+}
+
+th, td {
+   border: 1px solid white;
+}
+
+h4 > span{
+	margin-right: 1em;
+
+}
+
+h4 > label{
+	padding-top: 5px;
 }

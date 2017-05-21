@@ -64,6 +64,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
     $scope.rateCourse = function(detail){
 
         $scope.selectedCourse = detail;
+        // console.log(detail);
 
         $("#detailModal").modal('show');
         $("#rateNumber").text('0');
@@ -152,6 +153,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
       $("#rateNumber").text('0');
       $("#rateNumber1").text('0');
       $("#rateNumber2").text('0');
+      $("#reviews").val('');
     }
 
     $scope.Rate = function(selectedCourse){
@@ -169,15 +171,18 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                     allowOutsideClick : false,
                     animation: false,
                     customClass: 'animated shake',
-                    timer: 4000
+                    timer:7000
+          }).then(function(){
+             $window.location.reload();
           })
 
-          $window.location.reload();
+          
        }
        else{
           var rating = $("#rateYo").rateYo("rating");
           var rating1 = $("#rateYo1").rateYo("rating");
           var rating2 = $("#rateYo2").rateYo("rating");
+          var review = $('#reviews').val();
 
           // console.log(ratedFlag);
 
@@ -207,6 +212,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 myAverageRate:selectedCourse.rating,
                 myAverageDifficulty:selectedCourse.difficulty,
                 myAverageEffectiveness:selectedCourse.effectiveness,
+                myReview:review,
 
                 myFlag:ratedFlag
             }
@@ -217,7 +223,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             data.myNumofRates = data.myNumofRates + 1;
             data.myOurNum = data.myOurNum + 1;
 
-            // console.log(data.myFlag);
+            // console.log(data.myReview);
 
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
                 swal({
@@ -243,7 +249,6 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                     allowOutsideClick : false,
                     animation: false,
                     customClass: 'animated shake',
-                    timer: 4000
                 })
 
                 $("#detailModal").modal('hide');
@@ -372,8 +377,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                       title: 'Great!',
                       text:  'Your password changed!',
                       type: 'success'
+                  }).then(function(){
+                    $("#passwordChangeModal").modal('hide');
                   })
-                  $("#passwordChangeModal").modal('hide');
                 }
             }).error(function(data, status) {
                 swal({

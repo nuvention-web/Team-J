@@ -77,30 +77,31 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.send_to_user_name="";
   	$scope.send_text;
   	$scope.msgs=[];
+  	$scope.userinfo="";
   	// $scope.targetUser = JSON.parse(sessionStorage.target);
 
   	// console.log($scope.targetUser);
 
-  	// $scope.get_user_name=function(){
-  	// 	temp="";
-  	// 	$http.get('/get_user_id').success(function successCallback(){
-  	// 		temp=response.data;
-  	// 		console.log("get user name");
-  	// 		return temp;
-  	// 	}, function errorCallback(){
-  	// 		console.log("user fetch error");
-  	// 		return temp;
-  	// 	})
-  	// }
+  	$scope.get_user_name=function(){
+  		temp="";
+  		$http.get('/get_user_id').success(function successCallback(response){
+  			temp=response.data;
+  			console.log("get user name", temp);
+  			return temp;
+  		}, function errorCallback(){
+  			console.log("user fetch error");
+  			return temp;
+  		})
+  	}
   
 
 	/* Making Usefull function*/
 	$scope.self={
 		getUserInfo: function(callback){
 			// var uid=$location.search()['id'];
-			// var uid=$scope.get_user_name();
+			var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
-			var uid="ads9122";
+			// var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_userinfo',
@@ -113,12 +114,15 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 				$scope.show_userinfo=userdata;        
 				callback(userdata);
 			});
+
+			// console.log("===", userinfo, userinfo.data);
+			// socket.emit('userInfo',userinfo.data); // sending user info to the server	
 		},
 		getRecentChats: function(callback){
 			// var uid=$location.search()['id'];
-			// var uid=$scope.get_user_name();
+			var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
-			var uid="ads9122";
+			// var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_recent_chats',
@@ -132,9 +136,9 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		},
 		getUsersToChats:function(callback){
 		  // var uid=$location.search()['id'];
-		  // var uid=$scope.get_user_name();
+		  var uid=$scope.get_user_name();
 		  // var uid=$scope.targetUser;
-		  var uid="ads9122";
+		  // var uid="ads9122";
 		  $scope.uid=uid;
 		  var data={
 			url:'/get_users_to_chats',
@@ -187,7 +191,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		Function To get 'user information as well as invokes to get Chat list' 
 	*/
 	$scope.self.getUserInfo(function(userinfo){
-		socket.emit('userInfo',userinfo.data); // sending user info to the server  
+		socket.emit('userInfo',userinfo.data); // sending user info to the server
+		// console.log("===", userinfo, userinfo.data);
 	});
   
 

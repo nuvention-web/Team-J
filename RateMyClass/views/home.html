@@ -9,7 +9,7 @@
 	<link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   </head>
-  <body ng-controller="home" onload="loadSize()" onresize="resize()">  
+<body ng-controller="home" onload="loadSize()" onresize="resize()">  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,7 +53,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+<div class="container" ng-init="startMessage()">
 	<div class="row">
 		<div class="col-xs-12">
 	<div class="body">
@@ -161,7 +161,7 @@
 							Showing users name, profile Image and online status  
 						-->	
 						<div class="userlist-user-meta">
-							<img class="img-circle" ng-src="{{singleuser.p_photo}}"/>
+							<!-- <img class="img-circle" ng-src="{{singleuser.p_photo}}"/> -->
 								<span class="online-user-status"
 						  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
 								></span>
@@ -238,7 +238,7 @@
 							Displaying User details starts
 						-->						
 						<div class="newChat-user-meta">
-							<img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                    
+							<!-- <img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                     -->
 							<span class="userlist-userName">{{singleOfflineUser.first_name}}</span>
 							<span class="send-msg-offline sendButton{{singleOfflineUser.netid}}">
 								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.netid}}" ng-click="hideShowMsgBox(singleOfflineUser.netid,'show',$event)"></span>

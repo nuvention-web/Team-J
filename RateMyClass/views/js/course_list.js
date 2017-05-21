@@ -63,39 +63,41 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
     }
 
     $scope.getDetails = function(detail){
-    	$scope.selectedCourse = detail;
+    	
+        $scope.selectedCourse = detail;
 
-    	$("#courseDetail").modal('show');
+        $window.location.href = "course_detail.html?num=" + detail.class_num + "&term="+ detail.term;
+    	// $("#courseDetail").modal('show');
     	// $scope.changeClass(detail.rating);
-    	$scope.load_rater($scope.selectedCourse);
+    	// $scope.load_rater($scope.selectedCourse);
     }
 
 
-    $scope.load_rater = function(sC){
+  //   $scope.load_rater = function(sC){
 
-        var config = {
-    		params: {
-       		 	courseNum: sC.class_num,
-       		 	courseQuarter: sC.term,
-    		}
-		}
-        // console.log(config);
-        $http.get('/raterlist', config).then(function successCallback(response) {
+  //       var config = {
+  //   		params: {
+  //      		 	courseNum: sC.class_num,
+  //      		 	courseQuarter: sC.term,
+  //   		}
+		// }
+  //       // console.log(config);
+  //       $http.get('/raterlist', config).then(function successCallback(response) {
 
-               $scope.raters = response.data;
-               // console.log($scope.raters);
-        }, function errorCallback(response){
-               swal({
-                    title: 'Error!',
-                    text: 'Connection Error!',
-                    type: 'error',
-                    allowOutsideClick : false,
-                    animation: false,
-                    customClass: 'animated shake',
-                    timer: 4000
-              })
-        });
-    }
+  //              $scope.raters = response.data;
+  //              // console.log($scope.raters);
+  //       }, function errorCallback(response){
+  //              swal({
+  //                   title: 'Error!',
+  //                   text: 'Connection Error!',
+  //                   type: 'error',
+  //                   allowOutsideClick : false,
+  //                   animation: false,
+  //                   customClass: 'animated shake',
+  //                   timer: 4000
+  //             })
+  //       });
+  //   }
 
 
     $scope.rateClass = function(rates){
@@ -110,17 +112,12 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
     		$scope.rateClass = "label label-default";
     }
 
-    $scope.intialRate = function(){
-        $scope.raters = "";
-    }
-
-    $scope.getTargetNetID = function(target){
+    // $scope.getTargetNetID = function(target){
         
 
-        sessionStorage.target = JSON.stringify(target.netid);
-        // alert(sessionStorage.target);
-        $window.location.href = "home.html";
-    }
+    //     sessionStorage.target = JSON.stringify(target.netid);
+    //     $window.location.href = "home.html";
+    // }
 
 
     
