@@ -271,12 +271,12 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
-			console.log("get user chat list p1",uid);
+			// console.log("get user chat list p1",uid);
 			var dbUsers=[];
 			if(result.length>0){
-				console.log(result);
+				// console.log(result);
 				result.forEach(function(element, index, array){
-					console.log("com_id in user chat",element.con_id);
+					// console.log("com_id in user chat",element.con_id);
 					var data={
 						query:"select s.* from conversation as c left join student as s on \
 								  s.netid = case when (con_id='"+element.con_id+"' and to_id='"+uid+"') \
@@ -289,7 +289,7 @@ var self={
 						connection:connection
 					}
 					self.queryRunner(data,function(usersData){
-						console.log("get user chat list p2",usersData);
+						// console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
 							dbUsers.push(usersData[0]);
 							console.log("pushed to dbuser",dbUsers);							
@@ -337,6 +337,7 @@ var self={
 			Function Merge online and offline users.
 		*/
 		var tempUsers = [];
+		console.log("====dbUsers", dbUsers);
 		for(var i in socketUsers){
 			var shouldAdd = false;
 			for (var j in dbUsers){

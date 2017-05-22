@@ -3,7 +3,7 @@ var app = angular.module('course-list',[]);
 app.controller('course-list', function ($scope,$http,$timeout,$window,$location) {	
 
 	var selectedQuarter = "2017 Fall";
-    var userid = $location.search()['id']
+    // var userid = $location.search()['id']
 	
 	$scope.logOut = function(){
       $http.get('/logout').then(function successCallback(response) {
@@ -30,7 +30,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
 
     $scope.load_course = function(selectedQuarter){
 
-        console.log("user id is ", $window.location.hash.substring(2,));
+        // console.log("user id is ", $window.location.hash.substring(2,));
 
         if (selectedQuarter == null)
         	selectedQuarter = "2017 Fall";
@@ -66,7 +66,7 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
     	
         $scope.selectedCourse = detail;
 
-        $window.location.href = "course_detail.html?num=" + detail.class_num + "&term="+ detail.term;
+        $window.location.href = "course_detail.html?&num=" + detail.class_num + "&term="+ detail.term;
     	// $("#courseDetail").modal('show');
     	// $scope.changeClass(detail.rating);
     	// $scope.load_rater($scope.selectedCourse);

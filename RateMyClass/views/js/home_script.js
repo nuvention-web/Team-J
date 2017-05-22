@@ -99,9 +99,9 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	$scope.self={
 		getUserInfo: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
-			// var uid="ads9122";
+			var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_userinfo',
@@ -120,9 +120,9 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		},
 		getRecentChats: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
-			// var uid="ads9122";
+			var uid="ads9122";
 			$scope.uid=uid;
 			var data={
 				url:'/get_recent_chats',
@@ -132,13 +132,14 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			};
 			runajax.runajax_function(data,function(userdata){
 				callback(userdata);
+				console.log("userdata===",userdata);
 			});
 		},
 		getUsersToChats:function(callback){
 		  // var uid=$location.search()['id'];
-		  var uid=$scope.get_user_name();
+		  // var uid=$scope.get_user_name();
 		  // var uid=$scope.targetUser;
-		  // var uid="ads9122";
+		  var uid="ads9122";
 		  $scope.uid=uid;
 		  var data={
 			url:'/get_users_to_chats',
@@ -351,6 +352,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	*/
 	socket.on('userEntrance',function(data){
 		$scope.userlist=data;
+
+		console.log("$scope.userlist == ", $scope.userlist);
   	});
 
  
