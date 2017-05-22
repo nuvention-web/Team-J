@@ -39,12 +39,33 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
 
     	$http.get('/courseDetail', config).then(function successCallback(response) {
                $scope.course = response.data[0];
-               console.log(response.data);
-               if (response.data == ""){
-                 $scope.logOut();
+               // console.log(response.data);
+               if (response.data == "No course found"){
+                  swal({
+                    title: 'Warning!',
+                    text: 'Might be a database error, please try again!',
+                    type: 'warning',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                  })
                }
+
+               if (response.data == "Not login"){
+                  swal({
+                    title: 'Warning!',
+                    text: 'Please Log in!',
+                    type: 'warning',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                  }).then(function(){
+                    $scope.logOut();
+                  })               
+               }
+
         }, function errorCallback(response){
-               swal({
+              swal({
                     title: 'Error!',
                     text: 'Connection Error!',
                     type: 'error',
@@ -69,7 +90,12 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
       }
 
       $http.get('/raterlist', config).then(function successCallback(response) {
+
+               if (response.data == "No one rated"){
+                  response.data = "";
+               }
                $scope.raters = response.data;
+        
         }, function errorCallback(response){
                swal({
                     title: 'Error!',

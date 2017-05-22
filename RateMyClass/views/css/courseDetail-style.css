@@ -16,11 +16,14 @@
 }
 
 .widget .panel-title { 
-	display:inline 
+	display:inline;
+	font-size: 20px;
 }
 
 .widget .label-info { 
-	float: right; 
+	float: right;
+	font-size: 13px;
+    margin-top: 4px; 
 }
 
 .widget li.list-group-item {

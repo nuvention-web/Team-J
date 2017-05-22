@@ -218,11 +218,12 @@ function routes(app,connection,sessionInfo){
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
-		    		console.log("None");
+		    		// console.log("None");
+		    		res.send("No course found");
 		    	}			
 			});
 		}else{		
-			console.log("None");
+			res.send("Not login");
 		}
 	});
 
@@ -252,23 +253,24 @@ function routes(app,connection,sessionInfo){
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
-		    		console.log("None");
+		    		res.send("No one rated");
 		    	}			
 			});
 		}else{
-			var data={
-				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating",
-				connection:connection
-			}
+			// var data={
+			// 	query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating",
+			// 	connection:connection
+			// }
 
-			query_runner(data,function(result){
-				// console.log(result);
-				if(result.length>0) {
-					res.json(result);
-		    	} else {
-		    		console.log("None");
-		    	}			
-			});		
+			// query_runner(data,function(result){
+			// 	// console.log(result);
+			// 	if(result.length>0) {
+			// 		res.json(result);
+		 //    	} else {
+		 //    		console.log("None");
+		 //    	}			
+			// });	
+			res.send("Not login");	
 		}
 	});
 
