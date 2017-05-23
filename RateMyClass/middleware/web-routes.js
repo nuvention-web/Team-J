@@ -175,18 +175,7 @@ function routes(app,connection,sessionInfo){
 			});
 		}else{
 			
-			var data={
-				query:"select * from course where term='"+term+"' order by course_id,title",
-				connection:connection
-			}
-
-			query_runner(data,function(result){
-				if(result.length>0) {
-					res.json(result);
-		    	} else {
-		    		console.log("None");
-		    	}			
-			});		
+			res.send("Not login");	
 		}
 	});
 
@@ -301,9 +290,9 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.render('main');
+			res.send('success');
 		}else{
-			res.render('chat_login');		
+			res.send('Not login');		
 		}
 	});	
 
@@ -329,7 +318,7 @@ function routes(app,connection,sessionInfo){
 		    	}			
 			});
 		}else{
-			res.render('chat_login');		
+			res.send('Not login');		
 		}
 	});
 

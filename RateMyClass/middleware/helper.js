@@ -292,7 +292,7 @@ var self={
 						// console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
 							dbUsers.push(usersData[0]);
-							console.log("pushed to dbuser",dbUsers);							
+							// console.log("pushed to dbuser",dbUsers);							
 						}
 						if(index >= (result.length-1)){
 							console.log("callback with dbuser",dbUsers);
@@ -337,7 +337,7 @@ var self={
 			Function Merge online and offline users.
 		*/
 		var tempUsers = [];
-		console.log("====dbUsers", dbUsers);
+		// console.log("====dbUsers", dbUsers);
 		for(var i in socketUsers){
 			var shouldAdd = false;
 			for (var j in dbUsers){

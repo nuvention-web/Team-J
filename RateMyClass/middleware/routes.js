@@ -33,7 +33,7 @@ function routes(app,connection,io,sessionInfo){
 	    	/*
 	    		Adding Single socket user into 'uesrs' array
 	    	*/
-	    	console.log("user info receive", userinfo);
+	    	// console.log("user info receive", userinfo);
 			var should_add=true;
 	    	if(users.length == 0){
 	    		userinfo.socketId=socket.id;
@@ -60,7 +60,7 @@ function routes(app,connection,io,sessionInfo){
 		    		Sending list of users to all users
 		    	*/
 				users.forEach(function(element, index, array){
-					console.log("Sending list of users to all users",element);
+					// console.log("Sending list of users to all users",element);
 		    		helper.getUserChatList(element.netid,connection,function(dbUsers){
 		    			if(dbUsers === null){
 		    				io.to(element.socketId).emit('userEntrance',users);

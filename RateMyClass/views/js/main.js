@@ -28,6 +28,38 @@ app.controller('main', function ($scope,$http,$timeout,$window,$rootScope) {
                $window.location.href = "chat_login.html";
         }, function errorCallback(response){
                console.log("Log Out Error");
-        });
-    }
+      });
+  }
+
+  $scope.checkLogin = function(){
+      $http.get('/main').then(function successCallback(response) {
+          console.log(response);
+          
+          if (response.data == "Not login"){
+                  swal({
+                    title: 'Warning!',
+                    text: 'Please Log in!',
+                    type: 'warning',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                  }).then(function(){
+                    $scope.logOut();
+                  })               
+          }
+
+      }, function errorCallback(response){
+          swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 6000
+          }).then(function(){
+                    $scope.logOut();
+          }) 
+      });
+  }
 });

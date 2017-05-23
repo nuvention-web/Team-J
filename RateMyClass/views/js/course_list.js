@@ -41,7 +41,21 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
 		}
 
         $http.get('/courselist', config).then(function successCallback(response) {
-               $scope.courses = response.data;
+
+               if (response.data == "Not login"){
+                  swal({
+                    title: 'Warning!',
+                    text: 'Please Log in!',
+                    type: 'warning',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                  }).then(function(){
+                    $scope.logOut();
+                  })               
+               }
+               else
+                  $scope.courses = response.data;
         }, function errorCallback(response){
                swal({
                     title: 'Error!',

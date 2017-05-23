@@ -23,10 +23,23 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
 
         $http.get('/profile').then(function successCallback(response) {
+               if (response.data == "Not login"){
+                  swal({
+                      title: 'Warning!',
+                      text: 'Please Log in!',
+                      type: 'warning',
+                      allowOutsideClick : false,
+                      animation: false,
+                      customClass: 'animated shake',
+                  }).then(function(){
+                      $scope.logOut();
+                  })
+               }
+
                $scope.profileDetail = response.data;
                $scope.legalname = $scope.profileDetail[0].first_name + " " + $scope.profileDetail[0].last_name;
         }, function errorCallback(response){
-               swal({
+              swal({
                     title: 'Error!',
                     text: 'Connection Error!',
                     type: 'error',
