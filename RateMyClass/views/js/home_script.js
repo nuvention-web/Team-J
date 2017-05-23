@@ -82,36 +82,38 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 
   	// console.log($scope.targetUser);
 
-  	$scope.get_user_name=function(){
-  		temp="";
-  		$http.get('/get_user_id').success(function successCallback(response){
-  			temp=response.data;
-  			console.log("get user name", temp);
-  			return temp;
-  		}, function errorCallback(){
-  			console.log("user fetch error");
-  			return temp;
-  		})
-  	}
+  	// $scope.get_user_name=function(){
+  	// 	temp="";
+  	// 	$http.get('/get_user_id').success(function successCallback(response){
+  	// 		temp=response.data;
+  	// 		console.log("get user name", temp);
+  	// 		$scope.uid = temp;
+  	// 		return temp;
+  	// 	}, function errorCallback(){
+  	// 		console.log("user fetch error");
+  	// 		return temp;
+  	// 	})
+  	// }
   
 
 	/* Making Usefull function*/
 	$scope.self={
 		getUserInfo: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
 			// var uid="ads9122";
-			$scope.uid=uid;
+			// $scope.uid=uid;
 			var data={
 				url:'/get_userinfo',
 				data_server:{
-					uid:uid
+					uid:$scope.uid
 				}
 			};
 			runajax.runajax_function(data,function(userdata){
 				console.log("user data get",userdata);       
-				$scope.show_userinfo=userdata;        
+				$scope.show_userinfo=userdata;
+				$scope.uid = userdata.data.netid;       
 				callback(userdata);
 			});
 
@@ -120,14 +122,14 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		},
 		getRecentChats: function(callback){
 			// var uid=$location.search()['id'];
-			var uid=$scope.get_user_name();
+			// var uid=$scope.get_user_name();
 			// var uid=$scope.targetUser;
 			// var uid="ads9122";
-			$scope.uid=uid;
+			// $scope.uid=uid;
 			var data={
 				url:'/get_recent_chats',
 				data_server:{
-					uid:uid
+					uid:$scope.uid
 				}
 			};
 			runajax.runajax_function(data,function(userdata){
@@ -136,14 +138,14 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		},
 		getUsersToChats:function(callback){
 		  // var uid=$location.search()['id'];
-		  var uid=$scope.get_user_name();
+		  // var uid=$scope.get_user_name();
 		  // var uid=$scope.targetUser;
 		  // var uid="ads9122";
-		  $scope.uid=uid;
+		  // $scope.uid=uid;
 		  var data={
 			url:'/get_users_to_chats',
 			data_server:{
-			  uid:uid
+			  uid:$scope.uid
 			}
 		  };
 		  runajax.runajax_function(data,function(userdata){

@@ -33,14 +33,14 @@ function routes(app,connection,io,sessionInfo){
 	    	/*
 	    		Adding Single socket user into 'uesrs' array
 	    	*/
-	    	console.log("user info receive", userinfo);
+	    	// console.log("user info receive", userinfo);
 			var should_add=true;
 	    	if(users.length == 0){
 	    		userinfo.socketId=socket.id;
 	    		users.push(userinfo);
 	    	}else{
 	    		users.forEach(function(element, index, array){
-	    			console.log("for each ",element, index, array);
+	    			// console.log("for each ",element, index, array);
 	    			if(element.id == userinfo.netid){
 			    		should_add=	false;	    		
 			    	}
@@ -50,7 +50,7 @@ function routes(app,connection,io,sessionInfo){
 	    			users.push(userinfo);
 			    };
 	    	}
-	    	console.log("start", userinfo.netid);
+	    	// console.log("start", userinfo.netid);
 	    	var data={
 				query:"update student set online='Y' where netid='"+userinfo.netid+"'",
 				connection:connection
@@ -60,7 +60,7 @@ function routes(app,connection,io,sessionInfo){
 		    		Sending list of users to all users
 		    	*/
 				users.forEach(function(element, index, array){
-					console.log("Sending list of users to all users",element);
+					// console.log("Sending list of users to all users",element);
 		    		helper.getUserChatList(element.netid,connection,function(dbUsers){
 		    			if(dbUsers === null){
 		    				io.to(element.socketId).emit('userEntrance',users);
@@ -86,7 +86,7 @@ function routes(app,connection,io,sessionInfo){
 	    	/*
 	    		calling saveMsgs to save messages into DB.
 	    	*/
-	    	helper.saveMsgs(data_server,connection,function(result){
+	    	helper.saveMsgs(data_server,connection, function(result){
 
 	    		/*
 	    			Chechking users is offline or not
@@ -181,9 +181,10 @@ function routes(app,connection,io,sessionInfo){
 	*/
 	app.post('/get_userinfo', function(req, res){
 		var data={
-			query:"select netid,first_name,p_photo,online from student where netid='"+req.body.uid+"'",
+			query:"select netid,first_name,p_photo,online from student where netid='"+req.session.uid+"'",
 			connection:connection
 		}
+		// console.log("session printing", req.session);
 		helper.queryRunner(data,function(result){
 			if(result.length>0) {
 				var user_info="";			
@@ -214,7 +215,7 @@ function routes(app,connection,io,sessionInfo){
 		/*
 	    	Calling 'getMsgs' to get messages
 	    */
-		helper.getMsgs(req.body,connection,function(result){
+		helper.getMsgs(req,connection,function(result){
 			res.write(JSON.stringify(result));
 			res.end();
 		});		
@@ -227,7 +228,7 @@ function routes(app,connection,io,sessionInfo){
 		/*
 	    	Calling 'getUserChatList' to get user chat list
 	    */
-		helper.getUserChatList(req.body.uid,connection,function(dbUsers){
+		helper.getUserChatList(req.session.uid,connection,function(dbUsers){
 			res.write(JSON.stringify(dbUsers));
 			res.end();
 		});	
@@ -240,7 +241,7 @@ function routes(app,connection,io,sessionInfo){
 		/*
 	    	Calling 'getUsersToChat' to get user chat list
 	    */
-		helper.getUsersToChat(req.body.uid,connection,function(dbUsers){
+		helper.getUsersToChat(req.session.uid,connection,function(dbUsers){
 			/*
 				Calling 'mergeUsers' to merge online and offline users
 			*/
