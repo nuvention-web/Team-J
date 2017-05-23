@@ -233,7 +233,7 @@ function routes(app,connection,sessionInfo){
 		if(sessionInfo.uid){
 			
 			var data={
-				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating",
+				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating desc",
 				connection:connection
 			}
 

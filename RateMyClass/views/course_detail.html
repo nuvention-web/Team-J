@@ -20,6 +20,10 @@
 
   <!-- <link rel="stylesheet" href="https://cdnjs.cåloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css"> -->
   
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Telex" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Average+Sans" rel="stylesheet">
 
   <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
   <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
@@ -81,26 +85,29 @@
       <div class="container">
       
       
-        <h3 ng-bind="(course.course_id) + ' : '+ (course.title)"></h3>
+        <h2 ng-bind="(course.course_id) + ' : '+ (course.title)"></h2>
         <h4>
         <label class="form-control-label" >Course Instructor:</label>
         <span ng-bind="course.instructor"></span>
         <br>
         </h4>
 
-        <h5>
-        <label class="form-control-label" >Course Time:</label>
+        <h4>
+        <strong><label class="form-control-label" >Course Time:</label></strong>
         <span ng-bind="(course.term)+ ', ' + (course.meeting_day_time)"></span>
         <br>
-        </h5>
+        </h4>
 
+        <h4>
+        <strong><label class="form-control-label" >Course Description:</label></strong>
+        <a ng-href="{{course.url}}" target="_blank">Link</a>
+        </h4>
+
+        <h4>
+        <strong><label class="form-control-label" >Average Rate:</label></strong>
+        </h4>
         <h5>
-        <label class="form-control-label" >Course Description:</label>
-        <a ng-href="{{course.url}}" ng-bind="course.url" target="_blank"></a>
-        <br>
-        </h5>
-        <h5>
-                      <label class="form-control-label" >Average Rate:</label>
+                      
                       <table class="table" id="averageTable">
                       <thead>
                         <tr>
@@ -149,6 +156,7 @@
                                 <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
                             <div class="col-xs-10 col-md-11">
                                     <div class="mic-info" ng-bind="rater.first_name"></div>
+                                    <a class="btn btn-default btn-sm" ng-click="getTargetNetID(rater.netid)" role="button"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
                             </div>
                             
                         </div>
@@ -164,7 +172,7 @@
                         <div class="comment-text" ng-bind="rater.review? rater.review:'No reviews written'">
                         </div>
 
-                        <a class="btn btn-success" ng-click="getTargetNetID(rater.netid)" role="button"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
+                        
                     </li>
 
 
