@@ -61,6 +61,10 @@ hr{
 
 }
 
+button.swal2-styled {
+    outline: none;
+}
+
 
 /*.widget li.list-group-item:hover { 
 	background-color: #aed1cc;
