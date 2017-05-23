@@ -292,7 +292,7 @@ var self={
 						// console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
 							dbUsers.push(usersData[0]);
-							console.log("pushed to dbuser",dbUsers);							
+							// console.log("pushed to dbuser",dbUsers);							
 						}
 						if(index >= (result.length-1)){
 							// console.log("callback with dbuser",dbUsers);

@@ -134,6 +134,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			};
 			runajax.runajax_function(data,function(userdata){
 				callback(userdata);
+				console.log("userdata===",userdata);
 			});
 		},
 		getUsersToChats:function(callback){
@@ -353,6 +354,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	*/
 	socket.on('userEntrance',function(data){
 		$scope.userlist=data;
+
+		console.log("$scope.userlist == ", $scope.userlist);
   	});
 
  
