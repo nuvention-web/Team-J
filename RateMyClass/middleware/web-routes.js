@@ -26,7 +26,7 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/main#?id='+sessionInfo.uid);
+			res.redirect('/course_list.html#/'+sessionInfo.uid);
 		}else{
 			res.render('description');		
 		}

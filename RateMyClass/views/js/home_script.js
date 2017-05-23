@@ -78,9 +78,11 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.send_text;
   	$scope.msgs=[];
   	$scope.userinfo="";
-  	// $scope.targetUser = JSON.parse(sessionStorage.target);
+  	$scope.targetUser = angular.fromJson($window.sessionStorage.getItem('target'));
+  	$scope.message = angular.fromJson($window.sessionStorage.getItem('message'));
 
-  	// console.log($scope.targetUser);
+  	console.log($scope.targetUser, $scope.message);
+  	//remember to sessionStorage.clear(); after use the data.
 
   	// $scope.get_user_name=function(){
   	// 	temp="";

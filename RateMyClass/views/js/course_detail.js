@@ -97,7 +97,7 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
                $scope.raters = response.data;
         
         }, function errorCallback(response){
-               swal({
+              swal({
                     title: 'Error!',
                     text: 'Connection Error!',
                     type: 'error',
@@ -109,9 +109,48 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
         });
     }
 
-    $scope.getTargetNetID = function(netid){
-        sessionStorage.target = JSON.stringify(netid);
-        $window.location.href = "home.html";
+    $scope.getTargetNetID = function(rater){
+
+        // console.log(rater);
+        var name = rater.first_name;
+        var netid = rater.netid;
+
+        swal({
+          title: 'Message to ' + name,
+          input: 'textarea',
+          showCancelButton: true,
+          confirmButtonColor: '#5F9F9D',
+          cancelButtonColor: '#ba8d8e',
+          confirmButtonText: 'Message',
+          allowOutsideClick : false
+        }).then(function (text) {
+          if (text) {
+            $window.sessionStorage.setItem('target', angular.toJson(netid, false));
+            $window.sessionStorage.setItem('message', angular.toJson(text, false));
+            // console.log($rootScope.target, $rootScope.message);
+            $window.location.href = "home.html";
+          }
+          else{
+            swal({
+              title: 'No words?',
+              confirmButtonText: 'cancel message',
+              confirmButtonColor: '#ba8d8e',
+              allowOutsideClick : false,
+            })
+          }
+        }, function (dismiss) {
+          // dismiss can be 'cancel', 'overlay',
+          // 'close', and 'timer'
+          if (dismiss === 'cancel') {
+            swal({
+              title: 'Cancelled',
+              confirmButtonColor: '#ba8d8e',
+              type: 'error',
+              allowOutsideClick : false,
+            })
+          }
+        })
+        
     }
 
 
