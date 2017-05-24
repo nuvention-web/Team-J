@@ -23,10 +23,23 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
 
         $http.get('/profile').then(function successCallback(response) {
+               if (response.data == "Not login"){
+                  swal({
+                      title: 'Warning!',
+                      text: 'Please Log in!',
+                      type: 'warning',
+                      allowOutsideClick : false,
+                      animation: false,
+                      customClass: 'animated shake',
+                  }).then(function(){
+                      $scope.logOut();
+                  })
+               }
+
                $scope.profileDetail = response.data;
                $scope.legalname = $scope.profileDetail[0].first_name + " " + $scope.profileDetail[0].last_name;
         }, function errorCallback(response){
-               swal({
+              swal({
                     title: 'Error!',
                     text: 'Connection Error!',
                     type: 'error',
@@ -64,6 +77,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
     $scope.rateCourse = function(detail){
 
         $scope.selectedCourse = detail;
+        // console.log(detail);
 
         $("#detailModal").modal('show');
         $("#rateNumber").text('0');
@@ -103,7 +117,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 else if (rating >=1.5 && rating <= 3.5)
                   show = "Medium";
                 else
-                  show = "diffcult";
+                  show = "Diffcult";
                 $(this).next().text(show);
             }
         });
@@ -120,11 +134,11 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             onChange: function (rating) {
                 var show;
                 if (rating >=0 && rating < 1.5)
-                  show = "Pointless";
+                  show = "Ineffective";
                 else if (rating >=1.5 && rating <= 3.5)
-                  show = "Medium";
+                  show = "Somewhat Useful";
                 else
-                  show = "Practical";
+                  show = "Highly Useful ";
                 $(this).next().text(show);
             }
         });
@@ -152,11 +166,16 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
       $("#rateNumber").text('0');
       $("#rateNumber1").text('0');
       $("#rateNumber2").text('0');
+      $("#reviews").val('');
     }
 
     $scope.Rate = function(selectedCourse){
 
-       if (selectedCourse.myRate != 0){
+       var ratedFlag = false;
+       if (selectedCourse.myRate != 0)
+            ratedFlag = true;
+
+       if (selectedCourse.effectiveness != 0){
 
           swal({
                     title: 'Error!',
@@ -165,17 +184,20 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                     allowOutsideClick : false,
                     animation: false,
                     customClass: 'animated shake',
-                    timer: 4000
+                    timer:7000
+          }).then(function(){
+             $window.location.reload();
           })
 
-          $window.location.reload();
+          
        }
        else{
           var rating = $("#rateYo").rateYo("rating");
           var rating1 = $("#rateYo1").rateYo("rating");
           var rating2 = $("#rateYo2").rateYo("rating");
+          var review = $('#reviews').val();
 
-          // console.log(rating, rating1, rating2);
+          // console.log(ratedFlag);
 
           if (rating == 0 || rating1 == 0 || rating2 == 0){
             swal({
@@ -202,7 +224,10 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                 myOurNum:selectedCourse.our_num,
                 myAverageRate:selectedCourse.rating,
                 myAverageDifficulty:selectedCourse.difficulty,
-                myAverageEffectiveness:selectedCourse.effectiveness
+                myAverageEffectiveness:selectedCourse.effectiveness,
+                myReview:review,
+
+                myFlag:ratedFlag
             }
 
             data.myAverageRate = (data.myNumofRates * data.myAverageRate + data.myRate) / (data.myNumofRates + 1);
@@ -211,7 +236,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
             data.myNumofRates = data.myNumofRates + 1;
             data.myOurNum = data.myOurNum + 1;
 
-            
+            // console.log(data.myReview);
 
             $http.post('/rateCourse',data).success(function(data, status, headers, config) {
                 swal({
@@ -237,7 +262,6 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                     allowOutsideClick : false,
                     animation: false,
                     customClass: 'animated shake',
-                    timer: 4000
                 })
 
                 $("#detailModal").modal('hide');
@@ -366,8 +390,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
                       title: 'Great!',
                       text:  'Your password changed!',
                       type: 'success'
+                  }).then(function(){
+                    $("#passwordChangeModal").modal('hide');
                   })
-                  $("#passwordChangeModal").modal('hide');
                 }
             }).error(function(data, status) {
                 swal({

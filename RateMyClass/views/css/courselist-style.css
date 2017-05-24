@@ -11,6 +11,10 @@ input[type="text"]{
 	height: 3em;
 }
 
+th > a:hover{
+    color: #ddd;
+}
+
 .nav-sidebar { 
     width: 100%;
     padding: 10px 0; 

@@ -31,6 +31,7 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
+			// console.log("get last conversation",result);
 			if(result[0].ID!=null){
 				var conversationid=parseInt(result[0].ID);
 				conversationid++;
@@ -56,7 +57,7 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(is_present_data,function(result){
-
+			// console.log("is conversation present",result);
 			if(result.length>0){
 				/* data for callback starts*/
 				is_present=true;
@@ -90,6 +91,7 @@ var self={
 			}
 		};
 		self.queryRunner(insert_conversation,function(result){
+			// console.log("insert conversation",result);
 			callback(result.insertId);
 		});	
 	},
@@ -111,7 +113,7 @@ var self={
 			}
 		};	
 		self.queryRunner(data_insert,function(result){
-			console.log("msg inserted");
+			// console.log("msg inserted");
 			callback(result)
 		});
 	},
@@ -139,6 +141,7 @@ var self={
 				con_id:data.conversation_id
 			}
 			self.insertMsg(insert_msg,connection,function(is_insert_msg){
+				// console.log("call msg after conversation",is_insert_msg);
 				callback({
 					msg:data.msg,
 					from_id:data.from_id,
@@ -153,6 +156,7 @@ var self={
 		/*	Calling "self.isConversationPresent" function,
 			to check is conversation is already present or not.
 		*/
+		console.log(data);
 		var check_data={
 			to_id:data.to_id,
 			from_id:data.from_id
@@ -177,7 +181,8 @@ var self={
 				*/
 				self.callMsgAfterConversation(msg_after_conversation,connection,function(insert_con_msg){
 					self.getUserInfo(data.from_id,connection,function(UserInfo){
-						insert_con_msg.name=UserInfo.data.name;
+						// console.log("save msgs ifff",UserInfo);
+						insert_con_msg.first_name=UserInfo.data.first_name;
 						callback(insert_con_msg);
 					});
 				});
@@ -201,7 +206,8 @@ var self={
 					*/
 					self.callMsgAfterConversation(msg_after_conversation,connection,function(insert_con_msg){
 						self.getUserInfo(data.from_id,connection,function(UserInfo){
-							insert_con_msg.name=UserInfo.data.name;
+							// console.log("save msgs ifff",UserInfo);
+							insert_con_msg.first_name=UserInfo.data.first_name;
 							callback(insert_con_msg);
 						});
 					});
@@ -215,10 +221,11 @@ var self={
 			Function to get messages.
 		*/
 		var data={
-			query:"select reply as msg,from_id,to_id,timestamp from conversation_reply where from_id='"+data.from_id+"' and to_id='"+data.uid+"' or  from_id='"+data.uid+"' and to_id='"+data.from_id+"' order by timestamp asc",
+			query:"select reply as msg,from_id,to_id,timestamp from conversation_reply where from_id='"+data.body.from_id+"' and to_id='"+data.session.uid+"' or  from_id='"+data.session.uid+"' and to_id='"+data.body.from_id+"' order by timestamp asc",
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
+			// console.log("get msgs",result);
 			if(result.length > 0){
 				callback(result)
 			} else{
@@ -235,11 +242,12 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
+			// console.log("get User Info",result);
 			if(result.length>0) {
 				var user_info="";			
 				result.forEach(function(element, index, array){
 					user_info={
-						name:element.name,
+						first_name:element.first_name,
 						p_photo:element.p_photo,
 						online:element.online
 					};	
@@ -259,16 +267,19 @@ var self={
 	},
 	getUserChatList:function(uid,connection,callback){
 		var data={
-			query:"select DISTINCT con_id from conversation where to_id='"+uid+"' or from_id='"+uid+"' order by timestamp desc ",
+			query:"select DISTINCT con_id, max(timestamp) from conversation where to_id='"+ uid +"' or from_id='"+ uid +"' group by con_id order by max(timestamp) desc; ",
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
+			// console.log("get user chat list p1",uid);
 			var dbUsers=[];
 			if(result.length>0){
+				// console.log(result);
 				result.forEach(function(element, index, array){
+					// console.log("con_id in user chat",element.con_id);
 					var data={
-						query:"select u.* from conversation as c left join user as u on \
-								  u.id =case when (con_id='"+element.con_id+"' and to_id='"+uid+"') \
+						query:"select s.netid,s.first_name,s.last_name,s.online,s.p_photo from conversation as c left join student as s on \
+								  s.netid = case when (con_id='"+element.con_id+"' and to_id='"+uid+"') \
 								THEN \
 								  c.from_id \
 								ELSE \
@@ -278,10 +289,13 @@ var self={
 						connection:connection
 					}
 					self.queryRunner(data,function(usersData){
+						// console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
-							dbUsers.push(usersData[0]);							
+							dbUsers.push(usersData[0]);
+							// console.log("pushed to dbuser",dbUsers);							
 						}
 						if(index >= (result.length-1)){
+							// console.log("callback with dbuser",dbUsers);
 							callback(dbUsers);
 						}
 					});
@@ -294,23 +308,26 @@ var self={
 	},
 	getUsersToChat:function(uid,connection,callback){
 		var data={
-			query:"SELECT  to_id, from_id FROM conversation WHERE to_id='"+uid+"' OR from_id='"+uid+"' GROUP BY con_id DESC  ",
+			query:"SELECT to_id, from_id FROM conversation WHERE to_id='"+uid+"' OR from_id='"+uid+"'",
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
+			// console.log("get users to chat",result);
 			var dbUsers=[];
 			if(result.length>0){
 				var filter=[];
 				result.forEach(function(element, index, array){
-					filter.push(element['to_id']);
-					filter.push(element['from_id']);
+					filter.push("\'" + element['to_id'] + "\'");
+					filter.push("\'" +element['from_id'] + "\'");
 				});
 				filter=filter.join();
-				data.query="SELECT * FROM student WHERE id NOT IN ("+filter+")";
+				// console.log("user filter", filter);
+				data.query="SELECT * FROM student WHERE netid NOT IN ("+filter+")";
 			}else{
-				data.query="SELECT * FROM student WHERE id NOT IN ("+uid+")";
+				data.query="SELECT * FROM student WHERE netid NOT IN ("+uid+")";
 			}
 			self.queryRunner(data,function(usersData){
+				// console.log("get  user to chat inside",usersData);
 				callback(usersData);
 			});		
 		});
@@ -320,32 +337,48 @@ var self={
 			Function Merge online and offline users.
 		*/
 		var tempUsers = [];
+		// console.log("socket users ", socketUsers);
 		for(var i in socketUsers){
+			// console.log("socket users index", i);
 			var shouldAdd = false;
 			for (var j in dbUsers){
+				// console.log("dbusers", shouldAdd);
 				if(newUsers=='yes'){
-					if (dbUsers[j].id == socketUsers[i].id) {
+					// console.log("new user yes");
+					// console.log("new user db",dbUsers[j].netid);
+					// console.log("new user socket", socketUsers[i].netid);
+					if (dbUsers[j].netid == socketUsers[i].netid) {
 						shouldAdd = false;
 						dbUsers.splice(j,1); //Removing single user						
+						console.log("yes");
 						break;
 					}
 				}else{
-					if (dbUsers[j].id == socketUsers[i].id) {
+					// console.log("new user no");
+					// console.log("new user db",dbUsers[j].netid);
+					// console.log("new user socket", socketUsers[i].netid);
+					if (dbUsers[j].netid == socketUsers[i].netid) {
 						dbUsers[j].socketId = socketUsers[i].socketId;
 						shouldAdd = true;
+						console.log("no");
 						break;
 			       }
 				}
 			}
-			if(!shouldAdd){				
-				tempUsers.push(socketUsers[i]);
-			}
+			// if(!shouldAdd){				
+			// 	tempUsers.push(socketUsers[i]);
+			// 	console.log("pushed", socketUsers[i]);
+			// }
 		}
 		if(newUsers=='no'){
 			tempUsers = tempUsers.concat(dbUsers);
+			// console.log("last no dbUsers", dbUsers);
+			// console.log("last no tempUsers", tempUsers);
 		}else{
 			tempUsers = dbUsers;
+			// console.log("direct db to temp", tempUsers);
 		}
+		// console.log("merge users");
 		callback(tempUsers);
 	}
 }

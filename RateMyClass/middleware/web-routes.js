@@ -26,7 +26,7 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.redirect('/main#?id='+sessionInfo.uid);
+			res.redirect('/course_list.html#/'+sessionInfo.uid);
 		}else{
 			res.render('description');		
 		}
@@ -56,10 +56,14 @@ function routes(app,connection,sessionInfo){
 		var rateAverageEffectiveness = req.body.myAverageEffectiveness;
 		var rateOurNum = req.body.myOurNum;
 
-		// console.log(rateNumofRates, rateAverageRate);
+		var rateReview = req.body.myReview;
+
+		var rateFlag = req.body.myFlag;
+
+		// console.log(rateReview);
 
 		var data={
-			query:"update course_taken set rating = '"+ rateRate + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
+			query:"update course_taken set rating = '"+ rateRate + "', review = '"+ rateReview + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
 			connection:connection
 		}
 
@@ -78,7 +82,7 @@ function routes(app,connection,sessionInfo){
 				query_runner(update_rating,function(result_online){
 
 					// console.log(result_online);
-					if(result_online.changedRows>0) {
+					if(result_online.changedRows>0 && rateFlag == false) {
 
 						var update_student={
 							query:"update student set points = points + 10 where netid=\"" + rateNetID + "\"",
@@ -171,18 +175,44 @@ function routes(app,connection,sessionInfo){
 			});
 		}else{
 			
+			res.send("Not login");	
+		}
+	});
+
+	app.get('/courseDetail', function(req, res){
+		
+		sessionInfo=req.session;
+		
+		var parts = url.parse(req.url, true);
+		var query = parts.query;
+		// var term = req;
+		// console.log(sessionInfo.uid);
+		var num = query.courseNum;
+		var term = query.courseQuarter;
+
+		// console.log(query, num, term);
+		/*Render Login page If session is not set*/
+		if(sessionInfo.uid){
+			
 			var data={
-				query:"select * from course where term='"+term+"' order by course_id,title",
+				query:"select * from course where term='"+term+"' and class_num= '"+num+"';",
 				connection:connection
 			}
 
+			// console.log(data.query);
+
 			query_runner(data,function(result){
+
+				// console.log(result);
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
-		    		console.log("None");
+		    		// console.log("None");
+		    		res.send("No course found");
 		    	}			
-			});		
+			});
+		}else{		
+			res.send("Not login");
 		}
 	});
 
@@ -203,7 +233,7 @@ function routes(app,connection,sessionInfo){
 		if(sessionInfo.uid){
 			
 			var data={
-				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.netid != '" + sessionInfo.uid + "' order by rating",
+				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating desc",
 				connection:connection
 			}
 
@@ -212,23 +242,24 @@ function routes(app,connection,sessionInfo){
 				if(result.length>0) {
 					res.json(result);
 		    	} else {
-		    		console.log("None");
+		    		res.send("No one rated");
 		    	}			
 			});
 		}else{
-			var data={
-				query:"select * from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid order by rating",
-				connection:connection
-			}
+			// var data={
+			// 	query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating",
+			// 	connection:connection
+			// }
 
-			query_runner(data,function(result){
-				// console.log(result);
-				if(result.length>0) {
-					res.json(result);
-		    	} else {
-		    		console.log("None");
-		    	}			
-			});		
+			// query_runner(data,function(result){
+			// 	// console.log(result);
+			// 	if(result.length>0) {
+			// 		res.json(result);
+		 //    	} else {
+		 //    		console.log("None");
+		 //    	}			
+			// });	
+			res.send("Not login");	
 		}
 	});
 
@@ -241,7 +272,7 @@ function routes(app,connection,sessionInfo){
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			
+			console.log("in get user",sessionInfo.uid);
 			res.send(sessionInfo.uid);
 
 		}else{
@@ -259,9 +290,9 @@ function routes(app,connection,sessionInfo){
 		sessionInfo=req.session;
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			res.render('main');
+			res.send('success');
 		}else{
-			res.render('chat_login');		
+			res.send('Not login');		
 		}
 	});	
 
@@ -287,7 +318,7 @@ function routes(app,connection,sessionInfo){
 		    	}			
 			});
 		}else{
-			res.render('chat_login');		
+			res.send('Not login');		
 		}
 	});
 
@@ -301,7 +332,7 @@ function routes(app,connection,sessionInfo){
 		// console.log(sessionInfo.uid);
 		if(sessionInfo.uid){
 			var data={
-				query:"select ct.netid, ct.rating as myRate, ct.rDifficulty as rDifficulty, ct.rEffectiveness as rEffectiveness, c.* from course_taken as ct, course as c where ct.netid='" + sessionInfo.uid + "' and ct.class_num = c.class_num and ct.term = c.term",
+				query:"select ct.netid, ct.review, ct.rating as myRate, ct.rDifficulty as rDifficulty, ct.rEffectiveness as rEffectiveness, c.* from course_taken as ct, course as c where ct.netid='" + sessionInfo.uid + "' and ct.class_num = c.class_num and ct.term = c.term",
 				connection:connection
 			}
 

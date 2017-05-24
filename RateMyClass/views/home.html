@@ -6,9 +6,10 @@
 	<link rel="stylesheet" href="css/chat-style.css"> 
 	<link rel="stylesheet" href="css/nav-style.css">
 	<link rel="stylesheet" href="angularjs-toaster/toaster.min.css" />
+	<link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
 
   </head>
-  <body ng-controller="home">  
+<body ng-controller="home" onload="loadSize()" onresize="resize()">  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,7 +53,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-
+<div class="container" ng-init="startMessage()">
+	<div class="row">
+		<div class="col-xs-12">
 	<div class="body">
 	  
 		<div class="rows">
@@ -95,7 +98,7 @@
 					-->
 					<div class="send-container">
 				 		<textarea class="form-control send-msg-text" ng-model='send_text' send-typing-notification placeholder="Type your message here" ></textarea>
-				  		<h1 class="send-btn" ng-click="send_msg('','','')"><span class="glyphicon glyphicon-send"></span></h1>
+				  		<h1 class="send-btn" ng-click="send_msg('','','','')"><span class="glyphicon glyphicon-send"></span></h1>
 					</div>
 					<!-- 
 						Message box to send messages Ends
@@ -135,8 +138,8 @@
 						Showing online status
 					-->	
 					<div class="user-meta">
-						<span class="user-name">{{show_userinfo.data.name}}</span>
-						<span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span>
+						<span class="user-name">{{show_userinfo.data.first_name}}</span>
+						<!-- <span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span> -->
 					</div>
 				</div>
 
@@ -150,23 +153,23 @@
 					-->	
 					<div class="userlist-single" ng-repeat="singleuser in userlist"
 						ng-click="hightlight_user(singleuser)"
-					  	ng-class="(hightlight_id==singleuser.id ? 'hightlight_user_class' :'')"
+					  	ng-class="(hightlight_id==singleuser.netid ? 'hightlight_user_class' :'')"
 					  	ng-style="{
-							'display': uid==singleuser.id ? 'none' :''
+							'display': uid==singleuser.netid ? 'none' :''
 						}">
 						<!-- 
 							Showing users name, profile Image and online status  
 						-->	
 						<div class="userlist-user-meta">
-							<img class="img-circle" ng-src="{{singleuser.p_photo}}"/>
+							<!-- <img class="img-circle" ng-src="{{singleuser.p_photo}}"/> -->
 								<span class="online-user-status"
 						  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
 								></span>
-							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.name}}</span>
+							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}}</span>
 							<!-- 
 								Span to show 'Typing indicator'  
 							-->	
-							<span id="isTyping_{{singleuser.id}}" class="is-typing">is typing...</span>
+							<span id="isTyping_{{singleuser.netid}}" class="is-typing">is typing...</span>
 						</div>				  
 					</div>
 					<!-- 
@@ -176,12 +179,12 @@
 					<!-- 
 						Showing alert when no user avalibale for chat
 					-->	
-					<div ng-show="userlist.length == 1 && userlist[0].name==show_userinfo.data.name"  >
+					<div ng-show="userlist.length == 1 && userlist[0].first_name==show_userinfo.data.first_name"  >
 						<div class="alert alert-danger" >
 						  <p class="text-center" >
-							Everyone is offline.
+							You have not started connecting yet.
 							<br/><br/>
-							Share this url and Tell your friends to come online.
+							Start finding your peers.
 						  </p >
 						</div >
 					</div>
@@ -226,8 +229,8 @@
 					Displaying start new chat list starts
 				-->	
 				<div class="newChat" ng-repeat="singleOfflineUser in RecentUserList" 
-					ng-class="(hightlight_id==singleOfflineUser.id ? 'hightlight_user_class' :'')"
-					id='modal_user_{{singleOfflineUser.id}}'
+					ng-class="(hightlight_id==singleOfflineUser.netid ? 'hightlight_user_class' :'')"
+					id='modal_user_{{singleOfflineUser.netid}}'
 					>
 
 					<div class="userlist-user-meta">
@@ -235,11 +238,11 @@
 							Displaying User details starts
 						-->						
 						<div class="newChat-user-meta">
-							<img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                    
-							<span class="userlist-userName">{{singleOfflineUser.name}}</span>
-							<span class="send-msg-offline sendButton{{singleOfflineUser.id}}">
-								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.id}}" ng-click="hideShowMsgBox(singleOfflineUser.id,'show',$event)"></span>
-								<span class="glyphicon glyphicon-minus hideMsgBox_{{singleOfflineUser.id}} send-msg-hidden" ng-click="hideShowMsgBox(singleOfflineUser.id,'hide',$event)"></span>
+							<!-- <img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                     -->
+							<span class="userlist-userName">{{singleOfflineUser.first_name}}</span>
+							<span class="send-msg-offline sendButton{{singleOfflineUser.netid}}">
+								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.netid}}" ng-click="hideShowMsgBox(singleOfflineUser.netid,'show',$event)"></span>
+								<span class="glyphicon glyphicon-minus hideMsgBox_{{singleOfflineUser.netid}} send-msg-hidden" ng-click="hideShowMsgBox(singleOfflineUser.netid,'hide',$event)"></span>
 							</span>
 						</div>
 						<!-- 
@@ -249,10 +252,10 @@
 						<!-- 
 							text box to send messages starts 
 						-->	
-						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.id}}">
-							<textarea id="msg_modal_{{singleOfflineUser.id}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
-							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.id)">
-								send message
+						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.netid}}">
+							<textarea id="msg_modal_{{singleOfflineUser.netid}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
+							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid,'')">
+								Send Message
 							</button>                        
 						</div>
 						<!-- 
@@ -271,6 +274,9 @@
 		<!-- Modal content ends-->
 	  </div>
 	</div>
+	</div>
+	</div>
+	</div>
 	<!-- 
 		Bootstrap modal starts
 	-->
@@ -280,8 +286,19 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/angular-animate.min.js" ></script>
 	<script type="text/javascript" src="angularjs-toaster/toaster.min.js"></script>
+	<script>
+		function resize() {
+   			$(".container").height($(window).height() - 50);
+		}
+
+		function loadSize(){
+			$(".container").height($(window).height() - 50);
+			// $scope.get_user_name()
+		}
+	</script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src ="js/home_script.js"></script>
+	
 
   </body>
 </html>

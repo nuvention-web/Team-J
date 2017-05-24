@@ -1,0 +1,122 @@
+.jumbotron{
+	background: #fefefe; 
+	padding-top: 20px;
+	padding-bottom: 20px;
+	box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+hr{
+	color: #ddd;
+}
+
+.jumbotron > .container> h2{
+	color: #5F9F9D;
+	font-family: 'Anton', sans-serif;
+}
+
+.jumbotron > .container> h3, .jumbotron > .container> h4{
+	font-family: 'Telex', sans-serif;
+}
+
+
+.container > a:hover{
+	cursor: pointer;
+}
+
+.widget .list-group { 
+	margin-bottom: 0; 
+}
+
+.widget .panel-title { 
+	display:inline;
+	font-size: 20px;
+}
+
+.widget .label-info { 
+	float: right;
+	font-size: 13px;
+    margin-top: 4px; 
+}
+
+.panel-heading{
+	font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+.widget li.list-group-item {
+	border-radius: 0;
+	border: 0;
+	/*border-top: 1px solid #ddd;*/
+	border-bottom: 2px solid #eee;
+
+}
+
+.img-responsive{
+	max-width: 80 !important;
+	height: 80;
+}
+
+
+.widget li.list-group-item:nth-child(even) {
+	background: #eff6f5;
+
+}
+
+button.swal2-styled {
+    outline: none;
+}
+
+
+/*.widget li.list-group-item:hover { 
+	background-color: #aed1cc;
+}*/
+
+.widget .mic-info { 
+	color: #666666;
+	font-size: 20px; 
+	margin-left: 1em;
+	margin-top: 0.5em;
+}
+
+.widget a{
+	margin-left: 1.5em;
+}
+
+.widget .comment-text { 
+	margin-top: 0.5em;
+	font-size: 18px; 
+	margin-bottom: 2em;
+	font-family: 'Average Sans', sans-serif;
+}
+
+.widget .btn { 
+	margin-top: 0.5em;
+}
+
+.container > h5 > table{
+	width: 60%;
+}
+
+#averageTable > thead > tr{
+	font-size: 15px;
+}
+
+table{
+	background: #b5d3d2;
+	color: white;
+	border-radius: 6px;
+	border-collapse: collapse;
+    border-style: hidden;
+}
+
+th, td {
+   border: 1px solid white;
+}
+
+h4 > span{
+	margin-right: 1em;
+
+}
+
+h4 > label{
+	padding-top: 5px;
+}

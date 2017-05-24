@@ -50,7 +50,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="course_list.html" class="">Classes</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <!-- <li><a href="home.html">Message</a></li> -->
+        <li><a href="home.html">Message</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -121,8 +121,22 @@
                       </a>       
                       </th> 
 
-                      <th>Difficulty</th>
-                      <th>Effectiveness</th>                   
+                      <th>
+                      <a href="#" ng-click="sortType = 'difficulty'; sortReverse = !sortReverse">
+                      Difficulty
+                      <span ng-show="sortType == 'difficulty' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'difficulty' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>
+                      </th>
+
+                      <th>
+                      <a href="#" ng-click="sortType = 'effectiveness'; sortReverse = !sortReverse">
+                      Effectiveness
+                      <span ng-show="sortType == 'effectiveness' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'effectiveness' && sortReverse" class="fa fa-caret-up"></span>
+                      </a>
+                      </th>  
+
                   </tr>
                   </thead>   
               <tbody>
@@ -142,7 +156,7 @@
                 </div>
                 </div>
 
-      <div class="modal fade" id="courseDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="courseDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -209,7 +223,7 @@
                           </tr>
                         </thead>   
               <tbody>
-                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0">
+                <tr ng-repeat="rater in raters | orderBy:sortType:sortReverse" ng-if="rater.rating > 0" ng-click="getTargetNetID(rater)">
                     <td style="text-align: center">{{ rater.first_name }}</td>
                     <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ rater.rating | number : 2}}</span></h4>
                     </td> 
@@ -227,7 +241,7 @@
                 </div>
               </div>
             </div>
-        </div>
+        </div> -->
 
 
 

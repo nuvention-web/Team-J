@@ -1,6 +1,6 @@
 body {
 	background-color: #F9F7F7;
-	display:table;
+	height: 100%
 }
 
 .navbar-default {
@@ -176,7 +176,6 @@ div.p_photo-group {
 }
 .signup-box{
 	text-align: center;
-	margin-top:20px;
 	text-transform: none;
 }
 @media screen and (max-width: 700px) {
@@ -330,6 +329,7 @@ Message Area starts
 	/*height: 100%;		*/
 	padding: 0px;
 	border-left: solid 1px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px #5F9F9D;
 }
 .msg-wrapper-header{
 	height: 35px;

@@ -1,0 +1,211 @@
+<html ng-app="course-detail">
+<head>
+  <title>CoEva</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/nav-style.css">
+  <link rel="stylesheet" href="css/courseDetail-style.css">
+
+  <link rel="SHORTCUT ICON" href="./resources/images/CoEva.png">
+
+<!--   <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+
+  <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cåloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css"> -->
+  
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Telex" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Average+Sans" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="resources/five-star-rating/css/rating.min.css"> -->
+  <!-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> -->
+
+
+  
+
+</head>
+<body ng-controller="course-detail">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="main.html">
+        <img alt="Brand" src="./resources/images/CoEva.png" height="25px">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="main.html"><strong>CoEva</strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="course_list.html" class="">Classes</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="home.html">Message</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Useful Links<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.caesar.northwestern.edu/" target="_blank">CAESAR</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="http://www.mccormick.northwestern.edu/contact/tech-room-finder.html" target="_blank">Tech Room Finder</a></li>
+            <li role="separator" class="divider"></li>
+           <li><a href="http://www.mccormick.northwestern.edu/eecs/" target="_blank">EECS Department</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://serif.nu/" target="_blank">Serif.NU</a></li>
+          </ul>
+        </li>
+        <form class="navbar-form navbar-left" ng-click="logOut()">
+          <button type="submit" class="btn btn-default nav-login">
+          Sign Out</button>
+        </form>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" ng-init="courseDetail()">
+  <div class="row">
+    <div class="col-xs-12">
+
+    <div class="jumbotron banner">
+      <div class="container">
+      
+      
+        <h2 ng-bind="(course.course_id) + ' : '+ (course.title)"></h2>
+        <h4>
+        <label class="form-control-label" >Course Instructor:</label>
+        <span ng-bind="course.instructor"></span>
+        <br>
+        </h4>
+
+        <h4>
+        <strong><label class="form-control-label" >Course Time:</label></strong>
+        <span ng-bind="(course.term)+ ', ' + (course.meeting_day_time)"></span>
+        <br>
+        </h4>
+
+        <h4>
+        <strong><label class="form-control-label" >Course Description:</label></strong>
+        <a ng-href="{{course.url}}" target="_blank">Link</a>
+        </h4>
+
+        <h4>
+        <strong><label class="form-control-label" >Average Rate:</label></strong>
+        </h4>
+        <h5>
+                      
+                      <table class="table" id="averageTable">
+                      <thead>
+                        <tr>
+                          <th>Overall</th>
+                          <th># Responses</th> 
+                          <th>Difficulty</th>
+                          <th># Responses</th> 
+                          <th>Effectiveness</th>
+                          <th># Responses</th> 
+                                                                
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': course.rating <= 2.0, 'label-warning': course.rating < 3.5 && course.rating > 2.0, 'label-success': course.rating >=3.5 && course.rating <= 5, 'label-default' : course.rating > 5.0}" ng-bind="course.rating | number : 2"></span></h4>
+                          </td>
+                          <td style="text-align: center"><h4 ng-bind="course.no_of_students"></h4>
+                          </td>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-success': course.difficulty <= 2.0, 'label-warning': course.difficulty < 3.5 && course.difficulty > 2.0, 'label-danger': course.difficulty >=3.5 && course.difficulty <= 5, 'label-default' : course.difficulty > 5.0}" ng-bind="course.difficulty | number : 2"></span></h4>
+                          </td>
+                          <td style="text-align: center"><h4 ng-bind="course.our_num"></h4>
+                          </td>
+                          <td style="text-align: center"><h4><span class="label" ng-class="{'label-danger': course.effectiveness <= 2.0, 'label-warning': course.effectiveness < 3.5 && course.effectiveness > 2.0, 'label-success': course.effectiveness >=3.5 && course.effectiveness <= 5, 'label-default' : course.effectiveness > 5.0}" ng-bind="course.effectiveness | number : 2"></span></h4>
+                          </td>
+                          <td style="text-align: center"><h4 ng-bind="course.our_num"></h4>
+                          </td>
+                      </tbody>
+                      </table>
+        </h5>
+        </div>
+      </div>
+
+    <!-- <div class="jumbotron" > -->
+      <!-- <div class="container"> -->
+          <div class="panel panel-default widget" ng-init="raterList()">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Rate &amp; Reviews</h3>
+                <span class="label label-info" ng-bind="raters ? (raters.length + ' Rated') : ('no one has rated yet')"></span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="rater in raters" ng-if="rater.rating > 0">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                    <div class="mic-info" ng-bind="rater.first_name"></div>
+                                    <a class="btn btn-default btn-sm" ng-click="getTargetNetID(rater)" role="button"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
+                            </div>
+                            
+                        </div>
+
+                        <h4>
+                          <label>Overall: </label>
+                          <span class="label" ng-class="{'label-danger': rater.rating <= 2.0, 'label-warning': rater.rating < 3.5 && rater.rating > 2.0, 'label-success': rater.rating >=3.5 && rater.rating <= 5, 'label-default' : rater.rating > 5.0}">{{ rater.rating | number : 2}}</span>
+                          <label>Difficulty: </label>
+                          <span class="label" ng-class="{'label-success': rater.rDifficulty <= 2.0, 'label-warning': rater.rDifficulty < 3.5 && rater.rDifficulty > 2.0, 'label-danger': rater.rDifficulty >=3.5 && rater.rDifficulty <= 5, 'label-default' : rater.rDifficulty > 5.0}" ng-bind="rater.rDifficulty | number : 2"></span>
+                          <label>Effectiveness: </label>
+                          <span class="label" ng-class="{'label-danger': rater.rEffectiveness <= 2.0, 'label-warning': rater.rEffectiveness < 3.5 && rater.rEffectiveness > 2.0, 'label-success': rater.rEffectiveness >=3.5 && rater.rEffectiveness <= 5, 'label-default' : rater.rEffectiveness > 5.0}" ng-bind="rater.rEffectiveness | number : 2"></span>
+                        </h4>
+                        <div class="comment-text" ng-bind="rater.review? rater.review:'No reviews written'">
+                        </div>
+
+                        
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+      <!-- </div> -->
+    <!-- </div> -->
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- <script src="resources/five-star-rating/js/dist/rating.min.js"></script> -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+
+  <script src="js/course_detail.js"></script>
+
+  <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+
+
+
+</body>
+</html>

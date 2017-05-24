@@ -2,12 +2,22 @@
 
 var app = require("express")();
 var http = require('http').Server(app);
-var io = require("socket.io")(http);
+
+/*
+	Running our application  
+*/
+var port = process.env.PORT || 80;
+//Listen to any port assigned by Heroku
+server = app.listen(port, function() {
+	console.log('CoEva is running on http://localhost:' + port);
+});
+
+
+var io = require("socket.io").listen(server);
 var Session = require('express-session');
 var cookieParser = require('cookie-parser'); 
-var port = process.env.PORT || 80;
-/*requiring node modules ends */
 
+/*requiring node modules ends */
 
 // the session is stored in a cookie, so we use this to parse it
 app.use(cookieParser());
@@ -53,15 +63,6 @@ require('./middleware/auth-routes.js')(app,connection,Session,cookieParser,sessi
 require('./middleware/routes.js')(app,connection,io,Session,cookieParser,sessionInfo);
 
 require('./middleware/web-routes.js')(app,connection,Session,cookieParser,sessionInfo);
-
-/*
-	Running our application  
-*/
-
-//Listen to any port assigned by Heroku
-app.listen(port, function() {
-	console.log('CoEva is running on http://localhost:' + port);
-});
 
 // http.listen(81,function(){
 //     console.log("Listening on http://127.0.0.1:81");
