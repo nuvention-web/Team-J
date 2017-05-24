@@ -98,7 +98,7 @@
 					-->
 					<div class="send-container">
 				 		<textarea class="form-control send-msg-text" ng-model='send_text' send-typing-notification placeholder="Type your message here" ></textarea>
-				  		<h1 class="send-btn" ng-click="send_msg('','','')"><span class="glyphicon glyphicon-send"></span></h1>
+				  		<h1 class="send-btn" ng-click="send_msg('','','','')"><span class="glyphicon glyphicon-send"></span></h1>
 					</div>
 					<!-- 
 						Message box to send messages Ends
@@ -254,7 +254,7 @@
 						-->	
 						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.netid}}">
 							<textarea id="msg_modal_{{singleOfflineUser.netid}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
-							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid)">
+							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid,'')">
 								Send Message
 							</button>                        
 						</div>
