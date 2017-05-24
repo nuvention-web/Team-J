@@ -181,7 +181,7 @@ function routes(app,connection,io,sessionInfo){
 	*/
 	app.post('/get_userinfo', function(req, res){
 		var data={
-			query:"select netid,first_name,p_photo,online from student where netid='"+req.session.uid+"'",
+			query:"select netid,first_name,last_name,p_photo,online from student where netid='"+req.session.uid+"'",
 			connection:connection
 		}
 		// console.log("session printing", req.session);

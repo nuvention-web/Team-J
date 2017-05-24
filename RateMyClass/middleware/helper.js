@@ -238,7 +238,7 @@ var self={
 			Function to get user information.
 		*/
 		var data={
-			query:"select netid,first_name,p_photo,online from student where netid='"+uid+"'",
+			query:"select netid,first_name,last_name,p_photo,online from student where netid='"+uid+"'",
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
@@ -248,6 +248,7 @@ var self={
 				result.forEach(function(element, index, array){
 					user_info={
 						first_name:element.first_name,
+						last_name:element.last_name,
 						p_photo:element.p_photo,
 						online:element.online
 					};	

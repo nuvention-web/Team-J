@@ -216,7 +216,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 
 		$scope.send_to_userinfo=send_to_userinfo;
 		$scope.hightlight_id=send_to_userinfo.netid;
-		$scope.send_to_user_name=send_to_userinfo.first_name; 
+		$scope.send_to_user_name=send_to_userinfo.first_name+send_to_userinfo.last_name; 
 		$scope.hightlight_socket_id=send_to_userinfo.socketId; 
 		
 		$scope.self.getMsg(send_to_userinfo,function(result){
