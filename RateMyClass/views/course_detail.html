@@ -100,15 +100,16 @@
 
         <h4>
         <strong><label class="form-control-label" >Course Description:</label></strong>
-        <a ng-href="{{course.url}}" target="_blank">Link</a>
+        <a ng-href="{{course.url}}" ng-bind="course.url" target="_blank">Link</a>
         </h4>
 
         <h4>
         <strong><label class="form-control-label" >Average Rate:</label></strong>
         </h4>
-        <h5>
-                      
-                      <table class="table" id="averageTable">
+        
+        <div class="col-xs-8">
+        <h5>            
+                      <table class="table table-responsive" id="averageTable">
                       <thead>
                         <tr>
                           <th>Overall</th>
@@ -137,6 +138,33 @@
                       </table>
         </h5>
         </div>
+        
+        </div>
+      </div>
+
+      <div class="panel panel-default" ng-init="chartInit()">
+        <ul class="chart_list">
+          <li class="list-item">
+            <canvas class="chart chart-doughnut" chart-data="overallData" chart-labels="overallLabels" chart-colours="colours">
+            </canvas> 
+            <label>Overall rating</label>
+          </li>
+          <li class="list-item">
+            <canvas class="chart chart-doughnut" chart-data="diffData" chart-labels="diffLabels">
+            </canvas> 
+            <label>Difficulty rating</label>
+          </li>
+          <li class="list-item">
+            <canvas class="chart chart-doughnut" chart-data="effData" chart-labels="effLabels">
+            </canvas> 
+            <label>Effectiveness rating</label>
+          </li>
+          <li class="list-item">
+            <canvas class="chart chart-doughnut" chart-data="revData" chart-labels="revLabels">
+            </canvas> 
+            <label>Reviews</label>
+          </li>
+        </ul>
       </div>
 
     <!-- <div class="jumbotron" > -->
@@ -156,7 +184,7 @@
                                 <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
                             <div class="col-xs-10 col-md-11">
                                     <div class="mic-info" ng-bind="rater.first_name"></div>
-                                    <a class="btn btn-default btn-sm" ng-click="getTargetNetID(rater)" role="button"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
+                                    <a class="btn btn-default btn-sm" ng-click="getTargetNetID(rater)" role="button" ng-disabled="self == rater.netid"><span class="glyphicon glyphicon-plus"></span> Start Conversation</a>
                             </div>
                             
                         </div>
@@ -203,6 +231,12 @@
 
   <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  
+  <!-- <script src="node_modules/chart.js/Chart.min.js"></script>
+  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script> -->
 
 
 

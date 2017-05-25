@@ -179,6 +179,109 @@ function routes(app,connection,sessionInfo){
 		}
 	});
 
+	app.get('/chart', function(req, res){
+		
+		sessionInfo=req.session;
+		
+		var parts = url.parse(req.url, true);
+		var query = parts.query;
+		// var term = req;
+		// console.log(sessionInfo.uid);
+		var num = query.courseNum;
+		var term = query.courseQuarter;
+
+		var answer = [];
+
+		/*Render Login page If session is not set*/
+		if(sessionInfo.uid){
+			
+			//start - review
+			var data={
+				query:"select count(*) - count(review) AS Empty, count(review) AS Not_Empty from course_taken where term='"+term+"' and class_num= '"+num+"' and rating != 0;",
+				connection:connection
+			}
+
+			query_runner(data,function(result){
+				if(result.length>0) {
+					answer.push(result);
+		    	} else {
+		    		answer.push("None");
+		    	}
+
+		    	//start - difficulty
+		    	var data={
+					query:"select rDifficulty, count(rDifficulty) AS count from course_taken where term='"+term+"' and class_num= '"+num+"' and rDifficulty != 0 group by rDifficulty;",
+					connection:connection
+				}
+
+				query_runner(data,function(result2){
+					if(result2.length>0) {
+						answer.push(result2);
+					} else {
+					    answer.push("None");
+					}
+
+					//start - effectiveness
+					var data={
+						query:"select rEffectiveness, count(rEffectiveness) AS count from course_taken where term='"+term+"' and class_num= '"+num+"' and rEffectiveness != 0 group by rEffectiveness;",
+						connection:connection
+					}
+
+					query_runner(data,function(result3){
+						if(result3.length>0) {
+							answer.push(result3);
+						} else {
+						    answer.push("None");
+						}
+
+						//start - rating
+						var data={
+							query:"select rating, count(rating) AS count from course_taken where term='"+term+"' and class_num= '"+num+"' group by rating;",
+							connection:connection
+						}
+
+						query_runner(data,function(result4){
+							if(result4.length>0) {
+								answer.push(result4);
+							} else {
+							    answer.push("None");
+							}
+
+							//start - average
+							var data={
+								query:"select rating, no_of_students from course where term='"+term+"' and class_num= '"+num+"';",
+								connection:connection
+							}
+
+							query_runner(data,function(result5){
+								if(result5.length>0) {
+									answer.push(result5);
+									// res.json(answer);
+								} else {
+								    answer.push("None");
+								}
+
+								res.json(answer);			
+							});
+							//end - average
+
+						});
+						//end - rating
+
+					});
+					//end - effectiveness
+
+				});
+				//end - difficulty
+
+			});
+			//end - review
+		}else{
+			
+			res.send("Not login");	
+		}
+	});
+
 	app.get('/courseDetail', function(req, res){
 		
 		sessionInfo=req.session;
@@ -228,19 +331,22 @@ function routes(app,connection,sessionInfo){
 		var courseTerm = query.courseQuarter;
 
 		// console.log(sessionInfo.uid);
+		var answer = [];
+		answer.push(sessionInfo.uid);
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
 			
 			var data={
-				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 and ct.netid != '" + sessionInfo.uid + "' order by rating desc",
+				query:"select s.first_name, s.netid, s.p_photo, s.online, ct.rating, ct.rDifficulty, ct.rEffectiveness, ct.review from course_taken as ct, student as s where ct.term=\""+courseTerm+"\" and ct.class_num = \"" + courseNum + "\" and s.netid = ct.netid and ct.rating != 0 order by rating desc",
 				connection:connection
 			}
 
 			query_runner(data,function(result){
 				// console.log(result);
 				if(result.length>0) {
-					res.json(result);
+					answer.push(result);
+					res.json(answer);
 		    	} else {
 		    		res.send("No one rated");
 		    	}			
