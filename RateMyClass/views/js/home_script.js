@@ -106,6 +106,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			// var uid=$scope.targetUser;
 			// var uid="ads9122";
 			// $scope.uid=uid;
+			// console.log("in getuserinfo");
 			var data={
 				url:'/get_userinfo',
 				data_server:{
@@ -136,6 +137,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			// var uid=$scope.targetUser;
 			// var uid="ads9122";
 			// $scope.uid=uid;
+			// console.log("in getrecentChats");
 			var data={
 				url:'/get_recent_chats',
 				data_server:{
@@ -153,6 +155,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		  // var uid=$scope.targetUser;
 		  // var uid="ads9122";
 		  // $scope.uid=uid;
+		  // console.log("in getUsersToChats");
 		  var data={
 			url:'/get_users_to_chats',
 			data_server:{
@@ -164,6 +167,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		  });
 		},
 		getMsg:function(msgs_userinfo,callback){
+			// console.log("in getMsg");
 		  var data={
 			url:'/get_msgs',
 			data_server:{
@@ -180,6 +184,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		  $(scrollDiv).animate({scrollTop: scrollDiv[0].scrollHeight}, 900);
 		},
 		sendTypingNotification:function(eventName){
+			// console.log("in sendTypingNotification");
 		  var TypeTimer;                
 		  var TypingInterval = 2000;
 		  var data_server={
@@ -205,7 +210,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	*/
 	$scope.self.getUserInfo(function(userinfo){
 		socket.emit('userInfo',userinfo.data); // sending user info to the server
-		// console.log("===", userinfo, userinfo.data);
+		// console.log("called getUserInfo");
 	});
   
 
@@ -213,7 +218,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		Function To show selected user from chat list  
 	*/  
 	$scope.hightlight_user=function(send_to_userinfo){
-
+		// console.log("in hightlight_user");
 		$scope.send_to_userinfo=send_to_userinfo;
 		$scope.hightlight_id=send_to_userinfo.netid;
 		$scope.send_to_user_name=send_to_userinfo.first_name+send_to_userinfo.last_name; 
@@ -249,6 +254,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		Function To send messages
 	*/  
 	$scope.send_msg=function(fromModal,socketId,toid,targetMsg){
+		// console.log("in send_Msg");
 		if(fromModal==""){
 			if($scope.send_to_userinfo != ""){
 				if($scope.send_text==""){
@@ -302,7 +308,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		To hide and show the Message box inside Modal
 	*/
 	$scope.hideShowMsgBox=function(id,action,$event){
-
+		// console.log("in hideShowMsgBox");
 		var hideShowEle = angular.element( document.querySelector( '.collapseMsgBox'+'_'+id ) ); 
 		var hidEle=angular.element( document.querySelector( '.hideMSgBox'+'_'+id ) );
 		var showEle=angular.element( document.querySelector( '.showMSgBox'+'_'+id ) );
@@ -334,6 +340,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		Function to show messages.
   	*/
 	socket.on('getMsg',function(data){
+		// console.log("in socket getMsg");
 		if($scope.send_to_userinfo != ""){
 	  		$scope.self.getMsg($scope.send_to_userinfo,function(result){
 				$scope.msgs="";
@@ -352,6 +359,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		Function to update user list when one user goes offline.
 	*/
   	socket.on('getTypingNotification',function(data){
+  		// console.log("in socket getTypingNotification");
 		if(data.event_name=="keypress"){
 	  		angular.element('#isTyping_'+data.data_uid).css('display','block');
 		}else{
@@ -360,6 +368,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	});
 
   	socket.on('exit',function(data){
+  		// console.log("in socket exit");
   		$scope.self.getUserInfo(function(userinfo){
 			socket.emit('userInfo',userinfo.data); // sending user info to the server  
 		});
@@ -370,7 +379,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	socket.on('userEntrance',function(data){
 		$scope.userlist=data;
 
-		// console.log("$scope.userlist == ", $scope.userlist);
+		console.log("$scope.userlist == ", $scope.userlist);
   	});
 
  
