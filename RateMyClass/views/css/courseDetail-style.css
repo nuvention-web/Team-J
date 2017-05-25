@@ -120,3 +120,27 @@ h4 > span{
 h4 > label{
 	padding-top: 5px;
 }
+
+.chart_list {
+	margin-top: 2em;
+	margin-left: 1em;
+}
+
+
+.chart_list > li{
+	height: 200px;
+	width: 200px;
+	display: inline-block;
+	margin-left: 3em;
+
+}
+
+li > label{
+	display: block;
+	padding-top: 1em;
+	text-align: center;
+}
+
+.col-xs-8{
+	padding-left: 0;
+}
