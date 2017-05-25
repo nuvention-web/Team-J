@@ -230,7 +230,7 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
             })
           }
         })
-        
+
     }
 
 

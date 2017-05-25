@@ -98,7 +98,7 @@
 					-->
 					<div class="send-container">
 				 		<textarea class="form-control send-msg-text" ng-model='send_text' send-typing-notification placeholder="Type your message here" ></textarea>
-				  		<h1 class="send-btn" ng-click="send_msg('','','')"><span class="glyphicon glyphicon-send"></span></h1>
+				  		<h1 class="send-btn" ng-click="send_msg('','','','')"><span class="glyphicon glyphicon-send"></span></h1>
 					</div>
 					<!-- 
 						Message box to send messages Ends
@@ -138,8 +138,8 @@
 						Showing online status
 					-->	
 					<div class="user-meta">
-						<span class="user-name">{{show_userinfo.data.first_name}}</span>
-						<span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span>
+						<span class="user-name">{{show_userinfo.data.first_name}} {{show_userinfo.data.last_name}}</span>
+						<!-- <span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span> -->
 					</div>
 				</div>
 
@@ -165,11 +165,11 @@
 								<span class="online-user-status"
 						  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
 								></span>
-							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}}</span>
+							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}} {{singleuser.last_name}}</span>
 							<!-- 
 								Span to show 'Typing indicator'  
 							-->	
-							<span id="isTyping_{{singleuser.netid}}" class="is-typing">is typing...</span>
+							<span id="isTyping_{{singleuser.first_name}}" class="is-typing">is typing...</span>
 						</div>				  
 					</div>
 					<!-- 
@@ -182,9 +182,9 @@
 					<div ng-show="userlist.length == 1 && userlist[0].first_name==show_userinfo.data.first_name"  >
 						<div class="alert alert-danger" >
 						  <p class="text-center" >
-							Everyone is offline.
+							You have not started connecting yet.
 							<br/><br/>
-							Share this url and Tell your friends to come online.
+							Start finding your peers.
 						  </p >
 						</div >
 					</div>
@@ -239,7 +239,7 @@
 						-->						
 						<div class="newChat-user-meta">
 							<!-- <img class="img-circle" ng-src="{{singleOfflineUser.p_photo}}">                     -->
-							<span class="userlist-userName">{{singleOfflineUser.first_name}}</span>
+							<span class="userlist-userName">{{singleOfflineUser.first_name}} {{singleOfflineUser.last_name}}</span>
 							<span class="send-msg-offline sendButton{{singleOfflineUser.netid}}">
 								<span class="glyphicon glyphicon-plus showMSgBox_{{singleOfflineUser.netid}}" ng-click="hideShowMsgBox(singleOfflineUser.netid,'show',$event)"></span>
 								<span class="glyphicon glyphicon-minus hideMsgBox_{{singleOfflineUser.netid}} send-msg-hidden" ng-click="hideShowMsgBox(singleOfflineUser.netid,'hide',$event)"></span>
@@ -254,8 +254,8 @@
 						-->	
 						<div class="send-msg-offline-text send-msg-hidden collapseMsgBox_{{singleOfflineUser.netid}}">
 							<textarea id="msg_modal_{{singleOfflineUser.netid}}" class="form-control" ng-model='send_text' placeholder="Type your message here"></textarea>
-							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid)">
-								send message
+							<button class="btn btn-primary newChat-send-mesaage" data-dismiss="modal" ng-click="send_msg('fromModal','',singleOfflineUser.netid,'')">
+								Send Message
 							</button>                        
 						</div>
 						<!-- 

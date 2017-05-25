@@ -81,7 +81,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
   	$scope.targetUser = angular.fromJson($window.sessionStorage.getItem('target'));
   	$scope.message = angular.fromJson($window.sessionStorage.getItem('message'));
 
-  	console.log($scope.targetUser, $scope.message);
+  	// console.log($scope.targetUser, $scope.message);
   	//remember to sessionStorage.clear(); after use the data.
 
   	// $scope.get_user_name=function(){
@@ -113,10 +113,18 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 				}
 			};
 			runajax.runajax_function(data,function(userdata){
-				console.log("user data get",userdata);       
+				// console.log("user data get",userdata);       
 				$scope.show_userinfo=userdata;
-				$scope.uid = userdata.data.netid;       
+				$scope.uid = userdata.data.netid;
+				if($window.sessionStorage.length != 0){
+					$scope.send_msg("New msg",'',$scope.targetUser,$scope.message);
+					$window.sessionStorage.clear();
+					$scope.targetUser = "";
+					$scope.message = "";
+					// console.log("new message added");
+				}       
 				callback(userdata);
+				// console.log("target user", $scope.targetUser);
 			});
 
 			// console.log("===", userinfo, userinfo.data);
@@ -136,7 +144,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			};
 			runajax.runajax_function(data,function(userdata){
 				callback(userdata);
-				console.log("userdata===",userdata);
+				// console.log("userdata===",userdata);
 			});
 		},
 		getUsersToChats:function(callback){
@@ -208,7 +216,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 
 		$scope.send_to_userinfo=send_to_userinfo;
 		$scope.hightlight_id=send_to_userinfo.netid;
-		$scope.send_to_user_name=send_to_userinfo.first_name; 
+		$scope.send_to_user_name=send_to_userinfo.first_name+send_to_userinfo.last_name; 
 		$scope.hightlight_socket_id=send_to_userinfo.socketId; 
 		
 		$scope.self.getMsg(send_to_userinfo,function(result){
@@ -240,7 +248,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	/*
 		Function To send messages
 	*/  
-	$scope.send_msg=function(fromModal,socketId,toid){
+	$scope.send_msg=function(fromModal,socketId,toid,targetMsg){
 		if(fromModal==""){
 			if($scope.send_to_userinfo != ""){
 				if($scope.send_text==""){
@@ -252,7 +260,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 						from_id:$scope.uid,
 						msg:$scope.send_text
 					};
-					console.log(data);
+					// console.log(data);
 					// sending user info to the server starts
 					socket.emit('sendMsg',data);
 
@@ -269,7 +277,12 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 			  alert("Select a user to send Message.");
 			}  
 		}else{
-			var getMsgText =angular.element( document.querySelector( '#msg_modal'+'_'+toid ) ).val();
+			if($scope.targetMsg == ""){
+				var getMsgText =angular.element( document.querySelector( '#msg_modal'+'_'+toid ) ).val();
+			}
+			else {
+				var getMsgText =targetMsg;
+			}
 			if(getMsgText==""){
 				alert("Message can't be empty.");
 			}else{
@@ -357,7 +370,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	socket.on('userEntrance',function(data){
 		$scope.userlist=data;
 
-		console.log("$scope.userlist == ", $scope.userlist);
+		// console.log("$scope.userlist == ", $scope.userlist);
   	});
 
  
