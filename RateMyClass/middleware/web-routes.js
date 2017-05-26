@@ -431,7 +431,7 @@ function routes(app,connection,sessionInfo){
 	app.get('/taken_Course', function(req, res){
 		// console.log("111");
 		sessionInfo=req.session;
-		// console.log(sessionInfo);
+		// console.log(sessionInfo.uid);
 
 		/*Render Login page If session is not set*/
 

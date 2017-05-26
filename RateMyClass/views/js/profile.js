@@ -53,6 +53,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
 
     $scope.load_takenCourse = function(){
         $http.get('/taken_Course').then(function successCallback(response) {
+               // console.log(response.data);
                $scope.takenCourses = response.data;
         }, function errorCallback(response){
                swal({
@@ -175,7 +176,7 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
        if (selectedCourse.myRate != 0)
             ratedFlag = true;
 
-       if (selectedCourse.effectiveness != 0){
+       if (selectedCourse.rEffectiveness != 0){
 
           swal({
                     title: 'Error!',

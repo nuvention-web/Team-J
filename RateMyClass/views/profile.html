@@ -163,7 +163,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Taken Courses in EECS - Last three quarters</h3>
+                  <h3 class="box-title">Taken Courses in EECS - Last three quarters - Personal Rates</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
               <table class="table table-hover" ng-init="load_takenCourse()">
@@ -185,14 +185,14 @@
                     <td ng-bind="courseI.title"></td>
                     <td ng-bind="courseI.instructor"></td>
                     <td ng-bind="courseI.term"></td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rating <= 2.0, 'label-warning': courseI.rating < 3.5 && courseI.rating > 2.0, 'label-success': courseI.rating >=3.5 && courseI.rating <= 5}">{{ courseI.rating | number : 2}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.myRate <= 2.0, 'label-warning': courseI.myRate < 3.5 && courseI.myRate > 2.0, 'label-success': courseI.myRate >=3.5 && courseI.myRate <= 5}">{{ courseI.myRate | number : 2}}</span></h3>
                     </td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-success': courseI.difficulty <= 2.0, 'label-warning': courseI.difficulty < 3.5 && courseI.difficulty > 2.0, 'label-danger': courseI.difficulty >=3.5 && courseI.difficulty <= 5}">{{ courseI.difficulty | number : 2}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-success': courseI.rDifficulty <= 2.0, 'label-warning': courseI.rDifficulty < 3.5 && courseI.rDifficulty > 2.0, 'label-danger': courseI.rDifficulty >=3.5 && courseI.rDifficulty <= 5}">{{ courseI.rDifficulty | number : 2}}</span></h3>
                     </td>
-                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.effectiveness <= 2.0, 'label-warning': courseI.effectiveness < 3.5 && courseI.effectiveness > 2.0, 'label-success': courseI.effectiveness >=3.5 && courseI.effectiveness <= 5}">{{ courseI.effectiveness | number : 2}}</span></h3>
+                    <td style="text-align: center"><h3><span class="label" ng-class="{'label-danger': courseI.rEffectiveness <= 2.0, 'label-warning': courseI.rEffectiveness < 3.5 && courseI.rEffectiveness > 2.0, 'label-success': courseI.rEffectiveness >=3.5 && courseI.rEffectiveness <= 5}">{{ courseI.rEffectiveness | number : 2}}</span></h3>
                     </td>
                     <td style="text-align: center">
-                      <button type="button" class="btn btn-success" ng-disabled="courseI.effectiveness != 0" ng-bind="courseI.effectiveness == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
+                      <button type="button" class="btn btn-success" ng-disabled="courseI.rEffectiveness != 0" ng-bind="courseI.rEffectiveness == 0? 'Rate' : 'Rated'" ng-click="rateCourse(courseI)"></button>
                     </td>                                 
                 </tr> 
               </tbody> 
