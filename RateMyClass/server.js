@@ -7,7 +7,7 @@ var http = require('http').Server(app);
 /*
 	Running our application  
 */
-var port = process.env.PORT || 81;
+var port = process.env.PORT || 80;
 //Listen to any port assigned by Heroku
 server = app.listen(port, function() {
 	console.log('CoEva is running on http://localhost:' + port);
