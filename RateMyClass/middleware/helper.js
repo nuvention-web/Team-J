@@ -272,10 +272,10 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
-			// console.log("get user chat list p1",uid);
+			console.log("get user chat list p1",uid);
 			var dbUsers=[];
 			if(result.length>0){
-				// console.log(result);
+				console.log("result from con id ",result);
 				result.forEach(function(element, index, array){
 					// console.log("con_id in user chat",element.con_id);
 					var data={
@@ -290,7 +290,7 @@ var self={
 						connection:connection
 					}
 					self.queryRunner(data,function(usersData){
-						// console.log("get user chat list p2",usersData);
+						console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
 							dbUsers.push(usersData[0]);
 							// console.log("pushed to dbuser",dbUsers);							
@@ -366,10 +366,10 @@ var self={
 			       }
 				}
 			}
-			// if(!shouldAdd){				
-			// 	tempUsers.push(socketUsers[i]);
-			// 	console.log("pushed", socketUsers[i]);
-			// }
+			if(!shouldAdd){				
+				tempUsers.push(socketUsers[i]);
+				console.log("pushed", socketUsers[i]);
+			}
 		}
 		if(newUsers=='no'){
 			tempUsers = tempUsers.concat(dbUsers);
@@ -379,7 +379,7 @@ var self={
 			tempUsers = dbUsers;
 			// console.log("direct db to temp", tempUsers);
 		}
-		// console.log("merge users");
+		console.log("merge users",tempUsers);
 		callback(tempUsers);
 	}
 }
