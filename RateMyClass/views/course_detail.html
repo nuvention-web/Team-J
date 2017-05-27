@@ -145,23 +145,27 @@
       <div class="panel panel-default" ng-init="chartInit()">
         <ul class="chart_list">
           <li class="list-item">
-            <canvas class="chart chart-doughnut" chart-data="overallData" chart-labels="overallLabels" chart-colours="colours">
+            <canvas id="over" class="chart chart-doughnut" chart-data="overallData" chart-labels="overallLabels" chart-colours="colours">
             </canvas> 
+            <div id="overTag" class="dataTag label label-danger">No Rates</div>
             <label>Overall rating</label>
           </li>
           <li class="list-item">
-            <canvas class="chart chart-doughnut" chart-data="diffData" chart-labels="diffLabels">
-            </canvas> 
+            <canvas id="diff" class="chart chart-doughnut" chart-data="diffData" chart-labels="diffLabels">
+            </canvas>
+            <div id="diffTag" class="dataTag label label-danger">No Rates</div>
             <label>Difficulty rating</label>
           </li>
           <li class="list-item">
-            <canvas class="chart chart-doughnut" chart-data="effData" chart-labels="effLabels">
-            </canvas> 
+            <canvas id="eff" class="chart chart-doughnut" chart-data="effData" chart-labels="effLabels">
+            </canvas>
+            <div id="effTag" class="dataTag label label-danger">No Rates</div>
             <label>Effectiveness rating</label>
           </li>
           <li class="list-item">
-            <canvas class="chart chart-doughnut" chart-data="revData" chart-labels="revLabels">
+            <canvas id="rev" class="chart chart-doughnut" chart-data="revData" chart-labels="revLabels">
             </canvas> 
+            <div id="revTag" class="dataTag label label-danger">No Reviews</div>
             <label>Reviews</label>
           </li>
         </ul>
@@ -197,7 +201,7 @@
                           <label>Effectiveness: </label>
                           <span class="label" ng-class="{'label-danger': rater.rEffectiveness <= 2.0, 'label-warning': rater.rEffectiveness < 3.5 && rater.rEffectiveness > 2.0, 'label-success': rater.rEffectiveness >=3.5 && rater.rEffectiveness <= 5, 'label-default' : rater.rEffectiveness > 5.0}" ng-bind="rater.rEffectiveness | number : 2"></span>
                         </h4>
-                        <div class="comment-text" ng-bind="rater.review? rater.review:'No reviews written'">
+                        <div class="comment-text" ng-bind="rater.review ? rater.review :'No reviews written'">
                         </div>
 
                         

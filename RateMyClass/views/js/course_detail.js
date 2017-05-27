@@ -28,52 +28,79 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
         $http.get('/chart', config).then(function successCallback(response) {
                
                $scope.revLabels = [];
-               $scope.revLabels.push("Reviews"); 
-               $scope.revLabels.push("No Reviews"); 
-
                $scope.revData = [];
-               $scope.revData.push(response.data[0][0].Not_Empty);
-               $scope.revData.push(response.data[0][0].Empty);
+
+               // console.log(response.data[0]);
+
+               if (response.data[0][0].Not_Empty == null && response.data[0][0].Empty == null){
+                  document.getElementById("rev").style.display = "none";
+                  document.getElementById("revTag").style.display = "block";
+               }
+               else{
+                 $scope.revLabels.push("Reviews"); 
+                 $scope.revLabels.push("No Reviews"); 
+  
+                 $scope.revData.push(response.data[0][0].Not_Empty);
+                 $scope.revData.push(response.data[0][0].Empty);
+               }
 
                //difficulty
                var diff = response.data[1];      
                $scope.diffLabels = [];
                $scope.diffData = [];
 
-               diff.forEach(function(ele){
-                  if (ele.rDifficulty != 0){
-                    $scope.diffLabels.push(ele.rDifficulty.toFixed(2));
-                    $scope.diffData.push(ele.count);
-                  }
-               });
+               if (diff != "None"){
+                 for (var i=0, len = diff.length; i < len; i++){
+                      $scope.diffLabels.push("Rate for " + diff[i].rDifficulty.toFixed(2));
+                      $scope.diffData.push(diff[i].count);
+                 };
+               }
 
                //effitiveness
                var eff = response.data[2];
                $scope.effLabels = [];
                $scope.effData = [];
 
-               eff.forEach(function(ele){
-                  if (ele.rEffectiveness != 0){
-                    $scope.effLabels.push(ele.rEffectiveness.toFixed(2));
-                    $scope.effData.push(ele.count);
-                  }
-               });
+               if (eff != "None"){
+                 for (var i=0, len = eff.length; i < len; i++){
+                    $scope.effLabels.push("Rate for " + eff[i].rEffectiveness.toFixed(2));
+                    $scope.effData.push(eff[i].count);
+                 };
+               }
 
                //overall
                var over = response.data[3];
                $scope.overallLabels = [];
                $scope.overallData = [];
 
-               over.forEach(function(ele){
-                  if (ele.rating != 0){
-                    $scope.overallLabels.push(ele.rating.toFixed(2));
-                    $scope.overallData.push(ele.count);
-                  }
-               });
+               // console.log(over);
+               if (over != "None"){
+                 for (var i=0, len = over.length; i < len; i++){
+                    $scope.overallLabels.push("Rate for " + over[i].rating.toFixed(2));
+                    $scope.overallData.push(over[i].count);
+                 };
+               }
 
-               var ctec = response.data[4];
-               $scope.overallLabels.push("(CTEC) ," + ctec[0].rating.toFixed(2));
-               $scope.overallData.push(ctec[0].no_of_students);          
+              // console.log($scope.overallData, $scope.effData, $scope.diffData, $scope.overallData);
+
+              if ($scope.overallData.length == 0){
+                  document.getElementById("over").style.display = "none";
+                  document.getElementById("overTag").style.display = "block";
+              }
+
+              if ($scope.effData.length == 0){
+                  document.getElementById("eff").style.display = "none";
+                  document.getElementById("effTag").style.display = "block";
+              }
+
+              if ($scope.diffData.length == 0){
+                  document.getElementById("diff").style.display = "none";
+                  document.getElementById("diffTag").style.display = "block";
+              }
+
+              // console.log($scope.overallData, $scope.effData, $scope.diffData, $scope.revData);
+              // console.log($scope.overallLabels, $scope.effLabels, $scope.diffLabels, $scope.revLabels);
+
 
         }, function errorCallback(response){
                swal({
@@ -167,14 +194,16 @@ app.controller('course-detail', function ($scope,$http,$timeout,$window,$rootSco
 
       $http.get('/raterlist', config).then(function successCallback(response) {
 
-               if (response.data[1] == "No one rated"){
-                  response.data[1] = "";
+              // console.log(response.data);
+               if (response.data == "No one rated"){
+                  $scope.raters = "";
+               }
+               else{
+                 $scope.self = response.data[0];
+                 $scope.raters = response.data[1];
                }
 
-               $scope.self = response.data[0]
-               $scope.raters = response.data[1];
-
-               // console.log($scope.self, $scope.raters);
+               // console.log($scope.self, response.data[1]);
         
         }, function errorCallback(response){
               swal({

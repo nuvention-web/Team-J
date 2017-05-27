@@ -186,11 +186,11 @@ function routes(app,connection,sessionInfo){
 			connection:connection
 		}
 
-		console.log(data.query);
+		// console.log(data.query);
 
 		query_runner(data,function(result){
 
-			console.log(result);
+			// console.log(result);
 			if(result.changedRows > 0) {
 		    	result_send={
 		    		msg:true
@@ -303,7 +303,7 @@ var check_NetID=function(req, res, connection, callback){
 
 				var fullname = result['displayName'][0];
 
-				console.log(result);
+				// console.log(result);
 				if(email.includes("@u.")){
 					console.log("Student");
 					insert_user(req, res, firstname, lastname, email, connection,callback);

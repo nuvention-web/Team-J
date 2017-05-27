@@ -67,7 +67,7 @@
 				-->
 				<div class="msg-wrapper-header">
 					<div class="chat-user-meta">
-				  		<span class="user-name">{{send_to_user_name=='' ? 'Select User to Chat': send_to_user_name}} </span>
+				  		<span class="user-name" ng-bind="send_to_user_name=='' ? 'Select User to Chat': send_to_user_name"></span>
 					</div>
 			  	</div>
 			  	<!-- 
@@ -81,11 +81,11 @@
 					<div class="msg-container" id="msg-container">
 				  		<div class="msg-single" ng-repeat="msg_data in msgs"  
 							ng-style="{
-						  		'float': uid==msg_data.to_id ? 'left' :'right'
+						  		'float': uid==msg_data.to_id ? 'left' :'right', 'background': uid==msg_data.to_id ? 'white' : '#5F9F9D',
 							}">
 					  		<div class="msg-conatiner">
-								<div class="actual-msg">{{msg_data.msg}}</div>
-								<span class="msg-meta">{{msg_data.timestamp*1000 | date}}</span>
+								<div class="actual-msg" ng-style="{'color':  uid==msg_data.to_id ? 'black' :'white'}">{{msg_data.msg}}</div>
+								<span class="msg-meta" ng-style="{'color':  uid==msg_data.to_id ? 'black' :'white'}">{{msg_data.timestamp*1000 | date}}</span>
 					  		</div>
 				  		</div> 
 					</div>
@@ -122,14 +122,14 @@
 					<!-- 
 						Link for modal and for Logout starts
 					-->	
-					<div class="icon-set">
+					<!-- <div class="icon-set">
 						<a Title="Start New chat" ng-click='get_users_to_chats()' data-toggle="modal" data-target="#myModal">
 							<span class="glyphicon glyphicon-plus"></span>
 						</a>
-				<!-- 		<a Title="Logout" href="/logout">
+						<a Title="Logout" href="/logout">
 							<span class="glyphicon glyphicon-off"></span>
-						</a> -->
-					</div>
+						</a>
+					</div> -->
 					<!-- 
 						Link for modal and for Logout ends
 					-->	
@@ -138,57 +138,58 @@
 						Showing online status
 					-->	
 					<div class="user-meta">
-						<span class="user-name">{{show_userinfo.data.first_name}} {{show_userinfo.data.last_name}}</span>
-						<!-- <span class="user-status">{{show_userinfo.data.online=='Y' ? 'Online': 'Offline' }}</span> -->
+						<span class="user-name" ng-bind="(show_userinfo.data.first_name) + ' ' + (show_userinfo.data.last_name)"></span>
 					</div>
 				</div>
 
 				<!-- 
 					Displaying chat list starts
 				-->	
-				<div class="userlist">
+				<div class="col-md-12 list-wrapper-body">
+					<div class="userlist">
 
-					<!-- 
-						Using ng-repeat to show users starts
-					-->	
-					<div class="userlist-single" ng-repeat="singleuser in userlist"
-						ng-click="hightlight_user(singleuser)"
-					  	ng-class="(hightlight_id==singleuser.netid ? 'hightlight_user_class' :'')"
-					  	ng-style="{
-							'display': uid==singleuser.netid ? 'none' :''
-						}">
 						<!-- 
-							Showing users name, profile Image and online status  
+							Using ng-repeat to show users starts
 						-->	
-						<div class="userlist-user-meta">
-							<!-- <img class="img-circle" ng-src="{{singleuser.p_photo}}"/> -->
-								<span class="online-user-status"
-						  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
-								></span>
-							<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}} {{singleuser.last_name}}</span>
+						<div class="userlist-single" ng-repeat="singleuser in userlist"
+							ng-click="hightlight_user(singleuser)"
+						  	ng-class="(hightlight_id==singleuser.netid ? 'hightlight_user_class' :'')"
+						  	ng-style="{
+								'display': uid==singleuser.netid ? 'none' :''
+							}">
 							<!-- 
-								Span to show 'Typing indicator'  
+								Showing users name, profile Image and online status  
 							-->	
-							<span id="isTyping_{{singleuser.first_name}}" class="is-typing">is typing...</span>
-						</div>				  
-					</div>
-					<!-- 
-						Using ng-repeat to show users ends
-					-->	
+							<div class="userlist-user-meta">
+								<!-- <img class="img-circle" ng-src="{{singleuser.p_photo}}"/> -->
+									<span class="online-user-status"
+							  			ng-class="(singleuser.online=='Y' ? 'status-online' :'status-offline')"
+									></span>
+								<span title="{{singleuser.socketId}}" class="userlist-userName">{{singleuser.first_name}} {{singleuser.last_name}}</span>
+								<!-- 
+									Span to show 'Typing indicator'  
+								-->	
+								<span id="isTyping_{{singleuser.first_name}}" class="is-typing">is typing...</span>
+							</div>				  
+						</div>
+						<!-- 
+							Using ng-repeat to show users ends
+						-->	
 
-					<!-- 
-						Showing alert when no user avalibale for chat
-					-->	
-					<div ng-show="userlist.length == 1 && userlist[0].first_name==show_userinfo.data.first_name"  >
-						<div class="alert alert-danger" >
-						  <p class="text-center" >
-							You have not started connecting yet.
-							<br/><br/>
-							Start finding your peers.
-						  </p >
-						</div >
-					</div>
+						<!-- 
+							Showing alert when no user avalibale for chat
+						-->	
+						<div ng-show="userlist.length == 1 && userlist[0].first_name==show_userinfo.data.first_name"  >
+							<div class="alert alert-danger" >
+							  <p class="text-center" >
+								You have not started connecting yet.
+								<br/><br/>
+								Start finding your peers.
+							  </p >
+							</div >
+						</div>
 
+					</div>
 				</div>
 				<!-- 
 					Displaying chat list ends
@@ -288,11 +289,13 @@
 	<script type="text/javascript" src="angularjs-toaster/toaster.min.js"></script>
 	<script>
 		function resize() {
-   			$(".container").height($(window).height() - 50);
+   			$(".container").height($(window).height() - 65);
+   			$(".list-wrapper").height($(".msg-wrapper").height()-1);
 		}
 
 		function loadSize(){
-			$(".container").height($(window).height() - 50);
+			$(".container").height($(window).height() - 65);
+			$(".list-wrapper").height($(".msg-wrapper").height()-1);
 			// $scope.get_user_name()
 		}
 	</script>

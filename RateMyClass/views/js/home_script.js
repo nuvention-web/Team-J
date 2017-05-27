@@ -223,6 +223,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		$scope.hightlight_id=send_to_userinfo.netid;
 		$scope.send_to_user_name=send_to_userinfo.first_name+send_to_userinfo.last_name; 
 		$scope.hightlight_socket_id=send_to_userinfo.socketId; 
+
 		
 		$scope.self.getMsg(send_to_userinfo,function(result){
 		  $scope.msgs="";
@@ -313,6 +314,8 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 		var hidEle=angular.element( document.querySelector( '.hideMSgBox'+'_'+id ) );
 		var showEle=angular.element( document.querySelector( '.showMSgBox'+'_'+id ) );
 
+		
+
 		if(action=="hide"){
 			hideShowEle.addClass('send-msg-hidden');
 			hideShowEle.removeClass('send-msg-show');
@@ -379,7 +382,7 @@ app.controller('home', function ($scope,$location,$window,$sce,$timeout,toaster,
 	socket.on('userEntrance',function(data){
 		$scope.userlist=data;
 
-		console.log("$scope.userlist == ", $scope.userlist);
+		// console.log("$scope.userlist == ", $scope.userlist);
   	});
 
  

@@ -156,7 +156,7 @@ var self={
 		/*	Calling "self.isConversationPresent" function,
 			to check is conversation is already present or not.
 		*/
-		console.log(data);
+		// console.log(data);
 		var check_data={
 			to_id:data.to_id,
 			from_id:data.from_id
@@ -272,10 +272,10 @@ var self={
 			connection:connection
 		}
 		self.queryRunner(data,function(result){
-			console.log("get user chat list p1",uid);
+			// console.log("get user chat list p1",uid);
 			var dbUsers=[];
 			if(result.length>0){
-				console.log("result from con id ",result);
+				// console.log("result from con id ",result);
 				result.forEach(function(element, index, array){
 					// console.log("con_id in user chat",element.con_id);
 					var data={
@@ -290,7 +290,7 @@ var self={
 						connection:connection
 					}
 					self.queryRunner(data,function(usersData){
-						console.log("get user chat list p2",usersData);
+						// console.log("get user chat list p2",usersData);
 						if(usersData.length>0){
 							dbUsers.push(usersData[0]);
 							// console.log("pushed to dbuser",dbUsers);							
@@ -351,7 +351,7 @@ var self={
 					if (dbUsers[j].netid == socketUsers[i].netid) {
 						shouldAdd = false;
 						dbUsers.splice(j,1); //Removing single user						
-						console.log("yes");
+						// console.log("yes");
 						break;
 					}
 				}else{
@@ -361,14 +361,14 @@ var self={
 					if (dbUsers[j].netid == socketUsers[i].netid) {
 						dbUsers[j].socketId = socketUsers[i].socketId;
 						shouldAdd = true;
-						console.log("no");
+						// console.log("no");
 						break;
 			       }
 				}
 			}
 			if(!shouldAdd){				
 				tempUsers.push(socketUsers[i]);
-				console.log("pushed", socketUsers[i]);
+				// console.log("pushed", socketUsers[i]);
 			}
 		}
 		if(newUsers=='no'){
@@ -379,7 +379,7 @@ var self={
 			tempUsers = dbUsers;
 			// console.log("direct db to temp", tempUsers);
 		}
-		console.log("merge users",tempUsers);
+		// console.log("merge users",tempUsers);
 		callback(tempUsers);
 	}
 }

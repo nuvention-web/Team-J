@@ -198,6 +198,9 @@ app.controller('profile', function ($scope,$http,$timeout,$window) {
           var rating2 = $("#rateYo2").rateYo("rating");
           var review = $('#reviews').val();
 
+          if (review == "")
+            review = null;
+
           // console.log(ratedFlag);
 
           if (rating == 0 || rating1 == 0 || rating2 == 0){

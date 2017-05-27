@@ -128,7 +128,7 @@ h4 > label{
 
 
 .chart_list > li{
-	height: 200px;
+	/*height: 200px;*/
 	width: 200px;
 	display: inline-block;
 	margin-left: 3em;
@@ -143,4 +143,14 @@ li > label{
 
 .col-xs-8{
 	padding-left: 0;
+}
+
+.dataTag{
+	display: block;
+	color: white;
+	font-size: 20px;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	text-align: center;
+	display: none;
 }

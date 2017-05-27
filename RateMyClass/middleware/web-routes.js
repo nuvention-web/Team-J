@@ -62,9 +62,19 @@ function routes(app,connection,sessionInfo){
 
 		// console.log(rateReview);
 
-		var data={
-			query:"update course_taken set rating = '"+ rateRate + "', review = '"+ rateReview + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
-			connection:connection
+		var data;
+
+		if (rateReview == null){
+			data={
+				query:"update course_taken set rating = '"+ rateRate + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
+				connection:connection
+			}
+		}
+		else{
+			data={
+				query:"update course_taken set rating = '"+ rateRate + "', review = '"+ rateReview + "', rDifficulty='"+ raterDifficulty + "', rEffectiveness='"+ raterEffectiveness + "' where netid=\"" + rateNetID + "\" and class_num='" + rateCourseNum + "' and term='" + rateCourseTerm + "';",
+				connection:connection
+			}
 		}
 
 		query_runner(data,function(result){
@@ -197,7 +207,7 @@ function routes(app,connection,sessionInfo){
 			
 			//start - review
 			var data={
-				query:"select count(*) - count(review) AS Empty, count(review) AS Not_Empty from course_taken where term='"+term+"' and class_num= '"+num+"' and rating != 0;",
+				query:"select sum(isnull(review)) AS Empty, sum(not isnull(review)) AS Not_Empty from course_taken where term='"+term+"' and class_num= '"+num+"' and rating != 0;",
 				connection:connection
 			}
 
@@ -236,7 +246,7 @@ function routes(app,connection,sessionInfo){
 
 						//start - rating
 						var data={
-							query:"select rating, count(rating) AS count from course_taken where term='"+term+"' and class_num= '"+num+"' group by rating;",
+							query:"select rating, count(rating) AS count from course_taken where term='"+term+"' and class_num= '"+num+"' and rating != 0 group by rating;",
 							connection:connection
 						}
 
@@ -246,10 +256,11 @@ function routes(app,connection,sessionInfo){
 							} else {
 							    answer.push("None");
 							}
+							res.json(answer);
 
 							//start - average
 							var data={
-								query:"select rating, no_of_students from course where term='"+term+"' and class_num= '"+num+"';",
+								query:"select rating, no_of_students from course where term='"+term+"' and class_num= '"+num+"' and rating != 0;",
 								connection:connection
 							}
 
@@ -261,7 +272,7 @@ function routes(app,connection,sessionInfo){
 								    answer.push("None");
 								}
 
-								res.json(answer);			
+											
 							});
 							//end - average
 
@@ -378,7 +389,7 @@ function routes(app,connection,sessionInfo){
 
 		/*Render Login page If session is not set*/
 		if(sessionInfo.uid){
-			console.log("in get user",sessionInfo.uid);
+			// console.log("in get user",sessionInfo.uid);
 			res.send(sessionInfo.uid);
 
 		}else{
