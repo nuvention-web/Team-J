@@ -28,7 +28,12 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
     	$scope.load_course(selectedQuarter);
 	}
 
-    $scope.load_course = function(selectedQuarter){
+  $scope.getQuarter_nologin = function(quarter){
+      selectedQuarter = quarter;
+      $scope.load_course_nologin(selectedQuarter);
+  }
+
+  $scope.load_course = function(selectedQuarter){
 
         // console.log("user id is ", $window.location.hash.substring(2,));
 
@@ -56,6 +61,47 @@ app.controller('course-list', function ($scope,$http,$timeout,$window,$location)
                }
                else
                   $scope.courses = response.data;
+        }, function errorCallback(response){
+               swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                    timer: 4000
+              })
+        });
+    }
+
+    $scope.load_course_nologin = function(selectedQuarter){
+
+        // console.log("user id is ", $window.location.hash.substring(2,));
+
+        if (selectedQuarter == null)
+          selectedQuarter = "2017 Fall";
+        var config = {
+            params: {
+                term: selectedQuarter
+            }
+        }
+
+        $http.get('/courselist_nologin', config).then(function successCallback(response) {
+
+               if (response.data == "Error"){
+                  swal({
+                    title: 'Error!',
+                    text: 'Connection Error!',
+                    type: 'error',
+                    allowOutsideClick : false,
+                    animation: false,
+                    customClass: 'animated shake',
+                  }).then(function(){
+                    $window.location.reload();
+                  })               
+               }
+               else
+                  $scope.courses_notlogin = response.data;
         }, function errorCallback(response){
                swal({
                     title: 'Error!',

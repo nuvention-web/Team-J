@@ -189,6 +189,34 @@ function routes(app,connection,sessionInfo){
 		}
 	});
 
+	app.get('/courselist_nologin', function(req, res){
+		
+		// sessionInfo=req.session;
+		
+		var parts = url.parse(req.url, true);
+		var query = parts.query;
+		// var term = req;
+		// console.log(query.term);
+
+		var term = query.term;
+
+		/*Render Login page If session is not set*/
+			
+		var data={
+			query:"select * from course where term='"+term+"' order by course_id,title",
+			connection:connection
+		}
+
+		query_runner(data,function(result){
+			if(result.length>0) {
+				res.json(result);
+		    } else {
+		    	res.send("Error");	
+		    }			
+		});
+	});
+
+
 	app.get('/chart', function(req, res){
 		
 		sessionInfo=req.session;
