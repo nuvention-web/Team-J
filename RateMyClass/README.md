@@ -1,1 +1,3 @@
-Platform for NU students to discuss with their peers about courses they are interested in taking.
+CoEva
+
+CoEva is all about helping students take informed course selection decision. 
